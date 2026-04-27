@@ -263,23 +263,40 @@ Deno.serve(async (req) => {
       }),
     });
 
-    const openaiJson = await openaiResponse.json();
-    const extractedMessage = openaiJson?.choices?.[0]?.message || {};
-    const contentOnly = extractedMessage?.content || null;
-
-    // Store the report (fire-and-forget style, but we await for correctness)
-    if (contentOnly) {
-      await supabase.from("reports").upsert({
-        submission_id: Number(submissionId),
-        menopause_report: JSON.parse(contentOnly),
-      });
+    if (!openaiResponse.ok) {
+      const errText = await openaiResponse.text();
+      console.error("OpenAI error:", openaiResponse.status, errText);
+      return new Response(
+        JSON.stringify({ error: "OpenAI API error", status: openaiResponse.status, detail: errText }),
+        { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
+
+    const openaiJson = await openaiResponse.json();
+    const extractedMessage = openaiJson?.choices?.[0]?.message;
+
+    if (!extractedMessage?.content) {
+      console.error("Unexpected OpenAI response:", JSON.stringify(openaiJson));
+      return new Response(
+        JSON.stringify({ error: "Empty OpenAI response", raw: openaiJson }),
+        { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const contentOnly = extractedMessage.content;
+
+    // Store the report
+    await supabase.from("reports").upsert({
+      submission_id: Number(submissionId),
+      menopause_report: JSON.parse(contentOnly),
+    });
 
     return new Response(JSON.stringify(extractedMessage), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (error) {
+    console.error("generate-score error:", error);
     return new Response(
       JSON.stringify({ error: error.message }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
