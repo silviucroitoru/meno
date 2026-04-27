@@ -9,10 +9,10 @@ export default function Questionaire() {
   function getLanguageFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     const lang = urlParams.get('language')?.toLowerCase();
-    return lang === 'en' || lang === 'ro' ? lang.toUpperCase() : null;
+    return lang === 'en' || lang === 'ro' || lang === 'sr' ? lang.toUpperCase() : null;
   }
   const [questionnaire, setQuestionnaire] = useState(null);
-  const [language] = useState(getLanguageFromURL() ?? 'RO');
+  const [language] = useState(getLanguageFromURL() ?? 'SR');
   const [userName, setUserName] = useState(localStorage.getItem('userName'));
   const [submissionId, setSubmissionId] = useState();
   const [progressPages, setProgressPages] = useState([1]);
