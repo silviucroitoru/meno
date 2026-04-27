@@ -8,7 +8,8 @@ import HeaderArea from "./components/HeaderArea.jsx";
 export default function Questionaire() {
   function getLanguageFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('language');
+    const lang = urlParams.get('language')?.toLowerCase();
+    return lang === 'en' || lang === 'ro' ? lang.toUpperCase() : null;
   }
   const [questionnaire, setQuestionnaire] = useState(null);
   const [language] = useState(getLanguageFromURL() ?? 'RO');
@@ -32,7 +33,8 @@ export default function Questionaire() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.setItem("language", getLanguageFromURL()?.toLowerCase() ?? 'ro');
+    const uiLang = new URLSearchParams(window.location.search).get('language')?.toLowerCase();
+    localStorage.setItem("language", uiLang === 'en' || uiLang === 'ro' || uiLang === 'sr' ? uiLang : 'sr');
     if (topicPageRef.current) {
       originalHeight.current = topicPageRef.current.clientHeight;
     }

@@ -7,11 +7,13 @@ import { Amplify } from "aws-amplify";
 import outputs from "../amplify_outputs.json";
 import EnglishMessages from "./locales/en/translations.json";
 import RomanianMessages from "./locales/ro/translations.json";
+import SerbianMessages from "./locales/sr/translations.json";
 import { Tolgee, DevTools, TolgeeProvider, FormatSimple, BackendFetch } from "@tolgee/react";
 
 const messages = {
   en: EnglishMessages,
   ro: RomanianMessages,
+  sr: SerbianMessages,
 };
 
 const getInitialLanguage = () => {
@@ -29,7 +31,7 @@ const getInitialLanguage = () => {
   }
 
   // If no valid URL param, use the stored language or fallback to 'ro'
-  return messages[storedLanguage] ? storedLanguage : "ro";
+  return messages[storedLanguage] ? storedLanguage : "sr";
 };
 
 const Root = () => {
@@ -55,7 +57,7 @@ const Root = () => {
     .use(DevTools())
     .use(FormatSimple())
     .init({
-      language: language ?? 'ro',
+      language: language ?? 'sr',
 
       apiUrl: import.meta.env.VITE_APP_TOLGEE_API_URL,
       apiKey: import.meta.env.VITE_APP_TOLGEE_API_KEY,
