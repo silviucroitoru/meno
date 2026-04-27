@@ -38,13 +38,8 @@ export default function Questionaire() {
     if (topicPageRef.current) {
       originalHeight.current = topicPageRef.current.clientHeight;
     }
-    const myHeaders = new Headers();
-    myHeaders.append("X-Api-Key", `${import.meta.env.VITE_API_KEY}`);
-    myHeaders.append("Content-Type", "application/json");
-
     const requestOptions = {
       method: "GET",
-      headers: myHeaders,
     };
     // setSubmissionId(mockData.SubmissionID)
     // setQuestionnaire(mockData.questionnaire);

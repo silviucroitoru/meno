@@ -15,13 +15,9 @@ export default function Dashboard() {
     mixpanel.people.set({ '$name': localStorage.getItem('userName'),
                           '$email': localStorage.getItem('bloomEmail'),
     });
-    const myHeaders = new Headers();
-    myHeaders.append("X-Api-Key", `${import.meta.env.VITE_API_KEY}`);
-    myHeaders.append("Content-Type", "application/json");
     setTimeout(() => {setDisplay(true)}, 13600)
     const requestOptions = {
       method: "GET",
-      headers: myHeaders,
     };
 
     fetch(`${import.meta.env.VITE_API_URL}/generate-score?submissionId=${localStorage.getItem('SubmissionID') ?? 9999999}&language=${language.toUpperCase() ?? 'RO'}`, requestOptions)
