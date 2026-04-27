@@ -6,12 +6,14 @@ import { FormattedMessage, createIntl } from "react-intl";
 import virginiaImage from '../assets/virginia-lazar.png';
 import EnglishMessages from "../locales/en/translations.json"
 import RomanianMessages from "../locales/ro/translations.json";
+import SerbianMessages from "../locales/sr/translations.json";
 import mixpanel from "mixpanel-browser";
 import { useTranslate } from "../i18n/useTranslate";
 
 const messages = {
   en: EnglishMessages,
   ro: RomanianMessages,
+  sr: SerbianMessages,
 };
 
 export default function Menoscore({scoreJson, scoreSummary}) {
@@ -24,16 +26,18 @@ export default function Menoscore({scoreJson, scoreSummary}) {
   const [perimenopauseWidth, setPerimenopauseWidth] = useState(0);
   const [menopauseWidth, setMenopauseWidth] = useState(0);
   const [postmenopauseWidth, setPostmenopauseWidth] = useState(0);
-  const language = localStorage.getItem('language').toLowerCase();
+  const language = localStorage.getItem('language')?.toLowerCase() ?? 'sr';
   function getTranslatedMessage(id, values = {}) {
     const intl = createIntl(
       {
         locale: language,
-        messages: messages[language],
+        messages: messages[language] ?? SerbianMessages,
       },
     );
     return intl.formatMessage({ id }, values);
   }
+  const getSymptomBaseId = (dataPointName) =>
+    (dataPointName ?? "").replaceAll(" ", "").replaceAll("_", "");
   const stages = [getTranslatedMessage("premenopause", {}), getTranslatedMessage("perimenopause", {}),  getTranslatedMessage("menopause", {}), getTranslatedMessage("postmenopause", {})];
   useEffect(() => {
     mixpanel.track('[Page View] Dashboard', {source: 'Dashboard'})
@@ -353,10 +357,10 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                               strokeLinejoin="round"/>
                       </svg>
                     )}
-                    {t(`${s.dataPointName.replaceAll(' ', '')}_name`)}
+                    {t(`${getSymptomBaseId(s.dataPointName)}_name`)}
                   </div>
                   <div className="description"
-                       dangerouslySetInnerHTML={{__html: getTranslatedMessage(`${s.dataPointName?.replaceAll(" ", "")}_description`, {})}}/>
+                       dangerouslySetInnerHTML={{__html: getTranslatedMessage(`${getSymptomBaseId(s.dataPointName)}_description`, {})}}/>
                   <div style={{display: "flex", gap: '16px', flexWrap: 'wrap'}}>
                     <a
                       href={getTranslatedMessage('become_member_link', {})}
@@ -379,7 +383,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                       <span>{t('talk_to_doctor')}</span>
                     </a>
                     <a
-                      href={getTranslatedMessage(`${s.dataPointName?.replaceAll(" ", "")}_link`, {})}
+                      href={getTranslatedMessage(`${getSymptomBaseId(s.dataPointName)}_link`, {})}
                       target="_blank"
                       className="button button--secondary"
                       onClick={() => trackEvent(`Dashboard Impactful Symptom Click on ${getTranslatedMessage('symptom_link_text')} button`, 'Impactful Symptom')}
@@ -409,10 +413,10 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                       <path d="M22 12H18L15 21L9 3L6 12H2" stroke="#3D497A" strokeWidth="2" strokeLinecap="round"
                             strokeLinejoin="round"/>
                     </svg>
-                    {t(`${s.dataPointName.replaceAll(' ', '')}_name`)}
+                    {t(`${getSymptomBaseId(s.dataPointName)}_name`)}
                   </div>
                   <div className="description"
-                       dangerouslySetInnerHTML={{__html: getTranslatedMessage(`${s.dataPointName?.replaceAll(" ", "")}_description`, {})}}/>
+                       dangerouslySetInnerHTML={{__html: getTranslatedMessage(`${getSymptomBaseId(s.dataPointName)}_description`, {})}}/>
                   <div style={{display: "flex", gap: '16px', flexWrap: 'wrap', alignItems: 'center'}}>
                     <a
                       href={getTranslatedMessage('become_member_link', {})}
@@ -436,7 +440,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                       <span>{t('talk_to_doctor')}</span>
                     </a>
                     <a
-                      href={getTranslatedMessage(`${s.dataPointName?.replaceAll(" ", "")}_link`, {})}
+                      href={getTranslatedMessage(`${getSymptomBaseId(s.dataPointName)}_link`, {})}
                       target="_blank"
                       className="button button--secondary"
                       onClick={() => trackEvent(`Dashboard Moderate Symptom Click on ${getTranslatedMessage('symptom_link_text')} button`, 'Moderate Symptom')}
