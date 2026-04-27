@@ -1,0 +1,90 @@
+.contact-container .heading-container h2{
+  color: var(--main-blue);
+  font-family: "SofiaPro-Medium";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: -0.48px;
+  margin: 0;
+}
+.contact-container .heading-container{
+  margin: 0 0 48px 0;
+  display: block;
+  width: 100%;
+}
+.contact-container .heading-container .helper{
+  color: var(--main-grey);
+  font-family: "SofiaPro-Regular";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.21px;
+  margin: 8px 0 0 0;
+}
+.contact-container .contact-methods{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  row-gap: 16px;
+}
+.contact-container .contact-methods .contact{
+  border: 1px solid var(--secondary-gray);
+  padding: 16px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+.contact-container .contact-methods .contact.selected{
+  border: 1px solid var(--main-blue);
+}
+.contact-container .contact-methods .contact>img{
+  display: none;
+}
+.contact-container .contact-methods .contact .contact-text{
+  color: var(--main-blue);
+  font-family: "SofiaPro-Medium";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.24px;
+  margin: 0 0 8px 0;
+}
+.contact-container .contact-methods .contact .contact-description{
+  color: var(--main-grey);
+  font-family: 'SofiaPro-Regular';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.21px;
+}
+@media screen and (min-width: 990px){
+  .contact-container .heading-container h2{
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 36px;
+    letter-spacing: -0.42px;
+  }
+  .contact-container .contact-methods{
+    column-gap: 24px;
+  }
+  .contact-container .contact-methods .contact{
+    width: calc(50% - 14px);
+    max-width: calc(50% - 14px);
+    padding: 0;
+  }
+  .contact-container .contact-methods .contact>img{
+    display: block;
+    margin-bottom: 24px;
+    border-radius: 16px 16px 0 0;
+  }
+  .contact-container .contact-methods .contact .contact-text{
+    padding: 0 24px;
+  }
+  .contact-container .contact-methods .contact .contact-description{
+    padding: 0 24px 24px 24px;
+  }
+}

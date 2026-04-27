@@ -1,0 +1,151 @@
+.multiple-option.question-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  height: 100%;
+
+}
+.multiple-option.question-container .heading-container{
+  margin: 0 0 48px 0;
+  display: block;
+  width: 100%;
+}
+.multiple-option.question-container .heading-container h2{
+  color: var(--main-blue);
+  font-family: "SofiaPro-Medium";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px; /* 133.333% */
+  letter-spacing: -0.48px;
+  margin: 0 0 8px 0;
+}
+
+.multiple-option.question-container .heading-container p.helper{
+  color: var(--main-grey);
+  /* Text S/Regular */
+  font-family: "SofiaPro-Regular";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.21px;
+  margin: 0;
+}
+.multiple-option.question-container .options-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  width: 100%;
+  row-gap: 16px;
+  height: calc(100% - 144px);
+  overflow: auto;
+  padding-bottom: 144px;
+  scrollbar-width: none;
+}
+.multiple-option.question-container .options-container .option-multiple{
+  border-radius: 8px;
+  -webkit-box-shadow:inset 0 0 0 1px var(--secondary-gray);
+  -moz-box-shadow:inset 0 0 0 1px var(--secondary-gray);
+  box-shadow:inset 0 0 0 1px var(--secondary-gray);
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 12px;
+  width: 100%;
+  cursor: pointer;
+}
+.multiple-option.question-container .options-container .option-multiple.selected{
+  -webkit-box-shadow:inset 0 0 0 2px var(--main-blue);
+  -moz-box-shadow:inset 0 0 0 2px var(--main-blue);
+  box-shadow:inset 0 0 0 2px var(--main-blue);
+}
+
+.multiple-option.question-container .options-container .option-multiple .text-container{
+  flex: 1;
+  max-width: 100%;
+}
+.multiple-option.question-container .options-container .option-multiple .text-container .q-text{
+  color: var(--main-blue);
+  font-family: "SofiaPro-Medium";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.24px;
+}
+.multiple-option.question-container .options-container .option-multiple .check{
+  width: 16px;
+  height: 16px;
+  border-radius: 16px;
+  -webkit-box-shadow:inset 0 0 0 1px var(--secondary-gray);
+  -moz-box-shadow:inset 0 0 0 1px var(--secondary-gray);
+  box-shadow:inset 0 0 0 1px var(--secondary-gray);
+  position: relative;
+  background-color: #FFF;
+}
+.multiple-option.question-container .options-container .option-multiple .check:after{
+  width: 6px;
+  height: 6px;
+  border-radius: 16px;
+  position: absolute;
+  display: block;
+  content: ' ';
+  background-color: var(--secondary-gray);
+  top: 5px;
+  left: 5px;
+}
+.multiple-option.question-container .options-container .option-multiple:hover .check,
+.multiple-option.question-container .options-container .option-multiple.selected .check{
+  -webkit-box-shadow:inset 0 0 0 4px var(--main-blue);
+  -moz-box-shadow:inset 0 0 0 4px var(--main-blue);
+  box-shadow:inset 0 0 0 4px var(--main-blue);
+}
+.multiple-option.question-container .options-container .option-multiple:hover .check:after,
+.multiple-option.question-container .options-container .option-multiple.selected .check:after{
+  background-color: #FFF;
+}
+@media screen and (min-width: 990px){
+  .multiple-option.question-container{
+    flex-direction: row;
+  }
+  .multiple-option.question-container .heading-container h2{
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 36px; /* 128.571% */
+    letter-spacing: -0.42px;
+  }
+  .multiple-option.question-container .heading-container p.helper{
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: -0.21px;
+  }
+  .multiple-option.question-container .options-container{
+    row-gap: 24px;
+  }
+  .multiple-option.question-container .options-container .option-multiple{
+    padding: 24px;
+  }
+  .multiple-option.question-container .options-container .option-multiple:hover{
+    -webkit-box-shadow:inset 0 0 0 2px var(--main-blue);
+    -moz-box-shadow:inset 0 0 0 2px var(--main-blue);
+    box-shadow:inset 0 0 0 2px var(--main-blue);
+  }
+  .multiple-option.question-container .options-container .option-multiple .text-container .q-text{
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -0.24px;
+  }
+}

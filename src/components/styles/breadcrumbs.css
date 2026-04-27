@@ -1,0 +1,21 @@
+.breadcrumbs{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 12px;
+  margin-bottom: 48px;
+}
+.breadcrumbs .home{
+  display: inline-flex;
+}
+.breadcrumbs .breadcrumb{
+  color: var(--primary-dark-green);
+  font-family: "SofiaPro-Medium";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.21px;
+  display: inline-flex;
+}

@@ -1,0 +1,102 @@
+.sidebar{
+  min-width: 320px;
+  width: 320px;
+  height: calc(100vh - 96px);
+  position: sticky;
+  background-color: #F5F7F7;
+  top: 32px;
+  left: 32px;
+  border-radius: 16px;
+  padding-top: 32px;
+}
+.sidebar .logo{
+  padding: 0 48px;
+  margin-bottom: 96px;
+}
+.sidebar .user-container{
+  padding: 16px 32px;
+  border-top: 1px solid #D3E4DD;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  column-gap: 12px;
+  justify-content: flex-start;
+  align-items: center;
+}
+.sidebar .user-container>img{
+  width: 40px;
+  height: 40px;
+}
+.sidebar .user-container .user-info .user-name{
+  margin: 0;
+  font-family: "SofiaPro-SemiBold";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.28px;
+}
+.sidebar .user-container .user-info .user-email{
+  color: var(--tint-dark-green-70);
+  /* Text S/Regular */
+  font-family: "SofiaPro-Regular";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.21px;
+  margin: 0;
+}
+.sidebar .dashboardMenu{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  row-gap: 16px;
+  padding: 0 48px;
+}
+.sidebar .dashboardMenu .menuLink.dashboardLink{
+  margin-bottom: 16px;
+}
+.sidebar .dashboardMenu .menuLink{
+  color: var(--main-grey);
+  font-family: "SofiaPro-Medium";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.24px;
+  transition: all 0.3s ease-in-out;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  outline: none;
+}
+.sidebar .dashboardMenu .menuLink:hover{
+  color: var(--main-blue);
+  transition: all 0.3s ease-in-out;
+}
+.sidebar .dashboardMenu .menuLink.active{
+  color: var(--main-blue);
+  transition: all 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 1199px){
+  .sidebar{
+    min-width: 240px;
+    width: 240px;
+    left: 24px;
+    top: 24px;
+  }
+  .sidebar .logo{
+    padding: 0 24px;
+  }
+  .sidebar .dashboardMenu{
+    padding: 0 24px;
+  }
+}
+@media screen and (max-width: 989px){
+  .sidebar{
+    display: none;
+  }
+}

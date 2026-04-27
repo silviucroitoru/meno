@@ -1,0 +1,147 @@
+.scores{
+    padding: 0;
+    position: sticky;
+    top: 32px;
+    width: 360px;
+    align-self: flex-start;
+    height: auto;
+    row-gap: 16px;
+    display: flex;
+    flex-direction: column;
+}
+.scores .score-card-main{
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    border: 1px solid var(--secondary-gray);
+    display: flex;
+    padding: 24px;
+    row-gap: 24px;
+}
+.scores .score-card-main .score-card-main-info{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.scores .score-card-main .score-card-main-info .score-title{
+    font-family: "SofiaPro-Regular";
+    color: var(--main-blue);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: -0.21px;
+    margin: 0;
+}
+.scores .score-card-main .score-card-main-info .score-value{
+    font-family: "SofiaPro-SemiBold";
+    color: var(--primary-green);
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 38px; /* 105.556% */
+    letter-spacing: -0.36px;
+}
+.scores .score-card-main .score-card-main-info .score-card-main-info-accuracy .score-card-main-info-accuracy-title{
+    margin: 0 0 8px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.scores .score-card-main .score-card-main-info .score-card-main-info-accuracy .score-card-main-info-accuracy-title{
+    font-family: "SofiaPro-Regular";
+    color: var(--tint-dark-green-70);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: -0.21px;
+}
+.scores .score-card-main .score-card-main-info .score-card-main-info-accuracy .score-card-main-info-accuracy-title-value{
+    font-family: "SofiaPro-SemiBold";
+    color: var(--main-blue);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: -0.21px;
+}
+.scores .score-card-main .score-card-main-info .score-card-main-info-accuracy .score-card-main-info-accuracy-visual{
+    display: flex;
+    flex-direction: row;
+    column-gap: 2px;
+}
+.scores .score-card-main .score-card-main-info .score-card-main-info-accuracy .score-card-main-info-accuracy-visual span{
+    width: 20px;
+    height: 8px;
+    border-radius: 2px;
+    background-color: #D8E1DF;
+}
+.scores .score-card-main .score-card-main-info .score-card-main-info-accuracy .score-card-main-info-accuracy-visual span.active{
+    background-color: var(--primary-green);
+}
+.scores .score-card-main .score-card-main-assesment{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 8px;
+}
+.scores .score-card-main .score-card-main-assesment span{
+    font-family: "SofiaPro-SemiBold";
+    color: var(--main-blue);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.24px;
+    margin: 0;
+}
+.scores .score-card{
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: 1px solid var(--secondary-gray);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.scores .score-card .score-title{
+    font-family: "SofiaPro-SemiBold";
+    color: var(--main-blue);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.24px;
+    margin: 0;
+}
+.scores .score-card .score-description{
+    font-family: "SofiaPro-Regular";
+    color: var(--main-grey);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: -0.21px;
+    margin: 0;
+}
+.scores .score-card .score-card-value{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 24px;
+}
+.scores .score-card .score-value{
+    font-family: "SofiaPro-SemiBold";
+    color: var(--primary-green);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px; /* 150% */
+    letter-spacing: -0.3px;
+    margin: 0;
+}

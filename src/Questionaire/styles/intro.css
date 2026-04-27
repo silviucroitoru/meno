@@ -1,0 +1,126 @@
+.intro-page{
+  margin-top: 32px;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+.intro-page div{
+  height: calc(100% - 208px);
+  padding-bottom: 208px;
+  overflow: auto;
+}
+.intro-page h1,
+.media h1,
+.media h2,
+.intro-page h2{
+  color: var(--main-blue);
+  font-family: "SofiaPro-Medium";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px; /* 133.333% */
+  letter-spacing: -0.48px;
+  margin: 0 0 32px 0;
+}
+.media h1,
+.media h2{
+  text-align: center;
+  margin: 48px 0 32px 0;
+}
+.intro-page p{
+  color: var(--main-blue);
+  font-family: "SofiaPro-Medium";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: -0.6px;
+  margin: 0 0 32px 0;
+}
+.intro-page h1::-webkit-scrollbar,
+.intro-page h2::-webkit-scrollbar{
+  display: none;
+}
+.intro .action-area.with-disclaimer{
+
+}
+.intro.action-area .button{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 16px 0;
+  padding: 0 24px;
+}
+.intro.action-area .button svg{
+  margin-left: 6px;
+  width: 20px;
+  height: 20px;
+}
+.intro.action-area .disclaimer{
+  color: var(--tint-dark-green-70);
+  text-align: center;
+  font-family: "SofiaPro-Regular";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
+  letter-spacing: -0.18px;
+}
+.intro.action-area .disclaimer a{
+  color: var(--tint-dark-green-70);
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 990px){
+  .intro-page{
+    margin-top: 112px;
+  }
+  .intro-page h1,
+  .media h1,
+  .media h2,
+  .intro-page h2{
+    font-family: "SofiaPro-Medium";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 36px;
+    letter-spacing: -0.42px;
+  }
+  .media h1,
+  .media h2{
+    margin: 72px 0 32px 0;
+  }
+  .intro-page p{
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+    letter-spacing: -0.72px;
+  }
+  .intro.action-area{
+    display: flex;
+    flex-direction: row-reverse;
+    column-gap: 24px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .intro.action-area .button{
+    width: auto;
+    margin: 0;
+    flex: 0 0 auto;
+  }
+  .intro.action-area .disclaimer{
+    text-align: left;
+    max-width: 409px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: -0.18px;
+  }
+}
