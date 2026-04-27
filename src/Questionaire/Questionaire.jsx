@@ -49,7 +49,7 @@ export default function Questionaire() {
     // setSubmissionId(mockData.SubmissionID)
     // setQuestionnaire(mockData.questionnaire);
     // setCurrentPage(mockData.questionnaire.info[0])
-    fetch(`${import.meta.env.VITE_API_URL}/default/getMenoScoreQuestionnaire?language=${language}`, requestOptions)
+    fetch(`${import.meta.env.VITE_API_URL}/get-questionnaire?language=${language}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setSubmissionId(result.SubmissionID)
@@ -81,10 +81,9 @@ export default function Questionaire() {
         "Response": a
       }
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/default/updateMenoScoreResponse`, {
-          method: 'POST', // Specify the method as POST
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/update-response`, {
+          method: 'POST',
           headers: {
-            "X-Api-Key": "UoLl0hqxiJ5HN15Xd6HMqat9WDMK8fi57JtNIGBF",
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(data),
