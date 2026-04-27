@@ -9,14 +9,14 @@
   top: 0;
 }
 .topic-header .logo{
-  height: 32px;
+  height: 30px;
   width: auto;
   display: block;
   object-fit: contain;
 }
 @media screen and (min-width: 990px){
   .topic-header .logo{
-    height: 32px;
+    height: 30px;
   }
 }
 .topic-header .progress-bar-container{
