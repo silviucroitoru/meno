@@ -77,7 +77,7 @@
     width: 20px;
     height: 8px;
     border-radius: 2px;
-    background-color: #D8E1DF;
+    background-color: #D4DEE8;
 }
 .scores .score-card-main .score-card-main-info .score-card-main-info-accuracy .score-card-main-info-accuracy-visual span.active{
     background-color: var(--primary-green);

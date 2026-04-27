@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background: linear-gradient(180deg, rgb(117, 81, 194), rgb(255, 255, 255));
+  background: linear-gradient(180deg, #FFF9EC, #FFFFFF);
   display: flex;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   height: 100vh;
@@ -23,13 +23,13 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--main-blue);
   cursor: pointer;
   transition: border-color 0.25s;
   color: white;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--main-blue);
 }
 button:focus,
 button:focus-visible {
@@ -57,7 +57,7 @@ li {
 }
 
 li:hover {
-  background: #dadbf9;
+  background: #F6F6F6;
 }
 
 a {

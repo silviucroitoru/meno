@@ -3,7 +3,7 @@
   width: 320px;
   height: calc(100vh - 96px);
   position: sticky;
-  background-color: #F5F7F7;
+  background-color: #F6F6F6;
   top: 32px;
   left: 32px;
   border-radius: 16px;
@@ -15,7 +15,7 @@
 }
 .sidebar .user-container{
   padding: 16px 32px;
-  border-top: 1px solid #D3E4DD;
+  border-top: 1px solid #D4DEE8;
   position: absolute;
   bottom: 0;
   display: flex;

@@ -32,8 +32,8 @@ export default function Menoscore() {
   return (
     <div className="loader">
       <div className="topic-header">
-        <a href="https://score.evrbloom.ro/dashboard">
-          <img src="https://evrbloom.ro/cdn/shop/files/evrbloom_logo.svg?v=1742998418&width=100" alt="EvrBloom"
+        <a href="/dashboard">
+          <img src="/primea_logo.png" alt="Primea"
                className="logo"/>
         </a>
       </div>
@@ -60,7 +60,7 @@ export default function Menoscore() {
                 </>
               )}
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M13.3333 4L6 11.3333L2.66667 8" stroke="#3D497A" strokeWidth="2" strokeLinecap="round"
+                <path d="M13.3333 4L6 11.3333L2.66667 8" stroke="#0E2E57" strokeWidth="2" strokeLinecap="round"
                       strokeLinejoin="round"/>
               </svg>
 

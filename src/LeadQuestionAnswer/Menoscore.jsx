@@ -92,8 +92,8 @@ export default function Menoscore({scoreJson, scoreSummary}) {
   return (
     <div className="results">
       <div className="topic-header">
-        <a href="https://score.evrbloom.ro/dashboard">
-          <img src="https://evrbloom.ro/cdn/shop/files/evrbloom_logo.svg?v=1742998418&width=100" alt="EvrBloom"
+        <a href="/dashboard">
+          <img src="/primea_logo.png" alt="Primea"
                className="logo"/>
         </a>
       </div>
@@ -409,7 +409,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                       <path d="M22 12H18L15 21L9 3L6 12H2" stroke="#3D497A" strokeWidth="2" strokeLinecap="round"
                             strokeLinejoin="round"/>
                     </svg>
-                    {t(`${s.dataPointName.replaceAll(' ', '')}_name`)}/>
+                    {t(`${s.dataPointName.replaceAll(' ', '')}_name`)}
                   </div>
                   <div className="description"
                        dangerouslySetInnerHTML={{__html: getTranslatedMessage(`${s.dataPointName?.replaceAll(" ", "")}_description`, {})}}/>

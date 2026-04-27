@@ -1,13 +1,13 @@
 :root {
-  --main-blue: #3D497A;
-  --main-blue-hover: #2C355A;
-  --main-grey: #949494;
-  --main-pink: #FF4589;
+  --main-blue: #0E2E57;
+  --main-blue-hover: #091E3D;
+  --main-grey: #888888;
+  --main-pink: #950952;
   --secondary-gray: #EAECF0;
-  --secondary-blue-80: #646D95;
-  --secondary-blue-20: #D8DBE4;
-  --secondary-blue: #f5f6f8;
-  --tint-stone-50: #D8E1DF;
+  --secondary-blue-80: #3A5A82;
+  --secondary-blue-20: #C8D5E3;
+  --secondary-blue: #F6F6F6;
+  --tint-stone-50: #D4DEE8;
 }
 @font-face {
   font-family:"SofiaPro-Medium";
