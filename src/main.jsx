@@ -8,7 +8,6 @@ import outputs from "../amplify_outputs.json";
 import EnglishMessages from "./locales/en/translations.json";
 import RomanianMessages from "./locales/ro/translations.json";
 import SerbianMessages from "./locales/sr/translations.json";
-import { Tolgee, DevTools, TolgeeProvider, FormatSimple, BackendFetch } from "@tolgee/react";
 
 const messages = {
   en: EnglishMessages,
@@ -52,27 +51,10 @@ const Root = () => {
       window.removeEventListener("storage", handleStorageChange);
     };
   }, [language]);
-  const tolgee = Tolgee()
-    .use(BackendFetch({ prefix: 'https://cdn.tolg.ee/de83316f2e94ecb765e9e825d8435a0f' }))
-    .use(DevTools())
-    .use(FormatSimple())
-    .init({
-      language: language ?? 'sr',
-
-      apiUrl: import.meta.env.VITE_APP_TOLGEE_API_URL,
-      apiKey: import.meta.env.VITE_APP_TOLGEE_API_KEY,
-
-      staticData: {}
-    });
   return (
     <IntlProvider locale={language} messages={messages[language]}>
       <React.StrictMode>
-        <TolgeeProvider
-          tolgee={tolgee}
-          fallback="Loading..."
-        >
-          <App />
-        </TolgeeProvider>
+        <App />
       </React.StrictMode>
     </IntlProvider>
   );

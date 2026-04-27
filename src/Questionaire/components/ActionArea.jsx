@@ -1,8 +1,6 @@
 import {FormattedMessage} from "react-intl";
-import { useTranslate, T } from "@tolgee/react";
 
 export default function ActionArea({currentPage, next, back, dataPointId, dataPointName, a, isAvailable, type, language}) {
-  const { t } = useTranslate();
   const privacyLinkFunction = (content) => <a href="https://evrbloom.ro/policies/privacy-policy" target="_blank" rel="noopener noreferrer">{content}</a>;
   return (
     <div

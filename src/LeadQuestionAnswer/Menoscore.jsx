@@ -7,7 +7,7 @@ import virginiaImage from '../assets/virginia-lazar.png';
 import EnglishMessages from "../locales/en/translations.json"
 import RomanianMessages from "../locales/ro/translations.json";
 import mixpanel from "mixpanel-browser";
-import { useTranslate } from "@tolgee/react";
+import { useTranslate } from "../i18n/useTranslate";
 
 const messages = {
   en: EnglishMessages,

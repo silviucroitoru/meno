@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {FormattedMessage} from "react-intl";
-import { useTranslate } from "@tolgee/react";
+import { useTranslate } from "../i18n/useTranslate";
 
 const ScoreCircle = ({ score, size, strokeWidth, duration = 1500 }) => {
   const { t } = useTranslate();
