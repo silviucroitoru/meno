@@ -29,7 +29,7 @@ export default function Dashboard() {
           scoreTitle: fullJson.menoScore?.scoretitle || null,
           stageTitle: fullJson.menopauseStage?.stagetitle || null,
           symptomsTitle: fullJson.keySymptoms?.moderateImpact?.length > 0 || fullJson.keySymptoms?.mostImpactful?.length > 0 ? fullJson.keySymptoms.symptomstitle : null,
-          recommendationsTitle: (fullJson.anxietyRecommendation || fullJson.depressionRecommendation) ? "Recommendations" : null
+          recommendationsTitle: (fullJson.anxietyRecommendation || fullJson.depressionRecommendation) ? "recommendations" : null
         })
         setScoreJson(fullJson)
       })

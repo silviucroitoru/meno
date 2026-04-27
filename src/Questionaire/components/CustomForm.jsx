@@ -104,7 +104,7 @@ export default function CustomForm({
                       onKeyDown={handleKeyPress}
                       enterKeyHint="send"
                     />
-                    <label>Email</label>
+                    <label><FormattedMessage id="email" /></label>
                   </div>
                 </div>
                 ) : (

@@ -55,6 +55,8 @@ Deno.serve(async (req) => {
     const url = new URL(req.url);
     const submissionId = url.searchParams.get("submissionId");
     const language = url.searchParams.get("language") || "EN";
+    const outputLanguage =
+      language === "RO" ? "Romanian" : language === "SR" ? "Serbian" : "English";
 
     if (!submissionId) {
       return new Response(
@@ -90,11 +92,11 @@ Deno.serve(async (req) => {
       .join("\n");
 
     const prompt = `
-      You are a menopause health expert. Generate a structured menopause report in **${language === "RO" ? "Romanian" : "English"}**.
+      You are a menopause health expert. Generate a structured menopause report in **${outputLanguage}**.
 
       Make sure:
-      - Your response is written in **${language === "RO" ? "Romanian" : "English"}** using native and natural expressions.
-      - You will translate and adapt in **${language === "RO" ? "Romanian" : "English"}** all pre-defined values.
+      - Your response is written in **${outputLanguage}** using native and natural expressions.
+      - You will translate and adapt in **${outputLanguage}** all pre-defined values.
       - Do not translate DataPointName.
       - Use medical terms that are culturally appropriate.
       - Maintain a professional and empathetic tone.
@@ -107,9 +109,11 @@ Deno.serve(async (req) => {
         - **Title (stagetitle)**:
           - If language is **EN**, use: "Menopause Stage"
           - If language is **RO**, use: "Faza Menopauzei"
+          - If language is **SR**, use: "Faza menopauze"
         - **Stage (stage)**:
           - If language is **EN**, use: Premenopause, Perimenopause, Menopause, Postmenopause or Undefined.
           - If language is **RO**, use: Premenopauză, Perimenopauză, Menopauză, Postmenopauză or Nedefinită.
+          - If language is **SR**, use: Premenopauza, Perimenopauza, Menopauza, Postmenopauza or Neodređeno.
         - Determine the menopause stage based on **menstrual patterns, age, symptom severity, and HRT history**:
         - **Premenopause**: Regular menstrual cycles. Few or no menopause-related symptoms. No history of HRT use. Typically under 40 years old.
         - **Perimenopause**: Irregular periods (shorter/longer cycles, skipped months). Noticeable symptoms such as mood swings, hot flushes, or sleep disturbances. Typically between 40-50 years old.
@@ -137,6 +141,7 @@ Deno.serve(async (req) => {
         - Title (scoretitle): Provide in the same language as the user's questionnaire.
           - If language is **EN**, use: "Menopause Score"
           - If language is **RO**, use: "Scor Menopauză"
+          - If language is **SR**, use: "Menopauzni skor"
         - **Name (scorename) based on the score value**:
             Select only one based on the final score:
             - If score is under 30: EN: "Exhausting Menopause" / RO: "Menopauză epuizantă"
@@ -144,6 +149,12 @@ Deno.serve(async (req) => {
             - If score is 45-59: EN: "Challenging Menopause" / RO: "Menopauză provocatoare"
             - If score is 60-79: EN: "Balanced Menopause" / RO: "Menopauză echilibrată"
             - If score is 80-100: EN: "Mild Menopause" / RO: "Menopauză ușoară"
+            - Provide the SR equivalent if language is SR:
+              - under 30: "Iscrpljujuća menopauza"
+              - 30-44: "Teška menopauza"
+              - 45-59: "Izazovna menopauza"
+              - 60-79: "Uravnotežena menopauza"
+              - 80-100: "Blaga menopauza"
         - **Description based on the score value without mentioning it (500-800 chars)**:
           - Personalize using user's name and key symptoms.
           - Use second-person voice (e.g., "you").
@@ -190,7 +201,7 @@ Deno.serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: `You are a helpful assistant that outputs only JSON when instructed. **Language Requirement:** All responses must be written in **${language === "RO" ? "Romanian" : "English"}**. Use natural expressions in this language. Ensure medical terms are culturally appropriate.`,
+            content: `You are a helpful assistant that outputs only JSON when instructed. **Language Requirement:** All responses must be written in **${outputLanguage}**. Use natural expressions in this language. Ensure medical terms are culturally appropriate.`,
           },
           { role: "user", content: prompt },
         ],

@@ -1,13 +1,6 @@
-import {createIntl, FormattedMessage} from "react-intl";
+import { FormattedMessage } from "react-intl";
 import { useState, useEffect } from "react";
 import "./loader.css"
-import EnglishMessages from "../locales/en/translations.json"
-import RomanianMessages from "../locales/ro/translations.json";
-
-const messages = {
-  en: EnglishMessages,
-  ro: RomanianMessages,
-};
 export default function Menoscore() {
   const [currentStep, setCurrentStep] = useState(0);
 

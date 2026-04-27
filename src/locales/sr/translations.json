@@ -37,5 +37,32 @@
   "whats_next_sidebar_title": "Sledeći koraci",
   "book_call_sidebar_title": "Zakaži poziv",
   "whats_next_content_title": "Preuzmite kontrolu<br />nad vašim putovanjem kroz menopauzu",
-  "whats_next_content_description": "Započnite svoj lični program za menopauzu kako biste ublažili simptome, dobili jasnoću i podržali dugoročno zdravlje uz stručnu negu i proaktivno vođenje.<br /><br />Uz pravu negu i podršku možete ublažiti simptome, vratiti ravnotežu i ponovo se osećati kao vi sami – jer menopauza je tranzicija, ne ograničenje."
+  "whats_next_content_description": "Započnite svoj lični program za menopauzu kako biste ublažili simptome, dobili jasnoću i podržali dugoročno zdravlje uz stručnu negu i proaktivno vođenje.<br /><br />Uz pravu negu i podršku možete ublažiti simptome, vratiti ravnotežu i ponovo se osećati kao vi sami – jer menopauza je tranzicija, ne ograničenje.",
+  "whats_next_info_content": "žena koje dobiju adekvatnu podršku u menopauzi prijavljuje poboljšanje simptoma.",
+  "book_call_content_title": "Niste sigurni<br />odakle da počnete?",
+  "book_call_content_description": "Ako niste sigurni odakle da počnete, zakažite konsultaciju sa Dr. Virginia Lazăr kako biste razgovarali o svojim simptomima, razjasnili nedoumice i dobili personalizovano usmerenje za sledeće korake.<br /><br />Dobićete stručne savete, praktične preporuke i jasan plan prilagođen vama.",
+  "book_call_dr_info": "Dr. Virginia Lazăr je ginekolog sa više od 17 godina iskustva u akušerstvu i ginekologiji, specijalizovana za negu u menopauzi, spajajući kliničku praksu i istraživanje.",
+
+  "loading_title": "Vaš izveštaj se priprema",
+  "loading_description_1": "Trenutno analiziramo vaše odgovore.",
+  "loading_description_2": "Ovaj proces obično traje kratko.",
+  "loading_description_3": "Molimo vas da ne zatvarate ovaj prozor.",
+  "loading_step_1": "Analiza vaših odgovora",
+  "loading_step_2": "Određivanje faze menopauze",
+  "loading_step_3": "Izračunavanje menopauznog skora",
+  "loading_step_4": "Priprema izveštaja",
+
+  "symptom_link_text": "Saznajte više o ovom simptomu",
+  "talk_to_doctor": "Razgovarajte sa stručnjakom",
+  "learn_about_stage": "Saznajte više o ovoj fazi",
+
+  "my_score": "Moj skor",
+  "score_explanation": "Vaš menopauzni skor pokazuje koliko simptomi menopauze utiču na vaše opšte blagostanje. Simptomi se procenjuju prema jačini, pri čemu neki imaju veći uticaj na svakodnevni život od drugih. Viši skor znači manje smetnji, dok niži skor ukazuje na veći uticaj. Ovaj skor pomaže da pratite promene kroz vreme i uočite oblasti na koje treba obratiti pažnju.<br /><br />Menopauzni skor nije dijagnoza, već orijentacioni alat. Pomaže vam da bolje razumete kako menopauza utiče na vaše telo i koje opcije imate da biste se osećali bolje.",
+  "menopause_stage_determination": "Da bismo odredili u kojoj ste fazi menopauze, uzeli smo u obzir vaše godine, profil simptoma i odsustvo promena u menstrualnim obrascima koje su tipične za kasnije faze. Prisustvo određenih simptoma može ukazivati da telo ulazi u tranziciju. Periodično ponavljanje upitnika može pomoći da pratite tok i bolje upravljate potrebama kako se menjaju.<br /><br />Ova procena nije medicinska dijagnoza, već vodič koji vam pomaže da bolje razumete gde se nalazite u tranziciji. Iskustva se razlikuju, a simptomi mogu varirati. Za potpunu procenu i personalizovan savet preporučuje se konsultacija sa zdravstvenim stručnjakom.",
+
+  "terms_agreement": "Klikom na „Dalje“ pristajete da vaše odgovore koristimo za personalizaciju iskustva, kako je opisano u {privacyPolicy}.",
+  "privacy_policy": "Politici privatnosti",
+
+  "recommendations": "Preporuke",
+  "email": "Email"
 }
