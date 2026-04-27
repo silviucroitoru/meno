@@ -20,17 +20,15 @@ const getInitialLanguage = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const urlLang = urlParams.get("language")?.toLowerCase();
 
-  // Get the language from localStorage
-  let storedLanguage = localStorage.getItem("language")?.toLowerCase();
-
   // If URL has a valid language, store it in localStorage
   if (urlLang && messages[urlLang]) {
     localStorage.setItem("language", urlLang);
     return urlLang;
   }
 
-  // If no valid URL param, use the stored language or fallback to 'ro'
-  return messages[storedLanguage] ? storedLanguage : "sr";
+  // If no valid URL param, always default to Serbian
+  localStorage.setItem("language", "sr");
+  return "sr";
 };
 
 const Root = () => {

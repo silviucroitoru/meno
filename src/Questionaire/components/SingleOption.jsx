@@ -60,7 +60,7 @@ export default function SingleOption({
         <div className="options-container main-content-container" style={{ height: `calc(100% - ${headingContainer}px)` }}>
           {
             options.map((option) => {
-              const answer = option.OptionText.replace('ț', 't').replace('î', 'i').replace('ă', 'a').replace('â', 'a').replace('Î', 'I').replace('ș', 's')
+              const answer = option.OptionText
               let nextPage = id + 1;
               if (option.jump) {
                 nextPage = option.jump;

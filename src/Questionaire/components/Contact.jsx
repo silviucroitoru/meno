@@ -16,7 +16,7 @@ export default function Contact({
         <div className="heading-container">
           <h2>{heading}</h2>
           {helper && (
-            <p className="helper">{{helper}}</p>
+            <p className="helper">{helper}</p>
           )}
         </div>
         <div className="contact-methods main-content-container">
@@ -36,7 +36,7 @@ export default function Contact({
                 key={method.text}
               >
                 <input type="radio" name="contact_method"
-                       value={method.text.replace('Ș', 'S').replace('ț', 't').replace('ă', 'a')}
+                       value={method.text}
                        className="hs_contact hidden"/>
                 <img src={method.image_url} alt="Contact Folk" width="100%" height="auto"/>
                 <div className="contact-text">
