@@ -2,7 +2,7 @@ export default function HeaderArea({currentPage, progressPages, qLength}) {
   return(
     <>
       <a href="/">
-        <img src="https://evrbloom.ro/cdn/shop/files/evrbloom_logo.svg?v=1742998418&width=100" alt="EvrBloom"
+        <img src="/evrbloom_logo.svg" alt="EvrBloom"
              className="logo"/>
       </a>
       {

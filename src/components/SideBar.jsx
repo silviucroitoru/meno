@@ -8,7 +8,7 @@ export default function SideBar({scoreSummary}) {
   return (
     <div className="sidebar">
       <div className="logo">
-        <img src="https://evrbloom.ro/cdn/shop/files/evrbloom_logo.svg?v=1742998418&width=100" alt="EvrBloom" />
+        <img src="/evrbloom_logo.svg" alt="EvrBloom" />
       </div>
       <div className="dashboardMenu">
         {scoreSummary.stageTitle && (

@@ -93,7 +93,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
     <div className="results">
       <div className="topic-header">
         <a href="https://score.evrbloom.ro/dashboard">
-          <img src="https://evrbloom.ro/cdn/shop/files/evrbloom_logo.svg?v=1742998418&width=100" alt="EvrBloom"
+          <img src="/evrbloom_logo.svg" alt="EvrBloom"
                className="logo"/>
         </a>
       </div>
