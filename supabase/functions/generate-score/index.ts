@@ -57,6 +57,8 @@ Deno.serve(async (req) => {
     const language = url.searchParams.get("language") || "EN";
     const outputLanguage =
       language === "RO" ? "Romanian" : language === "SR" ? "Serbian" : "English";
+    const symptomsTitle =
+      language === "RO" ? "Simptome" : language === "SR" ? "Simptomi" : "Symptoms";
 
     if (!submissionId) {
       return new Response(
@@ -163,7 +165,7 @@ Deno.serve(async (req) => {
           - Keep the text links markdown as they are
 
       ## **3. Key Symptoms & Insights**
-      - **Title (symptomstitle)**: "Symptoms"
+      - **Title (symptomstitle)**: "${symptomsTitle}"
       - Identify all symptoms rated 2, 3, or 4, and categorize them based on severity:
         - **Most Impactful (Severity 3 or 4)**
         - **Moderate Impact (Severity 2)**
