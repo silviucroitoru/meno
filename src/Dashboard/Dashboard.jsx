@@ -11,6 +11,27 @@ export default function Dashboard() {
   const [scoreSummary, setScoreSummary] = useState({});
   const language = localStorage.getItem('language')
   useEffect(() => {
+    // Allow deep-linking into a specific dashboard:
+    // /dashboard?submissionId=123&language=sr
+    const params = new URLSearchParams(window.location.search);
+    const urlSubmissionId = params.get('submissionId');
+    const urlLanguage = params.get('language')?.toLowerCase();
+    const urlUserName = params.get('userName');
+    const urlEmail = params.get('email');
+
+    if (urlSubmissionId) {
+      localStorage.setItem('SubmissionID', urlSubmissionId);
+    }
+    if (urlLanguage === 'en' || urlLanguage === 'ro' || urlLanguage === 'sr') {
+      localStorage.setItem('language', urlLanguage);
+    }
+    if (urlUserName) {
+      localStorage.setItem('userName', urlUserName);
+    }
+    if (urlEmail) {
+      localStorage.setItem('bloomEmail', urlEmail);
+    }
+
     mixpanel.identify(localStorage.getItem('SubmissionID'))
     mixpanel.people.set({ '$name': localStorage.getItem('userName'),
                           '$email': localStorage.getItem('bloomEmail'),
@@ -20,7 +41,8 @@ export default function Dashboard() {
       method: "GET",
     };
 
-    fetch(`${import.meta.env.VITE_API_URL}/generate-score?submissionId=${localStorage.getItem('SubmissionID') ?? 9999999}&language=${language.toUpperCase() ?? 'RO'}`, requestOptions)
+    const storedLang = (localStorage.getItem('language') ?? 'sr').toUpperCase();
+    fetch(`${import.meta.env.VITE_API_URL}/generate-score?submissionId=${localStorage.getItem('SubmissionID') ?? 9999999}&language=${storedLang}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         const fullJson = JSON.parse(result.content)
