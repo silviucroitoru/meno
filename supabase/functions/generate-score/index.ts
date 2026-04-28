@@ -200,6 +200,7 @@ Deno.serve(async (req) => {
       body: JSON.stringify({
         model: "gpt-4.1",
         temperature: 0.7,
+        store: true,
         messages: [
           {
             role: "system",
