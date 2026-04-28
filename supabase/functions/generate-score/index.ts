@@ -145,18 +145,27 @@ Deno.serve(async (req) => {
           - If language is **RO**, use: "Scor Menopauză"
           - If language is **SR**, use: "Menopauzni skor"
         - **Name (scorename) based on the score value**:
-            Select only one based on the final score:
-            - If score is under 30: EN: "Exhausting Menopause" / RO: "Menopauză epuizantă"
-            - If score is 30-44: EN: "Difficult Menopause" / RO: "Menopauză dificilă"
-            - If score is 45-59: EN: "Challenging Menopause" / RO: "Menopauză provocatoare"
-            - If score is 60-79: EN: "Balanced Menopause" / RO: "Menopauză echilibrată"
-            - If score is 80-100: EN: "Mild Menopause" / RO: "Menopauză ușoară"
-            - Provide the SR equivalent if language is SR:
-              - under 30: "Iscrpljujuća menopauza"
-              - 30-44: "Teška menopauza"
-              - 45-59: "Izazovna menopauza"
-              - 60-79: "Uravnotežena menopauza"
-              - 80-100: "Blaga menopauza"
+            Select exactly one label in the same language as \`language\`:
+            - If score is under 30:
+              - EN: "Exhausting Menopause"
+              - RO: "Menopauză epuizantă"
+              - SR: "Iscrpljujuća menopauza"
+            - If score is 30-44:
+              - EN: "Difficult Menopause"
+              - RO: "Menopauză dificilă"
+              - SR: "Teška menopauza"
+            - If score is 45-59:
+              - EN: "Challenging Menopause"
+              - RO: "Menopauză provocatoare"
+              - SR: "Izazovna menopauza"
+            - If score is 60-79:
+              - EN: "Balanced Menopause"
+              - RO: "Menopauză echilibrată"
+              - SR: "Uravnotežena menopauza"
+            - If score is 80-100:
+              - EN: "Mild Menopause"
+              - RO: "Menopauză ușoară"
+              - SR: "Blaga menopauza"
         - **Description based on the score value without mentioning it (500-800 chars)**:
           - Personalize using user's name and key symptoms.
           - Use second-person voice (e.g., "you").
