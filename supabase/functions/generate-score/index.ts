@@ -119,8 +119,8 @@ Deno.serve(async (req) => {
         - Determine the menopause stage based on **menstrual patterns, age, symptom severity, and HRT history**:
         - **Premenopause**: Regular menstrual cycles. Few or no menopause-related symptoms. No history of HRT use. Typically under 40 years old.
         - **Perimenopause**: Irregular periods (shorter/longer cycles, skipped months). Noticeable symptoms such as mood swings, hot flushes, or sleep disturbances. Typically between 40-50 years old.
-        - **Menopause**: No period for the past **12 months**. Symptoms may still be present but menstrual cycles have ceased. Typically between 45-55 years old.
-        - **Postmenopause**: No period for over **a year**. Symptoms may still persist or start fading. Typically **50+ years old**.
+        - **Menopause**: Periods have stopped for several months and up to around 12 months, or the user reports no period for one year or more but age, HRT history, and symptom profile suggest an active menopause transition. Typically between 45-55 years old.
+        - **Postmenopause**: Periods have stopped for one year or more and the user is likely beyond the active menopause transition. Use this stage when the user is typically 55 years old or older, or when age, HRT history, and symptom profile strongly suggest a later postmenopausal phase.
         - **HRT Consideration in Classification**:
           - If the user is **currently taking HRT**, menstrual patterns may be unreliable for classification.
           - If the user **previously took HRT but has stopped**, consider age and symptoms more strongly.
@@ -131,7 +131,7 @@ Deno.serve(async (req) => {
           3. **Age Consideration** (secondary factor)
           4. **Symptoms Severity & Frequency** (used for fine-tuning classification)
           - If **stage determination is uncertain**, state this clearly (Undefined) instead of forcing a classification.
-      - **Description (500-800 chars)**:
+      - **Description (700-1200 chars)**:
         - Personalize using user's name and key symptoms.
         - Use <p></p> to separate paragraphs.
         - Include a personalized CTA paragraph at the end that encourages evrbloom membership conversion.
@@ -166,7 +166,7 @@ Deno.serve(async (req) => {
               - EN: "Mild Menopause"
               - RO: "Menopauză ușoară"
               - SR: "Blaga menopauza"
-        - **Description based on the score value without mentioning it (500-800 chars)**:
+        - **Description based on the score value without mentioning it (500-1000 chars)**:
           - Personalize using user's name and key symptoms.
           - Use second-person voice (e.g., "you").
           - Use <p></p> to separate paragraphs.
