@@ -462,28 +462,6 @@ export default function Menoscore({scoreJson, scoreSummary}) {
             }
           </div>
         )}
-        <div className="box" id="whats_next">
-          <div className="content">
-            <div className="title"
-                 dangerouslySetInnerHTML={{__html: getTranslatedMessage("membership_title", {})}}/>
-            <div className="description"
-                 dangerouslySetInnerHTML={{__html: getTranslatedMessage("membership_bullets", {})}}/>
-            <div className="actions">
-              <a
-                href={getTranslatedMessage('membership_ctalink', {})}
-                target="_blank"
-                className="button button--secondary"
-                onClick={() => trackEvent(`Dashboard What's Next Click on ${getTranslatedMessage('membership_cta')} button`, 'Next steps section')}
-              >
-                <span>{t('membership_cta')}</span>
-              </a>
-            </div>
-          </div>
-          <div className="info-box">
-            <div className="stats">{t('membership_percentage')}</div>
-            <div className="stats-desc">{t('membership_insights')}</div>
-          </div>
-        </div>
         <div className="box" id="book_call">
           <div className="content">
             <div className="title"
