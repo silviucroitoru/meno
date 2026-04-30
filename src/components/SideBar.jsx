@@ -53,15 +53,6 @@ export default function SideBar({scoreSummary}) {
         )}
         <button className="menuLink"
                 onClick={() => {
-                  mixpanel.track(`Dashboard-Sidebar Select What's next`, {source: 'SideBar'})
-                  document.getElementById('whats_next').scrollIntoView({behavior: "smooth"})
-                }}
-        >
-          <span>{t("whats_next_sidebar_title")}</span>
-          {/*<FormattedMessage id="whats_next_sidebar_title"/>*/}
-        </button>
-        <button className="menuLink"
-                onClick={() => {
                   mixpanel.track(`Dashboard-Sidebar Select Book a call`, {source: 'SideBar'})
                   document.getElementById('book_call').scrollIntoView({behavior: "smooth"})
                 }}
