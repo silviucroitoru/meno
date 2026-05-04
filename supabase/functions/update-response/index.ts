@@ -7,6 +7,17 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
+/** Store birth year as 4 digits only (client may still send value+unit, e.g. "1985Godina"). */
+function normalizeStoredResponse(dataPointName: string, response: unknown): unknown {
+  if (typeof response !== "string" || !/^birthyear$/i.test(String(dataPointName).trim())) {
+    return response;
+  }
+  const four = response.match(/\d{4}/);
+  if (four) return four[0];
+  const digits = response.replace(/\D/g, "");
+  return digits.length ? digits.slice(0, 4) : response;
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -40,7 +51,8 @@ Deno.serve(async (req) => {
       );
     }
 
-    const updatedResponses = { ...existing.responses, [DataPointName]: userResponse };
+    const responseToStore = normalizeStoredResponse(DataPointName, userResponse);
+    const updatedResponses = { ...existing.responses, [DataPointName]: responseToStore };
 
     const { error: updateError } = await supabase
       .from("submissions")
@@ -56,7 +68,7 @@ Deno.serve(async (req) => {
         message: "Response recorded successfully",
         SubmissionID,
         DataPointName,
-        Response: userResponse,
+        Response: responseToStore,
       }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );

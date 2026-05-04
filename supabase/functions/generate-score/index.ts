@@ -85,6 +85,23 @@ async function downloadPdfBytes(url: string): Promise<Uint8Array> {
 
 const PDF_BUCKET = "menopause-reports";
 
+/** Vite `public/primea_repor.png` → `https://<origin>/primea_repor.png` */
+const PDF_BANNER_PUBLIC_PATH = "/primea_repor.png";
+const LEGACY_PDF_BANNER =
+  "https://cdn.shopify.com/s/files/1/0799/1132/1784/files/pdf-banner.png?v=1746428932";
+
+/** `PDF_REPORT_BANNER_URL` full URL, or `PUBLIC_SITE_URL` / `SITE_URL` + public path, else legacy CDN. */
+function resolvePdfBannerSrc(): string {
+  const explicit = Deno.env.get("PDF_REPORT_BANNER_URL")?.trim();
+  if (explicit) return explicit;
+  const origin = Deno.env.get("PUBLIC_SITE_URL")?.trim() ||
+    Deno.env.get("SITE_URL")?.trim();
+  if (origin) {
+    return `${origin.replace(/\/+$/, "")}${PDF_BANNER_PUBLIC_PATH}`;
+  }
+  return LEGACY_PDF_BANNER;
+}
+
 async function generateAndStorePdf(
   supabase: ReturnType<typeof createClient>,
   submissionId: number,
@@ -97,7 +114,7 @@ async function generateAndStorePdf(
     return null;
   }
   const lang = resolvePdfLang(language);
-  const html = buildMenopauseReportPdfHtml(report, lang);
+  const html = buildMenopauseReportPdfHtml(report, lang, resolvePdfBannerSrc());
   const tempPdfUrl = await generatePdfWithApi2Pdf(html, apiKey);
   const bytes = await downloadPdfBytes(tempPdfUrl);
   const path = `${submissionId}/report.pdf`;

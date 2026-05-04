@@ -23,6 +23,19 @@ export default function CustomForm({
   const [fieldType, setFieldType] = useState('other')
   const user = localStorage.getItem("userName") ?? userName;
   const inputRef = useRef(null); // Reference for first input field
+
+  const norm = (s) => (typeof s === "string" ? s.trim().normalize("NFKC") : "");
+  /** Birth year: digits only in DB; measurement label varies by locale (Godina, An, Year, …). */
+  const isBirthYearField = (field) => {
+    if (norm(dataPointName).toLowerCase() === "birthyear") return true;
+    const m = norm(field?.measurement).toLowerCase();
+    return (
+      m === "year" ||
+      m === "an" ||
+      m === "godina" ||
+      m === "година"
+    );
+  };
   const handleFocus = () => setFocused(true);
   const handleBlur = () => {
     if (!value) {
@@ -124,17 +137,20 @@ export default function CustomForm({
                                 onFocus={handleFocus}
                                 onBlur={handleBlur}
                                 onChange={(e) => {
-                                  setFieldType(field?.measurement && (field?.measurement === 'Year' || field?.measurement === 'An') ? 'birthYear' : 'other');
+                                  setFieldType(isBirthYearField(field) ? "birthYear" : "other");
                                   setBirthDateError(false);
                                   setValue(e.target.value);
-                                  setFullValue(field?.measurement && field?.measurement !== 'Year' && field?.measurement !== 'An' ? `${e.target.value}${field?.measurement}` : e.target.value)
+                                  setFullValue(
+                                    field?.measurement && !isBirthYearField(field)
+                                      ? `${e.target.value}${field.measurement}`
+                                      : e.target.value,
+                                  );
                                 }}
                                 data-name="{{ id }}"
                                 data-q={field?.label}
                                 data-mandatory={field.mandatory}
                                 onKeyDown={(e) => {
-                                  const isBirthYear = field?.measurement && (field?.measurement === 'Year' || field?.measurement === 'An')
-                                  handleKeyPress(e, isBirthYear ? 'birthYear' : 'other');
+                                  handleKeyPress(e, isBirthYearField(field) ? "birthYear" : "other");
                                 }}
                                 autoFocus={true}
                                 enterKeyHint="next"

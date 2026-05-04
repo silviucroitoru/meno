@@ -117,5 +117,11 @@
   "BladderProblems_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/infectii-urinare-menopauza",
   "BladderProblems_description": "Problemele vezicii urinare, cum ar fi urgența sau pierderea involuntară de urină, sunt frecvente în timpul menopauzei. Scăderea nivelului de estrogen poate slăbi musculatura planșeului pelvin și reduce elasticitatea mucoasei vezicii, ceea ce face mai dificil controlul urinar — mai ales în timpul râsului, tusei sau activităților fizice.<br /><br />Aceste simptome pot fi frustrante și te pot face să te simți singură, dar sunt mult mai răspândite decât pare. Soluțiile includ exerciții pentru planșeul pelvin, antrenamentul vezicii urinare și suplimente adaptate, care pot aduce îmbunătățiri reale.<br /><br />Multe femei care au abonamentul evrbloom și s-au confruntat cu incontinență urinară au reușit să recâștige controlul și încrederea, datorită strategiilor propuse de specialiști și sprijinului constant adaptat etapei în care se află.",
   "talk_to_doctor": "Discută cu un medic",
-  "learn_about_stage": "Află mai multe despre această fază"
+  "learn_about_stage": "Află mai multe despre această fază",
+
+  "pdf_sidebar_summary": "Sumar",
+  "pdf_stage_label": "Faza Menopauzei",
+  "pdf_score_label": "Scor Menopauză",
+  "pdf_symptoms_label": "Simptome",
+  "premenopause_link": "https://evrbloom.ro/blogs/ghid-menopauza/perimenopauza"
 }

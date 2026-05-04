@@ -144,5 +144,11 @@
 
   "BladderProblems_name": "Problemi sa bešikom",
   "BladderProblems_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/incontinenta-urinara-menopauza",
-  "BladderProblems_description": "Promene estrogena u menopauzi mogu uticati na sluznicu i mišiće karličnog dna, što može dovesti do urgencije, učestalijeg mokrenja, curenja urina ili češćih infekcija.<br /><br />Ovo je česta pojava i postoje efikasne opcije: vežbe karličnog dna, promene navika, lokalne terapije i stručna procena kada je potrebno.<br /><br />Uz pravi pristup, simptomi se često značajno ublažavaju i vraća se sigurnost u svakodnevici."
+  "BladderProblems_description": "Promene estrogena u menopauzi mogu uticati na sluznicu i mišiće karličnog dna, što može dovesti do urgencije, učestalijeg mokrenja, curenja urina ili češćih infekcija.<br /><br />Ovo je česta pojava i postoje efikasne opcije: vežbe karličnog dna, promene navika, lokalne terapije i stručna procena kada je potrebno.<br /><br />Uz pravi pristup, simptomi se često značajno ublažavaju i vraća se sigurnost u svakodnevici.",
+
+  "pdf_sidebar_summary": "Pregled",
+  "pdf_stage_label": "Faza menopauze",
+  "pdf_score_label": "Menopauzni skor",
+  "pdf_symptoms_label": "Simptomi",
+  "premenopause_link": "https://evrbloom.ro/blogs/ghid-menopauza/perimenopauza"
 }
