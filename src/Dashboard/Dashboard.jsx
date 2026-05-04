@@ -10,6 +10,7 @@ export default function Dashboard() {
   const [scoreJson, setScoreJson] = useState(null);
   const [display, setDisplay] = useState(false);
   const [scoreSummary, setScoreSummary] = useState({});
+  const [loadError, setLoadError] = useState(null);
   const language = localStorage.getItem('language')
   useEffect(() => {
     // Allow deep-linking into a specific dashboard:
@@ -37,14 +38,21 @@ export default function Dashboard() {
     mixpanel.people.set({ '$name': localStorage.getItem('userName'),
                           '$email': localStorage.getItem('bloomEmail'),
     });
-    setTimeout(() => {setDisplay(true)}, 13600)
+    setTimeout(() => {
+      setDisplay(true);
+    }, 13600);
     const requestOptions = {
       method: "GET",
       headers: supabaseAnonHeaders(),
     };
 
     const storedLang = (localStorage.getItem('language') ?? 'sr').toUpperCase();
-    fetch(`${import.meta.env.VITE_API_URL}/generate-score?submissionId=${localStorage.getItem('SubmissionID') ?? 9999999}&language=${storedLang}`, requestOptions)
+    const base = import.meta.env.VITE_API_URL;
+    if (!base) {
+      setLoadError("Missing VITE_API_URL (Supabase functions base URL).");
+      return;
+    }
+    fetch(`${base}/generate-score?submissionId=${localStorage.getItem('SubmissionID') ?? 9999999}&language=${storedLang}`, requestOptions)
       .then(async (response) => {
         const result = await response.json().catch(() => ({}));
         if (!response.ok) {
@@ -64,9 +72,13 @@ export default function Dashboard() {
           symptomsTitle: fullJson.keySymptoms?.moderateImpact?.length > 0 || fullJson.keySymptoms?.mostImpactful?.length > 0 ? fullJson.keySymptoms.symptomstitle : null,
           recommendationsTitle: (fullJson.anxietyRecommendation || fullJson.depressionRecommendation) ? "recommendations" : null
         })
-        setScoreJson(fullJson)
+        setScoreJson(fullJson);
+        setLoadError(null);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        setLoadError(error?.message ?? "Failed to load report");
+      });
    // eslint-disable-next-line
   }, []);
   return (
@@ -78,6 +90,14 @@ export default function Dashboard() {
             <Menoscore scoreJson={scoreJson} scoreSummary={scoreSummary} />
           </div>
         </>
+      ) : loadError ? (
+        <div className="pageContent" style={{ padding: "2rem", maxWidth: 560, margin: "0 auto" }}>
+          <p style={{ color: "#b00020", marginBottom: "0.75rem" }}>Could not load your report.</p>
+          <p style={{ color: "#444", fontSize: 14 }}>{loadError}</p>
+          <p style={{ color: "#666", fontSize: 13, marginTop: "1rem" }}>
+            If this says 401, set <code>VITE_API_KEY</code> or <code>VITE_SUPABASE_ANON_KEY</code> (anon key) in the build environment and redeploy.
+          </p>
+        </div>
       ) : (
         <Loader />
       )}
