@@ -214,13 +214,14 @@
 .meno-stage .meno-stage-stats{
   border-radius: 16px;
   background-color: #F6F6F6;
-  padding: 32px 24px 24px 24px;
+  padding: 24px 24px 24px 24px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 8px;
   margin-bottom: 32px;
+  margin-top: 32px;
 }
 .meno-score .meno-stage-stats .percent,
 .meno-stage .meno-stage-stats .percent{
