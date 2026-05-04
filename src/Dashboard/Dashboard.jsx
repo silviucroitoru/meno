@@ -5,7 +5,6 @@ import Loader from "../LeadQuestionAnswer/Loader.jsx";
 import './dashboard.css'
 import {useEffect, useState} from "react";
 import {mockData} from "../LeadQuestionAnswer/mockData.jsx";
-import { supabaseAnonHeaders } from "../api/supabaseAnonHeaders.js";
 export default function Dashboard() {
   const [scoreJson, setScoreJson] = useState(null);
   const [display, setDisplay] = useState(false);
@@ -43,7 +42,6 @@ export default function Dashboard() {
     }, 13600);
     const requestOptions = {
       method: "GET",
-      headers: supabaseAnonHeaders(),
     };
 
     const storedLang = (localStorage.getItem('language') ?? 'sr').toUpperCase();
@@ -95,7 +93,7 @@ export default function Dashboard() {
           <p style={{ color: "#b00020", marginBottom: "0.75rem" }}>Could not load your report.</p>
           <p style={{ color: "#444", fontSize: 14 }}>{loadError}</p>
           <p style={{ color: "#666", fontSize: 13, marginTop: "1rem" }}>
-            If this says 401, set <code>VITE_API_KEY</code> or <code>VITE_SUPABASE_ANON_KEY</code> (anon key) in the build environment and redeploy.
+            Check the browser console and Edge Function logs for details.
           </p>
         </div>
       ) : (
