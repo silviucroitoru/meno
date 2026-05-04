@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ScoreCircle from "./ScoreCircle.jsx";
 import "./menoscore.css";
 import 'swiper/css';
@@ -56,24 +56,26 @@ export default function Menoscore({scoreJson, scoreSummary}) {
   const trackEvent = (event, source) => {
     mixpanel.track(event, {source: source})
   }
-  const adjustMargin = () => {
+
+  const adjustMargin = useCallback(() => {
     const bookCallSection = document.getElementById("book_call");
     const scaleContainer = document.getElementById("scale_container");
     const scaleContainerWidth = scaleContainer.offsetWidth;
-    setLineWidth((scaleContainerWidth - 200) / 3)
-    setArrowPosition(64 + index * ((scaleContainerWidth - 200) / 3) + 20*index)
+    const newLineWidth = (scaleContainerWidth - 200) / 3;
+    setLineWidth(newLineWidth)
+    setArrowPosition(64 + index * newLineWidth + 20*index)
     if (bookCallSection) {
       const windowHeight = window.innerHeight;
       const sectionHeight = bookCallSection.offsetHeight;
       const marginBottom = windowHeight - sectionHeight - 64;
       bookCallSection.style.marginBottom = `${marginBottom}px`;
     }
-  };
+  }, [index]);
   useEffect(() => {
     adjustMargin();
     window.addEventListener("resize", adjustMargin);
     return () => window.removeEventListener("resize", adjustMargin);
-  }, []);
+  }, [adjustMargin]);
   const rawDescriptionStage = scoreJson.menopauseStage.description;
   const rawDescriptionScore = scoreJson.menoScore.description;
   const htmlDescriptionStage = rawDescriptionStage.replace(
