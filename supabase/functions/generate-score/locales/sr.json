@@ -1,0 +1,148 @@
+{
+  "back": "Nazad",
+  "continue": "Dalje",
+  "become_member": "Zatražite savet stručnjaka",
+  "become_member_link": "https://evrbloom.ro/products/abonament-evrbloom",
+  "discover_membership_textlink": "Saznajte više o evrbloom članstvu",
+  "premenopause": "Premenopauza",
+  "premenopause_percentage": "81%",
+  "premenopause_insights": "žena u premenopauzi sa evrbloom članstvom kaže da se oseća informisanije i spremnije za hormonalne promene koje dolaze.",
+  "perimenopause": "Perimenopauza",
+  "perimenopause_link": "https://evrbloom.ro/blogs/ghid-menopauza/perimenopauza",
+  "perimenopause_percentage": "87%",
+  "perimenopause_insights": "žena u perimenopauzi sa evrbloom članstvom prijavilo je manje simptoma i više samopouzdanja u upravljanju hormonalnom tranzicijom.",
+  "menopause": "Menopauza",
+  "menopause_percentage": "91%",
+  "menopause_insights": "žena u menopauzi sa evrbloom članstvom prijavilo je bolje olakšanje simptoma i jasnije razumevanje promena u telu.",
+  "menopause_link": "https://evrbloom.ro/blogs/ghid-menopauza/menopauza",
+  "postmenopause": "Postmenopauza",
+  "postmenopause_percentage": "78%",
+  "postmenopauseinsights": "žena u postmenopauzi sa evrbloom članstvom kaže da se oseća uravnoteženije i podržano u dugoročnim promenama.",
+  "postmenopause_link": "https://evrbloom.ro/blogs/ghid-menopauza/postmenopauza",
+  "symptomsTitle": "Objašnjenje vaših simptoma",
+  "symptomsDescription": "Evo pregleda vaših simptoma prema njihovom uticaju. Pratite linkove za besplatne, dokazima zasnovane informacije o svakom simptomu, uključujući detalje, učestalost i dostupne opcije lečenja.",
+  "high_impact": "Visok uticaj",
+  "low_impact": "Nizak uticaj",
+  "first_name": "Ime",
+  "birthYearError": "Godina rođenja mora imati 4 cifre.",
+  "get_started": "Započni",
+  "learn_more": "Saznaj više",
+  "membership_title": "Sve što vam je potrebno da se osećate podržano i da imate kontrolu tokom menopauze",
+  "membership_bullets": "<ul><li>Neograničene poruke sa vodećim stručnjacima za menopauzu</li><li>Personalizovane preporuke proizvoda, odabrane i testirane od strane stručnjaka</li><li>25% popusta na online konsultacije sa specijalistima</li><li>10% popusta na preporučene proizvode</li></ul>",
+  "membership_cta": "Saznajte više o evrbloom članstvu",
+  "membership_ctalink": "https://evrbloom.ro/products/abonament-evrbloom",
+  "membership_percentage": "92%",
+  "membership_insights": "članica evrbloom koje prolaze kroz menopauzu kaže da se oseća više u kontroli svog tela i zdravlja nakon učlanjenja.",
+  "book_call": "Zakaži poziv",
+  "whats_next_sidebar_title": "Sledeći koraci",
+  "book_call_sidebar_title": "Zakaži poziv",
+  "whats_next_content_title": "Preuzmite kontrolu<br />nad vašim putovanjem kroz menopauzu",
+  "whats_next_content_description": "Započnite svoj lični program za menopauzu kako biste ublažili simptome, dobili jasnoću i podržali dugoročno zdravlje uz stručnu negu i proaktivno vođenje.<br /><br />Uz pravu negu i podršku možete ublažiti simptome, vratiti ravnotežu i ponovo se osećati kao vi sami – jer menopauza je tranzicija, ne ograničenje.",
+  "whats_next_info_content": "žena koje dobiju adekvatnu podršku u menopauzi prijavljuje poboljšanje simptoma.",
+  "book_call_content_title": "Niste sigurni<br />odakle da počnete?",
+  "book_call_content_description": "Ako niste sigurni odakle da počnete, zakažite konsultaciju sa Dr. Virginia Lazăr kako biste razgovarali o svojim simptomima, razjasnili nedoumice i dobili personalizovano usmerenje za sledeće korake.<br /><br />Dobićete stručne savete, praktične preporuke i jasan plan prilagođen vama.",
+  "book_call_dr_info": "Dr. Virginia Lazăr je ginekolog sa više od 17 godina iskustva u akušerstvu i ginekologiji, specijalizovana za negu u menopauzi, spajajući kliničku praksu i istraživanje.",
+
+  "loading_title": "Vaš izveštaj se priprema",
+  "loading_description_1": "Trenutno analiziramo vaše odgovore.",
+  "loading_description_2": "Ovaj proces obično traje kratko.",
+  "loading_description_3": "Molimo vas da ne zatvarate ovaj prozor.",
+  "loading_step_1": "Analiza vaših odgovora",
+  "loading_step_2": "Određivanje faze menopauze",
+  "loading_step_3": "Izračunavanje menopauznog skora",
+  "loading_step_4": "Priprema izveštaja",
+
+  "symptom_link_text": "Saznajte više o ovom simptomu",
+  "talk_to_doctor": "Razgovarajte sa stručnjakom",
+  "learn_about_stage": "Saznajte više o ovoj fazi",
+
+  "my_score": "Moj skor",
+  "score_explanation": "Vaš menopauzni skor pokazuje koliko simptomi menopauze utiču na vaše opšte blagostanje. Simptomi se procenjuju prema jačini, pri čemu neki imaju veći uticaj na svakodnevni život od drugih. Viši skor znači manje smetnji, dok niži skor ukazuje na veći uticaj. Ovaj skor pomaže da pratite promene kroz vreme i uočite oblasti na koje treba obratiti pažnju.<br /><br />Menopauzni skor nije dijagnoza, već orijentacioni alat. Pomaže vam da bolje razumete kako menopauza utiče na vaše telo i koje opcije imate da biste se osećali bolje.",
+  "menopause_stage_determination": "Da bismo odredili u kojoj ste fazi menopauze, uzeli smo u obzir vaše godine, profil simptoma i odsustvo promena u menstrualnim obrascima koje su tipične za kasnije faze. Prisustvo određenih simptoma može ukazivati da telo ulazi u tranziciju. Periodično ponavljanje upitnika može pomoći da pratite tok i bolje upravljate potrebama kako se menjaju.<br /><br />Ova procena nije medicinska dijagnoza, već vodič koji vam pomaže da bolje razumete gde se nalazite u tranziciji. Iskustva se razlikuju, a simptomi mogu varirati. Za potpunu procenu i personalizovan savet preporučuje se konsultacija sa zdravstvenim stručnjakom.",
+
+  "terms_agreement": "Klikom na „Dalje“ pristajete da vaše odgovore koristimo za personalizaciju iskustva, kako je opisano u {privacyPolicy}.",
+  "privacy_policy": "Politici privatnosti",
+
+  "recommendations": "Preporuke",
+  "email": "Email",
+
+  "HotFlushes_name": "Talasi vrućine",
+  "HotFlushes_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/bufeuri-transpiratii-nocturne-menopauza",
+  "HotFlushes_description": "Talasi vrućine su jedan od najčešćih simptoma hormonalnih promena u menopauzi. Kada estrogen osciluje i opada, centar za regulaciju temperature u mozgu može postati osetljiviji, pa i male promene temperature izazivaju iznenadne nalete toplote, crvenilo i znojenje.<br /><br />Mogu se javiti u nezgodnim trenucima, tokom sastanaka, noću ili kada pokušavate da se opustite. Iako su neprijatni, postoje načini da se ublaže, kroz promene navika, suplemente ili terapije prilagođene vašim potrebama.<br /><br />Uz stručno vođenje i personalizovan pristup mnoge žene prijavljuju da bolje kontrolišu učestalost i intenzitet talasa vrućine.",
+
+  "NightSweats_name": "Noćno znojenje",
+  "NightSweats_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/bufeuri-transpiratii-nocturne-menopauza",
+  "NightSweats_description": "Noćno znojenje je česta posledica hormonalnog disbalansa u menopauzi. Pad estrogena može destabilizovati termoregulaciju, što dovodi do epizoda pojačanog znojenja tokom sna, nekad uz lupanje srca ili osećaj nemira, čak i u hladnijoj prostoriji.<br /><br />Ovo može prekidati dubok san i voditi ka umoru, razdražljivosti i slabijoj koncentraciji tokom dana. Uz prilagođene strategije (higijena sna, rutina, suplementi ili terapija) učestalost i intenzitet se često mogu smanjiti.<br /><br />Praćenje okidača i dosledna podrška pomažu da povratite mirniji san.",
+
+  "Palpitations_name": "Palpitacije",
+  "Palpitations_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/palpitatii-menopauza",
+  "Palpitations_description": "Palpitacije se mogu osećati kao ubrzan rad srca, preskakanje ili „lepršanje“ i često se javljaju bez upozorenja. U menopauzi, hormonske promene mogu uticati na autonomni nervni sistem, pa način na koji doživljavate otkucaje može postati izraženiji čak i u mirovanju.<br /><br />Mogu biti uznemirujuće, posebno noću ili tokom stresa i umora. Iako su često bezopasne, važno je uočiti obrazac i okidače i po potrebi se posavetovati sa stručnjakom.<br /><br />Uz pravilnu procenu i preporuke, mnoge žene prijavljuju manje epizoda i veću sigurnost.",
+
+  "JointPain_name": "Bolovi u zglobovima i mišićima",
+  "JointPain_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/dureri-articulare-musculare-menopauza",
+  "JointPain_description": "Bolovi u zglobovima u menopauzi su češći nego što se misli. Pad estrogena može povećati upalne procese i smanjiti elastičnost tkiva koje podržava zglobove, što dovodi do ukočenosti i nelagodnosti, posebno ujutru ili posle dužeg sedenja.<br /><br />To može otežati kretanje, vežbanje i svakodnevne aktivnosti. Dobra vest je da se tegobe često mogu ublažiti kroz ciljane promene navika, vežbe, ishranu i, po potrebi, terapije prilagođene vašem stanju.<br /><br />Razumevanje hormonske veze je prvi korak ka olakšanju i većoj pokretljivosti.",
+
+  "WeightGain_name": "Povećanje telesne težine",
+  "WeightGain_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/crestere-in-greutate-menopauza",
+  "WeightGain_description": "Povećanje težine je česta pojava u menopauzi, čak i kada se navike nisu mnogo promenile. Pad estrogena može usporiti metabolizam i promeniti raspodelu masnog tkiva, posebno u predelu stomaka. Hormonske promene mogu uticati i na insulin i očuvanje mišićne mase.<br /><br />Ovo može biti frustrirajuće kada „uobičajene“ metode više ne daju rezultat. Personalizovan pristup, usklađen sa hormonalnim promenama, često daje bolje i održivije rezultate.<br /><br />Uz jasne smernice, moguće je povratiti osećaj kontrole i napraviti realan plan.",
+
+  "LossofInterestinSex_name": "Smanjen libido",
+  "LossofInterestinSex_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/libido-scazut-menopauza",
+  "LossofInterestinSex_description": "Smanjen libido je čest, ali često nedovoljno pomenut simptom menopauze. Pad estrogena i testosterona može smanjiti seksualnu želju, a povezani simptomi (suvoća vagine, loš san, niže raspoloženje) mogu dodatno doprineti.<br /><br />To može biti zbunjujuće ili izolirajuće iskustvo, ali niste sami i postoje načini da se ponovo povežete sa svojim telom i potrebama, tempom koji vam prija.<br /><br />Podrška stručnjaka i holistički pristup zdravlju mogu pomoći da se vrate sigurnost, intimnost i zadovoljstvo.",
+
+  "VaginalDryness_name": "Vaginalna suvoća",
+  "VaginalDryness_link": "https://mevrbloom.ro/blogs/semne-simptome-menopauza/uscaciune-vaginala-menopauza",
+  "VaginalDryness_description": "Vaginalna suvoća je česta u menopauzi zbog pada estrogena, što utiče na sluznicu i tkiva vaginalnih zidova. Može dovesti do nelagodnosti, iritacije i bola tokom intimnosti ili čak u svakodnevnim aktivnostima.<br /><br />Iako može biti teško o tome govoriti, rešenja postoje: od nehormonalnih hidratantnih proizvoda i lubrikanata do terapija koje vraćaju komfor i sigurnost.<br /><br />Uz odgovarajuću podršku, mnoge žene ponovo osećaju udobnost i samopouzdanje.",
+
+  "DecliningSkinQuality_name": "Suva i hrapava koža",
+  "DecliningSkinQuality_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/piele-uscata-aspra-menopauza",
+  "DecliningSkinQuality_description": "Kako estrogen opada, koža proizvodi manje kolagena i prirodnih lipida, što može dovesti do suvoće, smanjene elastičnosti i grublje teksture. Koža može delovati zategnutije, osetljivije ili bez sjaja, čak i uz istu rutinu nege.<br /><br />Postoje načini da podržite kožu u ovom periodu: hidratacija, blagi preparati, ishrana i, po potrebi, suplementi ili terapije usmerene na uzrok.<br /><br />Dosledna nega i pravi izbori mogu vidno poboljšati komfor i izgled kože.",
+
+  "DecliningHairQuality_name": "Opadanje kose",
+  "DecliningHairQuality_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/caderea-parului-menopauza",
+  "DecliningHairQuality_description": "Hormonske promene u menopauzi mogu uticati na ciklus rasta kose, pa se može javiti proređivanje, suvoća ili pojačano opadanje. Možete primetiti manje volumena ili lomljiviju kosu koja se teže oblikuje.<br /><br />Iako može biti stresno, postoje načini podrške: ciljane hranljive materije, smanjenje stresa i tretmani koji jačaju vlas i podstiču zdrav rast.<br /><br />Uz personalizovane preporuke, moguće je poboljšati kvalitet i izgled kose kroz vreme.",
+
+  "Irritability_name": "Razdražljivost i promene raspoloženja",
+  "Irritability_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/modificari-de-dispozitie-menopauza",
+  "Irritability_description": "Razdražljivost u menopauzi je često povezana sa hormonskim promenama koje utiču na hemiju mozga, regulaciju raspoloženja i odgovor na stres. Možete reagovati burnije na svakodnevne situacije ili imati manje strpljenja nego ranije.<br /><br />Ove promene mogu uticati na odnose i osećaj stabilnosti. Podrška, tehnike regulacije stresa i strategije usmerene na hormonsku ravnotežu mogu pomoći.<br /><br />Uz pravi plan, mnoge žene se osećaju smirenije i „više kao svoje“.",
+
+  "LowMood,Depression,MoodSwings_name": "Sniženo raspoloženje / depresivnost",
+  "LowMood,Depression,MoodSwings_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/modificari-de-dispozitie-menopauza",
+  "LowMood,Depression,MoodSwings_description": "Sniženo raspoloženje i oscilacije raspoloženja mogu se javiti usled hormonskih promena, ali i zbog poremećaja sna, stresa i drugih simptoma koji se prepliću. Možete se osećati emotivno „tanje kože“, bez energije ili manje motivisano.<br /><br />Važno je ovo shvatiti ozbiljno i potražiti podršku — postoje efikasne strategije i terapijske opcije.<br /><br />Uz razumevanje uzroka i adekvatan pristup, moguće je ponovo stabilizovati raspoloženje i kvalitet života.",
+
+  "Anxiety_name": "Anksioznost",
+  "Anxiety_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/anxietate-menopauza",
+  "Anxiety_description": "Anksioznost se u menopauzi može pojaviti ili pojačati zbog hormonskih oscilacija, posebno kada su prisutni loš san i fizički simptomi poput palpitacija ili talasa vrućine. Možete osećati napetost, brigu ili teškoće da se opustite.<br /><br />Razumevanje okidača, rutina smirivanja i, po potrebi, stručna podrška mogu značajno pomoći.<br /><br />Cilj je da se vratite osećaju stabilnosti i sigurnosti u telu.",
+
+  "SleepProblems_name": "Problemi sa snom",
+  "SleepProblems_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/tulburari-de-somn-menopauza",
+  "SleepProblems_description": "Problemi sa snom su česti u menopauzi i mogu uključivati teško uspavljivanje, često buđenje ili neosvežavajući san. Talasi vrućine, noćno znojenje i stres dodatno pogoršavaju kvalitet sna.<br /><br />Loš san utiče na energiju, raspoloženje i fokus. Poboljšanja su moguća kroz higijenu sna, prilagođavanje rutine, a ponekad i ciljane terapije.<br /><br />Kada se san popravi, često se smanjuje i intenzitet drugih simptoma.",
+
+  "Headaches_name": "Glavobolje",
+  "Headaches_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/dureri-de-cap-menopauza",
+  "Headaches_description": "Glavobolje u menopauzi mogu biti povezane sa hormonskim oscilacijama, stresom, kvalitetom sna i promenama u ishrani ili hidraciji. Kod nekih žena se migrene pogoršavaju, dok se kod drugih javljaju nove glavobolje.<br /><br />Praćenje obrazaca, okidača i adekvatne mere (hidratacija, san, upravljanje stresom) mogu doneti olakšanje. Ako su česte ili jake, korisna je konsultacija sa stručnjakom.<br /><br />Cilj je smanjiti učestalost i vratiti funkcionalnost svakog dana.",
+
+  "BrainFog_name": "„Mentalna magla“",
+  "BrainFog_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/dificultati-de-concentrare-menopauza",
+  "BrainFog_description": "„Mentalna magla“ se može ispoljiti kao slabija koncentracija, sporije razmišljanje ili osećaj da vam je teže da se fokusirate. Često je povezana sa hormonskim promenama, umorom, stresom i lošim snom.<br /><br />Dobra vest je da postoje strategije koje pomažu: bolji san, rutina, fizička aktivnost, ishrana i upravljanje stresom.<br /><br />Uz podršku i praćenje, jasnoća se često postepeno vraća.",
+
+  "MemoryIssues_name": "Problemi sa pamćenjem",
+  "MemoryIssues_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/probleme-de-memorie-menopauza",
+  "MemoryIssues_description": "Zaboravnost i teškoće u prisećanju mogu se javiti tokom menopauze, često zajedno sa „mentalnom maglom“. Hormonske promene, stres i manjak sna mogu uticati na pažnju i pamćenje.<br /><br />Praćenje okidača i podrška kroz navike (san, kretanje, ishrana) često pomažu. Ako vas simptomi brinu ili utiču na svakodnevni život, razgovor sa stručnjakom može doneti mir i jasan plan.<br /><br />U većini slučajeva, uz adekvatnu podršku, ove smetnje mogu biti prolazne.",
+
+  "Tiredness&Fatigue_name": "Umor i iscrpljenost",
+  "Tiredness&Fatigue_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/oboseala-menopauza",
+  "Tiredness&Fatigue_description": "Umor u menopauzi može biti posledica hormonskih promena, lošeg sna, stresa i promena u metabolizmu. Možete se osećati iscrpljeno čak i nakon odmora ili imati manje energije za aktivnosti koje su ranije bile lake.<br /><br />Važno je sagledati širu sliku (san, ishrana, kretanje, stres) i postepeno uvoditi promene koje vraćaju energiju.<br /><br />Uz pravilan pristup, moguće je značajno poboljšati vitalnost i svakodnevno funkcionisanje.",
+
+  "DecreasedPhysicalStrengthorStamina_name": "Smanjena snaga i izdržljivost",
+  "DecreasedPhysicalStrengthorStamina_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/pierderea-masei-musculare-menopauza",
+  "DecreasedPhysicalStrengthorStamina_description": "Tokom menopauze može doći do gubitka mišićne mase i pada izdržljivosti, delom zbog promena estrogena i metabolizma. To može učiniti da se osećate slabije ili da se brže umarate tokom aktivnosti.<br /><br />Trening snage, adekvatan unos proteina i plan prilagođen vašem stanju često daju vrlo dobre rezultate.<br /><br />Cilj je da sačuvate mišiće, podržite kosti i vratite osećaj snage u telu.",
+
+  "DigestiveSymptoms_name": "Nadimanje i digestivne tegobe",
+  "DigestiveSymptoms_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/balonare-menopauza",
+  "DigestiveSymptoms_description": "Nadimanje i digestivne tegobe u menopauzi mogu biti povezane sa promenama hormona, stresa, sna i načina ishrane. Možete primetiti više gasova, nelagodnost ili promene u varenju koje ranije nisu bile izražene.<br /><br />Praćenje hrane, rutina obroka, hidratacija i upravljanje stresom često pomažu, a po potrebi i savet stručnjaka.<br /><br />Uz male, ciljane promene, digestivni komfor se često značajno poboljšava.",
+
+  "BladderProblems_name": "Problemi sa bešikom",
+  "BladderProblems_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/incontinenta-urinara-menopauza",
+  "BladderProblems_description": "Promene estrogena u menopauzi mogu uticati na sluznicu i mišiće karličnog dna, što može dovesti do urgencije, učestalijeg mokrenja, curenja urina ili češćih infekcija.<br /><br />Ovo je česta pojava i postoje efikasne opcije: vežbe karličnog dna, promene navika, lokalne terapije i stručna procena kada je potrebno.<br /><br />Uz pravi pristup, simptomi se često značajno ublažavaju i vraća se sigurnost u svakodnevici."
+}

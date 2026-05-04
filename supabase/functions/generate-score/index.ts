@@ -1,4 +1,9 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import {
+  buildMenopauseReportPdfHtml,
+  resolvePdfLang,
+  type MenopauseReportPdf,
+} from "./pdf-html.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -44,6 +49,65 @@ function extractSymptoms(responses: Record<string, string | number>): Record<str
     }
   }
   return symptoms;
+}
+
+async function generatePdfWithApi2Pdf(html: string, apiKey: string): Promise<string> {
+  const res = await fetch("https://v2.api2pdf.com/chrome/html", {
+    method: "POST",
+    headers: {
+      Authorization: apiKey,
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify({
+      html,
+      inlinePdf: false,
+      fileName: "menopause-report.pdf",
+      options: {
+        printBackground: true,
+        preferCSSPageSize: true,
+        margin: { top: "0px", right: "0px", bottom: "0px", left: "0px" },
+        viewport: { width: 1280, height: 1024, isMobile: false, deviceScaleFactor: 2 },
+      },
+    }),
+  });
+  const json = await res.json();
+  if (!json?.success) {
+    throw new Error(typeof json?.error === "string" ? json.error : JSON.stringify(json));
+  }
+  return json.pdf as string;
+}
+
+async function downloadPdfBytes(url: string): Promise<Uint8Array> {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to download PDF from API2PDF: ${res.status}`);
+  return new Uint8Array(await res.arrayBuffer());
+}
+
+const PDF_BUCKET = "menopause-reports";
+
+async function generateAndStorePdf(
+  supabase: ReturnType<typeof createClient>,
+  submissionId: number,
+  report: MenopauseReportPdf,
+  language: string,
+): Promise<string | null> {
+  const apiKey = Deno.env.get("API2PDF_API_KEY");
+  if (!apiKey?.trim()) {
+    console.warn("API2PDF_API_KEY not set; skipping PDF generation");
+    return null;
+  }
+  const lang = resolvePdfLang(language);
+  const html = buildMenopauseReportPdfHtml(report, lang);
+  const tempPdfUrl = await generatePdfWithApi2Pdf(html, apiKey);
+  const bytes = await downloadPdfBytes(tempPdfUrl);
+  const path = `${submissionId}/report.pdf`;
+  const { error: uploadError } = await supabase.storage.from(PDF_BUCKET).upload(path, bytes, {
+    contentType: "application/pdf",
+    upsert: true,
+  });
+  if (uploadError) throw uploadError;
+  const { data } = supabase.storage.from(PDF_BUCKET).getPublicUrl(path);
+  return data.publicUrl;
 }
 
 Deno.serve(async (req) => {
@@ -308,17 +372,42 @@ Deno.serve(async (req) => {
     }
 
     const contentOnly = extractedMessage.content;
+    const reportObj = JSON.parse(contentOnly) as MenopauseReportPdf;
 
-    // Store the report
     await supabase.from("reports").upsert({
       submission_id: Number(submissionId),
-      menopause_report: JSON.parse(contentOnly),
+      menopause_report: reportObj,
     });
 
-    return new Response(JSON.stringify(extractedMessage), {
-      status: 200,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    const langForPdf = (submission.language as string | undefined) || language;
+
+    let pdfUrl: string | null = null;
+    try {
+      pdfUrl = await generateAndStorePdf(
+        supabase,
+        Number(submissionId),
+        reportObj,
+        langForPdf,
+      );
+    } catch (pdfErr) {
+      console.error("PDF generation or storage failed:", pdfErr);
+    }
+
+    if (pdfUrl) {
+      const { error: pdfUpdateError } = await supabase
+        .from("reports")
+        .update({ pdf_url: pdfUrl })
+        .eq("submission_id", Number(submissionId));
+      if (pdfUpdateError) console.error("Failed to persist pdf_url:", pdfUpdateError);
+    }
+
+    return new Response(
+      JSON.stringify({ ...extractedMessage, pdf_url: pdfUrl }),
+      {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
+    );
   } catch (error) {
     console.error("generate-score error:", error);
     return new Response(
