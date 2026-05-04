@@ -1,0 +1,847 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			:root {
+			  --main-blue: #3D497A;
+			  --main-blue-hover: #2C355A;
+			  --main-grey: #949494;
+			  --main-pink: #FF4589;
+			  --secondary-gray: #EAECF0;
+			  --secondary-blue-80: #646D95;
+			  --secondary-blue-20: #D8DBE4;
+			  --secondary-blue: #f5f6f8;
+			  --tint-stone-50: #D8E1DF;
+			}
+			@font-face {
+			  font-family:"SofiaPro-Medium";
+			  src:url("https://use.typekit.net/af/19ced7/00000000000000007735f992/30/l?primer=fff1a989570eb474b8c22c57cc7199e63bfc7e911b750165d0199218f0b7e7cc&fvd=n5&v=3") format("woff2"),
+			  url("https://use.typekit.net/af/19ced7/00000000000000007735f992/30/d?primer=fff1a989570eb474b8c22c57cc7199e63bfc7e911b750165d0199218f0b7e7cc&fvd=n5&v=3") format("woff"),
+			  url("https://use.typekit.net/af/19ced7/00000000000000007735f992/30/a?primer=fff1a989570eb474b8c22c57cc7199e63bfc7e911b750165d0199218f0b7e7cc&fvd=n5&v=3") format("opentype");
+			  font-display:auto;
+			  font-style:normal;
+			  font-weight:500;
+			  font-stretch:normal;
+			}
+			@page {
+				size: 1280px auto;
+				margin: 40px 0;
+
+			}
+			body {
+				width: 1280px;
+				margin: 0;
+				padding: 0;
+			}
+			.main-container {
+				margin: 0;
+				padding: 0;
+				width: 100%;
+			}
+
+			@font-face {
+			  font-family:"SofiaPro-Regular";
+			  src:url("https://use.typekit.net/af/b718ff/00000000000000007735f98d/30/l?primer=fff1a989570eb474b8c22c57cc7199e63bfc7e911b750165d0199218f0b7e7cc&fvd=n4&v=3") format("woff2"),
+			  url("https://use.typekit.net/af/b718ff/00000000000000007735f98d/30/d?primer=fff1a989570eb474b8c22c57cc7199e63bfc7e911b750165d0199218f0b7e7cc&fvd=n4&v=3") format("woff"),
+			  url("https://use.typekit.net/af/b718ff/00000000000000007735f98d/30/a?primer=fff1a989570eb474b8c22c57cc7199e63bfc7e911b750165d0199218f0b7e7cc&fvd=n4&v=3") format("opentype");
+			  font-display:auto;
+			  font-style:normal;
+			  font-weight:400;
+			  font-stretch:normal;
+			}
+
+			@font-face {
+			  font-family:"SofiaPro-SemiBold";
+			  src:url("https://use.typekit.net/af/262452/00000000000000007735f99a/30/l?primer=fff1a989570eb474b8c22c57cc7199e63bfc7e911b750165d0199218f0b7e7cc&fvd=n6&v=3") format("woff2"),
+			  url("https://use.typekit.net/af/262452/00000000000000007735f99a/30/d?primer=fff1a989570eb474b8c22c57cc7199e63bfc7e911b750165d0199218f0b7e7cc&fvd=n6&v=3") format("woff"),
+			  url("https://use.typekit.net/af/262452/00000000000000007735f99a/30/a?primer=fff1a989570eb474b8c22c57cc7199e63bfc7e911b750165d0199218f0b7e7cc&fvd=n6&v=3") format("opentype");
+			  font-display:auto;
+			  font-style:normal;
+			  font-weight:600;
+			  font-stretch:normal;
+			}
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			.meno-score-container{
+			  width: 100%;
+			  display: flex;
+			  justify-content: flex-start;
+			  flex-direction: column;
+			  row-gap: 32px;
+			  padding-right: 60px;
+			  width: 640px;
+			}
+			.meno-stage{
+			  max-width: 640px;
+			  height: auto;
+			}
+			.meno-stage .meno-stage-prehead{
+			  font-family: "SofiaPro-Medium";
+			  color: var(--main-grey);
+			  font-size: 14px;
+			  font-style: normal;
+			  font-weight: 500;
+			  line-height: 20px; /* 142.857% */
+			  letter-spacing: -0.42px;
+			  max-width: 640px;
+			}
+			.symptoms-prehead{
+			  font-family: "SofiaPro-Medium";
+			  color: var(--main-grey);
+			  font-size: 14px;
+			  font-style: normal;
+			  font-weight: 500;
+			  line-height: 20px; /* 142.857% */
+			  letter-spacing: -0.42px;
+			  max-width: 640px;
+			}
+			.meno-stage-main-content{
+			  margin: 0 0 32px 0;
+			  display: flex;
+			  column-gap: 64px;
+			  align-items: flex-start;
+			}
+			.meno-score-container .meno-stage-scale{
+			  display: flex;
+			  flex-direction: row;
+			  flex-wrap: wrap;
+			  width: calc(100% - 64px);
+			  padding: 48px 32px 32px;
+			  border: 1px solid var(--secondary-blue-20);
+			  border-radius: 16px;
+			  position: relative;
+			  max-width: 576px;
+			}
+			.meno-score-container .meno-stage-scale .meno-stage-scale-container{
+			  width: 100%;
+			  position: relative;
+			  display: flex;
+			  justify-content: flex-start;
+			  align-items: flex-start;
+			  height: 48px;
+			}
+			.meno-score-container .meno-stage-scale .arrow{
+			  transform: rotate(-90deg);
+			  position: absolute;
+			  top: 7px;
+			  left: 0;
+			  transition: left 2s linear;
+			}
+			.meno-score-container .meno-stage-scale .top-arrow{
+			  position: absolute;
+			  right: 0;
+			  top: -7px;
+			}
+			.meno-score-container .meno-stage-scale .arrow.d-none{
+			  display: none;
+			}
+			.meno-score-container .meno-stage-scale .item{
+			  color: var(--main-grey);
+			  font-family: "SofiaPro-Regular";
+			  font-size: 14px;
+			  font-style: normal;
+			  font-weight: 400;
+			  line-height: 20px;
+			  letter-spacing: -0.42px;
+			  overflow: visible;
+			  position: absolute;
+			  width: 12px;
+			  top: 0;
+			  padding-top: 26px;
+			  text-align: center;
+			}
+			.meno-score-container .meno-stage-scale .item.active{
+			  color: var(--main-blue);
+			}
+			.meno-score-container .meno-stage-scale .item:before{
+			  content: '';
+			  position: absolute;
+			  left: 50%;
+			  transform: translateX(-50%);
+			  top: -4px;
+			  width: 12px;
+			  height: 12px;
+			  border-radius: 100%;
+			  background-color: var(--secondary-blue-20);
+			  transition: background-color 0.2s linear;
+			}
+			.meno-score-container .meno-stage-scale .item.active:before{
+			  background-color: var(--main-blue);
+			  transition: background-color 0.2s linear;
+			}
+			.meno-score-container .meno-stage-scale .item.item1{
+			  left: 64px;
+			}
+			.meno-score-container .meno-stage-scale .item.item2{
+			  left: 64px;
+			}
+			.meno-score-container .meno-stage-scale .item.item1.active:before{
+			  transition-delay: 0s;
+			}
+			.meno-score-container .meno-stage-scale .item.item2.active:before{
+			  transition-delay: 750ms;
+			}
+			.meno-score-container .meno-stage-scale .item.item3.active:before{
+			  transition-delay: 1500ms;
+			}
+			.meno-score-container .meno-stage-scale .item.item4.active:before{
+			  transition-delay: 1800ms;
+			}
+			.meno-score-container .meno-stage-text{
+			  flex: 1;
+			}
+			.meno-score-container .meno-stage-text .meno-stage-prehead{
+			  font-family: "SofiaPro-Medium";
+			  color: var(--main-grey);
+			  font-size: 14px;
+			  font-style: normal;
+			  font-weight: 500;
+			  line-height: 20px;
+			  letter-spacing: -0.42px;
+			}
+			.meno-score-container .meno-stage-scale .line-small{
+			  width: 60px;
+			  height: 4px;
+			  background-color: var(--secondary-blue-20);
+			  position: relative;
+			  border-radius: 24px;
+			  left: 0;
+			}
+			.meno-score-container .meno-stage-scale .line-big{
+			  width: calc((100% - 200px)/3);
+			  height: 4px;
+			  background-color: var(--secondary-blue-20);
+			  position: relative;
+			  border-radius: 24px;
+			  left: 20px;
+			  top: 0;
+			}
+			.meno-score-container .meno-stage-scale .line-small span,
+			.meno-score-container .meno-stage-scale .line-big span{
+			  height: 100%;
+			  width: 0;
+			  bottom: 0;
+			  position: absolute;
+			  background-color: var(--secondary-blue-80);
+			  transition: width 0.5s linear;
+			  border-radius: 24px;
+			}
+			.meno-score-container .meno-stage-scale .line-big span.active{
+			  transition: width 0.5s linear;
+			  width: 100%
+			}
+			.meno-score-container .meno-stage-scale .line-small span.active{
+			  transition: width 0.25s linear;
+			  width: 100%
+			}
+			.meno-stage-main-content .meno-stage-text .meno-stage-title{
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-Medium";
+			  font-size: 24px;
+			  font-style: normal;
+			  font-weight: 500;
+			  line-height: 32px;
+			  letter-spacing: -0.72px;
+			  margin: 0 0 24px;
+			}
+			.meno-stage-main-content .meno-stage-text .meno-stage-description{
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-Regular";
+			  font-size: 16px;
+			  font-style: normal;
+			  font-weight: 400;
+			  line-height: 24px; /* 150% */
+			  letter-spacing: -0.16px;
+			}
+			.meno-stage-description p{
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-Regular";
+			  font-size: 16px;
+			  font-style: normal;
+			  font-weight: 400;
+			  line-height: 24px; /* 150% */
+			  letter-spacing: -0.16px;
+			  margin: 0 0 24px 0;
+			}
+			.meno-stage-description p:last-child{
+			  margin: 0;
+			}
+			.meno-stage-main-content .meno-stage-text .meno-stage-description a{
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-Regular";
+			  font-size: 16px;
+			  font-style: normal;
+			  font-weight: 400;
+			  line-height: 24px; /* 150% */
+			  letter-spacing: -0.16px;
+			  text-decoration: underline;
+			}
+			.meno-score .meno-stage-stats,
+			.meno-stage .meno-stage-stats{
+			  border-radius: 16px;
+			  background-color: #F5F6F8;
+			  padding: 24px;
+			  display: flex;
+			  flex-direction: column;
+			  justify-content: flex-start;
+			  align-items: flex-start;
+			  gap: 8px;
+			  margin-bottom: 32px;
+			}
+			.meno-score .meno-stage-stats .percent,
+			.meno-stage .meno-stage-stats .percent{
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-Medium";
+			  font-size: 28px;
+			  font-style: normal;
+			  font-weight: 500;
+			  line-height: 36px; /* 128.571% */
+			  letter-spacing: -0.84px;
+			}
+			.meno-score .meno-stage-stats .text,
+			.meno-score .meno-stage-stats .text a,
+			.meno-stage .meno-stage-stats .text,
+			.meno-stage .meno-stage-stats .text a{
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-Regular";
+			  font-size: 14px;
+			  font-style: normal;
+			  font-weight: 400;
+			  line-height: 20px;
+			  letter-spacing: -0.42px;
+			}
+			.meno-score .meno-stage-stats .text a,
+			.meno-stage .meno-stage-stats .text a{
+			  text-decoration-line: underline;
+			  text-decoration-style: solid;
+			  text-decoration-skip-ink: none;
+			  text-decoration-thickness: auto;
+			  text-underline-offset: auto;
+			  text-underline-position: from-font;
+			}
+			.meno-stage-explanation{
+			  color: var(--main-grey);
+			  font-family: "SofiaPro-Regular";
+			  font-size: 12px;
+			  font-style: normal;
+			  font-weight: 400;
+			  line-height: 18px;
+			  letter-spacing: -0.18px;
+			  margin: 0;
+			  padding-bottom: 48px;
+			  border-bottom: 1px solid #D8DBE4;
+			}
+			.meno-score .meno-stage-action-buttons,
+			.meno-stage .meno-stage-action-buttons{
+			  display: flex;
+			  flex-direction: row;
+			  flex-wrap: wrap;
+			  gap: 16px;
+			  margin-bottom: 48px;
+			}
+			.meno-score .meno-stage-action-buttons.meno-score-action-buttons{
+			  margin-bottom: 32px;
+			  margin-top: 32px;
+			}
+			.meno-stage .meno-stage-action-buttons .button,
+			.meno-score .meno-stage-action-buttons .button{
+			  font-size: 14px;
+			  line-height: 20px;
+			  padding: 8px 16px 8px 24px;
+			}
+			.meno-score{
+			  max-width: 640px;
+			  height: auto;
+			  margin-top: 16px;
+			}
+			.meno-score .score-circle{
+			  margin-bottom: 32px;
+			}
+			.meno-score .score-circle text{
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-SemiBold";
+			  font-size: 36px;
+			  font-style: normal;
+			  font-weight: 700;
+			  line-height: 38px; /* 105.556% */
+			  letter-spacing: -0.36px;
+			}
+			.meno-score .score-circle text:last-of-type{
+			  font-size: 14px;
+			  line-height: 28px;
+			  letter-spacing: -0.21px;
+			}
+			#symptoms{
+			  margin-top: 32px;
+			}
+			#symptoms.d-none{
+			  display: none;
+			}
+			#symptoms .intro{
+			  margin-bottom: 64px;
+			}
+			#symptoms .intro h2{
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-Medium";
+			  font-size: 24px;
+			  font-style: normal;
+			  font-weight: 500;
+			  line-height: 32px; /* 133.333% */
+			  letter-spacing: -0.72px;
+			  margin: 0 0 16px 0;
+			}
+			#symptoms .intro .intro-text{
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-Regular";
+			  font-size: 18px;
+			  font-style: normal;
+			  font-weight: 400;
+			  line-height: 28px; /* 155.556% */
+			  letter-spacing: -0.54px;
+			}
+			#symptoms .action-buttons{
+			  display: flex;
+			  gap: 8px;
+			  background-color: #FFF;
+			  padding: 32px 0 24px 0;
+			  position: sticky;
+			  top: 0;
+			}
+			#symptoms  .action-buttons .button{
+			  font-family: "SofiaPro-Medium";
+			  padding: 8px 24px;
+			  font-size: 16px;
+			  font-style: normal;
+			  font-weight: 500;
+			  line-height: 24px; /* 150% */
+			  letter-spacing: -0.24px;
+			  outline: 0;
+			}
+			#symptoms  .action-buttons .button.button--secondary{
+			  border: 1px solid var(--main-blue);
+			  color: var(--main-blue);
+			}
+			#symptoms  .action-buttons .button.button--secondary:hover{
+			  background-color: #FFF;
+			  color: var(--main-blue);
+			}
+			.simptoms-recommendations{
+			  display: flex;
+			  flex-direction: column;
+			  justify-content: flex-start;
+			  max-width: 640px;
+			}
+			.simptoms-recommendations .symptom{
+			  border-bottom: 1px solid var(--tint-stone-50);
+			  padding: 0 0 32px 0;
+			  max-width: 100%;
+			  height: auto;
+			  margin-bottom: 32px;
+			}
+			.simptoms-recommendations .symptom.d-none{
+			  display: none;
+			}
+			.simptoms-recommendations .symptom.symptom0{
+			  margin-top: 16px;
+			}
+			.simptoms-recommendations .symptom.alert{
+
+			}
+			.simptoms-recommendations .symptom.alert .name,
+			.simptoms-recommendations .symptom.alert .description,
+			.simptoms-recommendations .symptom.alert a{
+			  color: var(--main-pink);
+			}
+			.simptoms-recommendations .symptom .name{
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-SemiBold";
+			  font-size: 20px;
+			  font-style: normal;
+			  font-weight: 700;
+			  line-height: 30px;
+			  letter-spacing: -0.3px;
+			  margin: 0 0 16px 0;
+			  display: flex;
+			  column-gap: 8px;
+			  align-items: center;
+			  justify-content: flex-start;
+			}
+			.simptoms-recommendations .symptom .description{
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-Regular";
+			  font-size: 16px;
+			  font-style: normal;
+			  font-weight: 400;
+			  line-height: 24px; /* 150% */
+			  letter-spacing: -0.16px;
+			  margin: 0 0 32px 0;
+			}
+			.simptoms-recommendations .symptom a:not(.button){
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-Regular";
+			  font-size: 16px;
+			  font-style: normal;
+			  font-weight: 400;
+			  line-height: 24px; /* 150% */
+			  letter-spacing: -0.16px;
+			  text-decoration-line: underline;
+			  text-decoration-style: initial;
+			  text-decoration-skip-ink: none;
+			  text-decoration-thickness: auto;
+			  text-underline-offset: auto;
+			  text-underline-position: left;
+			}
+			.simptoms-recommendations .symptom a.button{
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-Medium";
+			  font-size: 14px;
+			  font-style: normal;
+			  font-weight: 500;
+			  line-height: 20px;
+			  padding: 8px 16px 8px 24px;
+			}
+			.simptoms-recommendations .symptom a.button.whatsapp{
+			  background-color: #25D366;
+			  color: #FFF;
+			  border-color: #25D366;
+			  padding: 8px 16px;
+			}
+			.simptoms-recommendations .symptom a.button svg{
+			  width: 16px;
+			  height: 16px;
+			}
+			.simptoms-recommendations .symptom a.button span{
+			  position: relative;
+			  top: -1px;
+			}
+			.meno-score-container .box#whats_next{
+			  background-color: var(--main-blue);
+			}
+			.meno-score-container .box{
+			  border: 1px solid var(--secondary-blue-20);
+			  border-radius: 16px;
+			  padding: 32px;
+			  display: flex;
+			  flex-direction: row;
+			  column-gap: 64px;
+			  align-items: flex-start;
+			}
+			.meno-score-container .box .title{
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-Medium";
+			  font-size: 24px;
+			  font-style: normal;
+			  font-weight: 500;
+			  line-height: 32px; /* 133.333% */
+			  letter-spacing: -0.72px;
+			  margin: 0 0 24px 0;
+			  width: 100%;
+			  max-width: 320px;
+			}
+			.meno-score-container .box#whats_next .title{
+			  color: #FFF;
+			}
+			.meno-score-container .box .description{
+			  color: var(--secondary-blue-80);
+			  font-family: "SofiaPro-Regular";
+			  font-size: 16px;
+			  font-style: normal;
+			  font-weight: 400;
+			  line-height: 24px; /* 150% */
+			  letter-spacing: -0.16px;
+			}
+			.meno-score-container .box#whats_next .description ul{
+			  color: #FFF;
+			  background-color: transparent;
+			  border: 0;
+			  margin: 0;
+			}
+			.meno-score-container .box#whats_next .description ul li{
+			  background-color: transparent;
+			  padding: 0 0 0 28px;
+			  font-family: "SofiaPro-Regular";
+			  font-size: 16px;
+			  font-style: normal;
+			  font-weight: 400;
+			  line-height: 24px; /* 150% */
+			  letter-spacing: -0.16px;
+			  margin-bottom: 4px;
+			  background-image: none;
+			  background-repeat: no-repeat;
+			  background-position: top 3px left;
+			}
+			a.button.whatsapp{
+			  background-color: #25D366;
+			  color: #FFF;
+			  border-color: #25D366;
+			  padding: 8px 16px;
+			  font-family: 'SofiaPro-Medium';
+			  font-size: 14px;
+			  font-style: normal;
+			  font-weight: 500;
+			  line-height: 20px;
+			  gap: 8px;
+			  border-radius: 48px;
+			  display: flex;
+			  text-decoration: none;
+			  align-items: center;
+			}
+			.button.button--secondary{
+				display: inline-flex;
+				justify-content: center;
+				align-items: center;
+				padding: 0 24px;
+				cursor: pointer;
+				font: inherit;
+				text-decoration: none;
+				font-family: 'SofiaPro-Medium';
+				font-weight: 500;
+				appearance: none;
+				letter-spacing: -.24px;
+				border-radius: 48px;
+				gap: 6px;
+				background-color: #FFF;
+				border: 1px solid #3D497A;
+				color: #3D497A;
+				transition: background-color 0.3s ease;
+				font-size: 14px;
+				line-height: 20px;
+			}
+			.meno-score-container .box#whats_next .description ul li:last-child{
+			  margin-bottom: 0;
+			}
+			.meno-score-container .box .actions{
+			  display: flex;
+			  column-gap: 8px;
+			  margin-top: 24px;
+			  flex-wrap: wrap;
+			  row-gap: 16px;
+			}
+			.meno-score-container .box .info-box{
+			  padding: 24px;
+			  background-color: #F5F6F8;
+			  border-radius: 16px;
+			  min-width: 192px;
+			}
+			.meno-score-container .box .info-box .stats{
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-SemiBold";
+			  font-size: 24px;
+			  font-style: normal;
+			  font-weight: 700;
+			  line-height: 32px; /* 133.333% */
+			  letter-spacing: -0.96px;
+			  margin: 0 0 8px 0;
+			}
+			.meno-score-container .box .info-box .stats-desc{
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-Regular";
+			  font-size: 14px;
+			  font-style: normal;
+			  font-weight: 400;
+			  line-height: 20px; /* 142.857% */
+			  letter-spacing: -0.42px;
+			}
+			.meno-score-container .box .info-box-dr{
+			  width: 240px;
+			  border-radius: 24px;
+			}
+			.meno-score-container .box .info-box-dr>img{
+			  width: 100%;
+			  min-width: 240px;
+			  border-radius: 24px 24px 0 0;
+			  display: block;
+			}
+			.meno-score-container .box .info-box-dr .dr-info{
+			  padding: 24px;
+			  background-color: #F5F6F8;
+			  border-radius: 0 0 24px 24px;
+			}
+			.meno-score-container .box .info-box-dr .dr-info .dr-name{
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-SemiBold";
+			  font-size: 18px;
+			  font-style: normal;
+			  font-weight: 700;
+			  line-height: 28px; /* 155.556% */
+			  letter-spacing: -0.54px;
+			  margin: 0 0 8px 0;
+			}
+			.meno-score-container .box .info-box-dr .dr-info .dr-desc{
+			  color: var(--main-blue);
+			  font-family: "SofiaPro-Regular";
+			  font-size: 14px;
+			  font-style: normal;
+			  font-weight: 400;
+			  line-height: 20px; /* 142.857% */
+			  letter-spacing: -0.42px;
+			}
+			.meno-score-container .box .button{
+			  padding: 8px 16px;
+			  font-family: "SofiaPro-Regular";
+			  font-size: 14px;
+			  font-style: normal;
+			  font-weight: 400;
+			  line-height: 20px; /* 142.857% */
+			  letter-spacing: -0.42px;
+			}
+			.results .topic-header{
+			  display: none;
+			}
+			.results{
+			  width: 100%;
+			  max-width: 1120px;
+			  padding: 0 40px;
+			}
+			.pdf-banner{
+				margin-bottom: 60px;
+				width: 100%;
+			}
+			.content-container{
+				display: flex;
+				justify-content: space-between;
+			}
+			.sidebar{
+				width: 320px;
+				padding: 0 0 0 60px;
+			}
+			.dashboardMenu{
+				display: flex;
+				flex-direction: column;
+				flex-wrap: wrap;
+				row-gap: 12px;
+			}
+			.menuLink{
+				color: #949494;
+				font-size: 16px;
+				font-style: normal;
+				font-weight: 500;
+				line-height: 24px;
+				letter-spacing: -0.48px;
+				font-family: "SofiaPro-Medium";
+				letter-spacing: -0.24px;
+				background-color: transparent;
+				border: 0;
+				padding: 0;
+				text-align: left;
+				outline: none;
+			}
+			.sidebar-summary{
+				font-family: "SofiaPro-SemiBold";
+				color: #333;
+				font-size: 18px;
+				font-style: normal;
+				font-weight: 700;
+				line-height: 28px; /* 155.556% */
+				letter-spacing: -0.54px;
+				margin: 0 0 16px 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="results">
+			<img src="https://cdn.shopify.com/s/files/1/0799/1132/1784/files/pdf-banner.png?v=1746428932" width="100%" height="auto" class="pdf-banner"/>
+			<div class="content-container">
+				<div class="sidebar">
+					<p class="sidebar-summary">Sumar</p>
+					<div class="dashboardMenu">
+						<button class="menuLink">Faza Menopauzei</button>
+						<button class="menuLink">Scor Menopauză</button>
+						<button class="menuLink">Simptome</button>
+						<button class="menuLink">Paşii următori</button>
+						<button class="menuLink">Programează consultație</button>
+					</div>
+				</div>
+				<div class="meno-score-container">
+			   <img src="{{STAGE_IMAGE_URL}}" width="100%" class="meno-stage" />
+			   <div class="meno-stage" id="Faza Menopauzei">
+			      <div class="meno-stage-main-content">
+			         <div class="meno-stage-text">
+			            <div class="meno-stage-prehead">Faza Menopauzei</div>
+			            <div class="meno-stage-title">{{STAGE}}</div>
+			            <div class="meno-stage-description">
+							{{STAGE_DESCRIPTION}}
+			            </div>
+			         </div>
+			      </div>
+			      <div class="meno-stage-action-buttons">
+			         <a href="https://evrbloom.ro/products/abonament-evrbloom" target="_blank" class="button whatsapp">
+			            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+			               <g clip-path="url(#clip_pdf_1)">
+			                  <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0859 2.90417C15.2061 1.03232 12.7059 0.000949696 10.042 0C4.55283 0 0.08547 4.44221 0.08356 9.90249C0.082605 11.648 0.54147 13.3518 1.41288 14.8533L0 19.9854L5.27909 18.6083C6.7335 19.3976 8.37128 19.813 10.0377 19.8135H10.042C15.5302 19.8135 19.9981 15.3708 20 9.91055C20.0009 7.26425 18.9662 4.7765 17.0859 2.90465V2.90417ZM10.042 18.1411H10.0387C8.55367 18.1407 7.09689 17.7436 5.82583 16.9939L5.52357 16.8154L2.39078 17.6325L3.22686 14.5949L3.03013 14.2834C2.20169 12.9729 1.76383 11.4581 1.76479 9.90298C1.7667 5.36484 5.47963 1.67241 10.0454 1.67241C12.2561 1.67336 14.3342 2.53047 15.8969 4.08655C17.4598 5.64216 18.3197 7.71061 18.3188 9.90961C18.3168 14.4482 14.6039 18.1407 10.042 18.1407V18.1411ZM14.5819 11.9766C14.3332 11.8527 13.1099 11.2544 12.8816 11.1718C12.6534 11.0891 12.4877 11.0478 12.322 11.2957C12.1563 11.5436 11.6793 12.1011 11.5342 12.2658C11.389 12.4311 11.2438 12.4515 10.9951 12.3275C10.7463 12.2036 9.94461 11.9424 8.99395 11.0996C8.25433 10.4433 7.75483 9.63326 7.60972 9.38536C7.46456 9.13751 7.59444 9.00359 7.71856 8.88061C7.83028 8.7695 7.96733 8.59144 8.09194 8.44707C8.21661 8.30271 8.25767 8.19923 8.34072 8.03442C8.42383 7.86917 8.38228 7.72486 8.32022 7.60088C8.25811 7.47696 7.76061 6.25895 7.55289 5.7637C7.35089 5.28127 7.14561 5.3468 6.99328 5.33872C6.84811 5.3316 6.68244 5.33018 6.51628 5.33018C6.35011 5.33018 6.08078 5.39191 5.85256 5.63978C5.62433 5.88762 4.98162 6.48641 4.98162 7.70392C4.98162 8.92144 5.87311 10.0986 5.99772 10.2639C6.12233 10.4291 7.75244 12.9282 10.2483 14.0004C10.8418 14.2554 11.3054 14.4078 11.6669 14.5218C12.2628 14.7103 12.8052 14.6838 13.234 14.6201C13.712 14.5489 14.7061 14.0213 14.9133 13.4434C15.1206 12.8655 15.1206 12.3698 15.0585 12.2667C14.9964 12.1637 14.8303 12.1015 14.5815 11.9776L14.5819 11.9766Z" fill="white"></path>
+			               </g>
+			               <defs>
+			                  <clipPath id="clip_pdf_1">
+			                     <rect width="20" height="20" fill="white"></rect>
+			                  </clipPath>
+			               </defs>
+			            </svg>
+			            <span>Cere sfatul unui specialist</span>
+			         </a>
+			         <a href="https://evrbloom.ro/blogs/ghid-menopauza/perimenopauza" target="_blank" class="button button--secondary">
+			            <span>Află mai multe despre această fază</span>
+			            <svg width="16" height="16" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+			               <path d="M4.66602 9.99996H16.3327M16.3327 9.99996L10.4993 4.16663M16.3327 9.99996L10.4993 15.8333" stroke="#3D497A" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"></path>
+			            </svg>
+			         </a>
+			      </div>
+			      <div class="meno-stage-explanation">Pentru a determina în ce etapă a menopauzei te afli, am evaluat vârsta ta, profilul simptomelor și absența schimbărilor în tiparele menstruale, care sunt specifice etapelor mai avansate ale menopauzei. Prezența unor simptome poate indica faptul că organismul tău începe tranziția. Reevaluarea periodică a simptomelor te poate ajuta să urmărești progresul și să îți gestionezi mai bine nevoile pe măsură ce apar.<br><br>Această evaluare a etapei menopauzei nu reprezintă un diagnostic medical, ci un ghid menit să te ajute să înțelegi mai bine unde te afli în procesul de tranziție. Fiecare experiență este diferită, iar simptomele pot fluctua în timp. Pentru o evaluare completă și sfaturi personalizate, este întotdeauna recomandat să consulți un specialist în sănătate.</div>
+			   </div>
+			   <div class="meno-score" id="Scor Menopauză">
+			      <svg width="128" height="128" viewBox="0 0 128 128" class="score-circle">
+			         <circle cx="64" cy="64" r="60" fill="white" stroke="#D8DBE4" stroke-width="8"></circle>
+			         <circle cx="64" cy="64" r="60" fill="none" stroke="#3D497A" stroke-width="8" stroke-dasharray="376.99111843077515" stroke-dashoffset="{{SCORE_PROGRESS}}" stroke-linecap="round" transform="rotate(90 64 64)" style="transition: stroke-dashoffset 1500ms ease-in-out 300ms;"></circle>
+			         <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" font-size="36" fill="#3D497A">{{SCORE}}</text>
+			         <text x="50%" y="65%" dominant-baseline="middle" text-anchor="middle" font-size="14" fill="#3D497A">Scorul meu</text>
+			      </svg>
+			      <div class="meno-stage-main-content">
+			         <div class="meno-stage-text">
+			            <div class="meno-stage-prehead">Scor Menopauză</div>
+			            <div class="meno-stage-title">{{SCORENAME}}</div>
+			            <div class="meno-stage-description">
+							{{SCORE_DESCRIPTION}}
+			            </div>
+			         </div>
+			      </div>
+			      <div class="meno-stage-stats">
+			         <div class="percent">87%</div>
+			         <div class="text">dintre femeile aflate în perimenopauză care au abonament evrbloom au raportat mai puține simptome și mai multă încredere în gestionarea tranziției hormonale.</div>
+			      </div>
+			      <div class="meno-stage-action-buttons meno-score-action-buttons">
+			         <a href="https://evrbloom.ro/products/abonament-evrbloom" target="_blank" class="button whatsapp">
+			            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+			               <g clip-path="url(#clip_pdf_3)">
+			                  <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0859 2.90417C15.2061 1.03232 12.7059 0.000949696 10.042 0C4.55283 0 0.08547 4.44221 0.08356 9.90249C0.082605 11.648 0.54147 13.3518 1.41288 14.8533L0 19.9854L5.27909 18.6083C6.7335 19.3976 8.37128 19.813 10.0377 19.8135H10.042C15.5302 19.8135 19.9981 15.3708 20 9.91055C20.0009 7.26425 18.9662 4.7765 17.0859 2.90465V2.90417ZM10.042 18.1411H10.0387C8.55367 18.1407 7.09689 17.7436 5.82583 16.9939L5.52357 16.8154L2.39078 17.6325L3.22686 14.5949L3.03013 14.2834C2.20169 12.9729 1.76383 11.4581 1.76479 9.90298C1.7667 5.36484 5.47963 1.67241 10.0454 1.67241C12.2561 1.67336 14.3342 2.53047 15.8969 4.08655C17.4598 5.64216 18.3197 7.71061 18.3188 9.90961C18.3168 14.4482 14.6039 18.1407 10.042 18.1407V18.1411ZM14.5819 11.9766C14.3332 11.8527 13.1099 11.2544 12.8816 11.1718C12.6534 11.0891 12.4877 11.0478 12.322 11.2957C12.1563 11.5436 11.6793 12.1011 11.5342 12.2658C11.389 12.4311 11.2438 12.4515 10.9951 12.3275C10.7463 12.2036 9.94461 11.9424 8.99395 11.0996C8.25433 10.4433 7.75483 9.63326 7.60972 9.38536C7.46456 9.13751 7.59444 9.00359 7.71856 8.88061C7.83028 8.7695 7.96733 8.59144 8.09194 8.44707C8.21661 8.30271 8.25767 8.19923 8.34072 8.03442C8.42383 7.86917 8.38228 7.72486 8.32022 7.60088C8.25811 7.47696 7.76061 6.25895 7.55289 5.7637C7.35089 5.28127 7.14561 5.3468 6.99328 5.33872C6.84811 5.3316 6.68244 5.33018 6.51628 5.33018C6.35011 5.33018 6.08078 5.39191 5.85256 5.63978C5.62433 5.88762 4.98162 6.48641 4.98162 7.70392C4.98162 8.92144 5.87311 10.0986 5.99772 10.2639C6.12233 10.4291 7.75244 12.9282 10.2483 14.0004C10.8418 14.2554 11.3054 14.4078 11.6669 14.5218C12.2628 14.7103 12.8052 14.6838 13.234 14.6201C13.712 14.5489 14.7061 14.0213 14.9133 13.4434C15.1206 12.8655 15.1206 12.3698 15.0585 12.2667C14.9964 12.1637 14.8303 12.1015 14.5815 11.9776L14.5819 11.9766Z" fill="white"></path>
+			               </g>
+			               <defs>
+			                  <clipPath id="clip_pdf_3">
+			                     <rect width="20" height="20" fill="white"></rect>
+			                  </clipPath>
+			               </defs>
+			            </svg>
+			            <span>Cere sfatul unui specialist</span>
+			         </a>
+			         <a href="https://evrbloom.ro/products/abonament-evrbloom" target="_blank" class="button button--secondary">
+			            <span>Descoperă abonamentul evrbloom</span>
+			            <svg width="16" height="16" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+			               <path d="M4.66602 9.99996H16.3327M16.3327 9.99996L10.4993 4.16663M16.3327 9.99996L10.4993 15.8333" stroke="#3D497A" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"></path>
+			            </svg>
+			         </a>
+			      </div>
+			      <div class="meno-stage-explanation">Scorul tău de menopauză reflectă modul în care simptomele menopauzei îți afectează starea de bine. Simptomele sunt evaluate în funcție de severitatea lor, unele având un impact mai mare asupra vieții zilnice decât altele. Un scor mai mare sugerează mai puține perturbări, în timp ce un scor mai mic indică un impact mai mare. Acest scor ajută la urmărirea schimbărilor în timp și la identificarea principalelor domenii pentru gestionarea simptomelor.<br><br>Scorul Menopauză nu este un diagnostic, ci un instrument de orientare. El te ajută să înțelegi mai bine modul în care menopauza îți afectează corpul și să descoperi ce opțiuni ai la dispoziție pentru a te simți mai bine.</div>
+			   </div>
+			   <div class="simptoms-recommendations" id="symptoms">
+			      <div class="symptoms-prehead">Simptome</div>
+			      <div class="intro">
+			         <h2>Simptomele tale explicate</h2>
+			         <div class="intro-text">Iată o analiză a simptomelor tale în funcție de impactul lor. Accesează linkurile pentru informații gratuite, bazate pe dovezi, despre fiecare simptom, inclusiv detalii, frecvența acestuia și opțiunile de tratament disponibile.</div>
+			      </div>
+				  {{SYMPTOMS_SECTION}}
+			   </div>
+			</div>
+			</div>
+    </div>
+	</body>
+</html>

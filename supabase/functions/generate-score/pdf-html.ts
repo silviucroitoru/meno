@@ -59,6 +59,23 @@ function getStageImageUrl(stage: string): string {
     "https://cdn.shopify.com/s/files/1/0799/1132/1784/files/default.png?v=123";
 }
 
+const SVG_PULSE = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 12H18L15 21L9 3L6 12H2" stroke="#3D497A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>`;
+
+const SVG_ARROW = `<svg width="16" height="16" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.66602 9.99996H16.3327M16.3327 9.99996L10.4993 4.16663M16.3327 9.99996L10.4993 15.8333" stroke="#3D497A" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"></path></svg>`;
+
+function whatsappSvg(clipId: string): string {
+  return `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#${clipId})"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.0859 2.90417C15.2061 1.03232 12.7059 0.000949696 10.042 0C4.55283 0 0.08547 4.44221 0.08356 9.90249C0.082605 11.648 0.54147 13.3518 1.41288 14.8533L0 19.9854L5.27909 18.6083C6.7335 19.3976 8.37128 19.813 10.0377 19.8135H10.042C15.5302 19.8135 19.9981 15.3708 20 9.91055C20.0009 7.26425 18.9662 4.7765 17.0859 2.90465V2.90417ZM10.042 18.1411H10.0387C8.55367 18.1407 7.09689 17.7436 5.82583 16.9939L5.52357 16.8154L2.39078 17.6325L3.22686 14.5949L3.03013 14.2834C2.20169 12.9729 1.76383 11.4581 1.76479 9.90298C1.7667 5.36484 5.47963 1.67241 10.0454 1.67241C12.2561 1.67336 14.3342 2.53047 15.8969 4.08655C17.4598 5.64216 18.3197 7.71061 18.3188 9.90961C18.3168 14.4482 14.6039 18.1407 10.042 18.1407V18.1411ZM14.5819 11.9766C14.3332 11.8527 13.1099 11.2544 12.8816 11.1718C12.6534 11.0891 12.4877 11.0478 12.322 11.2957C12.1563 11.5436 11.6793 12.1011 11.5342 12.2658C11.389 12.4311 11.2438 12.4515 10.9951 12.3275C10.7463 12.2036 9.94461 11.9424 8.99395 11.0996C8.25433 10.4433 7.75483 9.63326 7.60972 9.38536C7.46456 9.13751 7.59444 9.00359 7.71856 8.88061C7.83028 8.7695 7.96733 8.59144 8.09194 8.44707C8.21661 8.30271 8.25767 8.19923 8.34072 8.03442C8.42383 7.86917 8.38228 7.72486 8.32022 7.60088C8.25811 7.47696 7.76061 6.25895 7.55289 5.7637C7.35089 5.28127 7.14561 5.3468 6.99328 5.33872C6.84811 5.3316 6.68244 5.33018 6.51628 5.33018C6.35011 5.33018 6.08078 5.39191 5.85256 5.63978C5.62433 5.88762 4.98162 6.48641 4.98162 7.70392C4.98162 8.92144 5.87311 10.0986 5.99772 10.2639C6.12233 10.4291 7.75244 12.9282 10.2483 14.0004C10.8418 14.2554 11.3054 14.4078 11.6669 14.5218C12.2628 14.7103 12.8052 14.6838 13.234 14.6201C13.712 14.5489 14.7061 14.0213 14.9133 13.4434C15.1206 12.8655 15.1206 12.3698 15.0585 12.2667C14.9964 12.1637 14.8303 12.1015 14.5815 11.9776L14.5819 11.9766Z" fill="white"></path></g><defs><clipPath id="${clipId}"><rect width="20" height="20" fill="white"></rect></clipPath></defs></svg>`;
+}
+
+let cachedTemplate: string | null = null;
+
+function loadReportTemplate(): string {
+  if (cachedTemplate) return cachedTemplate;
+  const path = new URL("./report.html", import.meta.url);
+  cachedTemplate = Deno.readTextFileSync(path);
+  return cachedTemplate;
+}
+
 export type MenopauseReportPdf = {
   menopauseStage?: { stage?: string; description?: string };
   menoScore?: { score?: number; scorename?: string; description?: string };
@@ -68,92 +85,65 @@ export type MenopauseReportPdf = {
   };
 };
 
-export function buildMenopauseReportPdfHtml(report: MenopauseReportPdf, lang: PdfLang): string {
-  const t = messages(lang);
-  const stage = report.menopauseStage?.stage ?? "";
-  const stageImageUrl = getStageImageUrl(stage);
-  const score = Number(report.menoScore?.score ?? 0);
+/** Legacy Lambda used 377 for dashoffset math (see generateMenoPdf). */
+function scoreProgressOffset(score: number): string {
+  const s = Math.max(0, Math.min(100, score));
+  return String(377 - (s / 100) * 377);
+}
 
+function buildSymptomsSection(
+  report: MenopauseReportPdf,
+  lang: PdfLang,
+): string {
+  const t = messages(lang);
   const allSymptoms = [
     ...(report.keySymptoms?.mostImpactful ?? []),
     ...(report.keySymptoms?.moderateImpact ?? []),
   ];
-
   const memberLink = t["become_member_link"] ?? "https://evrbloom.ro/products/abonament-evrbloom";
   const talkLabel = t["talk_to_doctor"] ?? "Chat with a doctor";
   const symptomMoreLabel = t["symptom_link_text"] ?? "Read more";
 
-  const symptomHtmlBlocks = allSymptoms.map((symptom, index) => {
+  return allSymptoms.map((symptom, index) => {
     const base = getSymptomBaseId(symptom.dataPointName);
     const name = t[`${base}_name`];
     const description = t[`${base}_description`];
     const link = t[`${base}_link`];
     if (!name || !description || !link) return "";
-    return `<div class="symptom" id="symptom_${index}">
-      <div class="symptom-name">${escapeHtml(name)}</div>
-      <div class="symptom-description">${description}</div>
-      <div class="symptom-actions">
-        <a href="${escapeHtml(memberLink)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">${escapeHtml(talkLabel)}</a>
-        <a href="${escapeHtml(link)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">${escapeHtml(symptomMoreLabel)}</a>
-      </div>
-    </div>`;
+    const clipId = `clip_sym_${index}`;
+    return `<div class="symptom high symptom${index}" id="symptom_pdf_${index}">
+        <div class="name">
+        ${SVG_PULSE}
+          ${escapeHtml(name)}
+        </div>
+        <div class="description">${description}</div>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="${escapeHtml(memberLink)}" target="_blank" rel="noopener noreferrer" class="button whatsapp">
+          ${whatsappSvg(clipId)}
+            <span>${escapeHtml(talkLabel)}</span>
+          </a>
+          <a href="${escapeHtml(link)}" target="_blank" rel="noopener noreferrer" class="button button--secondary">
+            <span>${escapeHtml(symptomMoreLabel)}</span>
+            ${SVG_ARROW}
+          </a>
+        </div>
+      </div>`;
   }).join("\n");
+}
 
-  const stageDesc = convertMarkdownLinksToHtml(report.menopauseStage?.description ?? "");
-  const scoreDesc = convertMarkdownLinksToHtml(report.menoScore?.description ?? "");
+export function buildMenopauseReportPdfHtml(report: MenopauseReportPdf, lang: PdfLang): string {
+  const stage = report.menopauseStage?.stage ?? "";
+  const score = Number(report.menoScore?.score ?? 0);
+  const template = loadReportTemplate();
+  const symptoms = buildSymptomsSection(report, lang);
 
-  return `<!DOCTYPE html>
-<html lang="${lang}">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Menopause report</title>
-  <style>
-    * { box-sizing: border-box; }
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: #1a1a2e; margin: 0; padding: 32px; background: #f7f8fc; }
-    .card { background: #fff; border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 24px rgba(61, 73, 122, 0.08); }
-    h1 { font-size: 22px; margin: 0 0 8px; color: #3d497a; }
-    .stage-row { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
-    .stage-img { max-width: 200px; border-radius: 12px; }
-    .stage-text { flex: 1; min-width: 220px; }
-    .stage-text p { margin: 0 0 12px; line-height: 1.55; }
-    .score-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; }
-    .score-name { font-size: 18px; font-weight: 600; color: #3d497a; }
-    .score-num { font-size: 42px; font-weight: 700; color: #3d497a; }
-    .score-bar { height: 8px; background: #e8eaf4; border-radius: 4px; margin: 16px 0; overflow: hidden; }
-    .score-bar-inner { height: 100%; background: linear-gradient(90deg, #7c8bc4, #3d497a); border-radius: 4px; width: ${score}%; max-width: 100%; }
-    .score-desc p { margin: 0 0 12px; line-height: 1.55; }
-    a { color: #3d497a; }
-    .symptom { border-top: 1px solid #e8eaf4; padding: 20px 0; }
-    .symptom:first-of-type { border-top: none; padding-top: 0; }
-    .symptom-name { font-weight: 600; font-size: 17px; color: #3d497a; margin-bottom: 10px; }
-    .symptom-description { line-height: 1.55; margin-bottom: 14px; }
-    .symptom-description p { margin: 0 0 10px; }
-    .symptom-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn { display: inline-block; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; }
-    .btn-primary { background: #3d497a; color: #fff !important; }
-    .btn-secondary { background: #fff; color: #3d497a !important; border: 2px solid #3d497a; }
-  </style>
-</head>
-<body>
-  <div class="card">
-    <h1>${escapeHtml(stage)}</h1>
-    <div class="stage-row">
-      <img class="stage-img" src="${escapeHtml(stageImageUrl)}" alt="" width="200" height="200" />
-      <div class="stage-text">${stageDesc}</div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="score-header">
-      <span class="score-name">${escapeHtml(report.menoScore?.scorename ?? "")}</span>
-      <span class="score-num">${escapeHtml(String(score))}</span>
-    </div>
-    <div class="score-bar"><div class="score-bar-inner"></div></div>
-    <div class="score-desc">${scoreDesc}</div>
-  </div>
-  <div class="card">
-    ${symptomHtmlBlocks || `<p>${escapeHtml(lang === "en" ? "No key symptoms in this range." : lang === "ro" ? "Fără simptome cheie în acest interval." : "Nema ključnih simptoma u ovom opsegu.")}</p>`}
-  </div>
-</body>
-</html>`;
+  return template
+    .replaceAll("{{STAGE}}", escapeHtml(stage))
+    .replaceAll("{{STAGE_IMAGE_URL}}", escapeHtml(getStageImageUrl(stage)))
+    .replaceAll("{{STAGE_DESCRIPTION}}", convertMarkdownLinksToHtml(report.menopauseStage?.description ?? ""))
+    .replaceAll("{{SCORE}}", escapeHtml(String(score)))
+    .replaceAll("{{SCORE_PROGRESS}}", scoreProgressOffset(score))
+    .replaceAll("{{SCORENAME}}", escapeHtml(report.menoScore?.scorename ?? ""))
+    .replaceAll("{{SCORE_DESCRIPTION}}", convertMarkdownLinksToHtml(report.menoScore?.description ?? ""))
+    .replaceAll("{{SYMPTOMS_SECTION}}", symptoms);
 }
