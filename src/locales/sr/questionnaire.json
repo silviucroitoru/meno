@@ -1,0 +1,414 @@
+{
+  "info": [
+    {
+      "position": 1,
+      "settings": {
+        "RichText": "<h1>Dobrodošli</h1><p>Menopauza nije kraj jedne faze, već prirodni deo vašeg života u kojem su vam potrebne jasne informacije i odgovarajuća podrška.</p><p>Naš upitnik vam pomaže da prepoznate u kojoj ste fazi menopauze i pruža vam naučno zasnovane informacije za podršku vašem zdravlju.<br><br>Niste same na ovom putu.<br>Tu smo da vam pružimo jasnoću i stvarnu podršku.</p><p>Hajde da počnemo.</p>"
+      },
+      "QuestionType": "intro",
+      "DataPointName": "WelcomeMessage"
+    },
+    {
+      "position": 2,
+      "settings": {
+        "QuestionText": "Kako se zovete?",
+        "QuestionHelper": "Molimo vas unesite vaše ime."
+      },
+      "QuestionType": "first_name",
+      "DataPointName": "FirstName"
+    },
+    {
+      "position": 3,
+      "settings": {
+        "fields": [
+          {
+            "type": "numeric",
+            "label": "Godina rođenja",
+            "mandatory": true,
+            "measurement": "Godina",
+            "error_message": "Ovo polje je obavezno."
+          }
+        ],
+        "QuestionText": "Koja je vaša godina rođenja?",
+        "QuestionHelper": "Molimo vas unesite godinu u kojoj ste rođeni."
+      },
+      "QuestionType": "custom_form",
+      "DataPointName": "BirthYear"
+    },
+    {
+      "position": 4,
+      "settings": {
+        "fields": [
+          {
+            "type": "numeric",
+            "label": "Visina",
+            "mandatory": true,
+            "measurement": "cm",
+            "error_message": "Ovo polje je obavezno."
+          }
+        ],
+        "QuestionText": "Kolika je vaša visina?",
+        "QuestionHelper": "Molimo vas unesite vašu visinu u centimetrima."
+      },
+      "QuestionType": "custom_form",
+      "DataPointName": "Height"
+    },
+    {
+      "position": 5,
+      "settings": {
+        "fields": [
+          {
+            "type": "numeric",
+            "label": "Težina",
+            "mandatory": true,
+            "measurement": "kg",
+            "error_message": "Ovo polje je obavezno."
+          }
+        ],
+        "QuestionText": "Kolika je vaša trenutna težina?",
+        "QuestionHelper": "Molimo vas unesite vašu težinu u kilogramima."
+      },
+      "QuestionType": "custom_form",
+      "DataPointName": "Weight"
+    },
+    {
+      "position": 6,
+      "settings": {
+        "options": [
+          { "OptionText": "Imam redovne menstruacije." },
+          { "OptionText": "Imam redovne menstruacije, ali su se promenile po trajanju ili količini." },
+          { "OptionText": "Imam neredovne menstruacije i ponekad prođe više meseci bez menstruacije." },
+          { "OptionText": "Nisam imala menstruaciju nekoliko meseci, ali manje od godinu dana." },
+          { "OptionText": "Nisam imala menstruaciju godinu dana ili duže." }
+        ],
+        "QuestionText": "Kakva je vaša menstruacija trenutno?",
+        "QuestionHelper": "Izaberite opciju koja vam najbolje odgovara."
+      },
+      "QuestionType": "single_option",
+      "DataPointName": "Menstrual Status"
+    },
+    {
+      "position": 7,
+      "settings": {
+        "options": [
+          { "OptionText": "Nikada nisam koristila hormonsku supstitucionu terapiju." },
+          { "OptionText": "Trenutno koristim hormonsku supstitucionu terapiju." },
+          { "OptionText": "Koristila sam hormonsku supstitucionu terapiju u prošlosti." }
+        ],
+        "QuestionText": "Da li koristite ili ste koristili hormonsku supstitucionu terapiju?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje vaše iskustvo."
+      },
+      "QuestionType": "single_option",
+      "DataPointName": "HRT Treatment History"
+    },
+    {
+      "position": 8,
+      "settings": {
+        "options": [
+          { "OptionText": "Nemam talase vrućine.", "OptionValue": 1 },
+          { "OptionText": "Povremeno, nekoliko puta mesečno.", "OptionValue": 2 },
+          { "OptionText": "Često, više puta nedeljno.", "OptionValue": 3 },
+          { "OptionText": "Teški, svakodnevno ili stalno tokom dana i noći.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Koliko često imate talase vrućine?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje koliko često imate talase vrućine."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Hot Flushes"
+    },
+    {
+      "position": 9,
+      "settings": {
+        "options": [
+          { "OptionText": "Nemam noćno znojenje.", "OptionValue": 1 },
+          { "OptionText": "Povremeno, nekoliko puta mesečno.", "OptionValue": 2 },
+          { "OptionText": "Često, više puta nedeljno.", "OptionValue": 3 },
+          { "OptionText": "Teško, remeti mi san skoro svake noći.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Koliko često imate noćno znojenje?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje koliko često imate noćno znojenje."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Night Sweats"
+    },
+    {
+      "position": 10,
+      "settings": {
+        "options": [
+          { "OptionText": "Nemam palpitacije.", "OptionValue": 1 },
+          { "OptionText": "Povremeno, nekoliko puta mesečno.", "OptionValue": 2 },
+          { "OptionText": "Često, više puta nedeljno.", "OptionValue": 3 },
+          { "OptionText": "Teške, skoro svakodnevno i uznemirujuće.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Koliko često imate palpitacije?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje koliko često imate palpitacije."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Palpitations"
+    },
+    {
+      "position": 11,
+      "settings": {
+        "options": [
+          { "OptionText": "Nemam bolove u zglobovima ili mišićima.", "OptionValue": 1 },
+          { "OptionText": "Blagi, povremena ukočenost ili nelagodnost.", "OptionValue": 2 },
+          { "OptionText": "Čest bol, utiče na kretanje i svakodnevne aktivnosti.", "OptionValue": 3 },
+          { "OptionText": "Jak, uporan bol koji ograničava aktivnosti.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Koliko često imate bolove u zglobovima ili mišićima?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje koliko često imate nelagodnost u zglobovima ili mišićima."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Joint Pain"
+    },
+    {
+      "position": 12,
+      "settings": {
+        "options": [
+          { "OptionText": "Nisam primetila povećanje težine.", "OptionValue": 1 },
+          { "OptionText": "Malo sam se ugojila, ali me ne smeta.", "OptionValue": 2 },
+          { "OptionText": "Primetila sam vidljivo povećanje težine koje utiče na moje samopouzdanje.", "OptionValue": 3 },
+          { "OptionText": "Značajno sam se ugojila i teško mi je da to kontrolišem, čak i kada se trudim.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Koliko se vaša težina nedavno promenila?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje koliko se vaša težina nedavno promenila."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Weight Gain"
+    },
+    {
+      "position": 13,
+      "settings": {
+        "options": [
+          { "OptionText": "Nema promene, moj libido je isti.", "OptionValue": 1 },
+          { "OptionText": "Primetila sam blagi pad, ali još uvek imam interesovanje.", "OptionValue": 2 },
+          { "OptionText": "Imam vidljiv pad interesovanja koji utiče na moju vezu.", "OptionValue": 3 },
+          { "OptionText": "Skoro potpuno sam izgubila interesovanje za seks.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Kakvo je vaše interesovanje za seks trenutno?",
+        "QuestionHelper": "Izaberite opciju koja vam najbolje odgovara:"
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Loss of Interest in Sex"
+    },
+    {
+      "position": 14,
+      "settings": {
+        "options": [
+          { "OptionText": "Nemam probleme sa mokraćnom bešikom, sve je normalno.", "OptionValue": 1 },
+          { "OptionText": "Povremena urgencija ili malo curenje urina.", "OptionValue": 2 },
+          { "OptionText": "Često curenje ili urgencija, utiče na svakodnevni život.", "OptionValue": 3 },
+          { "OptionText": "Teški problemi sa kontrolom bešike, značajno utiču na mene.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Koliko često imate probleme sa mokraćnom bešikom poput urgencije, curenja ili infekcija?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje koliko često imate probleme sa mokraćnom bešikom."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Bladder Problems"
+    },
+    {
+      "position": 15,
+      "settings": {
+        "options": [
+          { "OptionText": "Nemam suvoću ili nelagodnost vagine.", "OptionValue": 1 },
+          { "OptionText": "Povremena blaga suvoća, bez nelagodnosti.", "OptionValue": 2 },
+          { "OptionText": "Vidljiva suvoća, ali podnošljiva.", "OptionValue": 3 },
+          { "OptionText": "Česta suvoća koja izaziva nelagodnost.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Koliko vas je nedavno pogodila vaginalna suvoća?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje koliko vas je pogodila vaginalna suvoća."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Vaginal Dryness"
+    },
+    {
+      "position": 16,
+      "settings": {
+        "options": [
+          { "OptionText": "Nema promene, moja koža je ista.", "OptionValue": 1 },
+          { "OptionText": "Blaga suvoća ili promena teksture.", "OptionValue": 2 },
+          { "OptionText": "Umerena promena, vidljive fine linije ili mat ten.", "OptionValue": 3 },
+          { "OptionText": "Česta suvoća, gubitak čvrstine.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Kako se vaša koža nedavno promenila?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje kako se vaša koža nedavno promenila."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Declining Skin Quality"
+    },
+    {
+      "position": 17,
+      "settings": {
+        "options": [
+          { "OptionText": "Nema promene, moja kosa je ista.", "OptionValue": 1 },
+          { "OptionText": "Blago stanjivanje ili promena teksture.", "OptionValue": 2 },
+          { "OptionText": "Umereno opadanje ili povećana suvoća.", "OptionValue": 3 },
+          { "OptionText": "Često opadanje, vidljivo stanjivanje.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Kako se vaša kosa nedavno promenila?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje kako se vaša kosa nedavno promenila."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Declining Hair Quality"
+    },
+    {
+      "position": 18,
+      "settings": {
+        "options": [
+          { "OptionText": "Retko se osećam razdražljivo.", "OptionValue": 1 },
+          { "OptionText": "Povremeno, ali podnošljivo.", "OptionValue": 2 },
+          { "OptionText": "Umereno, utiče na moje raspoloženje.", "OptionValue": 3 },
+          { "OptionText": "Često, utiče na moje odnose.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Koliko često se osećate razdražljivo?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje koliko često se osećate razdražljivo."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Irritability"
+    },
+    {
+      "position": 19,
+      "settings": {
+        "options": [
+          { "OptionText": "Nemam promene raspoloženja ili depresiju.", "OptionValue": 1 },
+          { "OptionText": "Povremeno, ali ne utiče na moj svakodnevni život.", "OptionValue": 2 },
+          { "OptionText": "Umerene promene raspoloženja, ali podnošljive.", "OptionValue": 3 },
+          { "OptionText": "Česte promene raspoloženja, ponekad teško za kontrolu.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Koliko često doživljavate promene raspoloženja ili depresiju?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje koliko često doživljavate promene raspoloženja ili depresiju."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Low Mood, Depression, Mood Swings"
+    },
+    {
+      "position": 20,
+      "settings": {
+        "options": [
+          { "OptionText": "Retko se osećam anksiozno.", "OptionValue": 1 },
+          { "OptionText": "Povremeno, ali ne utiče na moj svakodnevni život.", "OptionValue": 2 },
+          { "OptionText": "Umerena anksioznost, ali podnošljiva.", "OptionValue": 3 },
+          { "OptionText": "Česta anksioznost, utiče na moju koncentraciju i opuštanje.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Koliko često se osećate anksiozno ili zabrinuto?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje koliko često se osećate anksiozno ili zabrinuto."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Anxiety"
+    },
+    {
+      "position": 21,
+      "settings": {
+        "options": [
+          { "OptionText": "Spavam dobro, bez problema.", "OptionValue": 1 },
+          { "OptionText": "Povremeno, ali nije velika briga.", "OptionValue": 2 },
+          { "OptionText": "Umereni problemi sa snom, utiču na moj nivo energije.", "OptionValue": 3 },
+          { "OptionText": "Česti, često se budim umorna.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Koliko često imate probleme sa snom?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje koliko često imate probleme sa snom."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Sleep Problems"
+    },
+    {
+      "position": 22,
+      "settings": {
+        "options": [
+          { "OptionText": "Retko ili nikada nemam glavobolje.", "OptionValue": 1 },
+          { "OptionText": "Povremeno, ali blage.", "OptionValue": 2 },
+          { "OptionText": "Umerene, ali podnošljive.", "OptionValue": 3 },
+          { "OptionText": "Česte, utiču na moj svakodnevni život.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Koliko često imate glavobolje?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje koliko često imate glavobolje."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Headaches"
+    },
+    {
+      "position": 23,
+      "settings": {
+        "options": [
+          { "OptionText": "Ne doživljavam probleme sa mentalnom jasnoćom.", "OptionValue": 1 },
+          { "OptionText": "Povremeno, ali me ne brine.", "OptionValue": 2 },
+          { "OptionText": "Umereno, ponekad se osećam mentalno usporeno.", "OptionValue": 3 },
+          { "OptionText": "Često, utiče na moju koncentraciju i pamćenje.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Koliko često doživljavate osećaj mentalne magle?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje koliko često doživljavate probleme sa mentalnom jasnoćom."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Brain Fog"
+    },
+    {
+      "position": 24,
+      "settings": {
+        "options": [
+          { "OptionText": "Nemam problema sa pamćenjem.", "OptionValue": 1 },
+          { "OptionText": "Povremeno, ali me ne brine.", "OptionValue": 2 },
+          { "OptionText": "Umereno, ali podnošljivo.", "OptionValue": 3 },
+          { "OptionText": "Često, utiče na moj svakodnevni život.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Koliko često imate probleme sa pamćenjem?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje koliko često imate probleme sa pamćenjem."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Memory Issues"
+    },
+    {
+      "position": 25,
+      "settings": {
+        "options": [
+          { "OptionText": "Ne doživljavam umor.", "OptionValue": 1 },
+          { "OptionText": "Povremeno, ali blago.", "OptionValue": 2 },
+          { "OptionText": "Umereno, ali podnošljivo.", "OptionValue": 3 },
+          { "OptionText": "Često, utiče na moj svakodnevni život.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Koliko često se osećate umorno?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje koliko često se osećate umorno."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Tiredness & Fatigue"
+    },
+    {
+      "position": 26,
+      "settings": {
+        "options": [
+          { "OptionText": "Nema promene, osećam se jednako snažno.", "OptionValue": 1 },
+          { "OptionText": "Malo slabija, ali bez većih problema.", "OptionValue": 2 },
+          { "OptionText": "Umereno, ali podnošljivo.", "OptionValue": 3 },
+          { "OptionText": "Česta slabost, utiče na moje svakodnevne aktivnosti.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Koliko vam je opala fizička snaga ili izdržljivost?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje koliko vam je opala fizička snaga ili izdržljivost."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "Decreased Physical Strength or Stamina"
+    },
+    {
+      "position": 27,
+      "settings": {
+        "options": [
+          { "OptionText": "Nemam probleme sa varenjem.", "OptionValue": 1 },
+          { "OptionText": "Povremeno, ali blago.", "OptionValue": 2 },
+          { "OptionText": "Umereno, ali podnošljivo.", "OptionValue": 3 },
+          { "OptionText": "Često, utiče na moju svakodnevnu udobnost.", "OptionValue": 4 }
+        ],
+        "QuestionText": "Koliko često doživljavate probleme sa varenjem poput nadimanja, gasova ili nelagodnosti?",
+        "QuestionHelper": "Izaberite opciju koja najbolje opisuje koliko često doživljavate probleme sa varenjem poput nadimanja, gasova ili nelagodnosti."
+      },
+      "QuestionType": "scale",
+      "DataPointName": "DigestiveSymptoms"
+    },
+    {
+      "position": 28,
+      "settings": {
+        "QuestionText": "Koja je vaša e-mail adresa?",
+        "QuestionHelper": "Molimo vas unesite validnu e-mail adresu kako bismo vam mogli poslati vaše rezultate."
+      },
+      "QuestionType": "email",
+      "DataPointName": "Email"
+    }
+  ]
+}
