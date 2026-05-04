@@ -175,6 +175,8 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                    dangerouslySetInnerHTML={{__html: htmlDescriptionStage}}/>
             </div>
           </div>
+          {/*
+          Menopause stage: action buttons + “how we determined stage” — hidden for Primea; restore if needed.
           <div className="meno-stage-action-buttons">
             <a
               href={getTranslatedMessage("become_member_link", {})}
@@ -221,6 +223,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
           <div className="meno-stage-explanation"
                dangerouslySetInnerHTML={{__html: getTranslatedMessage("menopause_stage_determination", {})}}
           />
+          */}
         </div>
         {index > -1 && (
           <div className="meno-score" id={scoreJson.menoScore.scoretitle}>
