@@ -214,7 +214,7 @@
 .meno-stage .meno-stage-stats{
   border-radius: 16px;
   background-color: #F6F6F6;
-  padding: 24px;
+  padding: 32px 24px 24px 24px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

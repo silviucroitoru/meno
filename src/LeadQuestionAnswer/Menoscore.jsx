@@ -263,6 +263,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                 </div>
               )
             }
+            {/*
             <div className="meno-stage-action-buttons meno-score-action-buttons">
               <a
                 href={getTranslatedMessage("become_member_link", {})}
@@ -302,8 +303,12 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                 </svg>
               </a>
             </div>
-            <div className="meno-stage-explanation"
-                 dangerouslySetInnerHTML={{__html: getTranslatedMessage("score_explanation", {})}}/>
+            */}
+            <div className="meno-stage-explanation">
+              {/*
+                dangerouslySetInnerHTML={{__html: getTranslatedMessage("score_explanation", {})}}
+              */}
+            </div>
           </div>
         )}
         {(scoreJson.keySymptoms.mostImpactful.length > 0 || scoreJson.keySymptoms.moderateImpact.length > 0) && (
