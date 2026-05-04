@@ -370,6 +370,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                   </div>
                   <div className="description"
                        dangerouslySetInnerHTML={{__html: getTranslatedMessage(`${getSymptomBaseId(s.dataPointName)}_description`, {})}}/>
+                  {/*
                   <div style={{display: "flex", gap: '16px', flexWrap: 'wrap'}}>
                     <a
                       href={getTranslatedMessage('become_member_link', {})}
@@ -409,6 +410,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                       </svg>
                     </a>
                   </div>
+                  */}
 
                 </div>
               ))
@@ -426,6 +428,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                   </div>
                   <div className="description"
                        dangerouslySetInnerHTML={{__html: getTranslatedMessage(`${getSymptomBaseId(s.dataPointName)}_description`, {})}}/>
+                  {/*
                   <div style={{display: "flex", gap: '16px', flexWrap: 'wrap', alignItems: 'center'}}>
                     <a
                       href={getTranslatedMessage('become_member_link', {})}
@@ -466,6 +469,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                       </svg>
                     </a>
                   </div>
+                  */}
                 </div>
               ))
             }
