@@ -5,6 +5,7 @@ import mixpanel from "mixpanel-browser";
 import Page from "./components/Page.jsx";
 import './Questionaire.css'
 import HeaderArea from "./components/HeaderArea.jsx";
+import { supabaseAnonHeaders } from "../api/supabaseAnonHeaders.js";
 export default function Questionaire() {
   function getLanguageFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -40,6 +41,7 @@ export default function Questionaire() {
     }
     const requestOptions = {
       method: "GET",
+      headers: supabaseAnonHeaders(),
     };
     // setSubmissionId(mockData.SubmissionID)
     // setQuestionnaire(mockData.questionnaire);
@@ -80,6 +82,7 @@ export default function Questionaire() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            ...supabaseAnonHeaders(),
           },
           body: JSON.stringify(data),
         });

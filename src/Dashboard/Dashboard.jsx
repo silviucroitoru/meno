@@ -5,6 +5,7 @@ import Loader from "../LeadQuestionAnswer/Loader.jsx";
 import './dashboard.css'
 import {useEffect, useState} from "react";
 import {mockData} from "../LeadQuestionAnswer/mockData.jsx";
+import { supabaseAnonHeaders } from "../api/supabaseAnonHeaders.js";
 export default function Dashboard() {
   const [scoreJson, setScoreJson] = useState(null);
   const [display, setDisplay] = useState(false);
@@ -39,11 +40,21 @@ export default function Dashboard() {
     setTimeout(() => {setDisplay(true)}, 13600)
     const requestOptions = {
       method: "GET",
+      headers: supabaseAnonHeaders(),
     };
 
     const storedLang = (localStorage.getItem('language') ?? 'sr').toUpperCase();
     fetch(`${import.meta.env.VITE_API_URL}/generate-score?submissionId=${localStorage.getItem('SubmissionID') ?? 9999999}&language=${storedLang}`, requestOptions)
-      .then((response) => response.json())
+      .then(async (response) => {
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(result?.error ?? result?.message ?? `generate-score failed (${response.status})`);
+        }
+        if (typeof result?.content !== "string") {
+          throw new Error("generate-score: missing content in response");
+        }
+        return result;
+      })
       .then((result) => {
         const fullJson = JSON.parse(result.content)
         console.log(fullJson)
