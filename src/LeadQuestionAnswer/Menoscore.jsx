@@ -175,8 +175,8 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                    dangerouslySetInnerHTML={{__html: htmlDescriptionStage}}/>
             </div>
           </div>
+          {/*
           <div className="meno-stage-action-buttons">
-            {/*
             <a
               href={getTranslatedMessage("become_member_link", {})}
               target="_blank"
@@ -218,8 +218,8 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                 </a>
               )
             }
-            */}
           </div>
+          */}
           <div className="meno-stage-explanation">
             {/*
               dangerouslySetInnerHTML={{__html: getTranslatedMessage("menopause_stage_determination", {})}}

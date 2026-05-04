@@ -30,7 +30,7 @@
   max-width: 640px;
 }
 .meno-stage-main-content{
-  margin: 0 0 32px 0;
+  margin: 0;
   display: flex;
   column-gap: 64px;
   align-items: flex-start;
@@ -730,9 +730,6 @@ a.button.whatsapp{
   }
   #symptoms .action-buttons{
     padding: 24px 0;
-  }
-  .meno-stage-main-content{
-    margin: 0 0 24px 0;
   }
   .meno-stage-main-content>svg{
     margin: 0 auto;
