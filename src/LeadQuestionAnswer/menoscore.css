@@ -449,7 +449,7 @@
   font-weight: 400;
   line-height: 24px; /* 150% */
   letter-spacing: -0.16px;
-  margin: 0 0 32px 0;
+  margin: 0 0 0px 0;
 }
 .simptoms-recommendations .symptom a:not(.button){
   color: var(--main-blue);
