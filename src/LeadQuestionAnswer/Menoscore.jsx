@@ -483,7 +483,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                  dangerouslySetInnerHTML={{__html: getTranslatedMessage("book_call_content_description", {})}}/>
             <div className="actions">
               <a
-                href="https://evrbloom.ro/pages/dr-virginia-lazar"
+                href={getTranslatedMessage("book_call_dr_link", {})}
                 target="_blank"
                 className="button button--primary"
                 onClick={() => trackEvent(`Dashboard Book a call Click on ${getTranslatedMessage('book_call')} button`, 'Book a call section')}
@@ -495,7 +495,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
           <div className="info-box-dr">
             <img src={milicaImage} alt=""/>
             <div className="dr-info">
-              <div className="dr-name">Dr. Virginia Lazar</div>
+              <div className="dr-name">{t('book_call_dr_name')}</div>
               <div className="dr-desc">{t('book_call_dr_info')}</div>
             </div>
 
