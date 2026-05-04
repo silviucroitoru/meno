@@ -3,7 +3,7 @@ import ScoreCircle from "./ScoreCircle.jsx";
 import "./menoscore.css";
 import 'swiper/css';
 import { FormattedMessage, createIntl } from "react-intl";
-import virginiaImage from '../assets/virginia-lazar.png';
+import milicaImage from '../assets/milica-petrovic-kmezic.jpg';
 import EnglishMessages from "../locales/en/translations.json"
 import RomanianMessages from "../locales/ro/translations.json";
 import SerbianMessages from "../locales/sr/translations.json";
@@ -493,7 +493,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
             </div>
           </div>
           <div className="info-box-dr">
-            <img src={virginiaImage}/>
+            <img src={milicaImage} alt=""/>
             <div className="dr-info">
               <div className="dr-name">Dr. Virginia Lazar</div>
               <div className="dr-desc">{t('book_call_dr_info')}</div>
