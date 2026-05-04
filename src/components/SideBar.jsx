@@ -5,6 +5,15 @@ import { useTranslate } from "../i18n/useTranslate";
 
 export default function SideBar({scoreSummary}) {
   const { t } = useTranslate();
+
+  const scrollToIdWithOffset = (id, offsetPx = 32) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const y = el.getBoundingClientRect().top + window.scrollY - offsetPx;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
   return (
     <div className="sidebar">
       <div className="logo">
@@ -15,7 +24,7 @@ export default function SideBar({scoreSummary}) {
           <button className="menuLink"
                   onClick={() => {
                     mixpanel.track(`Dashboard-Sidebar Select Stage`, {source: 'SideBar'})
-                    document.getElementById(scoreSummary.stageTitle).scrollIntoView({behavior: "smooth"})}
+                    scrollToIdWithOffset(scoreSummary.stageTitle)}
                   }
           >
             {scoreSummary.stageTitle}
@@ -25,7 +34,7 @@ export default function SideBar({scoreSummary}) {
           <button className="menuLink"
                   onClick={() => {
                     mixpanel.track(`Dashboard-Sidebar Select Score`, {source: 'SideBar'})
-                    document.getElementById(scoreSummary.scoreTitle).scrollIntoView({behavior: "smooth"})
+                    scrollToIdWithOffset(scoreSummary.scoreTitle)
                   }}
           >
             {scoreSummary.scoreTitle}
@@ -35,7 +44,7 @@ export default function SideBar({scoreSummary}) {
           <button className="menuLink"
                   onClick={() => {
                     mixpanel.track(`Dashboard-Sidebar Select Symptoms"`, {source: 'SideBar'})
-                    document.getElementById('symptoms').scrollIntoView({behavior: "smooth"})
+                    scrollToIdWithOffset('symptoms')
                   }}
           >
             {scoreSummary.symptomsTitle}
@@ -45,7 +54,7 @@ export default function SideBar({scoreSummary}) {
           <button className="menuLink"
                   onClick={() => {
                     mixpanel.track(`Dashboard-Sidebar Select Recommendations"`, {source: 'SideBar'})
-                    document.getElementById('recommendations').scrollIntoView({behavior: "smooth"})
+                    scrollToIdWithOffset('recommendations')
                   }}
           >
             {scoreSummary.recommendationsTitle}
@@ -54,7 +63,7 @@ export default function SideBar({scoreSummary}) {
         <button className="menuLink"
                 onClick={() => {
                   mixpanel.track(`Dashboard-Sidebar Select Book a call`, {source: 'SideBar'})
-                  document.getElementById('book_call').scrollIntoView({behavior: "smooth"})
+                  scrollToIdWithOffset('book_call')
                 }}
         >
           <span>{t("book_call_sidebar_title")}</span>
