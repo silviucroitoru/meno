@@ -176,11 +176,6 @@ export default function AdminDashboard() {
                 <div className="admin-metric-value">
                   {Number(metrics.completionRatePct ?? 0).toFixed(1)}%
                 </div>
-                <div className="admin-metric-hint">
-                  {metrics.successfulSubmissions ?? 0} with report · {metrics.withoutReportCount ?? 0} without
-                  {" "}
-                  ({metrics.totalSubmissions ?? 0} total questionnaires)
-                </div>
               </div>
               <Bars title="By menopause stage" data={metrics.byStage} />
             </div>
