@@ -38,23 +38,22 @@ function Bars({ title, data }) {
   const total = entries.reduce((sum, [, v]) => sum + (Number(v) || 0), 0) || 0;
 
   return (
-    <div className="admin-card admin-col-6">
-      <h3 className="admin-section-title">{title}</h3>
+    <div className="admin-bars-card">
+      <h3>{title}</h3>
       {entries.length === 0 ? (
-        <div className="admin-muted">No data yet</div>
+        <div className="admin-empty">No data yet</div>
       ) : (
         entries.map(([key, count]) => {
           const raw = Number(count) || 0;
           const shareRaw = total > 0 ? (raw / total) * 100 : 0;
-          const width = Math.max(0, Math.min(100, shareRaw));
+          const share = Math.round(shareRaw);
+          const widthPct = Math.max(0, Math.min(100, shareRaw));
           return (
-            <div key={key} style={{ marginBottom: 10 }}>
-              <div style={{ display: "flex", justifyContent: "space-between", gap: 12, fontSize: 13 }}>
-                <span>{key}</span>
-                <span className="admin-muted">{raw}</span>
-              </div>
-              <div style={{ height: 8, background: "#F2F4F7", borderRadius: 999, overflow: "hidden" }}>
-                <div style={{ width: `${width}%`, height: "100%", background: "var(--main-blue)" }} />
+            <div className="admin-bar" key={key}>
+              <span className="admin-bar-label">{key}</span>
+              <span className="admin-bar-count">{raw} · {share}%</span>
+              <div className="admin-bar-track">
+                <div className="admin-bar-fill" style={{ width: `${widthPct}%` }} />
               </div>
             </div>
           );
@@ -151,7 +150,7 @@ export default function AdminDashboard() {
         <a className="admin-header-brand" href="/admin">
           <img src="/primea_logo.png" alt="Primea" />
         </a>
-        <div>
+        <div className="admin-header-actions">
           <button type="button" className="admin-ghost-button" onClick={handleSignOut}>
             Sign out
           </button>
@@ -159,33 +158,47 @@ export default function AdminDashboard() {
       </header>
 
       <main className="admin-container">
-        <section className="admin-grid" style={{ marginBottom: 18 }}>
-          <div className="admin-card admin-col-4">
-            <div className="admin-metric-label">Total submissions</div>
-            <div className="admin-metric-value">{metrics?.submissionCount ?? 0}</div>
-          </div>
-          <div className="admin-card admin-col-4">
-            <div className="admin-metric-label">Submissions with PDF</div>
-            <div className="admin-metric-value">{metrics?.pdfCount ?? 0}</div>
-          </div>
-          <div className="admin-card admin-col-4">
-            <div className="admin-metric-label">Reports generated</div>
-            <div className="admin-metric-value">{metrics?.reportCount ?? 0}</div>
-          </div>
-          <Bars title="By menopause stage" data={metrics?.byStage} />
+        <section className="admin-section" aria-labelledby="admin-metrics-heading">
+          <div className="admin-section-prehead">Overview</div>
+          <h2 id="admin-metrics-heading" className="admin-section-title">Metrics</h2>
+
+          {metricsLoading && <div className="admin-loading">Loading metrics…</div>}
+          {metricsError && !metricsLoading && <div className="admin-error">{metricsError}</div>}
+
+          {metrics && !metricsLoading && !metricsError && (
+            <div className="admin-metrics-row">
+              <div className="admin-metric-card admin-metric-card--compact">
+                <div className="admin-metric-label">Total submissions</div>
+                <div className="admin-metric-value">{metrics.submissionCount ?? 0}</div>
+              </div>
+              <div className="admin-metric-card admin-metric-card--compact">
+                <div className="admin-metric-label">Reports generated</div>
+                <div className="admin-metric-value">{metrics.reportCount ?? 0}</div>
+              </div>
+              <div className="admin-metric-card admin-metric-card--compact">
+                <div className="admin-metric-label">Submissions with PDF</div>
+                <div className="admin-metric-value">{metrics.pdfCount ?? 0}</div>
+              </div>
+              <Bars title="By menopause stage" data={metrics.byStage} />
+            </div>
+          )}
         </section>
 
-        <section className="admin-card">
-          <h2 className="admin-section-title">Submissions</h2>
+        <section className="admin-section" aria-labelledby="admin-submissions-heading">
+          <div className="admin-section-prehead">Submissions</div>
+          <h2 id="admin-submissions-heading" className="admin-section-title">All submissions</h2>
+
           <div className="admin-toolbar">
-            <input
-              type="search"
-              placeholder="Search name, email, stage…"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              aria-label="Search submissions"
-            />
-            <div className="admin-muted">
+            <div className="admin-search">
+              <input
+                type="search"
+                placeholder="Search name, email, stage…"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                aria-label="Search submissions"
+              />
+            </div>
+            <div className="admin-toolbar-meta">
               {listLoading
                 ? "Loading…"
                 : total === 0
@@ -194,41 +207,38 @@ export default function AdminDashboard() {
             </div>
           </div>
 
-          {metricsError && !metricsLoading && <div className="admin-error">{metricsError}</div>}
           {listError && <div className="admin-error">{listError}</div>}
 
-          <div className="admin-table-wrap" style={{ marginTop: 12 }}>
+          <div className="admin-table-wrap">
             <table className="admin-table">
               <thead>
                 <tr>
                   <th>Date</th>
-                  <th>Submission ID</th>
                   <th>First name</th>
                   <th>Email</th>
                   <th>Language</th>
                   <th>Stage</th>
                   <th>PDF</th>
-                  <th>Open</th>
+                  <th>Report</th>
                 </tr>
               </thead>
               <tbody>
                 {!listLoading && list.rows?.length === 0 && (
                   <tr>
-                    <td colSpan={8} className="admin-muted">
-                      No submissions match this search.
+                    <td colSpan={7}>
+                      <div className="admin-empty">No submissions match this search.</div>
                     </td>
                   </tr>
                 )}
                 {list.rows?.map((row) => (
                   <tr key={row.submission_id}>
-                    <td className="admin-muted">{formatDate(row.created_at)}</td>
-                    <td><span className="admin-pill">{row.submission_id}</span></td>
-                    <td>{row.first_name || "—"}</td>
-                    <td className="admin-muted">{row.email || "—"}</td>
-                    <td className="admin-muted">{row.language || "—"}</td>
-                    <td>{row.stage || "—"}</td>
-                    <td className="admin-muted">{row.pdf_url ? "Yes" : "No"}</td>
-                    <td>
+                    <td data-label="Date" className="admin-col-muted">{formatDate(row.created_at)}</td>
+                    <td data-label="First name" className="admin-col-em">{row.first_name || "—"}</td>
+                    <td data-label="Email" className="admin-col-muted">{row.email || "—"}</td>
+                    <td data-label="Language" className="admin-col-muted">{row.language || "—"}</td>
+                    <td data-label="Stage">{row.stage || "—"}</td>
+                    <td data-label="PDF" className="admin-col-muted">{row.pdf_url ? "Yes" : "No"}</td>
+                    <td data-label="Report">
                       <Link to={`/dashboard?submissionId=${row.submission_id}&language=${(row.language || "SR").toLowerCase()}`} target="_blank" rel="noreferrer">
                         Open
                       </Link>
@@ -239,11 +249,11 @@ export default function AdminDashboard() {
             </table>
           </div>
 
-          <div className="admin-toolbar" style={{ marginTop: 14 }}>
-            <div className="admin-muted">
+          <div className="admin-pagination">
+            <div className="admin-pagination-meta">
               Page {page} of {pages}
             </div>
-            <div style={{ display: "flex", gap: 10 }}>
+            <div className="admin-pagination-actions">
               <button
                 type="button"
                 className="admin-ghost-button"
@@ -267,4 +277,3 @@ export default function AdminDashboard() {
     </div>
   );
 }
-

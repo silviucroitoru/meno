@@ -1,227 +1,425 @@
-.admin-shell {
+.admin-shell{
   min-height: 100vh;
-  padding: 24px;
-  background: linear-gradient(180deg, #FFF9EC, #FFFFFF);
+  width: 100vw;
+  align-self: stretch;
+  background: #FFF;
   color: var(--main-blue);
+  font-family: "SofiaPro-Regular", sans-serif;
+  display: flex;
+  flex-direction: column;
 }
-
-.admin-header {
+.admin-header{
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  max-width: 1120px;
-  margin: 0 auto 24px;
+  padding: 24px 32px;
+  border-bottom: 1px solid var(--secondary-gray);
 }
-
-.admin-header-brand {
-  display: inline-flex;
+.admin-header .admin-header-brand{
+  display: flex;
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  color: inherit;
+  color: var(--main-blue);
 }
-
-.admin-header-brand img {
-  height: 28px;
+.admin-header .admin-header-brand img{
+  height: 32px;
   width: auto;
   display: block;
 }
-
-.admin-container {
-  max-width: 1120px;
-  margin: 0 auto;
+.admin-header .admin-header-actions{
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.admin-card {
-  background: #FFF;
-  border: 1px solid #EAECF0;
-  border-radius: 16px;
-  padding: 20px;
+.admin-container{
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 40px 32px 64px;
+  box-sizing: border-box;
 }
 
-.admin-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 16px;
+.admin-section{
+  margin-bottom: 48px;
 }
-
-.admin-col-4 { grid-column: span 4; }
-.admin-col-6 { grid-column: span 6; }
-.admin-col-12 { grid-column: span 12; }
-
-.admin-metric-label {
-  color: #667085;
-  font-size: 13px;
+.admin-section-prehead{
+  font-family: "SofiaPro-Medium";
+  color: var(--main-grey);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.28px;
+  text-transform: uppercase;
   margin-bottom: 8px;
 }
-
-.admin-metric-value {
-  font-size: 28px;
-  font-family: "SofiaPro-SemiBold";
+.admin-section-title{
+  font-family: "SofiaPro-Medium";
+  color: var(--main-blue);
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.72px;
+  font-weight: 500;
+  margin: 0 0 24px;
 }
 
-.admin-section-title {
-  margin: 0 0 12px 0;
-  font-size: 18px;
-  font-family: "SofiaPro-SemiBold";
+.admin-metrics-row{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
 }
-
-.admin-toolbar {
+.admin-metric-card{
+  border: 1px solid var(--secondary-blue-20);
+  border-radius: 12px;
+  padding: 24px;
+  background: #FFF;
+}
+.admin-metric-card .admin-metric-label{
+  font-family: "SofiaPro-Regular";
+  color: var(--main-grey);
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 8px;
+}
+.admin-metric-card .admin-metric-value{
+  font-family: "SofiaPro-Medium";
+  color: var(--main-blue);
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.96px;
+}
+.admin-metric-card--compact{
   display: flex;
-  gap: 12px;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+}
+.admin-bars-card{
+  border: 1px solid var(--secondary-blue-20);
+  border-radius: 12px;
+  padding: 24px;
+  background: #FFF;
+}
+.admin-bars-card h3{
+  font-family: "SofiaPro-Medium";
+  color: var(--main-blue);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.32px;
+  margin: 0 0 16px;
+  font-weight: 500;
+}
+.admin-bar{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 12px;
+  row-gap: 6px;
   margin-bottom: 12px;
 }
-
-.admin-toolbar input[type="search"] {
-  width: min(520px, 100%);
-  border: 1px solid #D0D5DD;
-  border-radius: 12px;
-  padding: 10px 12px;
-  font: inherit;
+.admin-bar:last-child{
+  margin-bottom: 0;
+}
+.admin-bar-label{
+  font-family: "SofiaPro-Regular";
+  color: var(--main-blue);
+  font-size: 14px;
+  line-height: 20px;
+}
+.admin-bar-count{
+  font-family: "SofiaPro-Medium";
+  color: var(--main-grey);
+  font-size: 14px;
+  line-height: 20px;
+}
+.admin-bar-track{
+  grid-column: 1 / -1;
+  height: 6px;
+  background: var(--secondary-blue-20);
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+}
+.admin-bar-fill{
+  height: 100%;
+  background: var(--main-blue);
+  border-radius: 30px;
+  transition: width 0.3s ease;
 }
 
-.admin-muted {
-  color: #667085;
-  font-size: 13px;
+.admin-toolbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.admin-search{
+  position: relative;
+  flex: 1;
+  min-width: 240px;
+  max-width: 420px;
+}
+.admin-search input{
+  width: 100%;
+  box-sizing: border-box;
+  font-family: "SofiaPro-Regular";
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--main-blue);
+  background: #FFF;
+  border: 1px solid var(--secondary-blue-20);
+  border-radius: 10px;
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.admin-search input:focus{
+  border-color: var(--main-blue);
+  box-shadow: 0 0 0 3px rgba(14, 46, 87, 0.08);
+}
+.admin-toolbar-meta{
+  font-family: "SofiaPro-Regular";
+  color: var(--main-grey);
+  font-size: 14px;
 }
 
-.admin-table-wrap {
-  overflow: auto;
+.admin-table-wrap{
+  border: 1px solid var(--secondary-blue-20);
   border-radius: 12px;
-  border: 1px solid #EAECF0;
+  overflow: hidden;
   background: #FFF;
 }
-
-.admin-table {
+.admin-table{
   width: 100%;
   border-collapse: collapse;
-  min-width: 840px;
-}
-
-.admin-table th,
-.admin-table td {
-  text-align: left;
-  padding: 12px 14px;
-  border-bottom: 1px solid #EAECF0;
-  vertical-align: top;
-  font-size: 14px;
-}
-
-.admin-table th {
-  font-size: 12px;
-  color: #667085;
-  font-weight: 600;
-  background: #FCFCFD;
-}
-
-.admin-pill {
-  display: inline-flex;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: #F2F4F7;
-  font-size: 12px;
-  color: #344054;
-}
-
-.admin-error {
-  margin-top: 12px;
-  background: #FEE4E2;
-  border: 1px solid #FDA29B;
-  color: #B42318;
-  padding: 10px 12px;
-  border-radius: 12px;
-}
-
-.admin-login-shell {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-  background: linear-gradient(180deg, #FFF9EC, #FFFFFF);
-}
-
-.admin-login-card {
-  width: min(420px, 100%);
-  background: #FFF;
-  border: 1px solid #EAECF0;
-  border-radius: 16px;
-  padding: 22px;
-}
-
-.admin-login-brand {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 16px;
-}
-
-.admin-login-brand img {
-  height: 30px;
-  width: auto;
-}
-
-.admin-login-card h1 {
-  margin: 0 0 6px 0;
-  font-size: 20px;
-  font-family: "SofiaPro-SemiBold";
+  font-family: "SofiaPro-Regular";
   color: var(--main-blue);
 }
-
-.admin-login-sub {
-  margin: 0 0 18px 0;
-  color: #667085;
+.admin-table thead th{
+  text-align: left;
+  font-family: "SofiaPro-Medium";
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  text-transform: uppercase;
+  color: var(--main-grey);
+  padding: 14px 16px;
+  background: var(--secondary-blue);
+  border-bottom: 1px solid var(--secondary-blue-20);
+  white-space: nowrap;
+}
+.admin-table tbody td{
+  padding: 14px 16px;
   font-size: 14px;
+  line-height: 20px;
+  border-bottom: 1px solid var(--secondary-gray);
+  vertical-align: top;
+}
+.admin-table tbody tr:last-child td{
+  border-bottom: none;
+}
+.admin-table tbody tr:hover{
+  background: rgba(14, 46, 87, 0.03);
+}
+.admin-table .admin-col-muted{
+  color: var(--main-grey);
+}
+.admin-table .admin-col-em{
+  font-family: "SofiaPro-Medium";
+  color: var(--main-blue);
+}
+.admin-table a{
+  color: var(--main-blue);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.admin-table a:hover{
+  color: var(--main-blue-hover);
 }
 
-.admin-form-field {
+.admin-pagination{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 16px;
+}
+.admin-pagination .admin-pagination-meta{
+  font-family: "SofiaPro-Regular";
+  color: var(--main-grey);
+  font-size: 14px;
+}
+.admin-pagination-actions{
+  display: flex;
+  gap: 8px;
+}
+
+.admin-empty,
+.admin-error,
+.admin-loading{
+  padding: 24px;
+  text-align: center;
+  font-family: "SofiaPro-Regular";
+  color: var(--main-grey);
+  font-size: 14px;
+}
+.admin-error{
+  color: var(--main-pink);
+}
+
+.admin-login-shell{
+  min-height: 100vh;
+  width: 100vw;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  box-sizing: border-box;
+  background: #FFF;
+}
+.admin-login-card{
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid var(--secondary-blue-20);
+  border-radius: 16px;
+  padding: 32px;
+  box-sizing: border-box;
+}
+.admin-login-card .admin-login-brand{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.admin-login-card .admin-login-brand img{
+  height: 32px;
+  width: auto;
+}
+.admin-login-card h1{
+  font-family: "SofiaPro-Medium";
+  color: var(--main-blue);
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.72px;
+  margin: 0 0 8px;
+  text-align: center;
+  font-weight: 500;
+}
+.admin-login-card p.admin-login-sub{
+  font-family: "SofiaPro-Regular";
+  color: var(--main-grey);
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0 0 24px;
+  text-align: center;
+}
+.admin-form-field{
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
-
-.admin-form-field label {
-  font-size: 13px;
-  color: #344054;
-}
-
-.admin-form-field input {
-  border: 1px solid #D0D5DD;
-  border-radius: 12px;
-  padding: 10px 12px;
-  font: inherit;
-}
-
-.admin-form-error {
-  margin: 10px 0 0 0;
-  color: #B42318;
-  font-size: 13px;
-}
-
-.admin-submit {
-  width: 100%;
-  margin-top: 14px;
-}
-
-.admin-ghost-button {
-  background: transparent;
-  border: 1px solid #D0D5DD;
-  border-radius: 999px;
-  padding: 10px 14px;
-  font: inherit;
-  cursor: pointer;
+.admin-form-field label{
+  font-family: "SofiaPro-Medium";
+  font-weight: 500;
   color: var(--main-blue);
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: -0.13px;
+}
+.admin-form-field input{
+  font-family: "SofiaPro-Regular";
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--main-blue);
+  background: #FFF;
+  border: 1px solid var(--secondary-blue-20);
+  border-radius: 10px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.admin-form-field input:focus{
+  border-color: var(--main-blue);
+  box-shadow: 0 0 0 3px rgba(14, 46, 87, 0.08);
+}
+.admin-form-error{
+  font-family: "SofiaPro-Regular";
+  color: var(--main-pink);
+  font-size: 13px;
+  line-height: 18px;
+  margin: 0 0 12px;
+}
+.admin-submit{
+  width: 100%;
+  height: 48px;
+  margin-top: 8px;
 }
 
-.admin-ghost-button:disabled {
-  opacity: 0.6;
+.admin-ghost-button{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--secondary-blue-20);
+  background: #FFF;
+  color: var(--main-blue);
+  font-family: "SofiaPro-Medium";
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.14px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.admin-ghost-button:hover:not(:disabled){
+  border-color: var(--main-blue);
+  background: var(--secondary-blue);
+}
+.admin-ghost-button:disabled{
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
-@media (max-width: 900px) {
-  .admin-col-4 { grid-column: span 12; }
-  .admin-col-6 { grid-column: span 12; }
+@media screen and (max-width: 749px){
+  .admin-header{
+    padding: 16px 20px;
+  }
+  .admin-container{
+    padding: 24px 20px 48px;
+  }
+  .admin-table thead{
+    display: none;
+  }
+  .admin-table,
+  .admin-table tbody,
+  .admin-table tr,
+  .admin-table td{
+    display: block;
+    width: 100%;
+  }
+  .admin-table tbody tr{
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--secondary-gray);
+  }
+  .admin-table tbody tr:last-child{
+    border-bottom: none;
+  }
+  .admin-table tbody td{
+    border-bottom: none;
+    padding: 4px 0;
+  }
+  .admin-table tbody td::before{
+    content: attr(data-label) ": ";
+    font-family: "SofiaPro-Medium";
+    color: var(--main-grey);
+    margin-right: 6px;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.22px;
+  }
 }
-

@@ -27,7 +27,7 @@ export default function AdminRequireAuth({ children }) {
     return (
       <div className="admin-shell">
         <div className="admin-container">
-          <div className="admin-card">Checking session…</div>
+          <div className="admin-loading">Checking session…</div>
         </div>
       </div>
     );
