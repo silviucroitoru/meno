@@ -1,7 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Dashboard from "./Dashboard/Dashboard.jsx"
 import mixpanel from 'mixpanel-browser';
 import Questionaire from "./Questionaire/Questionaire.jsx"
+import AdminLogin from "./admin/AdminLogin.jsx";
+import AdminDashboard from "./admin/AdminDashboard.jsx";
+import AdminRequireAuth from "./admin/AdminRequireAuth.jsx";
 import './assets/base.css'
 // function ProtectedRoute({ element: Component }) {
 //   const  isAuthenticated  = true;
@@ -16,8 +19,18 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Navigate to="/questionnaire" replace />} />
         <Route path="/questionnaire" element={<Questionaire />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route
+          path="/admin"
+          element={
+            <AdminRequireAuth>
+              <AdminDashboard />
+            </AdminRequireAuth>
+          }
+        />
         {/*<Route path="/login" element={<Login />} />*/}
         {/*<Route path="/dashboard" element={<ProtectedRoute element={Dashboard} />} />*/}
       </Routes>

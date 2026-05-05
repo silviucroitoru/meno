@@ -1,8 +1,8 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import ScoreCircle from "./ScoreCircle.jsx";
 import "./menoscore.css";
 import 'swiper/css';
-import { FormattedMessage, createIntl } from "react-intl";
+import { createIntl } from "react-intl";
 import milicaImage from '../assets/milica-petrovic-kmezic.jpg';
 import EnglishMessages from "../locales/en/translations.json"
 import RomanianMessages from "../locales/ro/translations.json";
@@ -27,18 +27,22 @@ export default function Menoscore({scoreJson, scoreSummary}) {
   const [menopauseWidth, setMenopauseWidth] = useState(0);
   const [postmenopauseWidth, setPostmenopauseWidth] = useState(0);
   const language = localStorage.getItem('language')?.toLowerCase() ?? 'sr';
-  function getTranslatedMessage(id, values = {}) {
-    const intl = createIntl(
-      {
-        locale: language,
-        messages: messages[language] ?? SerbianMessages,
-      },
-    );
-    return intl.formatMessage({ id }, values);
-  }
+  const intl = useMemo(() => createIntl(
+    {
+      locale: language,
+      messages: messages[language] ?? SerbianMessages,
+    },
+  ), [language]);
+  const getTranslatedMessage = useCallback((id, values = {}) =>
+    intl.formatMessage({ id }, values), [intl]);
   const getSymptomBaseId = (dataPointName) =>
     (dataPointName ?? "").replaceAll(" ", "").replaceAll("_", "");
-  const stages = [getTranslatedMessage("premenopause", {}), getTranslatedMessage("perimenopause", {}),  getTranslatedMessage("menopause", {}), getTranslatedMessage("postmenopause", {})];
+  const stages = useMemo(() => ([
+    getTranslatedMessage("premenopause", {}),
+    getTranslatedMessage("perimenopause", {}),
+    getTranslatedMessage("menopause", {}),
+    getTranslatedMessage("postmenopause", {}),
+  ]), [getTranslatedMessage]);
   useEffect(() => {
     mixpanel.track('[Page View] Dashboard', {source: 'Dashboard'})
     setPremenopauseWidth(-6 + document.getElementById('premenopause').offsetWidth / 2);
@@ -52,7 +56,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
       setIndex(indexOfStage);
       setArrowPosition(64 + indexOfStage * lineWidth + 20*indexOfStage)
     }, 500)
-  }, [lineWidth])
+  }, [lineWidth, scoreJson.menopauseStage.stage, stages])
   const trackEvent = (event, source) => {
     mixpanel.track(event, {source: source})
   }
@@ -86,14 +90,6 @@ export default function Menoscore({scoreJson, scoreSummary}) {
     /\[([^\]]+)\]\(([^)]+)\)/g,
     '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
   );
-  let stageMoreLink;
-  if(index === 1){
-    stageMoreLink = getTranslatedMessage('perimenopause_link', {})
-  } else if(index === 2){
-    stageMoreLink = getTranslatedMessage('menopause_link', {})
-  } else if(index === 3){
-    stageMoreLink = getTranslatedMessage('postmenopause_link', {})
-  }
 
   return (
     <div className="results">
@@ -355,7 +351,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                   id="high_impact"
                   key={s.name}>
                   <div className="name">
-                    {s.isMentalHealth && false ? (
+                    {s.isMentalHealth ? (
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                           d="M11.9998 9.00023V13.0002M11.9998 17.0002H12.0098M10.6151 3.89195L2.39019 18.0986C1.93398 18.8866 1.70588 19.2806 1.73959 19.6039C1.769 19.886 1.91677 20.1423 2.14613 20.309C2.40908 20.5002 2.86435 20.5002 3.77487 20.5002H20.2246C21.1352 20.5002 21.5904 20.5002 21.8534 20.309C22.0827 20.1423 22.2305 19.886 22.2599 19.6039C22.2936 19.2806 22.0655 18.8866 21.6093 18.0986L13.3844 3.89195C12.9299 3.10679 12.7026 2.71421 12.4061 2.58235C12.1474 2.46734 11.8521 2.46734 11.5935 2.58235C11.2969 2.71421 11.0696 3.10679 10.6151 3.89195Z"

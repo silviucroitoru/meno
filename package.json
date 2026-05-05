@@ -12,6 +12,7 @@
   "dependencies": {
     "@aws-amplify/api": "^6.0.54",
     "@aws-amplify/ui-react": "^6.2.0",
+    "@supabase/supabase-js": "^2.105.3",
     "@tolgee/react": "^6.2.5",
     "aws-amplify": "^6.5.2",
     "mixpanel-browser": "^2.64.0",

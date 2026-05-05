@@ -1,5 +1,4 @@
 import "./styles/sidebar.css"
-import { FormattedMessage } from "react-intl";
 import mixpanel from "mixpanel-browser";
 import { useTranslate } from "../i18n/useTranslate";
 

@@ -20,6 +20,31 @@ For detailed instructions on deploying your application, refer to the [deploymen
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
 
+## Admin dashboard
+
+This app includes an **admin-only** area:
+
+- `/admin/login` (email + password)
+- `/admin` (metrics + submissions list)
+
+### Configuration (frontend)
+
+Set these Vite environment variables for the admin UI to talk to Supabase Auth + RPC:
+
+- `VITE_SUPABASE_URL` (example: `https://<project-ref>.supabase.co`)
+- `VITE_SUPABASE_ANON_KEY` (Supabase anon public key)
+
+### Setup (Supabase)
+
+1. Apply migrations (including `supabase/migrations/20260505215500_admin_dashboard.sql`).
+2. Create an admin user in Supabase Dashboard: **Authentication → Users → Add user**.
+3. Allow-list that user by inserting their `auth.users.id` into `public.admin_users`:
+
+```sql
+insert into public.admin_users (user_id, email)
+values ('<auth_user_uuid>', '<email>');
+```
+
 ## License
 
 This library is licensed under the MIT-0 License. See the LICENSE file.

@@ -21,7 +21,7 @@ export default function SingleOption({
     if (containerRef.current && currentPage.position == id) {
       setHeadingContainer(containerRef.current.offsetHeight + 144 + 48);
     }
-  }, [currentPage.position]);
+  }, [currentPage.position, id]);
   const userName = localStorage.getItem("userName");
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -48,7 +48,7 @@ export default function SingleOption({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [type, options, jump, id, next, dataPointId, dataPointName]);
+  }, [type, options, jump, id, next, dataPointId, dataPointName, currentPage?.position]);
 
   return(
     <>

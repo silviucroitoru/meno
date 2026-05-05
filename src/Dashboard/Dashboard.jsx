@@ -71,7 +71,6 @@ export default function Dashboard() {
         console.error(error);
         setLoadError(error?.message ?? "Failed to load report");
       });
-   // eslint-disable-next-line
   }, []);
   return (
     <div className="dashboard">

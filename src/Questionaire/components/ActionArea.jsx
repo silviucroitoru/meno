@@ -1,7 +1,6 @@
 import {FormattedMessage} from "react-intl";
 
-export default function ActionArea({currentPage, next, back, dataPointId, dataPointName, a, isAvailable, type, language}) {
-  const privacyLinkFunction = (content) => <a href="https://evrbloom.ro/policies/privacy-policy" target="_blank" rel="noopener noreferrer">{content}</a>;
+export default function ActionArea({currentPage, next, back, dataPointId, dataPointName, a, isAvailable, type}) {
   return (
     <div
       className={`action-area ${type === 'intro' ? 'width-disclaimer' : ''} ${currentPage.position === 1 ? 'justify-end' : 'justify-between'}`}>
