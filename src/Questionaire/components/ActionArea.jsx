@@ -9,16 +9,18 @@ export default function ActionArea({currentPage, next, back, dataPointId, dataPo
         type === 'intro' && (
           <div className="disclaimer">
             {/*<T keyName="terms_agreement" components={{privacyLink: privacyLinkFunction}} />*/}
-            <FormattedMessage
-              id="terms_agreement"
-              values={{
-                privacyPolicy: (
-                  <a href="https://evrbloom.ro/policies/privacy-policy" target="_blank">
-                    <FormattedMessage id="privacy_policy" />
-                  </a>
-                ),
-              }}
-            />
+            {/*
+              <FormattedMessage
+                id="terms_agreement"
+                values={{
+                  privacyPolicy: (
+                    <a href="https://evrbloom.ro/policies/privacy-policy" target="_blank">
+                      <FormattedMessage id="privacy_policy" />
+                    </a>
+                  ),
+                }}
+              />
+            */}
           </div>
         )
       }
