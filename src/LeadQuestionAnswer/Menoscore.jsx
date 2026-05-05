@@ -506,7 +506,10 @@ export default function Menoscore({scoreJson, scoreSummary}) {
             <img src={milicaImage} alt=""/>
             <div className="dr-info">
               <div className="dr-name">{t('book_call_dr_name')}</div>
-              <div className="dr-desc">{t('book_call_dr_info')}</div>
+              <div
+                className="dr-desc"
+                dangerouslySetInnerHTML={{__html: t('book_call_dr_info')}}
+              />
             </div>
 
           </div>
