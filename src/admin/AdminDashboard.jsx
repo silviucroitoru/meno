@@ -148,7 +148,7 @@ export default function AdminDashboard() {
     <div className="admin-shell">
       <header className="admin-header">
         <a className="admin-header-brand" href="/admin">
-          <img src="/primea_logo.png" alt="Primea" />
+          <img src="/primea-favicon.png" alt="Primea" />
         </a>
         <div className="admin-header-actions">
           <button type="button" className="admin-ghost-button" onClick={handleSignOut}>
