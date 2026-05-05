@@ -56,9 +56,10 @@ export async function fetchAdminMetrics() {
     throw new Error(error.message || "Failed to load metrics");
   }
   return data ?? {
-    submissionCount: 0,
-    reportCount: 0,
-    pdfCount: 0,
+    successfulSubmissions: 0,
+    totalSubmissions: 0,
+    withoutReportCount: 0,
+    completionRatePct: 0,
     byStage: {},
   };
 }

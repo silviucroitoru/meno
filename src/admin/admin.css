@@ -95,6 +95,13 @@
   flex-direction: column;
   justify-content: center;
 }
+.admin-metric-card .admin-metric-hint{
+  margin-top: 8px;
+  font-family: "SofiaPro-Regular";
+  color: var(--main-grey);
+  font-size: 14px;
+  line-height: 20px;
+}
 .admin-bars-card{
   border: 1px solid var(--secondary-blue-20);
   border-radius: 12px;

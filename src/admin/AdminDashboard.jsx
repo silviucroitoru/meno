@@ -168,16 +168,20 @@ export default function AdminDashboard() {
           {metrics && !metricsLoading && !metricsError && (
             <div className="admin-metrics-row">
               <div className="admin-metric-card admin-metric-card--compact">
-                <div className="admin-metric-label">Total submissions</div>
-                <div className="admin-metric-value">{metrics.submissionCount ?? 0}</div>
+                <div className="admin-metric-label">Successful submissions</div>
+                <div className="admin-metric-value">{metrics.successfulSubmissions ?? 0}</div>
+                <div className="admin-metric-hint">Submissions with a generated report</div>
               </div>
               <div className="admin-metric-card admin-metric-card--compact">
-                <div className="admin-metric-label">Reports generated</div>
-                <div className="admin-metric-value">{metrics.reportCount ?? 0}</div>
-              </div>
-              <div className="admin-metric-card admin-metric-card--compact">
-                <div className="admin-metric-label">Submissions with PDF</div>
-                <div className="admin-metric-value">{metrics.pdfCount ?? 0}</div>
+                <div className="admin-metric-label">Questionnaire completion rate</div>
+                <div className="admin-metric-value">
+                  {Number(metrics.completionRatePct ?? 0).toFixed(1)}%
+                </div>
+                <div className="admin-metric-hint">
+                  {metrics.successfulSubmissions ?? 0} with report · {metrics.withoutReportCount ?? 0} without
+                  {" "}
+                  ({metrics.totalSubmissions ?? 0} total questionnaires)
+                </div>
               </div>
               <Bars title="By menopause stage" data={metrics.byStage} />
             </div>
