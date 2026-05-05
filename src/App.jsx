@@ -9,7 +9,10 @@ import './assets/base.css'
 //   return isAuthenticated ? <Component /> : <Navigate to="/login" />;
 // }
 function App() {
-  mixpanel.init('0e17fc0146b24ead1c281493c0fa07bd', { debug: true });
+  mixpanel.init('81d3542c46dd3052b3d9d9ccb9023f01', {
+    autocapture: false,
+    debug: true,
+  });
   return (
     <Router>
       <Routes>
