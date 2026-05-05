@@ -170,7 +170,6 @@ export default function AdminDashboard() {
               <div className="admin-metric-card admin-metric-card--compact">
                 <div className="admin-metric-label">Successful submissions</div>
                 <div className="admin-metric-value">{metrics.successfulSubmissions ?? 0}</div>
-                <div className="admin-metric-hint">Submissions with a generated report</div>
               </div>
               <div className="admin-metric-card admin-metric-card--compact">
                 <div className="admin-metric-label">Questionnaire completion rate</div>
