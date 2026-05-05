@@ -43,7 +43,7 @@ export default function AdminLogin() {
     <div className="admin-login-shell">
       <form className="admin-login-card" onSubmit={handleSubmit} noValidate>
         <div className="admin-login-brand">
-          <img src="/primea-favicon.png" alt="Primea" />
+          <img src="/primea_logo.png" alt="Primea" />
         </div>
         <h1>Admin sign in</h1>
         <p className="admin-login-sub">Access submissions and metrics.</p>
