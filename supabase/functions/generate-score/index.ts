@@ -12,6 +12,26 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "GET, OPTIONS",
 };
 
+/** EN / RO / SR only — defaults to EN for unexpected values */
+function normalizeReportLanguage(lang: string | null | undefined): string {
+  const u = (lang ?? "EN").toString().trim().toUpperCase();
+  if (u === "RO" || u === "SR" || u === "EN") return u;
+  return "EN";
+}
+
+/** Same JSON shape OpenAI branch returns (`content` must be JSON string of report) */
+function dashboardReportResponse(reportObj: MenopauseReportPdf, pdfUrl: string | null): Response {
+  const body = {
+    role: "assistant" as const,
+    content: JSON.stringify(reportObj),
+    pdf_url: pdfUrl,
+  };
+  return new Response(JSON.stringify(body), {
+    status: 200,
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
+  });
+}
+
 const symptomWeights: Record<string, number> = {
   "Hot Flushes": 6, "Night Sweats": 6, "Sleep Problems": 6, "Irritability": 6,
   "Low Mood, Depression, Mood Swings": 6, "Anxiety": 6, "Memory Issues": 5, "Brain Fog": 5,
@@ -135,7 +155,14 @@ Deno.serve(async (req) => {
   try {
     const url = new URL(req.url);
     const submissionId = url.searchParams.get("submissionId");
-    const language = url.searchParams.get("language") || "EN";
+    const language = normalizeReportLanguage(url.searchParams.get("language"));
+    const forceRegenerateRaw = (
+      url.searchParams.get("regenerate") ??
+      url.searchParams.get("forceRegenerate") ??
+      ""
+    ).toLowerCase();
+    const forceRegenerate = ["1", "true", "yes"].includes(forceRegenerateRaw);
+
     const outputLanguage =
       language === "RO" ? "Romanian" : language === "SR" ? "Serbian" : "English";
     const symptomsTitle =
@@ -164,6 +191,35 @@ Deno.serve(async (req) => {
         JSON.stringify({ error: "No menopause data found for this submission." }),
         { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
+    }
+
+    if (!forceRegenerate) {
+      const submissionLangNorm = normalizeReportLanguage(
+        submission.language as string | undefined,
+      );
+
+      const { data: existingReport } = await supabase
+        .from("reports")
+        .select("menopause_report, pdf_url, created_at")
+        .eq("submission_id", Number(submissionId))
+        .maybeSingle();
+
+      const cached = existingReport?.menopause_report as MenopauseReportPdf | null | undefined;
+      const reportCreatedAt = existingReport?.created_at as string | undefined;
+      const lastUpdated = submission.last_updated as string | null | undefined;
+
+      const submissionNotEditedAfterReport =
+        !reportCreatedAt ||
+        !lastUpdated ||
+        new Date(lastUpdated).getTime() <= new Date(reportCreatedAt).getTime();
+
+      if (
+        cached &&
+        language === submissionLangNorm &&
+        submissionNotEditedAfterReport
+      ) {
+        return dashboardReportResponse(cached, existingReport?.pdf_url ?? null);
+      }
     }
 
     const responses = submission.responses || {};
@@ -418,13 +474,7 @@ Deno.serve(async (req) => {
       if (pdfUpdateError) console.error("Failed to persist pdf_url:", pdfUpdateError);
     }
 
-    return new Response(
-      JSON.stringify({ ...extractedMessage, pdf_url: pdfUrl }),
-      {
-        status: 200,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      },
-    );
+    return dashboardReportResponse(reportObj, pdfUrl);
   } catch (error) {
     console.error("generate-score error:", error);
     return new Response(

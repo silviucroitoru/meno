@@ -4,13 +4,10 @@ import Menoscore from "../LeadQuestionAnswer/Menoscore.jsx";
 import Loader from "../LeadQuestionAnswer/Loader.jsx";
 import './dashboard.css'
 import {useEffect, useState} from "react";
-import {mockData} from "../LeadQuestionAnswer/mockData.jsx";
 export default function Dashboard() {
   const [scoreJson, setScoreJson] = useState(null);
-  const [display, setDisplay] = useState(false);
   const [scoreSummary, setScoreSummary] = useState({});
   const [loadError, setLoadError] = useState(null);
-  const language = localStorage.getItem('language')
   useEffect(() => {
     // Allow deep-linking into a specific dashboard:
     // /dashboard?submissionId=123&language=sr
@@ -37,9 +34,6 @@ export default function Dashboard() {
     mixpanel.people.set({ '$name': localStorage.getItem('userName'),
                           '$email': localStorage.getItem('bloomEmail'),
     });
-    setTimeout(() => {
-      setDisplay(true);
-    }, 13600);
     const requestOptions = {
       method: "GET",
     };
@@ -81,7 +75,7 @@ export default function Dashboard() {
   }, []);
   return (
     <div className="dashboard">
-      {scoreJson && display ? (
+      {scoreJson ? (
         <>
           <SideBar scoreSummary={scoreSummary} />
           <div className="pageContent">
