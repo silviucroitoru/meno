@@ -6,16 +6,23 @@ import AdminLogin from "./admin/AdminLogin.jsx";
 import AdminDashboard from "./admin/AdminDashboard.jsx";
 import AdminRequireAuth from "./admin/AdminRequireAuth.jsx";
 import './assets/base.css'
+ 
+const mixpanelToken = import.meta.env.VITE_MIXPANEL_TOKEN;
+if (mixpanelToken) {
+  const mixpanelApiHost =
+    import.meta.env.VITE_MIXPANEL_API_HOST || "https://api-eu.mixpanel.com";
+  mixpanel.init(mixpanelToken, {
+    autocapture: false,
+    debug: import.meta.env.DEV,
+    api_host: mixpanelApiHost,
+  });
+}
 // function ProtectedRoute({ element: Component }) {
 //   const  isAuthenticated  = true;
 //
 //   return isAuthenticated ? <Component /> : <Navigate to="/login" />;
 // }
 function App() {
-  mixpanel.init('81d3542c46dd3052b3d9d9ccb9023f01', {
-    autocapture: false,
-    debug: true,
-  });
   return (
     <Router>
       <Routes>

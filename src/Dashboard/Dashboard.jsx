@@ -30,10 +30,17 @@ export default function Dashboard() {
       localStorage.setItem('bloomEmail', urlEmail);
     }
 
-    mixpanel.identify(localStorage.getItem('SubmissionID'))
-    mixpanel.people.set({ '$name': localStorage.getItem('userName'),
-                          '$email': localStorage.getItem('bloomEmail'),
-    });
+    const mixpanelToken = mixpanel.get_config?.("token");
+    if (mixpanelToken) {
+      const distinctId = localStorage.getItem("SubmissionID");
+      if (distinctId) {
+        mixpanel.identify(distinctId);
+      }
+      mixpanel.people.set({
+        $name: localStorage.getItem("userName") || undefined,
+        $email: localStorage.getItem("bloomEmail") || undefined,
+      });
+    }
     const requestOptions = {
       method: "GET",
     };
