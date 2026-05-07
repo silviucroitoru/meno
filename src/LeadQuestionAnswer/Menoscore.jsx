@@ -236,7 +236,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                      dangerouslySetInnerHTML={{__html: htmlDescriptionScore}}/>
               </div>
             </div>
-            {
+            {/*
               index > -1 && (
                 <div className="meno-stage-stats">
                   <div className="percent">
@@ -253,7 +253,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                   </div>
                 </div>
               )
-            }
+            */}
             {/*
             <div className="meno-stage-action-buttons meno-score-action-buttons">
               <a
