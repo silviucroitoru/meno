@@ -122,6 +122,94 @@ function resolvePdfBannerSrc(): string {
   return LEGACY_PDF_BANNER;
 }
 
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function buildDashboardUrl(submissionId: number, language: string): string {
+  const origin = Deno.env.get("PUBLIC_SITE_URL")?.trim() ||
+    Deno.env.get("SITE_URL")?.trim() ||
+    "https://menopause.primea.rs";
+  const params = new URLSearchParams({
+    submissionId: String(submissionId),
+    language: normalizeReportLanguage(language).toLowerCase(),
+  });
+  return `${origin.replace(/\/+$/, "")}/dashboard?${params.toString()}`;
+}
+
+async function sendReportReadyEmail(
+  email: string,
+  firstName: string | undefined,
+  submissionId: number,
+  language: string,
+): Promise<void> {
+  const apiKey = Deno.env.get("RESEND_API_KEY")?.trim();
+  if (!apiKey) {
+    console.warn("RESEND_API_KEY not set; skipping report email");
+    return;
+  }
+
+  const from = Deno.env.get("RESEND_FROM_EMAIL")?.trim() || "Primea <noreply@primea.rs>";
+  const dashboardUrl = buildDashboardUrl(submissionId, language);
+  const displayName = firstName?.trim() || "there";
+  const safeName = escapeHtml(displayName);
+  const safeDashboardUrl = escapeHtml(dashboardUrl);
+  const normalizedLanguage = normalizeReportLanguage(language);
+  const emailCopy = normalizedLanguage === "RO"
+    ? {
+      subject: "Raportul tau Menoscore este gata",
+      greeting: `Buna ${safeName},`,
+      intro: "Raportul tau Menoscore este gata. Il poti vedea aici:",
+      cta: "Vezi raportul",
+      textIntro: "Raportul tau Menoscore este gata. Il poti vedea aici:",
+    }
+    : normalizedLanguage === "SR"
+      ? {
+        subject: "Vaš Menoscore izveštaj je spreman",
+        greeting: `Zdravo ${safeName},`,
+        intro: "Vaš Menoscore izveštaj je spreman. Možete ga pogledati ovde:",
+        cta: "Pogledajte izveštaj",
+        textIntro: "Vaš Menoscore izveštaj je spreman. Možete ga pogledati ovde:",
+      }
+      : {
+        subject: "Your Menoscore report is ready",
+        greeting: `Hi ${safeName},`,
+        intro: "Your Menoscore report is ready. You can view it here:",
+        cta: "View your report",
+        textIntro: "Your Menoscore report is ready. You can view it here:",
+      };
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from,
+      to: [email],
+      subject: emailCopy.subject,
+      html: `
+        <p>${emailCopy.greeting}</p>
+        <p>${emailCopy.intro}</p>
+        <p><a href="${safeDashboardUrl}">${emailCopy.cta}</a></p>
+        <p>Primea</p>
+      `,
+      text: `${emailCopy.greeting.replace(safeName, displayName)}\n\n${emailCopy.textIntro}\n${dashboardUrl}\n\nPrimea`,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Resend email failed: ${response.status} ${errorText}`);
+  }
+}
+
 async function generateAndStorePdf(
   supabase: ReturnType<typeof createClient>,
   submissionId: number,
@@ -470,6 +558,30 @@ Deno.serve(async (req) => {
         .update({ pdf_url: pdfUrl })
         .eq("submission_id", Number(submissionId));
       if (pdfUpdateError) console.error("Failed to persist pdf_url:", pdfUpdateError);
+    }
+
+    if (pdfUrl) {
+      const email = String(responses.Email ?? "").trim();
+      if (email) {
+        const emailTask = sendReportReadyEmail(
+          email,
+          typeof responses.FirstName === "string" ? responses.FirstName : undefined,
+          Number(submissionId),
+          langForPdf,
+        ).catch((emailErr) => {
+          console.error("Failed to send report email:", emailErr);
+        });
+        const edgeRuntime = (
+          globalThis as typeof globalThis & {
+            EdgeRuntime?: { waitUntil?: (promise: Promise<unknown>) => void };
+          }
+        ).EdgeRuntime;
+        if (edgeRuntime?.waitUntil) {
+          edgeRuntime.waitUntil(emailTask);
+        }
+      } else {
+        console.warn("Submission has no email; skipping report email");
+      }
     }
 
     return dashboardReportResponse(reportObj, pdfUrl);
