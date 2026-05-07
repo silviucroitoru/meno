@@ -271,8 +271,6 @@ Deno.serve(async (req) => {
       - **Description (700-1200 chars)**:
         - Personalize using user's name and key symptoms.
         - Use <p></p> to separate paragraphs.
-        - Include a personalized CTA paragraph at the end that encourages evrbloom membership conversion.
-        - Keep the text links markdown as they are
 
         ## **2. Menopause Score**
         - Score: **${menopauseScore}** (100 - weighted symptom sum).
@@ -307,8 +305,6 @@ Deno.serve(async (req) => {
           - Personalize using user's name and key symptoms.
           - Use second-person voice (e.g., "you").
           - Use <p></p> to separate paragraphs.
-          - Include a personalized CTA paragraph at the end that encourages evrbloom membership conversion.
-          - Keep the text links markdown as they are
 
       ## **3. Key Symptoms & Insights**
       - **Title (symptomstitle)**: "${symptomsTitle}"
