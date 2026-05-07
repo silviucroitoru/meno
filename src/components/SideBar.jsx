@@ -39,15 +39,6 @@ export default function SideBar({scoreSummary}) {
             {scoreSummary.scoreTitle}
           </button>
         )}
-        <button className="menuLink"
-                onClick={() => {
-                  mixpanel.track(`Dashboard-Sidebar Select Book a call`, {source: 'SideBar'})
-                  scrollToIdWithOffset('book_call')
-                }}
-        >
-          <span>{t("book_call_sidebar_title")}</span>
-          {/*<FormattedMessage id="book_call_sidebar_title"/>*/}
-        </button>
         {scoreSummary.symptomsTitle && (
           <button className="menuLink"
                   onClick={() => {
@@ -58,6 +49,15 @@ export default function SideBar({scoreSummary}) {
             {scoreSummary.symptomsTitle}
           </button>
         )}
+        <button className="menuLink"
+                onClick={() => {
+                  mixpanel.track(`Dashboard-Sidebar Select Book a call`, {source: 'SideBar'})
+                  scrollToIdWithOffset('book_call')
+                }}
+        >
+          <span>{t("book_call_sidebar_title")}</span>
+          {/*<FormattedMessage id="book_call_sidebar_title"/>*/}
+        </button>
         {scoreSummary.recommendationsTitle && (
           <button className="menuLink"
                   onClick={() => {

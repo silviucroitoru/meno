@@ -268,9 +268,10 @@ Deno.serve(async (req) => {
           3. **Age Consideration** (secondary factor)
           4. **Symptoms Severity & Frequency** (used for fine-tuning classification)
           - If **stage determination is uncertain**, state this clearly (Undefined) instead of forcing a classification.
-      - **Description (700-1200 chars)**:
+      - **Description (800-1600 chars)**:
         - Personalize using user's name and key symptoms.
         - Use <p></p> to separate paragraphs.
+        - Example: "<p>{FirstName}, based on your symptoms and age, you're most likely in the {menopause_stage} phase. This stage is marked by fluctuating hormones that can impact your mood, sleep, energy, and cognitive clarity, even if your menstrual cycle hasn't fully stopped yet. It's often unpredictable, with symptoms that vary from week to week.</p><p>At {age}, your body is navigating significant hormonal changes. Many women in this stage experience heightened sensitivity, more emotional ups and downs, and challenges with memory, libido, or physical stamina.</p><p>In the coming months, you may notice phases of symptom relief followed by new waves of discomfort. That's normal, the transition is rarely linear. Some signs may improve naturally, while others might intensify before settling down.</p><p>Understanding what's happening and knowing what to expect is one of the most empowering things during this phase. Proper information and professional support can help you feel more in control and better prepared.</p>"
 
         ## **2. Menopause Score**
         - Score: **${menopauseScore}** (100 - weighted symptom sum).
@@ -301,10 +302,11 @@ Deno.serve(async (req) => {
               - EN: "Mild Menopause"
               - RO: "Menopauză ușoară"
               - SR: "Blaga menopauza"
-        - **Description based on the score value without mentioning it (500-1000 chars)**:
+        - **Description based on the score value without mentioning it (800-1600 chars)**:
           - Personalize using user's name and key symptoms.
           - Use second-person voice (e.g., "you").
           - Use <p></p> to separate paragraphs.
+          - Example: "<p>{FirstName}, your Menopause Score indicates that you're experiencing a challenging menopause journey. Symptoms like anxiety, headaches, and irritability may be disrupting your sleep, mood, and daily energy.</p><p>At {age}, compared to other women in {menopause_stage}, your symptom impact is on the moderate to high end, especially around emotional regulation and mental clarity.</p><p>Focusing on one or two key symptoms can help unlock better balance. Supporting your nervous system with consistent sleep, gentle movement, and stabilizing nutrition can make a noticeable difference.</p><p>Most women in this stage experience the same challenges. Professional guidance, personalized tools, and the right information can help you navigate this transition with more confidence and comfort.</p>"
 
       ## **3. Key Symptoms & Insights**
       - **Title (symptomstitle)**: "${symptomsTitle}"
@@ -320,8 +322,8 @@ Deno.serve(async (req) => {
       - Submission ID: ${submissionId}
       - Language: ${language}
       - Birth Year: ${responses.BirthYear}
-      - Height: ${responses.Height} cm
-      - Weight: ${responses.Weight} kg
+      - Height: ${responses.Height}
+      - Weight: ${responses.Weight}
       - MenstrualStatus: ${responses["Menstrual Status"]}
       - HRTTreatmentHistory: ${responses["HRT Treatment History"]}
 
