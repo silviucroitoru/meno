@@ -8,7 +8,8 @@ import AdminRequireAuth from "./admin/AdminRequireAuth.jsx";
 import './assets/base.css'
  
 const mixpanelToken = import.meta.env.VITE_MIXPANEL_TOKEN;
-if (mixpanelToken) {
+const isAdminRoute = typeof window !== "undefined" && window.location?.pathname?.startsWith("/admin");
+if (mixpanelToken && !isAdminRoute) {
   const mixpanelApiHost =
     import.meta.env.VITE_MIXPANEL_API_HOST || "https://api-eu.mixpanel.com";
   mixpanel.init(mixpanelToken, {
