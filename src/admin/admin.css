@@ -366,6 +366,37 @@
   margin-top: 8px;
 }
 
+.admin-email-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px 2px 6px;
+  border-radius: 9999px;
+  font-family: "SofiaPro-Medium";
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.admin-email-badge--sent,
+.admin-email-badge--delivered,
+.admin-email-badge--opened{
+  border: 1px solid #B2DDFF;
+  background: #EFF8FF;
+  color: #175CD3;
+}
+.admin-email-badge--clicked{
+  border: 1px solid #ABEFC6;
+  background: #ECFDF3;
+  color: #067647;
+}
+.admin-email-badge--bounced,
+.admin-email-badge--failed{
+  border: 1px solid #FECDCA;
+  background: #FEF3F2;
+  color: #B42318;
+}
+
 .admin-ghost-button{
   display: inline-flex;
   align-items: center;

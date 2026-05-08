@@ -234,10 +234,12 @@ export default function AdminDashboard() {
                     <td data-label="Date" className="admin-col-muted">{formatDate(row.created_at)}</td>
                     <td data-label="First name" className="admin-col-em">{row.first_name || "—"}</td>
                     <td data-label="Email" className="admin-col-muted">{row.email || "—"}</td>
-                    <td data-label="Email status" className="admin-col-muted">
-                      {row.email_status
-                        ? `${row.email_status}${row.email_status_at ? ` (${formatDate(row.email_status_at)})` : ""}`
-                        : "—"}
+                    <td data-label="Email status">
+                      {row.email_status ? (
+                        <span className={`admin-email-badge admin-email-badge--${row.email_status.replace("email.", "")}`}>
+                          {row.email_status.replace("email.", "")}
+                        </span>
+                      ) : "—"}
                     </td>
                     <td data-label="Language" className="admin-col-muted">{row.language || "—"}</td>
                     <td data-label="Stage">{row.stage || "—"}</td>
