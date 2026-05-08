@@ -366,6 +366,11 @@
   margin-top: 8px;
 }
 
+.admin-email-status{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
 .admin-email-badge{
   display: inline-flex;
   align-items: center;
@@ -376,6 +381,21 @@
   font-size: 12px;
   line-height: 18px;
   font-weight: 500;
+  white-space: nowrap;
+}
+.admin-email-badge::before{
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+.admin-email-status-date{
+  font-family: "SofiaPro-Regular";
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--main-grey);
   white-space: nowrap;
 }
 .admin-email-badge--sent,

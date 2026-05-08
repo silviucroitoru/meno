@@ -236,8 +236,13 @@ export default function AdminDashboard() {
                     <td data-label="Email" className="admin-col-muted">{row.email || "—"}</td>
                     <td data-label="Email status">
                       {row.email_status ? (
-                        <span className={`admin-email-badge admin-email-badge--${row.email_status.replace("email.", "")}`}>
-                          {row.email_status.replace("email.", "")}
+                        <span className="admin-email-status">
+                          <span className={`admin-email-badge admin-email-badge--${row.email_status.replace("email.", "")}`}>
+                            {row.email_status.replace("email.", "").replace(/^\w/, (c) => c.toUpperCase())}
+                          </span>
+                          {row.email_status_at && (
+                            <span className="admin-email-status-date">{formatDate(row.email_status_at)}</span>
+                          )}
                         </span>
                       ) : "—"}
                     </td>
