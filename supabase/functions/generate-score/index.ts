@@ -37,18 +37,25 @@ const symptomWeights: Record<string, number> = {
   "Low Mood, Depression, Mood Swings": 6, "Anxiety": 6, "Memory Issues": 5, "Brain Fog": 5,
   "Joint Pain": 5, "Weight Gain": 5, "Palpitations": 5, "Vaginal Dryness": 5, "Bladder Problems": 4,
   "Declining Skin Quality": 4, "Declining Hair Quality": 4, "Loss of Interest in Sex": 4,
-  "DigestiveSymptoms": 4, "Decreased Physical Strength/Stamina": 4, "Headaches": 4, "Tiredness & Fatigue": 4,
+  "DigestiveSymptoms": 4,
+  "Decreased Physical Strength/Stamina": 4,
+  "Decreased Physical Strength or Stamina": 4,
+  "Headaches": 4, "Tiredness & Fatigue": 4,
 };
 
 const symptomResponseMap: Record<string, number> = {
   "1": 0, "2": 0.25, "3": 0.50, "4": 1,
 };
 
+/** Same rule as legacy Lambda: only keys listed in `symptomWeights` contribute. */
+function isWeightedSymptomKey(key: string): boolean {
+  return Object.prototype.hasOwnProperty.call(symptomWeights, key);
+}
+
 function calculateMenoScore(responses: Record<string, string | number>): number {
-  const nonSymptomKeys = new Set(["FirstName", "BirthYear", "Height", "Weight", "Menstrual Status", "HRT Treatment History", "Email"]);
   let symptomsSum = 0;
   for (const [key, value] of Object.entries(responses)) {
-    if (nonSymptomKeys.has(key)) continue;
+    if (!isWeightedSymptomKey(key)) continue;
     const numVal = Number(value);
     if (isNaN(numVal) || numVal < 1 || numVal > 4) continue;
     const weight = symptomWeights[key] || 4;
@@ -59,10 +66,9 @@ function calculateMenoScore(responses: Record<string, string | number>): number 
 }
 
 function extractSymptoms(responses: Record<string, string | number>): Record<string, number> {
-  const nonSymptomKeys = new Set(["FirstName", "BirthYear", "Height", "Weight", "Menstrual Status", "HRT Treatment History", "Email"]);
   const symptoms: Record<string, number> = {};
   for (const [key, value] of Object.entries(responses)) {
-    if (nonSymptomKeys.has(key)) continue;
+    if (!isWeightedSymptomKey(key)) continue;
     const numVal = Number(value);
     if (!isNaN(numVal) && numVal >= 1 && numVal <= 4) {
       symptoms[key] = numVal;

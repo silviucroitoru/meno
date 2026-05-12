@@ -1,617 +1,808 @@
 <!DOCTYPE html>
 <html lang="ro">
   <head>
-  <title>Your Menoscore report is ready</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width">
+    <title>Your Menoscore report is ready</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
     <style>
-    @media only screen {
-      html {
-        min-height: 100%;
-        background: #f3f3f3;
+      @media only screen {
+        html {
+          min-height: 100%;
+          background: #f3f3f3;
+        }
       }
-    }
-    
-    @media only screen and (max-width: 596px) {
-      .small-float-center {
-        margin: 0 auto !important;
-        float: none !important;
-        text-align: center !important;
-      }
-      .small-text-center {
-        text-align: center !important;
-      }
-      .small-text-left {
-        text-align: left !important;
-      }
-      .small-text-right {
-        text-align: right !important;
-      }
-    }
-    
-    @media only screen and (min-width: 597px) {
-      .main-content-email p {
-        padding-right: 48px;
-      }
-      .main-content-email h4 {
-        padding-right: 48px;
-      }
-    }
-    
-    @media only screen and (max-width: 596px) {
-      .hide-for-large {
-        display: block !important;
-        width: auto !important;
-        overflow: visible !important;
-        max-height: none !important;
-        font-size: inherit !important;
-        line-height: inherit !important;
-      }
-      .head-title {
-        font-size: 20px !important;
-        line-height: 28px !important;
-      }
-    }
-    
-    @media only screen and (max-width: 596px) {
-      table.body table.container .hide-for-large,
-      table.body table.container .row.hide-for-large {
-        display: table !important;
-        width: 100% !important;
-      }
-    }
-    
-    @media only screen and (max-width: 596px) {
-      table.body table.container .callout-inner.hide-for-large {
-        display: table-cell !important;
-        width: 100% !important;
-      }
-    }
-    
-    @media only screen and (max-width: 596px) {
-      table.body table.container .show-for-large {
-        display: none !important;
-        width: 0;
-        mso-hide: all;
-        overflow: hidden;
-      }
-    }
-    
-    @media only screen and (max-width: 596px) {
-      table.body img {
-        width: auto;
-        height: auto;
-      }
-      table.body center {
-        min-width: 0 !important;
-      }
-      table.body .container {
-        width: 100% !important;
-      }
-      table.body .columns,
-      table.body .column {
-        height: auto !important;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        padding-left: 16px !important;
-        padding-right: 16px !important;
-      }
-      table.body .columns .column,
-      table.body .columns .columns,
-      table.body .column .column,
-      table.body .column .columns {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-      }
-      table.body .collapse .columns,
-      table.body .collapse .column {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-      }
-      td.small-1,
-      th.small-1 {
-        display: inline-block !important;
-        width: 8.33333% !important;
-      }
-      td.small-2,
-      th.small-2 {
-        display: inline-block !important;
-        width: 16.66667% !important;
-      }
-      td.small-3,
-      th.small-3 {
-        display: inline-block !important;
-        width: 25% !important;
-      }
-      td.small-4,
-      th.small-4 {
-        display: inline-block !important;
-        width: 33.33333% !important;
-      }
-      td.small-5,
-      th.small-5 {
-        display: inline-block !important;
-        width: 41.66667% !important;
-      }
-      td.small-6,
-      th.small-6 {
-        display: inline-block !important;
-        width: 50% !important;
-      }
-      td.small-7,
-      th.small-7 {
-        display: inline-block !important;
-        width: 58.33333% !important;
-      }
-      td.small-8,
-      th.small-8 {
-        display: inline-block !important;
-        width: 66.66667% !important;
-      }
-      td.small-9,
-      th.small-9 {
-        display: inline-block !important;
-        width: 75% !important;
-      }
-      td.small-10,
-      th.small-10 {
-        display: inline-block !important;
-        width: 83.33333% !important;
-      }
-      td.small-11,
-      th.small-11 {
-        display: inline-block !important;
-        width: 91.66667% !important;
-      }
-      td.small-12,
-      th.small-12 {
-        display: inline-block !important;
-        width: 100% !important;
-      }
-      .columns td.small-12,
-      .column td.small-12,
-      .columns th.small-12,
-      .column th.small-12 {
-        display: block !important;
-        width: 100% !important;
-      }
-      table.body td.small-offset-1,
-      table.body th.small-offset-1 {
-        margin-left: 8.33333% !important;
-        Margin-left: 8.33333% !important;
-      }
-      table.body td.small-offset-2,
-      table.body th.small-offset-2 {
-        margin-left: 16.66667% !important;
-        Margin-left: 16.66667% !important;
-      }
-      table.body td.small-offset-3,
-      table.body th.small-offset-3 {
-        margin-left: 25% !important;
-        Margin-left: 25% !important;
-      }
-      table.body td.small-offset-4,
-      table.body th.small-offset-4 {
-        margin-left: 33.33333% !important;
-        Margin-left: 33.33333% !important;
-      }
-      table.body td.small-offset-5,
-      table.body th.small-offset-5 {
-        margin-left: 41.66667% !important;
-        Margin-left: 41.66667% !important;
-      }
-      table.body td.small-offset-6,
-      table.body th.small-offset-6 {
-        margin-left: 50% !important;
-        Margin-left: 50% !important;
-      }
-      table.body td.small-offset-7,
-      table.body th.small-offset-7 {
-        margin-left: 58.33333% !important;
-        Margin-left: 58.33333% !important;
-      }
-      table.body td.small-offset-8,
-      table.body th.small-offset-8 {
-        margin-left: 66.66667% !important;
-        Margin-left: 66.66667% !important;
-      }
-      table.body td.small-offset-9,
-      table.body th.small-offset-9 {
-        margin-left: 75% !important;
-        Margin-left: 75% !important;
-      }
-      table.body td.small-offset-10,
-      table.body th.small-offset-10 {
-        margin-left: 83.33333% !important;
-        Margin-left: 83.33333% !important;
-      }
-      table.body td.small-offset-11,
-      table.body th.small-offset-11 {
-        margin-left: 91.66667% !important;
-        Margin-left: 91.66667% !important;
-      }
-      table.body table.columns td.expander,
-      table.body table.columns th.expander {
-        display: none !important;
-      }
-      table.body .right-text-pad,
-      table.body .text-pad-right {
-        padding-left: 10px !important;
-      }
-      table.body .left-text-pad,
-      table.body .text-pad-left {
-        padding-right: 10px !important;
-      }
-      table.menu {
-        width: 100% !important;
-      }
-      table.menu td,
-      table.menu th {
-        width: auto !important;
-        display: inline-block !important;
-      }
-      table.menu.vertical td,
-      table.menu.vertical th,
-      table.menu.small-vertical td,
-      table.menu.small-vertical th {
-        display: block !important;
-      }
-      table.menu[align="center"] {
-        width: auto !important;
-      }
-      table.button.small-expand,
-      table.button.small-expanded {
-        width: 100% !important;
-      }
-      table.button.small-expand table,
-      table.button.small-expanded table {
-        width: 100%;
-      }
-      table.button.small-expand table a,
-      table.button.small-expanded table a {
-        text-align: center !important;
-        width: 100% !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-      }
-      table.button.small-expand center,
-      table.button.small-expanded center {
-        min-width: 0;
-      }
-    }
-    
-    @media only screen and (max-width: 596px) {
-      .order-list__product-description-cell {
-        width: 180px;
-      }
-      .product-image-holder {
-        display: none !important;
-      }
-      .product-image-holder {
-        display: none !important;
-      }
-      .order-number__text {
-        text-align: left !important;
-      }
-      .customer-info__item {
-        width: 100% !important;
-      }
-      .customer-info__item.first {
-        margin-bottom: 32px !important;
-      }
-      .customer-info__item.last {
-        padding-left: 0px !important;
-        padding-right: 0px !important;
-      }
-    }
-    
-    @media only screen and (max-width: 596px) {
-      .list{
-        margin: 16px 0 24px 0px !important;
-      }
-      .welcome-bg {
-        background-image: url('https://menopause.primea.rs/email_primea.jpg');
-        background-position: top center !important;
-      }
-      .title-1 {
-        color: #FFF;
-        font-family: 'Helvetica';
-        font-size: 24px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 36px;
-        /* 128.571% */
-        letter-spacing: -0.84px;
-        padding-left: 24px !important;
-        margin: 192px 0 0px 0;
-      }
-      .title-2 {
-        color: #FFF;
-        font-family: Helvetica;
-        font-size: 28px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 36px;
-        /* 128.571% */
-        letter-spacing: -0.84px;
-        margin: 0 0 32px 0 !important;
-        padding-left: 24px !important;
-      }
-      .title-3 {
-        font-family: 'Helvetica';
-        color: #FFF;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 32px;
-        /* 133.333% */
-        letter-spacing: -0.72px;
-        padding-left: 24px !important;
-      }
-      .welcome-bg {
-        height: 462px !important;
-      }
-      .logo {
-        padding-top: 24px !important;
-        margin-top: 24px !important;
-        padding-left: 24px !important;
-      }
-      table.body .columns.banner-image {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-      }
-      .main-content {
-        padding: 32px 24px 0 24px !important;
-      }
-      .secondary-action-cell {
-        padding: 32px 24px 0px 24px !important;
-      }
-      .section__cell {
-        padding: 0 24px !important;
-      }
-      table.body .columns.qa {
-        padding: 0 24px 48px 24px !important;
-      }
-      table.body .columns.footer-logo {
-        padding: 0 24px 32px 24px !important;
-      }
-      table.body .columns.social {
-        padding: 0 24px 32px 24px !important;
-      }
-      .billing-address a {
-        color: #949494 !important;
-        font-family: 'Helvetica';
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 20px;
-      }
-      .body {
-        background: #FFF !important;
-      }
-    }
-  </style>
 
-  <link rel="stylesheet" type="text/css" href="/assets/notifications/styles.css">
+      @media only screen and (max-width: 596px) {
+        .small-float-center {
+          margin: 0 auto !important;
+          float: none !important;
+          text-align: center !important;
+        }
+        .small-text-center {
+          text-align: center !important;
+        }
+        .small-text-left {
+          text-align: left !important;
+        }
+        .small-text-right {
+          text-align: right !important;
+        }
+      }
+
+      @media only screen and (min-width: 597px) {
+        .main-content-email p {
+          padding-right: 48px;
+        }
+        .main-content-email h4 {
+          padding-right: 48px;
+        }
+      }
+
+      @media only screen and (max-width: 596px) {
+        .hide-for-large {
+          display: block !important;
+          width: auto !important;
+          overflow: visible !important;
+          max-height: none !important;
+          font-size: inherit !important;
+          line-height: inherit !important;
+        }
+        .head-title {
+          font-size: 20px !important;
+          line-height: 28px !important;
+        }
+      }
+
+      @media only screen and (max-width: 596px) {
+        table.body table.container .hide-for-large,
+        table.body table.container .row.hide-for-large {
+          display: table !important;
+          width: 100% !important;
+        }
+      }
+
+      @media only screen and (max-width: 596px) {
+        table.body table.container .callout-inner.hide-for-large {
+          display: table-cell !important;
+          width: 100% !important;
+        }
+      }
+
+      @media only screen and (max-width: 596px) {
+        table.body table.container .show-for-large {
+          display: none !important;
+          width: 0;
+          mso-hide: all;
+          overflow: hidden;
+        }
+      }
+
+      @media only screen and (max-width: 596px) {
+        table.body img {
+          width: auto;
+          height: auto;
+        }
+        table.body center {
+          min-width: 0 !important;
+        }
+        table.body .container {
+          width: 100% !important;
+        }
+        table.body .columns,
+        table.body .column {
+          height: auto !important;
+          -moz-box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          padding-left: 16px !important;
+          padding-right: 16px !important;
+        }
+        table.body .columns .column,
+        table.body .columns .columns,
+        table.body .column .column,
+        table.body .column .columns {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+        table.body .collapse .columns,
+        table.body .collapse .column {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+        td.small-1,
+        th.small-1 {
+          display: inline-block !important;
+          width: 8.33333% !important;
+        }
+        td.small-2,
+        th.small-2 {
+          display: inline-block !important;
+          width: 16.66667% !important;
+        }
+        td.small-3,
+        th.small-3 {
+          display: inline-block !important;
+          width: 25% !important;
+        }
+        td.small-4,
+        th.small-4 {
+          display: inline-block !important;
+          width: 33.33333% !important;
+        }
+        td.small-5,
+        th.small-5 {
+          display: inline-block !important;
+          width: 41.66667% !important;
+        }
+        td.small-6,
+        th.small-6 {
+          display: inline-block !important;
+          width: 50% !important;
+        }
+        td.small-7,
+        th.small-7 {
+          display: inline-block !important;
+          width: 58.33333% !important;
+        }
+        td.small-8,
+        th.small-8 {
+          display: inline-block !important;
+          width: 66.66667% !important;
+        }
+        td.small-9,
+        th.small-9 {
+          display: inline-block !important;
+          width: 75% !important;
+        }
+        td.small-10,
+        th.small-10 {
+          display: inline-block !important;
+          width: 83.33333% !important;
+        }
+        td.small-11,
+        th.small-11 {
+          display: inline-block !important;
+          width: 91.66667% !important;
+        }
+        td.small-12,
+        th.small-12 {
+          display: inline-block !important;
+          width: 100% !important;
+        }
+        .columns td.small-12,
+        .column td.small-12,
+        .columns th.small-12,
+        .column th.small-12 {
+          display: block !important;
+          width: 100% !important;
+        }
+        table.body td.small-offset-1,
+        table.body th.small-offset-1 {
+          margin-left: 8.33333% !important;
+          Margin-left: 8.33333% !important;
+        }
+        table.body td.small-offset-2,
+        table.body th.small-offset-2 {
+          margin-left: 16.66667% !important;
+          Margin-left: 16.66667% !important;
+        }
+        table.body td.small-offset-3,
+        table.body th.small-offset-3 {
+          margin-left: 25% !important;
+          Margin-left: 25% !important;
+        }
+        table.body td.small-offset-4,
+        table.body th.small-offset-4 {
+          margin-left: 33.33333% !important;
+          Margin-left: 33.33333% !important;
+        }
+        table.body td.small-offset-5,
+        table.body th.small-offset-5 {
+          margin-left: 41.66667% !important;
+          Margin-left: 41.66667% !important;
+        }
+        table.body td.small-offset-6,
+        table.body th.small-offset-6 {
+          margin-left: 50% !important;
+          Margin-left: 50% !important;
+        }
+        table.body td.small-offset-7,
+        table.body th.small-offset-7 {
+          margin-left: 58.33333% !important;
+          Margin-left: 58.33333% !important;
+        }
+        table.body td.small-offset-8,
+        table.body th.small-offset-8 {
+          margin-left: 66.66667% !important;
+          Margin-left: 66.66667% !important;
+        }
+        table.body td.small-offset-9,
+        table.body th.small-offset-9 {
+          margin-left: 75% !important;
+          Margin-left: 75% !important;
+        }
+        table.body td.small-offset-10,
+        table.body th.small-offset-10 {
+          margin-left: 83.33333% !important;
+          Margin-left: 83.33333% !important;
+        }
+        table.body td.small-offset-11,
+        table.body th.small-offset-11 {
+          margin-left: 91.66667% !important;
+          Margin-left: 91.66667% !important;
+        }
+        table.body table.columns td.expander,
+        table.body table.columns th.expander {
+          display: none !important;
+        }
+        table.body .right-text-pad,
+        table.body .text-pad-right {
+          padding-left: 10px !important;
+        }
+        table.body .left-text-pad,
+        table.body .text-pad-left {
+          padding-right: 10px !important;
+        }
+        table.menu {
+          width: 100% !important;
+        }
+        table.menu td,
+        table.menu th {
+          width: auto !important;
+          display: inline-block !important;
+        }
+        table.menu.vertical td,
+        table.menu.vertical th,
+        table.menu.small-vertical td,
+        table.menu.small-vertical th {
+          display: block !important;
+        }
+        table.menu[align="center"] {
+          width: auto !important;
+        }
+        table.button.small-expand,
+        table.button.small-expanded {
+          width: 100% !important;
+        }
+        table.button.small-expand table,
+        table.button.small-expanded table {
+          width: 100%;
+        }
+        table.button.small-expand table a,
+        table.button.small-expanded table a {
+          text-align: center !important;
+          width: 100% !important;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+        table.button.small-expand center,
+        table.button.small-expanded center {
+          min-width: 0;
+        }
+      }
+
+      @media only screen and (max-width: 596px) {
+        .order-list__product-description-cell {
+          width: 180px;
+        }
+        .product-image-holder {
+          display: none !important;
+        }
+        .product-image-holder {
+          display: none !important;
+        }
+        .order-number__text {
+          text-align: left !important;
+        }
+        .customer-info__item {
+          width: 100% !important;
+        }
+        .customer-info__item.first {
+          margin-bottom: 32px !important;
+        }
+        .customer-info__item.last {
+          padding-left: 0px !important;
+          padding-right: 0px !important;
+        }
+      }
+
+      @media only screen and (max-width: 596px) {
+        .list{
+          margin: 16px 0 24px 0px !important;
+        }
+        .welcome-bg {
+          background-image: url('https://menopause.primea.rs/email_primea.jpg');
+          background-position: top center !important;
+        }
+        .title-1 {
+          color: #FFF;
+          font-family: 'Helvetica';
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 36px;
+          /* 128.571% */
+          letter-spacing: -0.84px;
+          padding-left: 24px !important;
+          margin: 192px 0 0px 0;
+        }
+        .title-2 {
+          color: #FFF;
+          font-family: Helvetica;
+          font-size: 28px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 36px;
+          /* 128.571% */
+          letter-spacing: -0.84px;
+          margin: 0 0 32px 0 !important;
+          padding-left: 24px !important;
+        }
+        .title-3 {
+          font-family: 'Helvetica';
+          color: #FFF;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 32px;
+          /* 133.333% */
+          letter-spacing: -0.72px;
+          padding-left: 24px !important;
+        }
+        .welcome-bg {
+          height: 462px !important;
+        }
+        .logo {
+          padding-top: 24px !important;
+          margin-top: 24px !important;
+          padding-left: 24px !important;
+        }
+        table.body .columns.banner-image {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+        .main-content {
+          padding: 32px 24px 0 24px !important;
+        }
+        .secondary-action-cell {
+          padding: 32px 24px 0px 24px !important;
+        }
+        .section__cell {
+          padding: 0 24px !important;
+        }
+        table.body .columns.qa {
+          padding: 0 24px 48px 24px !important;
+        }
+        table.body .columns.footer-logo {
+          padding: 0 24px 32px 24px !important;
+        }
+        table.body .columns.social {
+          padding: 0 24px 32px 24px !important;
+        }
+        .billing-address a {
+          color: #949494 !important;
+          font-family: 'Helvetica';
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 20px;
+        }
+        .body {
+          background: #FFF !important;
+        }
+      }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="/assets/notifications/styles.css" />
   </head>
   <body style="margin: 0; padding: 0;">
-  <table class="body" style="Margin: 0; background: #f3f3f3 !important; border-collapse: collapse; border-spacing: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; height: 100%; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;">
-    <tbody>
-      <tr style="padding: 0; text-align: left; vertical-align: top;">
-        <td class="float-center" align="center" valign="top" style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0 auto; border-collapse: collapse !important; color: #0a0a0a; float: none; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0 auto; padding: 0; text-align: center; vertical-align: top; word-wrap: break-word;">
-          <center style="min-width: 640px; width: 100%;">
-            <table align="center" class="container header float-center" style="Margin: 0 auto; background: #FFF; border-collapse: collapse; border-spacing: 0; float: none; margin: 0 auto; padding: 0; text-align: center; vertical-align: top; width: 600px;">
-              <tbody>
-                <tr style="padding: 0; text-align: left; vertical-align: top;">
-                  <td style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;">
-                    <table class="row" style="border-collapse: collapse; border-spacing: 0; display: table; margin: 0; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%;">
-                      <tbody>
+    <table
+      class="body"
+      style="Margin: 0; background: #f3f3f3 !important; border-collapse: collapse; border-spacing: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; height: 100%; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;"
+    >
+      <tbody>
+        <tr style="padding: 0; text-align: left; vertical-align: top;">
+          <td
+            class="float-center"
+            align="center"
+            valign="top"
+            style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0 auto; border-collapse: collapse !important; color: #0a0a0a; float: none; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0 auto; padding: 0; text-align: center; vertical-align: top; word-wrap: break-word;"
+          >
+            <center style="min-width: 640px; width: 100%;">
+              <table
+                align="center"
+                class="container header float-center"
+                style="Margin: 0 auto; background: #FFF; border-collapse: collapse; border-spacing: 0; float: none; margin: 0 auto; padding: 0; text-align: center; vertical-align: top; width: 600px;"
+              >
+                <tbody>
+                  <tr style="padding: 0; text-align: left; vertical-align: top;">
+                    <td
+                      style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;"
+                    >
+                      <table
+                        class="row"
+                        style="border-collapse: collapse; border-spacing: 0; display: table; margin: 0; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%;"
+                      >
+                        <tbody>
+                          <tr style="padding: 0; text-align: left; vertical-align: top;">
+                            <th
+                              class="small-12 large-12 columns first last banner-image"
+                              style="Margin: 0 auto; background-color: #FFF; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0 auto; padding: 0; padding-bottom: 0 !important; padding-left: 24px; padding-right: 24px; text-align: left; width: 564px;"
+                            >
+                              <table
+                                style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;"
+                              >
+                                <tbody>
+                                  <tr style="padding: 0; text-align: left; vertical-align: top;">
+                                    <th
+                                      class="welcome-bg"
+                                      style="Margin: 0; background-color: #FFF; background-image: url('https://menopause.primea.rs/email_primea.jpg'); background-position: bottom center; background-repeat: no-repeat; background-size: cover; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; height: 680px; line-height: 1.3; margin: 0; max-width: 576px; padding: 0; text-align: left;"
+                                    >
+                                      <table
+                                        class="row"
+                                        style="border-collapse: collapse; border-spacing: 0; display: table; margin: 0; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%;"
+                                      >
+                                        <tbody>
+                                          <tr style="padding: 0; text-align: left; vertical-align: top;">
+                                            <th
+                                              class="small-12 large-6 columns first last"
+                                              style="Margin: 0 auto; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0 auto; padding: 0; padding-bottom: 0 !important; padding-left: 0 !important; padding-right: 0 !important; text-align: left; width: 50%;"
+                                            >
+                                              <table
+                                                style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;"
+                                              >
+                                                <tbody>
+                                                  <tr style="padding: 0; text-align: left; vertical-align: top;">
+                                                    <th
+                                                      class="logo"
+                                                      style="Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; padding-left: 32px; padding-top: 32px; text-align: left;"
+                                                    >
+                                                      <a
+                                                        href="https://menopause.primea.rs/"
+                                                        style="Margin: 0; color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left; text-decoration: none;"
+                                                        ><img
+                                                          src="https://menopause.primea.rs/primea_logo.png"
+                                                          style="-ms-interpolation-mode: bicubic; border: none; clear: both; display: block; height: 32px; max-width: 100%; outline: none; text-decoration: none; width: auto;"
+                                                      /></a>
+                                                    </th>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </th>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </th>
+                                    <th
+                                      class="expander"
+                                      style="Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; padding: 0 !important; text-align: left; visibility: hidden; width: 0;"
+                                    ></th>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </th>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table
+                        class="row actions"
+                        style="background-color: #FFF; border-collapse: collapse; border-spacing: 0; display: table; margin: 0; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%;"
+                      >
+                        <tbody>
+                          <tr style="padding: 0; text-align: left; vertical-align: top;">
+                            <td
+                              class="actions__cell"
+                              style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;"
+                            >
+                              <table
+                                style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top;"
+                              >
+                                <tbody>
+                                  <tr style="padding: 0; text-align: left; vertical-align: top;">
+                                    <td
+                                      class="main-content"
+                                      style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 48px 64px 0 64px; text-align: left; vertical-align: top; word-wrap: break-word;"
+                                    >
+                                      <p
+                                        style="Margin: 0; Margin-bottom: 10px; color: #0E2E57; font-family: 'Helvetica'; font-size: 16px; font-style: normal; font-weight: 400; line-height: 24px; margin: 0;max-width: 424px; padding: 0; text-align: left;"
+                                      >
+                                        Zdravo {{{NAME}}}, ja sam dr Milica Petrović Kmezić.
+                                        <br /><br />
+                                        Hvala vam što ste uradili test za procenu simptoma menopauze. Svojim rezultatima
+                                        uvek možete ponovo pristupiti
+                                        <a
+                                          href="{{{DASHBOARD_URL}}}"
+                                          target="_blank"
+                                          style="Margin: 0; color: #0E2E57; font-family: 'Helvetica'; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left; text-decoration: underline;"
+                                          >ovde</a
+                                        >. <br /><br />
+                                        Ovaj upitnik vam pomaže da bolje razumete u kojoj ste fazi menopauze i kako
+                                        simptomi utiču na vašu svakodnevicu. Ipak, prava briga o zdravlju ide dalje od
+                                        samih brojeva. Većina žena i dalje ima mnoga pitanja, a ta pitanja su nam veoma
+                                        važna.
+                                        <br /><br />
+                                        Svakodnevno razgovaram sa ženama koje mi postavljaju ista pitanja:
+                                      </p>
+                                      <ul
+                                        class="list"
+                                        style="margin: 0;padding: 0; list-style: none; margin: 16px 0 24px 16px;"
+                                      >
+                                        <li
+                                          style="background-image: url('https://menopause.primea.rs/message-question-circle.png'); background-repeat: no-repeat; background-size: 24px;font-size: 16px;font-style: normal;font-weight: 400;line-height: 24px; color: #0E2E57; padding-left: 32px; margin-bottom: 8px;"
+                                        >
+                                          Sada znam u kojoj sam fazi, ali šta je sledeći korak?
+                                        </li>
+                                        <li
+                                          style="background-image: url('https://menopause.primea.rs/message-question-circle.png'); background-repeat: no-repeat; background-size: 24px;font-size: 16px;font-style: normal;font-weight: 400;line-height: 24px; color: #0E2E57; padding-left: 32px; margin-bottom: 8px;"
+                                        >
+                                          Da li je normalno da osećam baš ovaj simptom?
+                                        </li>
+                                        <li
+                                          style="background-image: url('https://menopause.primea.rs/message-question-circle.png'); background-repeat: no-repeat; background-size: 24px;font-size: 16px;font-style: normal;font-weight: 400;line-height: 24px; color: #0E2E57; padding-left: 32px; margin-bottom: 8px;"
+                                        >
+                                          Koje analize bi trebalo da uradim?
+                                        </li>
+                                        <li
+                                          style="background-image: url('https://menopause.primea.rs/message-question-circle.png'); background-repeat: no-repeat; background-size: 24px;font-size: 16px;font-style: normal;font-weight: 400;line-height: 24px; color: #0E2E57; padding-left: 32px; margin-bottom: 0px;"
+                                        >
+                                          Da li terapija koju trenutno koristim zaista deluje?
+                                        </li>
+                                      </ul>
+                                      <p
+                                        style="Margin: 0; Margin-bottom: 10px; color: #0E2E57; font-family: 'Helvetica'; font-size: 16px; font-style: normal; font-weight: 400; line-height: 24px; margin: 0;max-width: 424px; padding: 0; text-align: left;"
+                                      >
+                                        Upravo zato smo tu. Možete zakazati besplatne online konsultacije u trajanju od
+                                        5 minuta sa mnom kako bismo prodiskutovali o vašim simptomima i odredili jasan
+                                        pravac, ili zakazati kompletan pregled u našoj klinici radi izrade vašeg
+                                        personalizovanog medicinskog plana.
+                                        <br /><br />
+                                        Nalazimo se na adresi:
+                                        <a
+                                          href="https://maps.app.goo.gl/3HXdSWcRcpZRYTay9?g_st=ic"
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          style="color: #0E2E57; text-decoration: underline;"
+                                          >Poliklinika Primea, Bulevar kralja Aleksandra 142, Vračar (Landmark Residence / stari Depo)</a>.
+                                        <br /><br />
+                                        Ako i dalje imate nedoumice ili jednostavno želite podršku kojoj možete
+                                        verovati, napravite sledeći korak.
+                                      </p>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table
+                        class="row"
+                        style="border-collapse: collapse; border-spacing: 0; display: table; margin: 0; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%;"
+                      >
+                        <tbody>
+                          <tr style="padding: 0; text-align: left; vertical-align: top;">
+                            <td
+                              style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;"
+                            >
+                              <table
+                                class="link"
+                                style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top;"
+                              >
+                                <tbody>
+                                  <tr style="padding: 0; text-align: left; vertical-align: top;">
+                                    <td
+                                      class="secondary-action-cell"
+                                      style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 32px 64px 0 64px; text-align: left; vertical-align: top; word-wrap: break-word;"
+                                    >
+                                      <a
+                                        style="Margin: 0; background-color: #0E2E57; border-radius: 38px; color: #FFF; display: inline-block; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; padding: 12px 24px; text-align: left; text-decoration: none; margin-right: 12px; margin-bottom: 12px;"
+                                        href="https://primea.setmore.com/book?step=time-slot&amp;products=f620dba3-85bd-4570-8457-08ae5b16f145&amp;type=service&amp;staff=j6N4MDMJRXkT4GLOGHkGumFxtAcSh7IH&amp;staffSelected=true"
+                                        >Besplatna konsultacija</a
+                                      >
+                                      <a
+                                        style="Margin: 0; background-color: transparent; border: 2px solid #0E2E57; border-radius: 38px; color: #0E2E57; display: inline-block; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; padding: 10px 24px; text-align: left; text-decoration: none;"
+                                        href="https://www.primea.rs/service/konsultacija-ginekologa-perimenopauzamenopauza/"
+                                        >Zakaži pregled</a
+                                      >
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table
+                        class="row"
+                        style="border-collapse: collapse; border-spacing: 0; display: table; margin: 0; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%;"
+                      >
                         <tr style="padding: 0; text-align: left; vertical-align: top;">
-                          <th class="small-12 large-12 columns first last banner-image" style="Margin: 0 auto; background-color: #FFF; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0 auto; padding: 0; padding-bottom: 0 !important; padding-left: 24px; padding-right: 24px; text-align: left; width: 564px;">
-                            <table style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;">
-                              <tbody>
-                                <tr style="padding: 0; text-align: left; vertical-align: top;">
-                                  <th class="welcome-bg" style="Margin: 0; background-color: #FFF; background-image: url('https://menopause.primea.rs/email_primea.jpg'); background-position: bottom center; background-repeat: no-repeat; background-size: cover; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; height: 680px; line-height: 1.3; margin: 0; max-width: 576px; padding: 0; text-align: left;">
-                                    <table class="row" style="border-collapse: collapse; border-spacing: 0; display: table; margin: 0; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%;">
-                                      <tbody>
-                                        <tr style="padding: 0; text-align: left; vertical-align: top;">
-                                          <th class="small-12 large-6 columns first last" style="Margin: 0 auto; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0 auto; padding: 0; padding-bottom: 0 !important; padding-left: 0 !important; padding-right: 0 !important; text-align: left; width: 50%;">
-                                            <table style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;">
-                                              <tbody>
-                                                <tr style="padding: 0; text-align: left; vertical-align: top;">
-                                                  <th class="logo" style="Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; padding-left: 32px; padding-top: 32px; text-align: left;">
-                                                    <a href="https://menopause.primea.rs/" style="Margin: 0; color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left; text-decoration: none;"><img src="https://menopause.primea.rs/primea_logo.png" style="-ms-interpolation-mode: bicubic; border: none; clear: both; display: block; height: 32px; max-width: 100%; outline: none; text-decoration: none; width: auto;"></a>
-                                                  </th>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                          </th>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                  </th>
-                                  <th class="expander" style="Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; padding: 0 !important; text-align: left; visibility: hidden; width: 0;"></th>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </th>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <table class="row actions" style="background-color: #FFF; border-collapse: collapse; border-spacing: 0; display: table; margin: 0; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%;">
-                      <tbody>
-                        <tr style="padding: 0; text-align: left; vertical-align: top;">
-                          <td class="actions__cell" style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;">
-                            <table style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top;">
-                              <tbody>
-                                <tr style="padding: 0; text-align: left; vertical-align: top;">
-                                  <td class="main-content" style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 48px 64px 0 64px; text-align: left; vertical-align: top; word-wrap: break-word;">
-                                    <p style="Margin: 0; Margin-bottom: 10px; color: #0E2E57; font-family: 'Helvetica'; font-size: 16px; font-style: normal; font-weight: 400; line-height: 24px; margin: 0;max-width: 424px; padding: 0; text-align: left;">
-                                      Hello, {{{NAME}}}, I’m Dr. Milica Petrovic Kmezic.
-                                      <br /><br />
-                                      Thank you for completing the menopause score assessment.
-                                      You can always revisit your report
-                                      <a href="{{{DASHBOARD_URL}}}" target="_blank" style="Margin: 0; color: #0E2E57; font-family: 'Helvetica'; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left; text-decoration: underline;">here</a>.
-                                      <br /><br />
-                                      The score helped you better understand which stage of menopause you are in and how your symptoms are affecting your daily life. But real care goes beyond numbers. Most women still have questions, and those questions matter.
-                                      <br /><br />
-                                      Every day, I speak with women who ask me the same questions:
-                                    </p>
-                                    <ul class="list" style="margin: 0;padding: 0; list-style: none; margin: 16px 0 24px 16px;">
-                                      <li style="background-image: url('https://menopause.primea.rs/message-question-circle.png'); background-repeat: no-repeat; background-size: 24px;font-size: 16px;font-style: normal;font-weight: 400;line-height: 24px; color: #0E2E57; padding-left: 32px; margin-bottom: 8px;">
-                                        Now I know what stage I’m in, but what comes next?
-                                      </li>
-                                      <li style="background-image: url('https://menopause.primea.rs/message-question-circle.png'); background-repeat: no-repeat; background-size: 24px;font-size: 16px;font-style: normal;font-weight: 400;line-height: 24px; color: #0E2E57; padding-left: 32px; margin-bottom: 8px;">
-                                        Is it normal to have this symptom?
-                                      </li>
-                                      <li style="background-image: url('https://menopause.primea.rs/message-question-circle.png'); background-repeat: no-repeat; background-size: 24px;font-size: 16px;font-style: normal;font-weight: 400;line-height: 24px; color: #0E2E57; padding-left: 32px; margin-bottom: 8px;">
-                                        Should I get medical tests done?
-                                      </li>
-                                      <li style="background-image: url('https://menopause.primea.rs/message-question-circle.png'); background-repeat: no-repeat; background-size: 24px;font-size: 16px;font-style: normal;font-weight: 400;line-height: 24px; color: #0E2E57; padding-left: 32px; margin-bottom: 0px;">
-                                        Is the treatment I’m currently following working?
-                                      </li>
-                                    </ul>
-                                    <p style="Margin: 0; Margin-bottom: 10px; color: #0E2E57; font-family: 'Helvetica'; font-size: 16px; font-style: normal; font-weight: 400; line-height: 24px; margin: 0;max-width: 424px; padding: 0; text-align: left;">
-                                      That's exactly why we're here. You can book a free 15-minute online consultation with Dr Milica Petrović Kmezić to discuss your symptoms and get a clear direction, or schedule a full checkup at our clinic for a personalized medical plan.
-                                      <br /><br />
-                                      You can find us at Primea Poliklinika, Bulevar Kralja Aleksandra 142, Vračar (Landmark Residence / stari Depo).
-                                      <br /><br />
-                                      If you still have questions or simply want care you can trust, take the next step.
-                                    </p>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
+                          <td
+                            height="16px"
+                            style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 16px; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;"
+                          >
+                            &nbsp;
                           </td>
                         </tr>
-                      </tbody>
-                    </table>
-                    <table class="row" style="border-collapse: collapse; border-spacing: 0; display: table; margin: 0; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%;">
-                      <tbody>
-                        <tr style="padding: 0; text-align: left; vertical-align: top;">
-                          <td style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;">
-                            <table class="link" style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top;">
-                              <tbody>
-                                <tr style="padding: 0; text-align: left; vertical-align: top;">
-                                  <td class="secondary-action-cell" style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 32px 64px 0 64px; text-align: left; vertical-align: top; word-wrap: break-word;">
-                                    <a style="Margin: 0; background-color: #0E2E57; border-radius: 38px; color: #FFF; display: inline-block; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; padding: 12px 24px; text-align: left; text-decoration: none; margin-right: 12px; margin-bottom: 12px;"
-                                      href="https://primea.setmore.com/book?step=time-slot&amp;products=f620dba3-85bd-4570-8457-08ae5b16f145&amp;type=service&amp;staff=j6N4MDMJRXkT4GLOGHkGumFxtAcSh7IH&amp;staffSelected=true">Besplatna konsultacija</a>
-                                    <a style="Margin: 0; background-color: transparent; border: 2px solid #0E2E57; border-radius: 38px; color: #0E2E57; display: inline-block; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; padding: 10px 24px; text-align: left; text-decoration: none;"
-                                      href="https://www.primea.rs/service/konsultacija-ginekologa-perimenopauzamenopauza/">Zakaži pregled</a>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <table class="row" style="border-collapse: collapse; border-spacing: 0; display: table; margin: 0; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%;">
-                      <tr style="padding: 0; text-align: left; vertical-align: top;">
-                        <td height="16px" style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 16px; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;">&nbsp;</td>
-                      </tr>
-                    </table>
-                    <table class="row actions" style="background-color: #FFF; border-collapse: collapse; border-spacing: 0; display: table; margin: 0; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%;">
-                      <tbody>
-                        <tr style="padding: 0; text-align: left; vertical-align: top;">
-                          <td class="actions__cell" style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;">
-                            <table style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top;">
-                              <tbody>
-                                <tr style="padding: 0; text-align: left; vertical-align: top;">
-                                  <td class="main-content" style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 48px 64px 0 64px; text-align: left; vertical-align: top; word-wrap: break-word;">
-                                    <p style="Margin: 0; Margin-bottom: 10px; color: #0E2E57; font-family: 'Helvetica'; font-size: 16px; font-style: normal; font-weight: 400; line-height: 24px; margin: 0;max-width: 424px; padding: 0; text-align: left;">
-                                      With care,<br />
-                                      <strong>Dr Milica Petrović Kmezić</strong>
-                                    </p>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <table class="footer" style="border: 0 !important; border-collapse: collapse; border-spacing: 0; margin-top: 160px; padding: 0; text-align: left; vertical-align: top; width: 100%;">
-                      <tbody>
-                        <tr style="padding: 0; text-align: left; vertical-align: top;">
-                          <td style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;">
-                            <table style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top;">
-                              <tbody>
-                                <tr style="padding: 0; text-align: left; vertical-align: top;">
-                                  <th class="small-12 large-12 columns first last qa" style="Margin: 0 auto; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0 auto; padding: 0 64px 48px 64px; text-align: left; width: 564px;">
-                                    <table style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;">
-                                      <tbody>
-                                        <tr style="padding: 0; text-align: left; vertical-align: top;">
-                                          <td style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;">
-                                            
-                                            <p style="Margin: 0; Margin-bottom: 10px; color: #0E2E57; font-family: 'Helvetica'; font-size: 14px; font-style: normal; font-weight: 400; line-height: 20px; margin: 0; margin-bototm: 0 !important; margin-bottom: 10px; padding: 0; text-align: left;">
-                                              This email was sent to
-                                    <a href="mailto:{{{RECIPIENT_EMAIL}}}" style="Margin: 0; color: #1E3723; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left; text-decoration: none;">
-                                      <u>{{{RECIPIENT_EMAIL}}}</u></a>.
-                                    If you have any questions, contact us at <a href="mailto:info@primea.rs" target="_blank" style="Margin: 0; color: #0E2E57; font-family: 'Helvetica'; font-size: 14px; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left; text-decoration: underline;">info@primea.rs</a>
-                                            </p>
-                                          </td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                  </th>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr style="padding: 0; text-align: left; vertical-align: top;">
-                          <td style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;">
-                            <table style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;">
-                              <tbody>
-                                <tr style="padding: 0; text-align: left; vertical-align: top;">
-                                  <th class="small-6 large-6 columns first footer-logo" style="Margin: 0 auto; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0 auto; padding: 0 64px 32px 64px;  padding-right: 8px; text-align: left; width: 274px;">
-                                    <table style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;">
-                                      <tbody>
-                                        <tr style="padding: 0; text-align: left; vertical-align: top;">
-                                          <td style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;">
-                                            <img src="https://menopause.primea.rs/primea_logo.png" style="-ms-interpolation-mode: bicubic; clear: both; display: block; height: 32px; max-width: 100%; outline: none; text-decoration: none; width: auto;">
-                                          </td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                  </th>
-                                  <th class="small-6 large-6 columns last social" valign="center" style="Margin: 0 auto; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0 auto; padding: 0 64px 32px 64px;  padding-left: 8px; text-align: left; width: 274px;">
-                                    <table style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: middle; width: 100%;">
-                                      <tbody>
-                                        <tr style="padding: 0; text-align: left; vertical-align: middle;">
-                                          <td valign="center" style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; height: 32px; hyphens: none; line-height: 1; margin: 0; padding: 0; text-align: right; vertical-align: middle; word-wrap: break-word;"
-                                            align="right">
-                                            <a href="https://www.facebook.com/people/Primea/61578274062329/" style="Margin: 0; color: #2199e8; display: inline-block; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left; text-decoration: none;">
-                                              <img src="https://menopause.primea.rs/icon-facebook.png" style="-ms-interpolation-mode: bicubic; border: none; clear: both; display: block; height: 20px; margin-right: 16px; max-width: 100%; outline: none; text-decoration: none; width: 20px;">
-                                            </a>
-                                            <a href="https://www.instagram.com/primea.poliklinika/" style="Margin: 0; color: #2199e8; display: inline-block; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left; text-decoration: none;">
-                                              <img src="https://menopause.primea.rs/icon-instagram.png" style="-ms-interpolation-mode: bicubic; border: none; clear: both; display: block; height: 20px; margin-right: 16px; max-width: 100%; outline: none; text-decoration: none; width: 20px;">
-                                            </a>
-                                            <a href="https://www.linkedin.com/company/primeahealth/" style="Margin: 0; color: #2199e8; display: inline-block; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left; text-decoration: none;">
-                                              <img src="https://menopause.primea.rs/icon-linkedin.png" style="-ms-interpolation-mode: bicubic; border: none; clear: both; display: block; height: 20px; margin-right: 0 !important; max-width: 100%; outline: none; text-decoration: none; width: 20px;">
-                                            </a>
-                                          </td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                  </th>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </center>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</body>
+                      </table>
+                      <table
+                        class="row actions"
+                        style="background-color: #FFF; border-collapse: collapse; border-spacing: 0; display: table; margin: 0; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%;"
+                      >
+                        <tbody>
+                          <tr style="padding: 0; text-align: left; vertical-align: top;">
+                            <td
+                              class="actions__cell"
+                              style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;"
+                            >
+                              <table
+                                style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top;"
+                              >
+                                <tbody>
+                                  <tr style="padding: 0; text-align: left; vertical-align: top;">
+                                    <td
+                                      class="main-content"
+                                      style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 48px 64px 0 64px; text-align: left; vertical-align: top; word-wrap: break-word;"
+                                    >
+                                      <p
+                                        style="Margin: 0; Margin-bottom: 10px; color: #0E2E57; font-family: 'Helvetica'; font-size: 16px; font-style: normal; font-weight: 400; line-height: 24px; margin: 0;max-width: 424px; padding: 0; text-align: left;"
+                                      >
+                                        Srdačno,<br />
+                                        <strong>Dr Milica Petrović Kmezić</strong>
+                                      </p>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table
+                        class="footer"
+                        style="border: 0 !important; border-collapse: collapse; border-spacing: 0; margin-top: 160px; padding: 0; text-align: left; vertical-align: top; width: 100%;"
+                      >
+                        <tbody>
+                          <tr style="padding: 0; text-align: left; vertical-align: top;">
+                            <td
+                              style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;"
+                            >
+                              <table
+                                style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top;"
+                              >
+                                <tbody>
+                                  <tr style="padding: 0; text-align: left; vertical-align: top;">
+                                    <th
+                                      class="small-12 large-12 columns first last qa"
+                                      style="Margin: 0 auto; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0 auto; padding: 0 64px 48px 64px; text-align: left; width: 564px;"
+                                    >
+                                      <table
+                                        style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;"
+                                      >
+                                        <tbody>
+                                          <tr style="padding: 0; text-align: left; vertical-align: top;">
+                                            <td
+                                              style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;"
+                                            >
+                                              <p
+                                                style="Margin: 0; Margin-bottom: 10px; color: #0E2E57; font-family: 'Helvetica'; font-size: 14px; font-style: normal; font-weight: 400; line-height: 20px; margin: 0; margin-bottom: 0 !important; margin-bottom: 10px; padding: 0; text-align: left;"
+                                              >
+                                                This email was sent to
+                                                <a
+                                                  href="mailto:{{{RECIPIENT_EMAIL}}}"
+                                                  style="Margin: 0; color: #1E3723; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left; text-decoration: none;"
+                                                >
+                                                  <u>{{{RECIPIENT_EMAIL}}}</u></a
+                                                >. If you have any questions, contact us at
+                                                <a
+                                                  href="mailto:info@primea.rs"
+                                                  target="_blank"
+                                                  style="Margin: 0; color: #0E2E57; font-family: 'Helvetica'; font-size: 14px; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left; text-decoration: underline;"
+                                                  >info@primea.rs</a
+                                                >
+                                              </p>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </th>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr style="padding: 0; text-align: left; vertical-align: top;">
+                            <td
+                              style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;"
+                            >
+                              <table
+                                style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;"
+                              >
+                                <tbody>
+                                  <tr style="padding: 0; text-align: left; vertical-align: top;">
+                                    <th
+                                      class="small-6 large-6 columns first footer-logo"
+                                      style="Margin: 0 auto; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0 auto; padding: 0 64px 32px 64px;  padding-right: 8px; text-align: left; width: 274px;"
+                                    >
+                                      <table
+                                        style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;"
+                                      >
+                                        <tbody>
+                                          <tr style="padding: 0; text-align: left; vertical-align: top;">
+                                            <td
+                                              style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: none; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;"
+                                            >
+                                              <img
+                                                src="https://menopause.primea.rs/primea_logo.png"
+                                                style="-ms-interpolation-mode: bicubic; clear: both; display: block; height: 32px; max-width: 100%; outline: none; text-decoration: none; width: auto;"
+                                              />
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </th>
+                                    <th
+                                      class="small-6 large-6 columns last social"
+                                      valign="center"
+                                      style="Margin: 0 auto; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0 auto; padding: 0 64px 32px 64px;  padding-left: 8px; text-align: left; width: 274px;"
+                                    >
+                                      <table
+                                        style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: middle; width: 100%;"
+                                      >
+                                        <tbody>
+                                          <tr style="padding: 0; text-align: left; vertical-align: middle;">
+                                            <td
+                                              valign="center"
+                                              style="-moz-hyphens: none; -webkit-hyphens: none; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; height: 32px; hyphens: none; line-height: 1; margin: 0; padding: 0; text-align: right; vertical-align: middle; word-wrap: break-word;"
+                                              align="right"
+                                            >
+                                              <a
+                                                href="https://www.facebook.com/people/Primea/61578274062329/"
+                                                style="Margin: 0; color: #2199e8; display: inline-block; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left; text-decoration: none;"
+                                              >
+                                                <img
+                                                  src="https://menopause.primea.rs/icon-facebook.png"
+                                                  style="-ms-interpolation-mode: bicubic; border: none; clear: both; display: block; height: 20px; margin-right: 16px; max-width: 100%; outline: none; text-decoration: none; width: 20px;"
+                                                />
+                                              </a>
+                                              <a
+                                                href="https://www.instagram.com/primea.poliklinika/"
+                                                style="Margin: 0; color: #2199e8; display: inline-block; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left; text-decoration: none;"
+                                              >
+                                                <img
+                                                  src="https://menopause.primea.rs/icon-instagram.png"
+                                                  style="-ms-interpolation-mode: bicubic; border: none; clear: both; display: block; height: 20px; margin-right: 16px; max-width: 100%; outline: none; text-decoration: none; width: 20px;"
+                                                />
+                                              </a>
+                                              <a
+                                                href="https://www.linkedin.com/company/primeahealth/"
+                                                style="Margin: 0; color: #2199e8; display: inline-block; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left; text-decoration: none;"
+                                              >
+                                                <img
+                                                  src="https://menopause.primea.rs/icon-linkedin.png"
+                                                  style="-ms-interpolation-mode: bicubic; border: none; clear: both; display: block; height: 20px; margin-right: 0 !important; max-width: 100%; outline: none; text-decoration: none; width: 20px;"
+                                                />
+                                              </a>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </th>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </center>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
 </html>
