@@ -7,15 +7,6 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "GET, OPTIONS",
 };
 
-const MAX_CLICK_ID_LEN = 500;
-
-function trimClickParam(value: string | null): string | undefined {
-  if (!value) return undefined;
-  const t = value.trim();
-  if (!t) return undefined;
-  return t.length > MAX_CLICK_ID_LEN ? t.slice(0, MAX_CLICK_ID_LEN) : t;
-}
-
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -43,18 +34,9 @@ Deno.serve(async (req) => {
       );
     }
 
-    const gclid = trimClickParam(url.searchParams.get("gclid"));
-    const wbraid = trimClickParam(url.searchParams.get("wbraid"));
-    const gbraid = trimClickParam(url.searchParams.get("gbraid"));
-
-    const insertRow: Record<string, unknown> = { language, responses: {} };
-    if (gclid) insertRow.gclid = gclid;
-    if (wbraid) insertRow.wbraid = wbraid;
-    if (gbraid) insertRow.gbraid = gbraid;
-
     const { data: submission, error: sError } = await supabase
       .from("submissions")
-      .insert(insertRow)
+      .insert({ language, responses: {} })
       .select("id")
       .single();
 

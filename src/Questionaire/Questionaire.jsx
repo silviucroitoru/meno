@@ -4,50 +4,6 @@ import mixpanel from "mixpanel-browser";
 import Page from "./components/Page.jsx";
 import './Questionaire.css'
 import HeaderArea from "./components/HeaderArea.jsx";
-
-const GOOGLE_CLICK_STORAGE_KEY = "meno_google_click_v1";
-const GOOGLE_CLICK_PARAM_KEYS = ["gclid", "wbraid", "gbraid"];
-const GOOGLE_CLICK_MAX_AGE_MS = 90 * 24 * 60 * 60 * 1000;
-
-function persistGoogleClickIdsFromUrl() {
-  const params = new URLSearchParams(window.location.search);
-  const patch = {};
-  for (const key of GOOGLE_CLICK_PARAM_KEYS) {
-    const v = params.get(key)?.trim();
-    if (v) patch[key] = v;
-  }
-  if (Object.keys(patch).length === 0) return;
-  try {
-    const prev = JSON.parse(localStorage.getItem(GOOGLE_CLICK_STORAGE_KEY) || "{}");
-    localStorage.setItem(
-      GOOGLE_CLICK_STORAGE_KEY,
-      JSON.stringify({ ...prev, ...patch, capturedAt: Date.now() }),
-    );
-  } catch {
-    /* ignore */
-  }
-}
-
-function getQuestionnaireQueryString(language) {
-  const qs = new URLSearchParams({ language });
-  try {
-    const raw = localStorage.getItem(GOOGLE_CLICK_STORAGE_KEY);
-    if (!raw) return qs.toString();
-    const o = JSON.parse(raw);
-    if (o.capturedAt && Date.now() - o.capturedAt > GOOGLE_CLICK_MAX_AGE_MS) {
-      localStorage.removeItem(GOOGLE_CLICK_STORAGE_KEY);
-      return qs.toString();
-    }
-    for (const key of GOOGLE_CLICK_PARAM_KEYS) {
-      const v = o[key];
-      if (typeof v === "string" && v.trim()) qs.set(key, v.trim().slice(0, 500));
-    }
-  } catch {
-    /* ignore */
-  }
-  return qs.toString();
-}
-
 export default function Questionaire() {
   function getLanguageFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -84,9 +40,7 @@ export default function Questionaire() {
     const requestOptions = {
       method: "GET",
     };
-    persistGoogleClickIdsFromUrl();
-    const questionnaireQs = getQuestionnaireQueryString(language);
-    fetch(`${import.meta.env.VITE_API_URL}/get-questionnaire?${questionnaireQs}`, requestOptions)
+    fetch(`${import.meta.env.VITE_API_URL}/get-questionnaire?language=${language}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setSubmissionId(result.SubmissionID)

@@ -4,7 +4,6 @@ import {
   resolvePdfLang,
   type MenopauseReportPdf,
 } from "./pdf-html.ts";
-import { uploadDashboardConversionForSubmission } from "./google-ads-offline.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -277,11 +276,6 @@ Deno.serve(async (req) => {
         language === submissionLangNorm &&
         submissionNotEditedAfterReport
       ) {
-        try {
-          await uploadDashboardConversionForSubmission(supabase, Number(submissionId));
-        } catch (adsErr) {
-          console.error("Google Ads offline conversion (cache path):", adsErr);
-        }
         return dashboardReportResponse(cached, existingReport?.pdf_url ?? null);
       }
     }
@@ -513,12 +507,6 @@ Deno.serve(async (req) => {
       submission_id: Number(submissionId),
       menopause_report: reportObj,
     });
-
-    try {
-      await uploadDashboardConversionForSubmission(supabase, Number(submissionId));
-    } catch (adsErr) {
-      console.error("Google Ads offline conversion:", adsErr);
-    }
 
     const langForPdf = (submission.language as string | undefined) || language;
 

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Dashboard from "./Dashboard/Dashboard.jsx"
 import mixpanel from 'mixpanel-browser';
 import Questionaire from "./Questionaire/Questionaire.jsx"
@@ -18,16 +18,16 @@ if (mixpanelToken && !isAdminRoute) {
     api_host: mixpanelApiHost,
   });
 }
-function RootToQuestionnaire() {
-  const { search } = useLocation();
-  return <Navigate to={`/questionnaire${search}`} replace />;
-}
-
+// function ProtectedRoute({ element: Component }) {
+//   const  isAuthenticated  = true;
+//
+//   return isAuthenticated ? <Component /> : <Navigate to="/login" />;
+// }
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<RootToQuestionnaire />} />
+        <Route path="/" element={<Navigate to="/questionnaire" replace />} />
         <Route path="/questionnaire" element={<Questionaire />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/admin/login" element={<AdminLogin />} />
