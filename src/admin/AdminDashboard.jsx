@@ -218,7 +218,7 @@ export default function AdminDashboard() {
                   <th>Email status</th>
                   <th>Language</th>
                   <th>Stage</th>
-                  <th>PDF</th>
+                  <th>Score</th>
                   <th>Report</th>
                 </tr>
               </thead>
@@ -249,7 +249,9 @@ export default function AdminDashboard() {
                     </td>
                     <td data-label="Language" className="admin-col-muted">{row.language || "—"}</td>
                     <td data-label="Stage">{row.stage || "—"}</td>
-                    <td data-label="PDF" className="admin-col-muted">{row.pdf_url ? "Yes" : "No"}</td>
+                    <td data-label="Score" className="admin-col-muted">
+                      {row.score != null && row.score !== "" ? row.score : "—"}
+                    </td>
                     <td data-label="Report">
                       <Link to={`/dashboard?submissionId=${row.submission_id}&language=${(row.language || "SR").toLowerCase()}`} target="_blank" rel="noreferrer">
                         Open
