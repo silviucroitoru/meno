@@ -1,9 +1,59 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { adminSignOut, fetchAdminMetrics, fetchAdminSubmissions } from "../data/adminApi";
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
+import { adminSignOut, fetchAdminDailySubmissions, fetchAdminMetrics, fetchAdminSubmissions } from "../data/adminApi";
 import "./admin.css";
 
 const PAGE_SIZE = 50;
+
+const TIMEFRAMES = [
+  { key: "today", label: "Today" },
+  { key: "yesterday", label: "Yesterday" },
+  { key: "last7", label: "Last 7 days" },
+  { key: "last30", label: "Last 30 days" },
+  { key: "thisMonth", label: "This month" },
+  { key: "lastMonth", label: "Last month" },
+];
+
+function computeRange(key) {
+  const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Belgrade" }));
+  const fmt = (d) => d.toISOString().slice(0, 10);
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  switch (key) {
+    case "today":
+      return { from: fmt(today), to: fmt(today) };
+    case "yesterday": {
+      const y = new Date(today);
+      y.setDate(y.getDate() - 1);
+      return { from: fmt(y), to: fmt(y) };
+    }
+    case "last7": {
+      const s = new Date(today);
+      s.setDate(s.getDate() - 6);
+      return { from: fmt(s), to: fmt(today) };
+    }
+    case "last30": {
+      const s = new Date(today);
+      s.setDate(s.getDate() - 29);
+      return { from: fmt(s), to: fmt(today) };
+    }
+    case "thisMonth":
+      return { from: fmt(new Date(today.getFullYear(), today.getMonth(), 1)), to: fmt(today) };
+    case "lastMonth": {
+      const first = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+      const last = new Date(today.getFullYear(), today.getMonth(), 0);
+      return { from: fmt(first), to: fmt(last) };
+    }
+    default:
+      return { from: fmt(today), to: fmt(today) };
+  }
+}
+
+function formatChartDay(dayStr) {
+  const [y, m, d] = dayStr.split("-").map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+}
 
 function formatDate(value) {
   if (!value) return "—";
@@ -72,6 +122,11 @@ export default function AdminDashboard() {
   const [metricsError, setMetricsError] = useState(null);
   const [metricsLoading, setMetricsLoading] = useState(true);
 
+  const [timeframe, setTimeframe] = useState("last7");
+  const [chartData, setChartData] = useState([]);
+  const [chartLoading, setChartLoading] = useState(true);
+  const [chartError, setChartError] = useState(null);
+
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [offset, setOffset] = useState(0);
@@ -80,6 +135,24 @@ export default function AdminDashboard() {
   const [listError, setListError] = useState(null);
   const [listLoading, setListLoading] = useState(true);
   const searchTimer = useRef(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setChartLoading(true);
+    setChartError(null);
+    const range = computeRange(timeframe);
+    fetchAdminDailySubmissions(range)
+      .then((data) => {
+        if (!cancelled) setChartData(data.map((d) => ({ ...d, label: formatChartDay(d.day) })));
+      })
+      .catch((err) => {
+        if (!cancelled) setChartError(err?.message || "Failed to load chart data");
+      })
+      .finally(() => {
+        if (!cancelled) setChartLoading(false);
+      });
+    return () => { cancelled = true; };
+  }, [timeframe]);
 
   useEffect(() => {
     let cancelled = false;
@@ -160,6 +233,48 @@ export default function AdminDashboard() {
       </header>
 
       <main className="admin-container">
+        <section className="admin-section" aria-labelledby="admin-chart-heading">
+          <div className="admin-section-prehead">Activity</div>
+          <h2 id="admin-chart-heading" className="admin-section-title">Submissions per day</h2>
+
+          <div className="admin-timeframe-bar">
+            {TIMEFRAMES.map((tf) => (
+              <button
+                key={tf.key}
+                type="button"
+                className={`admin-timeframe-btn${timeframe === tf.key ? " admin-timeframe-btn--active" : ""}`}
+                onClick={() => setTimeframe(tf.key)}
+              >
+                {tf.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="admin-chart-wrap">
+            {chartLoading && <div className="admin-loading">Loading chart…</div>}
+            {chartError && !chartLoading && <div className="admin-error">{chartError}</div>}
+            {!chartLoading && !chartError && (
+              <ResponsiveContainer width="100%" height={280}>
+                <LineChart data={chartData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(14,46,87,0.1)" />
+                  <XAxis dataKey="label" tick={{ fontSize: 12 }} />
+                  <YAxis allowDecimals={false} tick={{ fontSize: 12 }} />
+                  <Tooltip />
+                  <Line
+                    type="monotone"
+                    dataKey="count"
+                    stroke="#0E2E57"
+                    strokeWidth={2}
+                    dot={{ r: 4, fill: "#0E2E57" }}
+                    activeDot={{ r: 6 }}
+                    name="Submissions"
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            )}
+          </div>
+        </section>
+
         <section className="admin-section" aria-labelledby="admin-metrics-heading">
           <div className="admin-section-prehead">Overview</div>
           <h2 id="admin-metrics-heading" className="admin-section-title">Metrics</h2>

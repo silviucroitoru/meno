@@ -64,6 +64,16 @@ export async function fetchAdminMetrics() {
   };
 }
 
+export async function fetchAdminDailySubmissions({ from, to }) {
+  assertSupabaseConfigured();
+  const { data, error } = await supabase.rpc("admin_daily_submissions", {
+    p_from: from,
+    p_to: to,
+  });
+  if (error) throw new Error(error.message || "Failed to load daily data");
+  return data ?? [];
+}
+
 export async function fetchAdminSubmissions({ search = "", limit = 50, offset = 0 } = {}) {
   assertSupabaseConfigured();
   const { data, error } = await supabase.rpc("admin_list_submissions", {

@@ -417,6 +417,54 @@
   color: #B42318;
 }
 
+.admin-timeframe-bar{
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.admin-timeframe-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--secondary-blue-20);
+  background: #FFF;
+  color: var(--main-blue);
+  font-family: "SofiaPro-Medium";
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: -0.13px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+.admin-timeframe-btn:hover{
+  border-color: var(--main-blue);
+  background: var(--secondary-blue);
+}
+.admin-timeframe-btn--active{
+  background: var(--main-blue);
+  border-color: var(--main-blue);
+  color: #FFF;
+}
+.admin-timeframe-btn--active:hover{
+  background: var(--main-blue);
+  border-color: var(--main-blue);
+  color: #FFF;
+}
+.admin-chart-wrap{
+  border: 1px solid var(--secondary-blue-20);
+  border-radius: 12px;
+  padding: 24px;
+  background: #FFF;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .admin-ghost-button{
   display: inline-flex;
   align-items: center;
