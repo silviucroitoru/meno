@@ -9,7 +9,7 @@ import {
   Tooltip,
   CartesianGrid,
 } from "recharts";
-import { adminSignOut, fetchAdminDailySubmissions, fetchAdminMarketingAccess, fetchAdminMetrics, fetchAdminSubmissions } from "../data/adminApi";
+import { adminSignOut, fetchAdminDailySubmissions, fetchAdminMarketingAccess, fetchAdminMarketingRange, fetchAdminMetrics, fetchAdminSubmissions } from "../data/adminApi";
 import { TIMEFRAMES, computeRange, formatChartDay } from "./adminDateRange";
 import "./admin.css";
 
@@ -96,6 +96,7 @@ export default function AdminDashboard() {
   const navigate = useNavigate();
 
   const [canMarketing, setCanMarketing] = useState(false);
+  const [marketingData, setMarketingData] = useState(null);
 
   const [metrics, setMetrics] = useState(null);
   const [metricsError, setMetricsError] = useState(null);
@@ -135,7 +136,17 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     fetchAdminMarketingAccess()
-      .then((res) => setCanMarketing(res?.allowed === true))
+      .then((res) => {
+        const allowed = res?.allowed === true;
+        setCanMarketing(allowed);
+        if (allowed) {
+          const { from } = computeRange("thisMonth");
+          const yesterday = computeRange("yesterday").to;
+          fetchAdminMarketingRange({ from, to: yesterday })
+            .then(setMarketingData)
+            .catch(() => {});
+        }
+      })
       .catch(() => setCanMarketing(false));
   }, []);
 
@@ -313,6 +324,26 @@ export default function AdminDashboard() {
                 </div>
               </div>
               <Bars title="By menopause stage" data={metrics.byStage} />
+              {canMarketing && marketingData && (
+                <div className="admin-metric-card admin-metric-card--compact">
+                  <div className="admin-metric-label">Total ad spend (USD)</div>
+                  <div className="admin-metric-value">
+                    ${Number(marketingData.total_spend_usd ?? 0).toFixed(2)}
+                  </div>
+                  <div className="admin-metric-hint">This month, up to yesterday</div>
+                </div>
+              )}
+              {canMarketing && marketingData && (
+                <div className="admin-metric-card admin-metric-card--compact">
+                  <div className="admin-metric-label">Cost per submission (USD)</div>
+                  <div className="admin-metric-value">
+                    {marketingData.avg_cpa_usd != null
+                      ? `$${Number(marketingData.avg_cpa_usd).toFixed(2)}`
+                      : "—"}
+                  </div>
+                  <div className="admin-metric-hint">This month, up to yesterday</div>
+                </div>
+              )}
             </div>
           )}
         </section>

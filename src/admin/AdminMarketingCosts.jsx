@@ -140,22 +140,6 @@ export default function AdminMarketingCosts() {
           {error && !loading && <div className="admin-error">{error}</div>}
 
           {!loading && !error && data && (
-            <>
-              <div className="admin-metrics-row" style={{ marginBottom: 24 }}>
-                <div className="admin-metric-card admin-metric-card--compact">
-                  <div className="admin-metric-label">Total spend (USD)</div>
-                  <div className="admin-metric-value">{fmtUsd(data.total_spend_usd)}</div>
-                </div>
-                <div className="admin-metric-card admin-metric-card--compact">
-                  <div className="admin-metric-label">Successful submissions</div>
-                  <div className="admin-metric-value">{data.total_submissions ?? 0}</div>
-                </div>
-                <div className="admin-metric-card admin-metric-card--compact">
-                  <div className="admin-metric-label">Avg. CPA (USD)</div>
-                  <div className="admin-metric-value">{data.avg_cpa_usd != null ? fmtUsd(data.avg_cpa_usd) : "—"}</div>
-                </div>
-              </div>
-
               <div className="admin-table-wrap">
                 <table className="admin-table">
                   <thead>
@@ -241,7 +225,6 @@ export default function AdminMarketingCosts() {
                   </tbody>
                 </table>
               </div>
-            </>
           )}
         </section>
       </main>
