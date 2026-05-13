@@ -64,6 +64,32 @@ export async function fetchAdminMetrics() {
   };
 }
 
+export async function fetchAdminMarketingAccess() {
+  assertSupabaseConfigured();
+  const { data, error } = await supabase.rpc("admin_marketing_access");
+  if (error) return { allowed: false };
+  return data ?? { allowed: false };
+}
+
+export async function fetchAdminMarketingRange({ from, to }) {
+  assertSupabaseConfigured();
+  const { data, error } = await supabase.rpc("admin_marketing_range", {
+    p_from: from,
+    p_to: to,
+  });
+  if (error) throw new Error(error.message || "Failed to load marketing data");
+  return data ?? { total_spend_usd: 0, total_submissions: 0, avg_cpa_usd: null, rows: [] };
+}
+
+export async function setAdminMarketingDay(day, amountUsd) {
+  assertSupabaseConfigured();
+  const { error } = await supabase.rpc("admin_marketing_set_day", {
+    p_day: day,
+    p_amount_usd: amountUsd,
+  });
+  if (error) throw new Error(error.message || "Failed to save spend");
+}
+
 export async function fetchAdminDailySubmissions({ from, to }) {
   assertSupabaseConfigured();
   const { data, error } = await supabase.rpc("admin_daily_submissions", {

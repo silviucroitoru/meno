@@ -9,61 +9,11 @@ import {
   Tooltip,
   CartesianGrid,
 } from "recharts";
-import { adminSignOut, fetchAdminDailySubmissions, fetchAdminMetrics, fetchAdminSubmissions } from "../data/adminApi";
+import { adminSignOut, fetchAdminDailySubmissions, fetchAdminMarketingAccess, fetchAdminMetrics, fetchAdminSubmissions } from "../data/adminApi";
+import { TIMEFRAMES, computeRange, formatChartDay } from "./adminDateRange";
 import "./admin.css";
 
 const PAGE_SIZE = 50;
-
-const TIMEFRAMES = [
-  { key: "today", label: "Today" },
-  { key: "yesterday", label: "Yesterday" },
-  { key: "last7", label: "Last 7 days" },
-  { key: "last30", label: "Last 30 days" },
-  { key: "thisMonth", label: "This month" },
-  { key: "lastMonth", label: "Last month" },
-];
-
-function computeRange(key) {
-  const parts = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Belgrade", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
-  const [y, m, d] = parts.split("-").map(Number);
-  const fmt = (dt) => `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, "0")}-${String(dt.getDate()).padStart(2, "0")}`;
-  const today = new Date(y, m - 1, d);
-
-  switch (key) {
-    case "today":
-      return { from: fmt(today), to: fmt(today) };
-    case "yesterday": {
-      const y = new Date(today);
-      y.setDate(y.getDate() - 1);
-      return { from: fmt(y), to: fmt(y) };
-    }
-    case "last7": {
-      const s = new Date(today);
-      s.setDate(s.getDate() - 6);
-      return { from: fmt(s), to: fmt(today) };
-    }
-    case "last30": {
-      const s = new Date(today);
-      s.setDate(s.getDate() - 29);
-      return { from: fmt(s), to: fmt(today) };
-    }
-    case "thisMonth":
-      return { from: fmt(new Date(today.getFullYear(), today.getMonth(), 1)), to: fmt(today) };
-    case "lastMonth": {
-      const first = new Date(today.getFullYear(), today.getMonth() - 1, 1);
-      const last = new Date(today.getFullYear(), today.getMonth(), 0);
-      return { from: fmt(first), to: fmt(last) };
-    }
-    default:
-      return { from: fmt(today), to: fmt(today) };
-  }
-}
-
-function formatChartDay(dayStr) {
-  const d = new Date(dayStr);
-  if (isNaN(d.getTime())) return dayStr;
-  return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
-}
 
 const CHART_BLUE = "#0E2E57";
 const CHART_AXIS = "rgba(14, 46, 87, 0.45)";
@@ -145,6 +95,8 @@ function Bars({ title, data }) {
 export default function AdminDashboard() {
   const navigate = useNavigate();
 
+  const [canMarketing, setCanMarketing] = useState(false);
+
   const [metrics, setMetrics] = useState(null);
   const [metricsError, setMetricsError] = useState(null);
   const [metricsLoading, setMetricsLoading] = useState(true);
@@ -180,6 +132,12 @@ export default function AdminDashboard() {
       });
     return () => { cancelled = true; };
   }, [timeframe]);
+
+  useEffect(() => {
+    fetchAdminMarketingAccess()
+      .then((res) => setCanMarketing(res?.allowed === true))
+      .catch(() => setCanMarketing(false));
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -253,6 +211,11 @@ export default function AdminDashboard() {
           <img src="/primea_logo.png" alt="Primea" />
         </a>
         <div className="admin-header-actions">
+          {canMarketing && (
+            <Link to="/admin/marketing-costs" className="admin-ghost-button">
+              Marketing Costs
+            </Link>
+          )}
           <button type="button" className="admin-ghost-button" onClick={handleSignOut}>
             Sign out
           </button>

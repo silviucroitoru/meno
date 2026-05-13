@@ -4,6 +4,7 @@ import mixpanel from 'mixpanel-browser';
 import Questionaire from "./Questionaire/Questionaire.jsx"
 import AdminLogin from "./admin/AdminLogin.jsx";
 import AdminDashboard from "./admin/AdminDashboard.jsx";
+import AdminMarketingCosts from "./admin/AdminMarketingCosts.jsx";
 import AdminRequireAuth from "./admin/AdminRequireAuth.jsx";
 import './assets/base.css'
 
@@ -35,6 +36,14 @@ function App() {
           element={
             <AdminRequireAuth>
               <AdminDashboard />
+            </AdminRequireAuth>
+          }
+        />
+        <Route
+          path="/admin/marketing-costs"
+          element={
+            <AdminRequireAuth>
+              <AdminMarketingCosts />
             </AdminRequireAuth>
           }
         />
