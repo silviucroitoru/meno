@@ -460,9 +460,14 @@
   padding: 24px;
   background: #FFF;
   min-height: 280px;
+  position: relative;
+}
+.admin-chart-wrap .admin-loading,
+.admin-chart-wrap .admin-error{
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 232px;
 }
 
 .admin-ghost-button{
