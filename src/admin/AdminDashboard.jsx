@@ -16,9 +16,10 @@ const TIMEFRAMES = [
 ];
 
 function computeRange(key) {
-  const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Belgrade" }));
-  const fmt = (d) => d.toISOString().slice(0, 10);
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const parts = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Belgrade", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+  const [y, m, d] = parts.split("-").map(Number);
+  const fmt = (dt) => `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, "0")}-${String(dt.getDate()).padStart(2, "0")}`;
+  const today = new Date(y, m - 1, d);
 
   switch (key) {
     case "today":
