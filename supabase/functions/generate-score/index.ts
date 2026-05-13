@@ -509,6 +509,13 @@ Deno.serve(async (req) => {
     const contentOnly = extractedMessage.content;
     const reportObj = JSON.parse(contentOnly) as MenopauseReportPdf;
 
+    // Enforce the deterministic Lambda-style score: OpenAI sometimes hallucinates
+    // a different integer for `menoScore.score`. The actual score is computed
+    // from `symptomWeights` * `symptomResponseMap` and must not be overwritten by the model.
+    if (reportObj?.menoScore) {
+      reportObj.menoScore.score = menopauseScore;
+    }
+
     await supabase.from("reports").upsert({
       submission_id: Number(submissionId),
       menopause_report: reportObj,
@@ -517,15 +524,22 @@ Deno.serve(async (req) => {
     const langForPdf = (submission.language as string | undefined) || language;
 
     let pdfUrl: string | null = null;
-    try {
-      pdfUrl = await generateAndStorePdf(
-        supabase,
-        Number(submissionId),
-        reportObj,
-        langForPdf,
-      );
-    } catch (pdfErr) {
-      console.error("PDF generation or storage failed:", pdfErr);
+    const pdfDisabled = ["1", "true", "yes"].includes(
+      (Deno.env.get("DISABLE_PDF_GENERATION") ?? "").trim().toLowerCase(),
+    );
+    if (pdfDisabled) {
+      console.log("PDF generation disabled via DISABLE_PDF_GENERATION env var");
+    } else {
+      try {
+        pdfUrl = await generateAndStorePdf(
+          supabase,
+          Number(submissionId),
+          reportObj,
+          langForPdf,
+        );
+      } catch (pdfErr) {
+        console.error("PDF generation or storage failed:", pdfErr);
+      }
     }
 
     if (pdfUrl) {

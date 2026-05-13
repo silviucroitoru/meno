@@ -38,26 +38,44 @@ Deno.serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
     );
 
-    const { data: existing, error: getError } = await supabase
-      .from("submissions")
-      .select("id, responses")
-      .eq("id", SubmissionID)
-      .single();
-
-    if (getError || !existing) {
-      return new Response(
-        JSON.stringify({ message: `SubmissionID ${SubmissionID} not found` }),
-        { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
     const responseToStore = normalizeStoredResponse(DataPointName, userResponse);
-    const updatedResponses = { ...existing.responses, [DataPointName]: responseToStore };
 
-    const { error: updateError } = await supabase
-      .from("submissions")
-      .update({ responses: updatedResponses, last_updated: new Date().toISOString() })
-      .eq("id", SubmissionID);
+    const { data: updated, error: updateError } = await supabase.rpc("merge_submission_response", {
+      p_submission_id: SubmissionID,
+      p_key: DataPointName,
+      p_value: responseToStore,
+    });
+
+    if (updateError?.code === "PGRST202" || updateError?.message?.includes("merge_submission_response")) {
+      const { data: existing, error: getError } = await supabase
+        .from("submissions")
+        .select("id, responses")
+        .eq("id", SubmissionID)
+        .single();
+
+      if (getError || !existing) {
+        return new Response(
+          JSON.stringify({ message: `SubmissionID ${SubmissionID} not found` }),
+          { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      const updatedResponses = { ...existing.responses, [DataPointName]: responseToStore };
+      const { error: fallbackError } = await supabase
+        .from("submissions")
+        .update({ responses: updatedResponses, last_updated: new Date().toISOString() })
+        .eq("id", SubmissionID);
+
+      if (fallbackError) throw new Error(`Failed to update: ${fallbackError.message}`);
+    } else if (updateError) {
+      if (updateError.code === "P0001" && updateError.message?.includes("not found")) {
+        return new Response(
+          JSON.stringify({ message: `SubmissionID ${SubmissionID} not found` }),
+          { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+      throw new Error(`Failed to update: ${updateError.message}`);
+    }
 
     if (updateError) {
       throw new Error(`Failed to update: ${updateError.message}`);

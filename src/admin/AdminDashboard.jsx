@@ -8,7 +8,8 @@ const PAGE_SIZE = 50;
 function formatDate(value) {
   if (!value) return "—";
   try {
-    return new Date(value).toLocaleString(undefined, {
+    return new Date(value).toLocaleString("sr-RS", {
+      timeZone: "Europe/Belgrade",
       year: "numeric",
       month: "short",
       day: "2-digit",
