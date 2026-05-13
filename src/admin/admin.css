@@ -456,18 +456,45 @@
 }
 .admin-chart-wrap{
   border: 1px solid var(--secondary-blue-20);
-  border-radius: 12px;
-  padding: 24px;
-  background: #FFF;
-  min-height: 280px;
+  border-radius: 16px;
+  padding: 0;
+  background: linear-gradient(180deg, rgba(14, 46, 87, 0.04) 0%, #fff 48%, #fff 100%);
+  min-height: 300px;
   position: relative;
+  overflow: hidden;
+}
+.admin-chart-inner{
+  padding: 20px 20px 12px 12px;
+}
+.admin-chart-tooltip{
+  border-radius: 10px;
+  border: 1px solid var(--secondary-blue-20);
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(14, 46, 87, 0.12);
+  padding: 10px 14px;
+  min-width: 140px;
+}
+.admin-chart-tooltip__label{
+  font-family: "SofiaPro-Regular", sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--main-grey);
+  margin-bottom: 4px;
+}
+.admin-chart-tooltip__value{
+  font-family: "SofiaPro-Medium", sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--main-blue);
+  letter-spacing: -0.32px;
 }
 .admin-chart-wrap .admin-loading,
 .admin-chart-wrap .admin-error{
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 232px;
+  min-height: 300px;
+  padding: 24px;
 }
 
 .admin-ghost-button{

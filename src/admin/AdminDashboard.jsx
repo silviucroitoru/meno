@@ -1,6 +1,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
+import {
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+} from "recharts";
 import { adminSignOut, fetchAdminDailySubmissions, fetchAdminMetrics, fetchAdminSubmissions } from "../data/adminApi";
 import "./admin.css";
 
@@ -55,6 +63,23 @@ function formatChartDay(dayStr) {
   const d = new Date(dayStr);
   if (isNaN(d.getTime())) return dayStr;
   return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+}
+
+const CHART_BLUE = "#0E2E57";
+const CHART_AXIS = "rgba(14, 46, 87, 0.45)";
+const CHART_GRID = "rgba(14, 46, 87, 0.06)";
+
+function AdminActivityTooltip({ active, payload, label }) {
+  if (!active || !payload?.length) return null;
+  const count = Number(payload[0]?.value ?? 0);
+  return (
+    <div className="admin-chart-tooltip">
+      <div className="admin-chart-tooltip__label">{label}</div>
+      <div className="admin-chart-tooltip__value">
+        {count} {count === 1 ? "submission" : "submissions"}
+      </div>
+    </div>
+  );
 }
 
 function formatDate(value) {
@@ -256,23 +281,51 @@ export default function AdminDashboard() {
             {chartLoading && <div className="admin-loading">Loading chart…</div>}
             {chartError && !chartLoading && <div className="admin-error">{chartError}</div>}
             {!chartLoading && !chartError && (
-              <ResponsiveContainer width="100%" height={280}>
-                <LineChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(14,46,87,0.1)" />
-                  <XAxis dataKey="label" tick={{ fontSize: 12 }} />
-                  <YAxis allowDecimals={false} tick={{ fontSize: 12 }} />
-                  <Tooltip />
-                  <Line
-                    type="monotone"
-                    dataKey="count"
-                    stroke="#0E2E57"
-                    strokeWidth={2}
-                    dot={{ r: 4, fill: "#0E2E57" }}
-                    activeDot={{ r: 6 }}
-                    name="Submissions"
-                  />
-                </LineChart>
-              </ResponsiveContainer>
+              <div className="admin-chart-inner">
+                <ResponsiveContainer width="100%" height={300}>
+                  <AreaChart data={chartData} margin={{ top: 12, right: 8, left: -8, bottom: 4 }}>
+                    <defs>
+                      <linearGradient id="adminActivityFill" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor={CHART_BLUE} stopOpacity={0.2} />
+                        <stop offset="55%" stopColor={CHART_BLUE} stopOpacity={0.06} />
+                        <stop offset="100%" stopColor={CHART_BLUE} stopOpacity={0} />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid stroke={CHART_GRID} vertical={false} strokeDasharray="4 10" />
+                    <XAxis
+                      dataKey="label"
+                      axisLine={false}
+                      tickLine={false}
+                      tick={{ fill: CHART_AXIS, fontSize: 12 }}
+                      dy={6}
+                    />
+                    <YAxis
+                      allowDecimals={false}
+                      width={36}
+                      axisLine={false}
+                      tickLine={false}
+                      tick={{ fill: CHART_AXIS, fontSize: 12 }}
+                      domain={[0, "auto"]}
+                    />
+                    <Tooltip content={<AdminActivityTooltip />} cursor={{ stroke: `${CHART_BLUE}33`, strokeWidth: 1 }} />
+                    <Area
+                      type="monotone"
+                      dataKey="count"
+                      name="Submissions"
+                      stroke={CHART_BLUE}
+                      strokeWidth={2.5}
+                      fill="url(#adminActivityFill)"
+                      activeDot={{ r: 5, strokeWidth: 2, stroke: "#fff", fill: CHART_BLUE }}
+                      dot={
+                        chartData.length <= 3
+                          ? { r: 4, strokeWidth: 2, stroke: "#fff", fill: CHART_BLUE }
+                          : { r: 0 }
+                      }
+                      animationDuration={600}
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
             )}
           </div>
         </section>
