@@ -51,8 +51,9 @@ function computeRange(key) {
 }
 
 function formatChartDay(dayStr) {
-  const [y, m, d] = dayStr.split("-").map(Number);
-  return new Date(y, m - 1, d).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+  const d = new Date(dayStr);
+  if (isNaN(d.getTime())) return dayStr;
+  return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
 }
 
 function formatDate(value) {

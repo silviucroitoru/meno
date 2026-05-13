@@ -18,7 +18,7 @@ BEGIN
   INTO v_result
   FROM (
     SELECT
-      d.day::text AS day,
+      d.day::date::text AS day,
       coalesce(cnt.count, 0) AS count
     FROM generate_series(p_from, p_to, '1 day'::interval) AS d(day)
     LEFT JOIN (
