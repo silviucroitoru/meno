@@ -8,13 +8,14 @@ const PAGE_SIZE = 50;
 function formatDate(value) {
   if (!value) return "—";
   try {
-    return new Date(value).toLocaleString("sr-RS", {
+    return new Date(value).toLocaleString("en-GB", {
       timeZone: "Europe/Belgrade",
       year: "numeric",
       month: "short",
       day: "2-digit",
       hour: "2-digit",
       minute: "2-digit",
+      hour12: false,
     });
   } catch {
     return String(value);
