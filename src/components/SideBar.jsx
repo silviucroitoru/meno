@@ -22,7 +22,7 @@ export default function SideBar({scoreSummary}) {
         {scoreSummary.stageTitle && (
           <button className="menuLink"
                   onClick={() => {
-                    mixpanel.track(`Dashboard-Sidebar Select Stage`, {source: 'SideBar'})
+                    mixpanel.track(`Dashboard-Sidebar Select Stage`, { source: 'SideBar' })
                     scrollToIdWithOffset(scoreSummary.stageTitle)}
                   }
           >
@@ -32,7 +32,7 @@ export default function SideBar({scoreSummary}) {
         {scoreSummary.scoreTitle && (
           <button className="menuLink"
                   onClick={() => {
-                    mixpanel.track(`Dashboard-Sidebar Select Score`, {source: 'SideBar'})
+                    mixpanel.track(`Dashboard-Sidebar Select Score`, { source: 'SideBar' })
                     scrollToIdWithOffset(scoreSummary.scoreTitle)
                   }}
           >
@@ -42,7 +42,7 @@ export default function SideBar({scoreSummary}) {
         {scoreSummary.symptomsTitle && (
           <button className="menuLink"
                   onClick={() => {
-                    mixpanel.track(`Dashboard-Sidebar Select Symptoms"`, {source: 'SideBar'})
+                    mixpanel.track(`Dashboard-Sidebar Select Symptoms`, { source: 'SideBar' })
                     scrollToIdWithOffset('symptoms')
                   }}
           >
@@ -51,7 +51,7 @@ export default function SideBar({scoreSummary}) {
         )}
         <button className="menuLink"
                 onClick={() => {
-                  mixpanel.track(`Dashboard-Sidebar Select Book a call`, {source: 'SideBar'})
+                  mixpanel.track(`Dashboard-Sidebar Select Book Call`, { source: 'SideBar' })
                   scrollToIdWithOffset('book_call')
                 }}
         >
@@ -61,7 +61,7 @@ export default function SideBar({scoreSummary}) {
         {scoreSummary.recommendationsTitle && (
           <button className="menuLink"
                   onClick={() => {
-                    mixpanel.track(`Dashboard-Sidebar Select Recommendations"`, {source: 'SideBar'})
+                    mixpanel.track(`Dashboard-Sidebar Select Recommendations`, { source: 'SideBar' })
                     scrollToIdWithOffset('recommendations')
                   }}
           >

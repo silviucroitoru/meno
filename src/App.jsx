@@ -6,14 +6,12 @@ import AdminLogin from "./admin/AdminLogin.jsx";
 import AdminDashboard from "./admin/AdminDashboard.jsx";
 import AdminRequireAuth from "./admin/AdminRequireAuth.jsx";
 import './assets/base.css'
- 
+
 const mixpanelToken = import.meta.env.VITE_MIXPANEL_TOKEN;
-const isAdminRoute = typeof window !== "undefined" && window.location?.pathname?.startsWith("/admin");
-if (mixpanelToken && !isAdminRoute) {
+if (mixpanelToken) {
   const mixpanelApiHost =
     import.meta.env.VITE_MIXPANEL_API_HOST || "https://api-eu.mixpanel.com";
   mixpanel.init(mixpanelToken, {
-    autocapture: false,
     debug: import.meta.env.DEV,
     api_host: mixpanelApiHost,
   });
@@ -23,6 +21,7 @@ if (mixpanelToken && !isAdminRoute) {
 //
 //   return isAuthenticated ? <Component /> : <Navigate to="/login" />;
 // }
+
 function App() {
   return (
     <Router>

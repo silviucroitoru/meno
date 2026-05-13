@@ -4,6 +4,8 @@ import mixpanel from "mixpanel-browser";
 import Page from "./components/Page.jsx";
 import './Questionaire.css'
 import HeaderArea from "./components/HeaderArea.jsx";
+import { initMetaPixel, metaPixelTrackCustom } from "../analytics/metaPixel.js";
+
 export default function Questionaire() {
   function getLanguageFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -21,7 +23,7 @@ export default function Questionaire() {
   const originalHeight = useRef(0);
   const [extraHeight, setExtraHeight] = useState(window.innerWidth < 990 ? 56 : 64);
   useEffect(() => {
-    mixpanel.track('[Page View] Questionnaire', {source: 'Questionnaire'})
+    mixpanel.track('[Page View] Questionnaire', { source: 'Questionnaire' })
     const handleResize = () => {
       setExtraHeight(window.innerWidth < 990 ? 56 : 64);
     };
@@ -63,7 +65,7 @@ export default function Questionaire() {
       setProgressPages([...progressPages, pageNo])
       setCurrentPage(questionnaire.info?.find((page) => page.position === pageNo));
     }
-    mixpanel.track(`[Page ${pageNo} View] Questionnaire`, {source: 'Questionnaire'})
+    mixpanel.track(`[Page ${pageNo} View] Questionnaire`, { source: 'Questionnaire' })
     if(type !== "intro" && type !== "media") {
       const data = {
         "SubmissionID": submissionId,
@@ -85,8 +87,13 @@ export default function Questionaire() {
         }
 
         const result = await response.json();
-        if(type === "email") {
-          navigate('/dashboard')
+        if (type === "email") {
+          initMetaPixel();
+          metaPixelTrackCustom("QuestionnaireComplete", {
+            language: language.toLowerCase(),
+            submission_id: String(submissionId ?? ""),
+          });
+          navigate("/dashboard");
         }
         return result;
       } catch (error) {
@@ -97,11 +104,11 @@ export default function Questionaire() {
   }
 
   const back = () => {
-    const pageNo = questionnaire.info.find(page => page.position === progressPages[progressPages.length - 2]);
-    setCurrentPage(questionnaire.info.find(page => page.position === progressPages[progressPages.length - 2]));
-    setProgressPages(prevItems => prevItems.slice(0, -1));
-    mixpanel.track(`[Page ${pageNo} View] Questionnaire`, {source: 'Questionnaire'})
-  }
+    const prevPosition = Number(progressPages[progressPages.length - 2]);
+    setCurrentPage(questionnaire.info.find((page) => page.position === prevPosition));
+    setProgressPages((prevItems) => prevItems.slice(0, -1));
+    mixpanel.track(`[Page ${prevPosition} View] Questionnaire`, { source: 'Questionnaire' });
+  };
   if( !questionnaire){
     return (<h1></h1>)
   }

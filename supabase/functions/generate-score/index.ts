@@ -77,6 +77,17 @@ function extractSymptoms(responses: Record<string, string | number>): Record<str
   return symptoms;
 }
 
+/** Full questionnaire: email step done + identity + almost all symptom scales (allows rare missed saves). */
+const MIN_SYMPTOM_RESPONSES_FOR_REPORT = 18;
+
+function isSubmissionCompleteForReport(responses: Record<string, string | number>): boolean {
+  const email = String(responses.Email ?? "").trim();
+  const firstName = String(responses.FirstName ?? "").trim();
+  if (!email || !firstName) return false;
+  const n = Object.keys(extractSymptoms(responses)).length;
+  return n >= MIN_SYMPTOM_RESPONSES_FOR_REPORT;
+}
+
 async function generatePdfWithApi2Pdf(html: string, apiKey: string): Promise<string> {
   const res = await fetch("https://v2.api2pdf.com/chrome/html", {
     method: "POST",
@@ -254,6 +265,17 @@ Deno.serve(async (req) => {
       return new Response(
         JSON.stringify({ error: "No menopause data found for this submission." }),
         { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const responsesEarly = (submission.responses || {}) as Record<string, string | number>;
+    if (!isSubmissionCompleteForReport(responsesEarly)) {
+      return new Response(
+        JSON.stringify({
+          error:
+            "Questionnaire not completed for this submission. Finish all steps or use the link from your confirmation email.",
+        }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 

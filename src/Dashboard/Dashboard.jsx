@@ -30,7 +30,7 @@ export default function Dashboard() {
       localStorage.setItem('bloomEmail', urlEmail);
     }
 
-    const mixpanelToken = mixpanel.get_config?.("token");
+    const mixpanelToken = mixpanel.get_config?.('token');
     if (mixpanelToken) {
       const distinctId = localStorage.getItem("SubmissionID");
       if (distinctId) {
@@ -51,11 +51,26 @@ export default function Dashboard() {
       setLoadError("Missing VITE_API_URL (Supabase functions base URL).");
       return;
     }
-    fetch(`${base}/generate-score?submissionId=${localStorage.getItem('SubmissionID') ?? 9999999}&language=${storedLang}`, requestOptions)
+
+    const submissionId = localStorage.getItem("SubmissionID");
+    if (!submissionId?.trim()) {
+      setLoadError(
+        "No submission found. Complete the questionnaire first, then open the dashboard from the email step.",
+      );
+      return;
+    }
+
+    fetch(`${base}/generate-score?submissionId=${encodeURIComponent(submissionId.trim())}&language=${storedLang}`, requestOptions)
       .then(async (response) => {
         const result = await response.json().catch(() => ({}));
         if (!response.ok) {
-          throw new Error(result?.error ?? result?.message ?? `generate-score failed (${response.status})`);
+          const msg = result?.error ?? result?.message ?? `generate-score failed (${response.status})`;
+          if (response.status === 400 && typeof msg === "string" && msg.includes("not completed")) {
+            throw new Error(
+              "This submission does not have a full questionnaire yet. Complete every question (including email), or clear site data and start again.",
+            );
+          }
+          throw new Error(msg);
         }
         if (typeof result?.content !== "string") {
           throw new Error("generate-score: missing content in response");

@@ -44,7 +44,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
     getTranslatedMessage("postmenopause", {}),
   ]), [getTranslatedMessage]);
   useEffect(() => {
-    mixpanel.track('[Page View] Dashboard', {source: 'Dashboard'})
+    mixpanel.track('[Page View] Dashboard', { source: 'Dashboard' })
     setPremenopauseWidth(-6 + document.getElementById('premenopause').offsetWidth / 2);
     setPerimenopauseWidth(-6 + document.getElementById('perimenopause').offsetWidth / 2);
     setMenopauseWidth(-6 + document.getElementById('menopause').offsetWidth / 2);
@@ -58,7 +58,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
     }, 500)
   }, [lineWidth, scoreJson.menopauseStage.stage, stages])
   const trackEvent = (event, source) => {
-    mixpanel.track(event, {source: source})
+    mixpanel.track(event, { source })
   }
 
   const adjustMargin = useCallback(() => {
