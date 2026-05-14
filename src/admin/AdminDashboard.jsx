@@ -312,39 +312,42 @@ export default function AdminDashboard() {
           {metricsError && !metricsLoading && <div className="admin-error">{metricsError}</div>}
 
           {metrics && !metricsLoading && !metricsError && (
-            <div className="admin-metrics-row">
-              <div className="admin-metric-card admin-metric-card--compact">
-                <div className="admin-metric-label">Successful submissions</div>
-                <div className="admin-metric-value">{metrics.successfulSubmissions ?? 0}</div>
-              </div>
-              <div className="admin-metric-card admin-metric-card--compact">
-                <div className="admin-metric-label">Questionnaire completion rate</div>
-                <div className="admin-metric-value">
-                  {Number(metrics.completionRatePct ?? 0).toFixed(1)}%
+            <>
+              <div className="admin-metrics-row">
+                <div className="admin-metric-card admin-metric-card--compact">
+                  <div className="admin-metric-label">Successful submissions</div>
+                  <div className="admin-metric-value">{metrics.successfulSubmissions ?? 0}</div>
                 </div>
+                <div className="admin-metric-card admin-metric-card--compact">
+                  <div className="admin-metric-label">Questionnaire completion rate</div>
+                  <div className="admin-metric-value">
+                    {Number(metrics.completionRatePct ?? 0).toFixed(1)}%
+                  </div>
+                </div>
+                {canMarketing && marketingData && (
+                  <div className="admin-metric-card admin-metric-card--compact">
+                    <div className="admin-metric-label">Total ad spend (USD)</div>
+                    <div className="admin-metric-value">
+                      ${Number(marketingData.total_spend_usd ?? 0).toFixed(2)}
+                    </div>
+                    <div className="admin-metric-hint">This month, up to yesterday</div>
+                  </div>
+                )}
+                {canMarketing && marketingData && (
+                  <div className="admin-metric-card admin-metric-card--compact">
+                    <div className="admin-metric-label">Cost per submission (USD)</div>
+                    <div className="admin-metric-value">
+                      {marketingData.avg_cpa_usd != null
+                        ? `$${Number(marketingData.avg_cpa_usd).toFixed(2)}`
+                        : "—"}
+                    </div>
+                    <div className="admin-metric-hint">This month, up to yesterday</div>
+                  </div>
+                )}
               </div>
+              <h3 id="admin-statistics-heading" className="admin-subsection-title">Statistics</h3>
               <Bars title="By menopause stage" data={metrics.byStage} />
-              {canMarketing && marketingData && (
-                <div className="admin-metric-card admin-metric-card--compact">
-                  <div className="admin-metric-label">Total ad spend (USD)</div>
-                  <div className="admin-metric-value">
-                    ${Number(marketingData.total_spend_usd ?? 0).toFixed(2)}
-                  </div>
-                  <div className="admin-metric-hint">This month, up to yesterday</div>
-                </div>
-              )}
-              {canMarketing && marketingData && (
-                <div className="admin-metric-card admin-metric-card--compact">
-                  <div className="admin-metric-label">Cost per submission (USD)</div>
-                  <div className="admin-metric-value">
-                    {marketingData.avg_cpa_usd != null
-                      ? `$${Number(marketingData.avg_cpa_usd).toFixed(2)}`
-                      : "—"}
-                  </div>
-                  <div className="admin-metric-hint">This month, up to yesterday</div>
-                </div>
-              )}
-            </div>
+            </>
           )}
         </section>
 

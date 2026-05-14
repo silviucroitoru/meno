@@ -64,6 +64,15 @@
   font-weight: 500;
   margin: 0 0 24px;
 }
+.admin-subsection-title{
+  font-family: "SofiaPro-Medium";
+  color: var(--main-blue);
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -0.54px;
+  font-weight: 500;
+  margin: 32px 0 16px;
+}
 
 .admin-metrics-row{
   display: grid;
