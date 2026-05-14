@@ -345,8 +345,10 @@ export default function AdminDashboard() {
                   </div>
                 )}
               </div>
-              <h3 id="admin-statistics-heading" className="admin-subsection-title">Statistics</h3>
-              <Bars title="By menopause stage" data={metrics.byStage} />
+              <h2 id="admin-statistics-heading" className="admin-section-title">Statistics</h2>
+              <div className="admin-statistics-bars">
+                <Bars title="By menopause stage" data={metrics.byStage} />
+              </div>
             </>
           )}
         </section>
