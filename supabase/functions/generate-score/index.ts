@@ -162,6 +162,11 @@ async function sendReportReadyEmail(
   });
   const dashboardUrl = `${origin.replace(/\/+$/, "")}/dashboard?${dashboardParams.toString()}`;
 
+  const langNorm = normalizeReportLanguage(language);
+  const subject = langNorm === "SR"
+    ? `${displayName}, Vaš izveštaj je spreman.`
+    : `${displayName}, Your Menoscore report is ready`;
+
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -171,7 +176,7 @@ async function sendReportReadyEmail(
     body: JSON.stringify({
       from,
       to: [email],
-      subject: "Your Menoscore report is ready",
+      subject,
       tags: [{ name: "submission_id", value: String(submissionId) }],
       template: {
         id: "primea-report",
