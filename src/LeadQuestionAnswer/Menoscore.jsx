@@ -62,11 +62,19 @@ export default function Menoscore({scoreJson, scoreSummary}) {
   }
 
   const adjustMargin = useCallback(() => {
+    const bookCallSection = document.getElementById("book_call");
     const scaleContainer = document.getElementById("scale_container");
+    if (!scaleContainer) return;
     const scaleContainerWidth = scaleContainer.offsetWidth;
     const newLineWidth = (scaleContainerWidth - 200) / 3;
     setLineWidth(newLineWidth)
     setArrowPosition(64 + index * newLineWidth + 20*index)
+    if (bookCallSection) {
+      const windowHeight = window.innerHeight;
+      const sectionHeight = bookCallSection.offsetHeight;
+      const marginBottom = Math.max(64, windowHeight - sectionHeight - 64);
+      bookCallSection.style.marginBottom = `${marginBottom}px`;
+    }
   }, [index]);
   useEffect(() => {
     adjustMargin();
