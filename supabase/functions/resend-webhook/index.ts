@@ -7,6 +7,7 @@ type ResendWebhookPayload = {
   data?: {
     email_id?: string;
     tags?: Record<string, string>;
+    click?: { link?: string; timestamp?: string };
   };
 };
 
@@ -57,14 +58,40 @@ Deno.serve(async (req) => {
     Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
   );
 
+  const classifyClick = (link: string | undefined): string | null => {
+    if (!link) return null;
+    if (link.includes("setmore.com") || link.includes("btn=consultation")) return "consultation";
+    if (link.includes("konsultacija-ginekologa") || link.includes("btn=checkup")) return "checkup";
+    return null;
+  };
+
   const upsertStatus = async (submissionId: number) => {
-    const { error } = await supabase.from("submission_email_status").upsert({
+    const row: Record<string, unknown> = {
       submission_id: submissionId,
       resend_email_id: resendEmailId,
       last_event: eventType,
       last_event_at: eventAt,
       last_payload: verified,
-    });
+    };
+
+    if (eventType === "email.clicked") {
+      const clickLink = verified?.data?.click?.link;
+      const clickType = classifyClick(clickLink);
+      const clickedAt = verified?.data?.click?.timestamp ?? eventAt;
+      console.log(`[click] sid=${submissionId} link=${clickLink} type=${clickType}`);
+
+      if (clickType === "consultation") {
+        const { data: existing } = await supabase.from("submission_email_status")
+          .select("clicked_consultation_at").eq("submission_id", submissionId).maybeSingle();
+        if (!existing?.clicked_consultation_at) row.clicked_consultation_at = clickedAt;
+      } else if (clickType === "checkup") {
+        const { data: existing } = await supabase.from("submission_email_status")
+          .select("clicked_checkup_at").eq("submission_id", submissionId).maybeSingle();
+        if (!existing?.clicked_checkup_at) row.clicked_checkup_at = clickedAt;
+      }
+    }
+
+    const { error } = await supabase.from("submission_email_status").upsert(row);
     if (error) throw error;
   };
 
