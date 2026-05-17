@@ -386,7 +386,6 @@ export default function AdminDashboard() {
                   <th>First name</th>
                   <th>Email</th>
                   <th>Email status</th>
-                  <th>Language</th>
                   <th>Stage</th>
                   <th>Score</th>
                   <th>Report</th>
@@ -395,7 +394,7 @@ export default function AdminDashboard() {
               <tbody>
                 {!listLoading && list.rows?.length === 0 && (
                   <tr>
-                    <td colSpan={8}>
+                    <td colSpan={7}>
                       <div className="admin-empty">No submissions match this search.</div>
                     </td>
                   </tr>
@@ -411,9 +410,6 @@ export default function AdminDashboard() {
                           <span className={`admin-email-badge admin-email-badge--${row.email_status.replace("email.", "")}`}>
                             {row.email_status.replace("email.", "").replace(/^\w/, (c) => c.toUpperCase())}
                           </span>
-                          {row.email_status_at && (
-                            <span className="admin-email-status-date">{formatDate(row.email_status_at)}</span>
-                          )}
                           {row.clicked_consultation_at && (
                             <span className="admin-email-badge admin-email-badge--clicked">Consultation</span>
                           )}
@@ -423,7 +419,6 @@ export default function AdminDashboard() {
                         </span>
                       ) : "—"}
                     </td>
-                    <td data-label="Language" className="admin-col-muted">{row.language || "—"}</td>
                     <td data-label="Stage">{row.stage || "—"}</td>
                     <td data-label="Score">{row.score != null && row.score !== "" ? row.score : "—"}</td>
                     <td data-label="Report">
