@@ -411,7 +411,7 @@ export default function AdminDashboard() {
                             {row.email_status.replace("email.", "").replace(/^\w/, (c) => c.toUpperCase())}
                           </span>
                           {row.clicked_consultation_at && (
-                            <span className="admin-email-badge admin-email-badge--clicked">Consultation</span>
+                            <span className="admin-email-badge admin-email-badge--clicked">Free Consultation</span>
                           )}
                           {row.clicked_checkup_at && (
                             <span className="admin-email-badge admin-email-badge--clicked">Checkup</span>
