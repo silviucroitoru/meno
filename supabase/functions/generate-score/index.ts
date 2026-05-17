@@ -167,6 +167,11 @@ async function sendReportReadyEmail(
     ? `${displayName}, Vaš izveštaj je spreman.`
     : `${displayName}, Your Menoscore report is ready`;
 
+  const supabaseUrl = Deno.env.get("SUPABASE_URL")?.replace(/\/+$/, "") ?? "";
+  const trackBase = `${supabaseUrl}/functions/v1/track-email-click`;
+  const consultationUrl = `${trackBase}?sid=${submissionId}&btn=consultation`;
+  const checkupUrl = `${trackBase}?sid=${submissionId}&btn=checkup`;
+
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -184,6 +189,8 @@ async function sendReportReadyEmail(
           NAME: displayName,
           RECIPIENT_EMAIL: email,
           DASHBOARD_URL: dashboardUrl,
+          CONSULTATION_URL: consultationUrl,
+          CHECKUP_URL: checkupUrl,
         },
       },
     }),

@@ -414,6 +414,12 @@ export default function AdminDashboard() {
                           {row.email_status_at && (
                             <span className="admin-email-status-date">{formatDate(row.email_status_at)}</span>
                           )}
+                          {row.clicked_consultation_at && (
+                            <span className="admin-email-badge admin-email-badge--clicked">Consultation</span>
+                          )}
+                          {row.clicked_checkup_at && (
+                            <span className="admin-email-badge admin-email-badge--clicked">Checkup</span>
+                          )}
                         </span>
                       ) : "—"}
                     </td>
