@@ -414,11 +414,16 @@
   color: #175CD3;
 }
 .admin-email-badge--clicked{
+  border: 1px solid #ABEFC6;
+  background: #ECFDF3;
+  color: #067647;
+}
+.admin-email-badge--cta{
   border: none;
   background: #067647;
   color: #FFF;
 }
-.admin-email-badge--clicked::before{
+.admin-email-badge--cta::before{
   display: none;
 }
 .admin-email-badge--bounced,
