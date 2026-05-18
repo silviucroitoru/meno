@@ -660,13 +660,8 @@ a.button.whatsapp{
 }
 .meno-score-container .box#book_call .actions{
   flex-direction: column;
-  align-items: stretch;
+  align-items: flex-start;
   column-gap: 0;
-}
-.meno-score-container .box#book_call .actions .button{
-  width: 100%;
-  text-align: center;
-  justify-content: center;
 }
 .meno-score-container .box#book_call .book-call-footnotes{
   margin-top: 16px;
