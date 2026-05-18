@@ -497,6 +497,17 @@ export default function Menoscore({scoreJson, scoreSummary}) {
               >
                 <span>{t('book_call_checkup')}</span>
               </a>
+              <a
+                href={getTranslatedMessage("book_call_phone_link", {})}
+                className="button button--secondary"
+                onClick={() => trackEvent(`Dashboard Book a call Click on ${getTranslatedMessage('book_call_phone')} button`, 'Book a call section')}
+              >
+                <span>{t('book_call_phone')}</span>
+              </a>
+            </div>
+            <div className="book-call-footnotes">
+              <p>*{t('book_call_footnote_1')}</p>
+              <p>*{t('book_call_footnote_2')}</p>
             </div>
           </div>
           <div className="info-box-dr">
