@@ -3,8 +3,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 const DESTINATIONS: Record<string, string> = {
   consultation:
     "https://primea.setmore.com/book?step=time-slot&products=f620dba3-85bd-4570-8457-08ae5b16f145&type=service&staff=j6N4MDMJRXkT4GLOGHkGumFxtAcSh7IH&staffSelected=true",
-  checkup:
-    "https://www.primea.rs/service/konsultacija-ginekologa-perimenopauzamenopauza/",
+  checkup: "https://www.primea.rs/istrazi-nase-usluge/",
 };
 
 const COLUMN_MAP: Record<string, string> = {

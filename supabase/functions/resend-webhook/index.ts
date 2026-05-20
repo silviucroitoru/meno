@@ -61,7 +61,13 @@ Deno.serve(async (req) => {
   const classifyClick = (link: string | undefined): string | null => {
     if (!link) return null;
     if (link.includes("setmore.com") || link.includes("btn=consultation")) return "consultation";
-    if (link.includes("konsultacija-ginekologa") || link.includes("btn=checkup")) return "checkup";
+    if (
+      link.includes("istrazi-nase-usluge") ||
+      link.includes("konsultacija-ginekologa") ||
+      link.includes("btn=checkup")
+    ) {
+      return "checkup";
+    }
     return null;
   };
 
