@@ -62,9 +62,11 @@ function sortEntries(entries, keys) {
 const STAGE_ORDER = ["Premenopause", "Perimenopause", "Menopause", "Postmenopause", "Undefined", "Neodređeno", "Nedefinită"];
 const EMAIL_STATUS_ORDER = ["Sent", "Delivered", "Opened", "Clicked", "Bounced"];
 
-function Bars({ title, data, order = STAGE_ORDER }) {
+function Bars({ title, data, order = STAGE_ORDER, baseKey }) {
   const entries = useMemo(() => sortEntries(Object.entries(data || {}), order), [data, order]);
-  const total = entries.reduce((sum, [, v]) => sum + (Number(v) || 0), 0) || 0;
+  const base = baseKey
+    ? (Number(data?.[baseKey]) || 0)
+    : entries.reduce((sum, [, v]) => sum + (Number(v) || 0), 0);
 
   return (
     <div className="admin-bars-card">
@@ -74,7 +76,7 @@ function Bars({ title, data, order = STAGE_ORDER }) {
       ) : (
         entries.map(([key, count]) => {
           const raw = Number(count) || 0;
-          const shareRaw = total > 0 ? (raw / total) * 100 : 0;
+          const shareRaw = base > 0 ? (raw / base) * 100 : 0;
           const share = Math.round(shareRaw);
           const widthPct = Math.max(0, Math.min(100, shareRaw));
           return (
@@ -348,7 +350,7 @@ export default function AdminDashboard() {
               <h2 id="admin-statistics-heading" className="admin-section-title">Statistics</h2>
               <div className="admin-statistics-bars">
                 <Bars title="Menopause Stage" data={metrics.byStage} />
-                <Bars title="Email Statistics" data={metrics.byEmailStatus} order={EMAIL_STATUS_ORDER} />
+                <Bars title="Email Statistics" data={metrics.byEmailStatus} order={EMAIL_STATUS_ORDER} baseKey="Sent" />
               </div>
             </>
           )}
