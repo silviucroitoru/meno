@@ -49,11 +49,8 @@ function formatDate(value) {
   }
 }
 
-function sortStageEntries(entries) {
-  const order = new Map(
-    ["Premenopause", "Perimenopause", "Menopause", "Postmenopause", "Undefined", "Neodređeno", "Nedefinită"]
-      .map((k, i) => [k, i]),
-  );
+function sortEntries(entries, keys) {
+  const order = new Map(keys.map((k, i) => [k, i]));
   return [...entries].sort((a, b) => {
     const ai = order.has(a[0]) ? order.get(a[0]) : 999;
     const bi = order.has(b[0]) ? order.get(b[0]) : 999;
@@ -62,8 +59,11 @@ function sortStageEntries(entries) {
   });
 }
 
-function Bars({ title, data }) {
-  const entries = useMemo(() => sortStageEntries(Object.entries(data || {})), [data]);
+const STAGE_ORDER = ["Premenopause", "Perimenopause", "Menopause", "Postmenopause", "Undefined", "Neodređeno", "Nedefinită"];
+const EMAIL_STATUS_ORDER = ["Sent", "Delivered", "Opened", "Clicked", "Bounced"];
+
+function Bars({ title, data, order = STAGE_ORDER }) {
+  const entries = useMemo(() => sortEntries(Object.entries(data || {}), order), [data, order]);
   const total = entries.reduce((sum, [, v]) => sum + (Number(v) || 0), 0) || 0;
 
   return (
@@ -347,7 +347,8 @@ export default function AdminDashboard() {
               </div>
               <h2 id="admin-statistics-heading" className="admin-section-title">Statistics</h2>
               <div className="admin-statistics-bars">
-                <Bars title="By menopause stage" data={metrics.byStage} />
+                <Bars title="Menopause Stage" data={metrics.byStage} />
+                <Bars title="Email Statistics" data={metrics.byEmailStatus} order={EMAIL_STATUS_ORDER} />
               </div>
             </>
           )}

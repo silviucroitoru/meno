@@ -61,6 +61,7 @@ export async function fetchAdminMetrics() {
     withoutReportCount: 0,
     completionRatePct: 0,
     byStage: {},
+    byEmailStatus: {},
   };
 }
 
