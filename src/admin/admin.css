@@ -70,6 +70,7 @@
 
 .admin-statistics-bars{
   display: flex;
+  flex-wrap: wrap;
   gap: 24px;
 }
 .admin-statistics-bars > *{
@@ -569,12 +570,6 @@
 }
 
 @media screen and (max-width: 749px){
-  .admin-statistics-bars{
-    flex-direction: column;
-  }
-  .admin-statistics-bars > *{
-    max-width: none;
-  }
   .admin-header{
     padding: 16px 20px;
   }
