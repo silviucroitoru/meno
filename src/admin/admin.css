@@ -572,6 +572,9 @@
   .admin-statistics-bars{
     flex-direction: column;
   }
+  .admin-statistics-bars > *{
+    max-width: none;
+  }
   .admin-header{
     padding: 16px 20px;
   }
