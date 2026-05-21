@@ -71,6 +71,8 @@
 .admin-statistics-bars{
   display: flex;
   gap: 24px;
+}
+.admin-statistics-bars > *{
   max-width: 560px;
   width: 100%;
 }
