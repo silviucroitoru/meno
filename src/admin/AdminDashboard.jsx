@@ -142,7 +142,7 @@ export default function AdminDashboard() {
         const allowed = res?.allowed === true;
         setCanMarketing(allowed);
         if (allowed) {
-          const { from } = computeRange("thisMonth");
+          const from = "2026-05-13";
           const yesterday = computeRange("yesterday").to;
           fetchAdminMarketingRange({ from, to: yesterday })
             .then(setMarketingData)
@@ -332,7 +332,7 @@ export default function AdminDashboard() {
                     <div className="admin-metric-value">
                       ${Number(marketingData.total_spend_usd ?? 0).toFixed(2)}
                     </div>
-                    <div className="admin-metric-hint">This month, up to yesterday</div>
+                    <div className="admin-metric-hint">Since May 13</div>
                   </div>
                 )}
                 {canMarketing && marketingData && (
@@ -343,7 +343,7 @@ export default function AdminDashboard() {
                         ? `$${Number(marketingData.avg_cpa_usd).toFixed(2)}`
                         : "—"}
                     </div>
-                    <div className="admin-metric-hint">This month, up to yesterday</div>
+                    <div className="admin-metric-hint">Since May 13</div>
                   </div>
                 )}
               </div>
