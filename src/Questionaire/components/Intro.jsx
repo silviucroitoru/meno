@@ -4,8 +4,8 @@ export default function Intro({type, intro_text, disclaimer, next, back, current
   return(
     <>
       <div className="intro-page">
-        <div>
-          <div dangerouslySetInnerHTML={{ __html: intro_text }} />
+        <div className="intro-page-content">
+          <div className="intro-page-text" dangerouslySetInnerHTML={{ __html: intro_text }} />
           {disclaimer && (
             <div className="intro-disclaimer" dangerouslySetInnerHTML={{ __html: disclaimer }} />
           )}

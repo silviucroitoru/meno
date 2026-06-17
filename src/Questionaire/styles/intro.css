@@ -8,10 +8,17 @@
   align-content: flex-start;
   flex-wrap: wrap;
 }
-.intro-page div{
+.intro-page-content{
   height: calc(100% - 208px);
   padding-bottom: 208px;
   overflow: auto;
+  width: 100%;
+}
+.intro-page-text,
+.intro-page .intro-disclaimer{
+  height: auto;
+  padding-bottom: 0;
+  overflow: visible;
 }
 .intro-page h1,
 .media h1,
@@ -73,7 +80,7 @@
   font-weight: 400;
   line-height: 16px;
   letter-spacing: -0.18px;
-  margin: 0 0 32px 0;
+  margin: 8px 0 32px 0;
 }
 .intro-page .intro-disclaimer strong{
   font-family: "SofiaPro-Medium";

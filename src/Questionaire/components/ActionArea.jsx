@@ -5,25 +5,6 @@ export default function ActionArea({currentPage, next, back, dataPointId, dataPo
     <div
       className={`action-area ${type === 'intro' ? 'width-disclaimer' : ''} ${currentPage.position === 1 ? 'justify-end' : 'justify-between'}`}>
       {
-        type === 'intro' && (
-          <div className="disclaimer">
-            {/*<T keyName="terms_agreement" components={{privacyLink: privacyLinkFunction}} />*/}
-            {/*
-              <FormattedMessage
-                id="terms_agreement"
-                values={{
-                  privacyPolicy: (
-                    <a href="https://evrbloom.ro/policies/privacy-policy" target="_blank">
-                      <FormattedMessage id="privacy_policy" />
-                    </a>
-                  ),
-                }}
-              />
-            */}
-          </div>
-        )
-      }
-      {
         currentPage.position !== 1 && (
           <button className="button button--secondary" onClick={() => {
             back()
