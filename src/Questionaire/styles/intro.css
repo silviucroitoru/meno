@@ -154,7 +154,7 @@
   }
   .intro.action-area{
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     column-gap: 24px;
     align-items: center;
     justify-content: space-between;

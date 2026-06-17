@@ -1,6 +1,10 @@
+import { useState } from 'react';
 import '../styles/intro.css';
 import ActionArea from "./ActionArea.jsx";
-export default function Intro({type, intro_text, disclaimer, next, back, currentPage, language}) {
+export default function Intro({type, intro_text, disclaimer, checkbox, next, back, currentPage, language}) {
+  const [checked, setChecked] = useState(false);
+  const hasCheckbox = !!checkbox?.trim();
+
   return(
     <>
       <div className="intro-page">
@@ -15,9 +19,12 @@ export default function Intro({type, intro_text, disclaimer, next, back, current
         currentPage={currentPage}
         back={back}
         next={next}
-        isAvailable
+        isAvailable={!hasCheckbox || checked}
         type={type}
         language={language}
+        checkbox={hasCheckbox ? checkbox : null}
+        checked={checked}
+        onCheckedChange={setChecked}
       />
     </>
 

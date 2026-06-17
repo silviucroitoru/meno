@@ -122,7 +122,7 @@
     max-width: 100%;
   }
   .action-area.width-disclaimer{
-    flex-direction: column-reverse;
+    flex-direction: column;
     row-gap: 16px;
   }
 }
@@ -150,6 +150,17 @@
   text-decoration-thickness: auto;
   text-underline-offset: auto;
   text-underline-position: from-font;
+}
+.action-area .intro-checkbox{
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+}
+.action-area .intro-checkbox input[type="checkbox"]{
+  margin: 2px 0 0 0;
+  flex-shrink: 0;
+  cursor: pointer;
 }
 .no-scroll{
   -ms-overflow-style: none;  /* IE and Edge */

@@ -1,9 +1,19 @@
 import {FormattedMessage} from "react-intl";
 
-export default function ActionArea({currentPage, next, back, dataPointId, dataPointName, a, isAvailable, type}) {
+export default function ActionArea({currentPage, next, back, dataPointId, dataPointName, a, isAvailable, type, checkbox, checked, onCheckedChange}) {
+  const hasCheckbox = type === 'intro' && !!checkbox;
+  const introClass = type === 'intro' ? 'intro' : '';
+  const disclaimerClass = hasCheckbox ? 'width-disclaimer' : '';
+  const justifyClass = (currentPage.position === 1 && !hasCheckbox) ? 'justify-end' : 'justify-between';
+
   return (
-    <div
-      className={`action-area ${type === 'intro' ? 'width-disclaimer' : ''} ${currentPage.position === 1 ? 'justify-end' : 'justify-between'}`}>
+    <div className={`action-area ${introClass} ${disclaimerClass} ${justifyClass}`.replace(/\s+/g, ' ').trim()}>
+      {hasCheckbox && (
+        <label className="disclaimer intro-checkbox">
+          <input type="checkbox" checked={checked} onChange={(e) => onCheckedChange(e.target.checked)} />
+          <span>{checkbox}</span>
+        </label>
+      )}
       {
         currentPage.position !== 1 && (
           <button className="button button--secondary" onClick={() => {
