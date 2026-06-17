@@ -68,6 +68,41 @@
   margin-top: 32px;
 }
 
+.admin-selector-grid{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.admin-selector-card{
+  flex: 1;
+  min-width: 240px;
+  max-width: 360px;
+  border: 1px solid var(--secondary-blue-20);
+  border-radius: 12px;
+  padding: 28px;
+  background: #FFF;
+  text-decoration: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.admin-selector-card:hover{
+  border-color: var(--main-blue);
+  box-shadow: 0 4px 16px rgba(14, 46, 87, 0.08);
+}
+.admin-selector-card__title{
+  font-family: "SofiaPro-Medium";
+  color: var(--main-blue);
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.4px;
+  margin-bottom: 8px;
+}
+.admin-selector-card__desc{
+  font-family: "SofiaPro-Regular";
+  color: var(--main-grey);
+  font-size: 14px;
+  line-height: 20px;
+}
+
 .admin-statistics-bars{
   display: flex;
   flex-wrap: wrap;

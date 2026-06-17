@@ -3,13 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   adminSignOut,
   fetchAdminMarketingAccess,
-  fetchAdminMarketingRange,
-  setAdminMarketingDay,
+  fetchAdminContraceptionMarketingRange,
+  setAdminContraceptionMarketingDay,
 } from "../data/adminApi";
 import { TIMEFRAMES, computeRange, formatChartDay } from "./adminDateRange";
 import "./admin.css";
 
-export default function AdminMarketingCosts() {
+export default function AdminContraceptionMarketingCosts() {
   const navigate = useNavigate();
 
   const [allowed, setAllowed] = useState(null);
@@ -43,7 +43,7 @@ export default function AdminMarketingCosts() {
     setLoading(true);
     setError(null);
     const range = computeRange(timeframe);
-    fetchAdminMarketingRange(range)
+    fetchAdminContraceptionMarketingRange(range)
       .then((d) => { if (!cancelled) setData(d); })
       .catch((err) => { if (!cancelled) setError(err?.message || "Failed to load"); })
       .finally(() => { if (!cancelled) setLoading(false); });
@@ -75,7 +75,7 @@ export default function AdminMarketingCosts() {
     if (isNaN(parsed) || parsed < 0) return;
     setSaving(true);
     try {
-      await setAdminMarketingDay(day, parsed);
+      await setAdminContraceptionMarketingDay(day, parsed);
       setEditingDay(null);
       setEditValue("");
       loadData();
@@ -111,7 +111,7 @@ export default function AdminMarketingCosts() {
           <img src="/primea_logo.png" alt="Primea" />
         </a>
         <div className="admin-header-actions">
-          <Link to="/admin/menopause" className="admin-ghost-button">Dashboard</Link>
+          <Link to="/admin/contraception" className="admin-ghost-button">Dashboard</Link>
           <button type="button" className="admin-ghost-button" onClick={handleSignOut}>
             Sign out
           </button>
@@ -120,7 +120,7 @@ export default function AdminMarketingCosts() {
 
       <main className="admin-container">
         <section className="admin-section">
-          <div className="admin-section-prehead">Marketing</div>
+          <div className="admin-section-prehead">Contraception · Marketing</div>
           <h2 className="admin-section-title">Daily Ad Spend</h2>
 
           <div className="admin-timeframe-bar">

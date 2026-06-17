@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   ResponsiveContainer,
@@ -9,7 +9,14 @@ import {
   Tooltip,
   CartesianGrid,
 } from "recharts";
-import { adminSignOut, fetchAdminDailySubmissions, fetchAdminMarketingAccess, fetchAdminMarketingRange, fetchAdminMetrics, fetchAdminSubmissions } from "../data/adminApi";
+import {
+  adminSignOut,
+  fetchAdminContraceptionDailySubmissions,
+  fetchAdminContraceptionMarketingRange,
+  fetchAdminContraceptionMetrics,
+  fetchAdminContraceptionSubmissions,
+  fetchAdminMarketingAccess,
+} from "../data/adminApi";
 import { TIMEFRAMES, computeRange, formatChartDay } from "./adminDateRange";
 import "./admin.css";
 
@@ -49,52 +56,7 @@ function formatDate(value) {
   }
 }
 
-function sortEntries(entries, keys) {
-  const order = new Map(keys.map((k, i) => [k, i]));
-  return [...entries].sort((a, b) => {
-    const ai = order.has(a[0]) ? order.get(a[0]) : 999;
-    const bi = order.has(b[0]) ? order.get(b[0]) : 999;
-    if (ai !== bi) return ai - bi;
-    return (b[1] ?? 0) - (a[1] ?? 0);
-  });
-}
-
-const STAGE_ORDER = ["Premenopause", "Perimenopause", "Menopause", "Postmenopause", "Undefined", "Neodređeno", "Nedefinită"];
-const EMAIL_STATUS_ORDER = ["Sent", "Delivered", "Opened", "Clicked", "Bounced"];
-
-function Bars({ title, data, order = STAGE_ORDER, baseKey }) {
-  const entries = useMemo(() => sortEntries(Object.entries(data || {}), order), [data, order]);
-  const base = baseKey
-    ? (Number(data?.[baseKey]) || 0)
-    : entries.reduce((sum, [, v]) => sum + (Number(v) || 0), 0);
-
-  return (
-    <div className="admin-bars-card">
-      <h3>{title}</h3>
-      {entries.length === 0 ? (
-        <div className="admin-empty">No data yet</div>
-      ) : (
-        entries.map(([key, count]) => {
-          const raw = Number(count) || 0;
-          const shareRaw = base > 0 ? (raw / base) * 100 : 0;
-          const share = Math.round(shareRaw);
-          const widthPct = Math.max(0, Math.min(100, shareRaw));
-          return (
-            <div className="admin-bar" key={key}>
-              <span className="admin-bar-label">{key}</span>
-              <span className="admin-bar-count">{raw} · {share}%</span>
-              <div className="admin-bar-track">
-                <div className="admin-bar-fill" style={{ width: `${widthPct}%` }} />
-              </div>
-            </div>
-          );
-        })
-      )}
-    </div>
-  );
-}
-
-export default function AdminDashboard() {
+export default function AdminContraceptionDashboard() {
   const navigate = useNavigate();
 
   const [canMarketing, setCanMarketing] = useState(false);
@@ -123,7 +85,7 @@ export default function AdminDashboard() {
     setChartLoading(true);
     setChartError(null);
     const range = computeRange(timeframe);
-    fetchAdminDailySubmissions(range)
+    fetchAdminContraceptionDailySubmissions(range)
       .then((data) => {
         if (!cancelled) setChartData(data.map((d) => ({ ...d, label: formatChartDay(d.day) })));
       })
@@ -144,7 +106,7 @@ export default function AdminDashboard() {
         if (allowed) {
           const from = "2026-05-13";
           const yesterday = computeRange("yesterday").to;
-          fetchAdminMarketingRange({ from, to: yesterday })
+          fetchAdminContraceptionMarketingRange({ from, to: yesterday })
             .then(setMarketingData)
             .catch(() => {});
         }
@@ -156,7 +118,7 @@ export default function AdminDashboard() {
     let cancelled = false;
     setMetricsLoading(true);
     setMetricsError(null);
-    fetchAdminMetrics()
+    fetchAdminContraceptionMetrics()
       .then((data) => {
         if (!cancelled) setMetrics(data);
       })
@@ -186,7 +148,7 @@ export default function AdminDashboard() {
     let cancelled = false;
     setListLoading(true);
     setListError(null);
-    fetchAdminSubmissions({ search: debouncedSearch, limit: PAGE_SIZE, offset })
+    fetchAdminContraceptionSubmissions({ search: debouncedSearch, limit: PAGE_SIZE, offset })
       .then((data) => {
         if (!cancelled) setList(data);
       })
@@ -228,7 +190,7 @@ export default function AdminDashboard() {
             All dashboards
           </Link>
           {canMarketing && (
-            <Link to="/admin/menopause/marketing-costs" className="admin-ghost-button">
+            <Link to="/admin/contraception/marketing-costs" className="admin-ghost-button">
               Marketing Costs
             </Link>
           )}
@@ -240,7 +202,7 @@ export default function AdminDashboard() {
 
       <main className="admin-container">
         <section className="admin-section" aria-labelledby="admin-chart-heading">
-          <div className="admin-section-prehead">Activity</div>
+          <div className="admin-section-prehead">Contraception · Activity</div>
           <h2 id="admin-chart-heading" className="admin-section-title">Submissions per day</h2>
 
           <div className="admin-timeframe-bar">
@@ -264,7 +226,7 @@ export default function AdminDashboard() {
                 <ResponsiveContainer width="100%" height={300}>
                   <AreaChart data={chartData} margin={{ top: 12, right: 8, left: -8, bottom: 4 }}>
                     <defs>
-                      <linearGradient id="adminActivityFill" x1="0" y1="0" x2="0" y2="1">
+                      <linearGradient id="adminContraActivityFill" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="0%" stopColor={CHART_BLUE} stopOpacity={0.2} />
                         <stop offset="55%" stopColor={CHART_BLUE} stopOpacity={0.06} />
                         <stop offset="100%" stopColor={CHART_BLUE} stopOpacity={0} />
@@ -293,7 +255,7 @@ export default function AdminDashboard() {
                       name="Submissions"
                       stroke={CHART_BLUE}
                       strokeWidth={2.5}
-                      fill="url(#adminActivityFill)"
+                      fill="url(#adminContraActivityFill)"
                       activeDot={{ r: 5, strokeWidth: 2, stroke: "#fff", fill: CHART_BLUE }}
                       dot={
                         chartData.length <= 3
@@ -310,64 +272,57 @@ export default function AdminDashboard() {
         </section>
 
         <section className="admin-section" aria-labelledby="admin-metrics-heading">
-          <div className="admin-section-prehead">Overview</div>
+          <div className="admin-section-prehead">Contraception · Overview</div>
           <h2 id="admin-metrics-heading" className="admin-section-title">Metrics</h2>
 
           {metricsLoading && <div className="admin-loading">Loading metrics…</div>}
           {metricsError && !metricsLoading && <div className="admin-error">{metricsError}</div>}
 
           {metrics && !metricsLoading && !metricsError && (
-            <>
-              <div className="admin-metrics-row">
-                <div className="admin-metric-card admin-metric-card--compact">
-                  <div className="admin-metric-label">Successful submissions</div>
-                  <div className="admin-metric-value">{metrics.successfulSubmissions ?? 0}</div>
+            <div className="admin-metrics-row">
+              <div className="admin-metric-card admin-metric-card--compact">
+                <div className="admin-metric-label">Completed submissions</div>
+                <div className="admin-metric-value">{metrics.completedSubmissions ?? 0}</div>
+              </div>
+              <div className="admin-metric-card admin-metric-card--compact">
+                <div className="admin-metric-label">Questionnaire completion rate</div>
+                <div className="admin-metric-value">
+                  {Number(metrics.completionRatePct ?? 0).toFixed(1)}%
                 </div>
+              </div>
+              {canMarketing && marketingData && (
                 <div className="admin-metric-card admin-metric-card--compact">
-                  <div className="admin-metric-label">Questionnaire completion rate</div>
+                  <div className="admin-metric-label">Total ad spend (USD)</div>
                   <div className="admin-metric-value">
-                    {Number(metrics.completionRatePct ?? 0).toFixed(1)}%
+                    ${Number(marketingData.total_spend_usd ?? 0).toFixed(2)}
                   </div>
+                  <div className="admin-metric-hint">Since May 13</div>
                 </div>
-                {canMarketing && marketingData && (
-                  <div className="admin-metric-card admin-metric-card--compact">
-                    <div className="admin-metric-label">Total ad spend (USD)</div>
-                    <div className="admin-metric-value">
-                      ${Number(marketingData.total_spend_usd ?? 0).toFixed(2)}
-                    </div>
-                    <div className="admin-metric-hint">Since May 13</div>
+              )}
+              {canMarketing && marketingData && (
+                <div className="admin-metric-card admin-metric-card--compact">
+                  <div className="admin-metric-label">Cost per submission (USD)</div>
+                  <div className="admin-metric-value">
+                    {marketingData.avg_cpa_usd != null
+                      ? `$${Number(marketingData.avg_cpa_usd).toFixed(2)}`
+                      : "—"}
                   </div>
-                )}
-                {canMarketing && marketingData && (
-                  <div className="admin-metric-card admin-metric-card--compact">
-                    <div className="admin-metric-label">Cost per submission (USD)</div>
-                    <div className="admin-metric-value">
-                      {marketingData.avg_cpa_usd != null
-                        ? `$${Number(marketingData.avg_cpa_usd).toFixed(2)}`
-                        : "—"}
-                    </div>
-                    <div className="admin-metric-hint">Since May 13</div>
-                  </div>
-                )}
-              </div>
-              <h2 id="admin-statistics-heading" className="admin-section-title">Statistics</h2>
-              <div className="admin-statistics-bars">
-                <Bars title="Menopause Stage" data={metrics.byStage} />
-                <Bars title="Email Statistics" data={metrics.byEmailStatus} order={EMAIL_STATUS_ORDER} baseKey="Sent" />
-              </div>
-            </>
+                  <div className="admin-metric-hint">Since May 13</div>
+                </div>
+              )}
+            </div>
           )}
         </section>
 
         <section className="admin-section" aria-labelledby="admin-submissions-heading">
-          <div className="admin-section-prehead">Submissions</div>
+          <div className="admin-section-prehead">Contraception · Submissions</div>
           <h2 id="admin-submissions-heading" className="admin-section-title">All submissions</h2>
 
           <div className="admin-toolbar">
             <div className="admin-search">
               <input
                 type="search"
-                placeholder="Search name, email, stage…"
+                placeholder="Search name, email…"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 aria-label="Search submissions"
@@ -391,16 +346,12 @@ export default function AdminDashboard() {
                   <th>Date</th>
                   <th>First name</th>
                   <th>Email</th>
-                  <th>Email status</th>
-                  <th>Stage</th>
-                  <th>Score</th>
-                  <th>Report</th>
                 </tr>
               </thead>
               <tbody>
                 {!listLoading && list.rows?.length === 0 && (
                   <tr>
-                    <td colSpan={7}>
+                    <td colSpan={3}>
                       <div className="admin-empty">No submissions match this search.</div>
                     </td>
                   </tr>
@@ -410,28 +361,6 @@ export default function AdminDashboard() {
                     <td data-label="Date" className="admin-col-muted">{formatDate(row.created_at)}</td>
                     <td data-label="First name" className="admin-col-em">{row.first_name || "—"}</td>
                     <td data-label="Email" className="admin-col-muted">{row.email || "—"}</td>
-                    <td data-label="Email status">
-                      {row.email_status ? (
-                        <span className="admin-email-status">
-                          <span className={`admin-email-badge admin-email-badge--${row.email_status.replace("email.", "")}`}>
-                            {row.email_status.replace("email.", "").replace(/^\w/, (c) => c.toUpperCase())}
-                          </span>
-                          {row.clicked_consultation_at && (
-                            <span className="admin-email-badge admin-email-badge--cta">Free Consultation</span>
-                          )}
-                          {row.clicked_checkup_at && (
-                            <span className="admin-email-badge admin-email-badge--cta">Checkup</span>
-                          )}
-                        </span>
-                      ) : "—"}
-                    </td>
-                    <td data-label="Stage">{row.stage || "—"}</td>
-                    <td data-label="Score">{row.score != null && row.score !== "" ? row.score : "—"}</td>
-                    <td data-label="Report">
-                      <Link to={`/dashboard?submissionId=${row.submission_id}&language=${(row.language || "SR").toLowerCase()}`} target="_blank" rel="noreferrer">
-                        Open
-                      </Link>
-                    </td>
                   </tr>
                 ))}
               </tbody>

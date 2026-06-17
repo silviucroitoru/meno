@@ -140,3 +140,32 @@ export async function fetchAdminContraceptionSubmissions({ search = "", limit = 
   return data ?? { total: 0, limit, offset, rows: [] };
 }
 
+export async function fetchAdminContraceptionDailySubmissions({ from, to }) {
+  assertSupabaseConfigured();
+  const { data, error } = await supabase.rpc("admin_contraception_daily_submissions", {
+    p_from: from,
+    p_to: to,
+  });
+  if (error) throw new Error(error.message || "Failed to load daily data");
+  return data ?? [];
+}
+
+export async function fetchAdminContraceptionMarketingRange({ from, to }) {
+  assertSupabaseConfigured();
+  const { data, error } = await supabase.rpc("admin_contraception_marketing_range", {
+    p_from: from,
+    p_to: to,
+  });
+  if (error) throw new Error(error.message || "Failed to load marketing data");
+  return data ?? { total_spend_usd: 0, total_submissions: 0, avg_cpa_usd: null, rows: [] };
+}
+
+export async function setAdminContraceptionMarketingDay(day, amountUsd) {
+  assertSupabaseConfigured();
+  const { error } = await supabase.rpc("admin_contraception_marketing_set_day", {
+    p_day: day,
+    p_amount_usd: amountUsd,
+  });
+  if (error) throw new Error(error.message || "Failed to save spend");
+}
+
