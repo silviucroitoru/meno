@@ -51,9 +51,20 @@
   margin: 0 0 32px 0;
   padding-left: 24px;
   list-style-type: disc;
+  border: none;
+  background-color: transparent;
+  border-radius: 0;
+  gap: 0;
+  overflow: visible;
+  display: block;
 }
 .intro-page li{
   margin-bottom: 8px;
+  background-color: transparent;
+  padding: 0;
+}
+.intro-page li:hover{
+  background: transparent;
 }
 .intro-page h1::-webkit-scrollbar,
 .intro-page h2::-webkit-scrollbar{
