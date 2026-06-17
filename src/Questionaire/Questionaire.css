@@ -157,10 +157,23 @@
   gap: 8px;
   cursor: pointer;
 }
-.action-area .intro-checkbox input[type="checkbox"]{
-  margin: 2px 0 0 0;
+.action-area .intro-checkbox .intro-checkbox__input{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.action-area .intro-checkbox .intro-checkbox__icon{
   flex-shrink: 0;
-  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  position: relative;
+  top: -2px;
 }
 .no-scroll{
   -ms-overflow-style: none;  /* IE and Edge */
