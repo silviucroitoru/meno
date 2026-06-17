@@ -123,7 +123,7 @@
   }
   .action-area.width-disclaimer{
     flex-direction: column;
-    row-gap: 16px;
+    row-gap: 24px;
   }
 }
 
