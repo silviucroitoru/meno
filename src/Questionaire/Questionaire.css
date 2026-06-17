@@ -154,8 +154,8 @@
 .action-area .intro-checkbox,
 .intro.action-area .intro-checkbox{
   display: flex;
-  align-items: flex-start;
-  gap: 8px;
+  align-items: center;
+  gap: 16px;
   cursor: pointer;
   color: var(--main-blue);
   font-family: "SofiaPro-Medium";
@@ -179,8 +179,6 @@
   width: 20px;
   height: 20px;
   display: flex;
-  position: relative;
-  top: -2px;
 }
 .no-scroll{
   -ms-overflow-style: none;  /* IE and Edge */
