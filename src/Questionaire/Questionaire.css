@@ -151,7 +151,8 @@
   text-underline-offset: auto;
   text-underline-position: from-font;
 }
-.action-area .intro-checkbox{
+.action-area .intro-checkbox,
+.intro.action-area .intro-checkbox{
   display: flex;
   align-items: flex-start;
   gap: 8px;
