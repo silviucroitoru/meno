@@ -114,3 +114,29 @@ export async function fetchAdminSubmissions({ search = "", limit = 50, offset = 
   return data ?? { total: 0, limit, offset, rows: [] };
 }
 
+export async function fetchAdminContraceptionMetrics() {
+  assertSupabaseConfigured();
+  const { data, error } = await supabase.rpc("admin_contraception_metrics");
+  if (error) {
+    throw new Error(error.message || "Failed to load contraception metrics");
+  }
+  return data ?? {
+    totalSubmissions: 0,
+    completedSubmissions: 0,
+    completionRatePct: 0,
+  };
+}
+
+export async function fetchAdminContraceptionSubmissions({ search = "", limit = 50, offset = 0 } = {}) {
+  assertSupabaseConfigured();
+  const { data, error } = await supabase.rpc("admin_list_contraception_submissions", {
+    p_search: search || null,
+    p_limit: limit,
+    p_offset: offset,
+  });
+  if (error) {
+    throw new Error(error.message || "Failed to load contraception submissions");
+  }
+  return data ?? { total: 0, limit, offset, rows: [] };
+}
+

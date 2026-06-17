@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import { adminSignOut, fetchAdminDailySubmissions, fetchAdminMarketingAccess, fetchAdminMarketingRange, fetchAdminMetrics, fetchAdminSubmissions } from "../data/adminApi";
 import { TIMEFRAMES, computeRange, formatChartDay } from "./adminDateRange";
+import ContraceptionSubmissions from "./ContraceptionSubmissions.jsx";
 import "./admin.css";
 
 const PAGE_SIZE = 50;
@@ -459,6 +460,8 @@ export default function AdminDashboard() {
             </div>
           </div>
         </section>
+
+        <ContraceptionSubmissions />
       </main>
     </div>
   );

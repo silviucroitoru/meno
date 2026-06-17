@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Dashboard from "./Dashboard/Dashboard.jsx"
 import mixpanel from 'mixpanel-browser';
 import Questionaire from "./Questionaire/Questionaire.jsx"
+import ContraceptionQuestionnaire from "./Contraception/ContraceptionQuestionnaire.jsx"
+import ContraceptionResults from "./Contraception/ContraceptionResults.jsx"
 import AdminLogin from "./admin/AdminLogin.jsx";
 import AdminDashboard from "./admin/AdminDashboard.jsx";
 import AdminMarketingCosts from "./admin/AdminMarketingCosts.jsx";
@@ -30,6 +32,8 @@ function App() {
         <Route path="/" element={<Navigate to="/questionnaire" replace />} />
         <Route path="/questionnaire" element={<Questionaire />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/contraception" element={<ContraceptionQuestionnaire />} />
+        <Route path="/contraception/results" element={<ContraceptionResults />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route
           path="/admin"

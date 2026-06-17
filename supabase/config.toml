@@ -367,6 +367,12 @@ verify_jwt = false
 [functions.resend-webhook]
 verify_jwt = false
 
+[functions.get-contraception-questionnaire]
+verify_jwt = false
+
+[functions.update-contraception-response]
+verify_jwt = false
+
 [edge_runtime]
 enabled = true
 # Supported request policies: `oneshot`, `per_worker`.

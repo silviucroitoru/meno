@@ -6,7 +6,12 @@ import './Questionaire.css'
 import HeaderArea from "./components/HeaderArea.jsx";
 import { initMetaPixel, metaPixelTrackCustom } from "../analytics/metaPixel.js";
 
-export default function Questionaire() {
+export default function Questionaire({
+  getEndpoint = "get-questionnaire",
+  updateEndpoint = "update-response",
+  submissionStorageKey = "SubmissionID",
+  completionPath = "/dashboard",
+} = {}) {
   function getLanguageFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     const lang = urlParams.get('language')?.toLowerCase();
@@ -42,13 +47,13 @@ export default function Questionaire() {
     const requestOptions = {
       method: "GET",
     };
-    fetch(`${import.meta.env.VITE_API_URL}/get-questionnaire?language=${language}`, requestOptions)
+    fetch(`${import.meta.env.VITE_API_URL}/${getEndpoint}?language=${language}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setSubmissionId(result.SubmissionID)
         setQuestionnaire(result.questionnaire);
         setCurrentPage(result.questionnaire.info[0])
-        localStorage.setItem('SubmissionID', result.SubmissionID);
+        localStorage.setItem(submissionStorageKey, result.SubmissionID);
       })
       .catch((error) => console.error(error));
     // eslint-disable-next-line
@@ -74,7 +79,7 @@ export default function Questionaire() {
         "Response": a
       }
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/update-response`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/${updateEndpoint}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -93,7 +98,7 @@ export default function Questionaire() {
             language: language.toLowerCase(),
             submission_id: String(submissionId ?? ""),
           });
-          navigate("/dashboard");
+          navigate(completionPath);
         }
         return result;
       } catch (error) {
