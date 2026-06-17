@@ -13,6 +13,7 @@ export default function Page({page, next, back, currentPage, userName, language}
       return (
         <Intro
           intro_text={page.settings.RichText}
+          disclaimer={page.settings.Disclaimer}
           next={next}
           back={back}
           currentPage={currentPage}
