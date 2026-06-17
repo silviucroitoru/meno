@@ -18,6 +18,7 @@ import {
   fetchAdminMarketingAccess,
 } from "../data/adminApi";
 import { TIMEFRAMES, computeRange, formatChartDay } from "./adminDateRange";
+import AdminDashboardSwitcher from "./AdminDashboardSwitcher.jsx";
 import "./admin.css";
 
 const PAGE_SIZE = 50;
@@ -186,9 +187,7 @@ export default function AdminContraceptionDashboard() {
           <img src="/primea_logo.png" alt="Primea" />
         </a>
         <div className="admin-header-actions">
-          <Link to="/admin" className="admin-ghost-button">
-            All dashboards
-          </Link>
+          <AdminDashboardSwitcher current="contraception" />
           {canMarketing && (
             <Link to="/admin/contraception/marketing-costs" className="admin-ghost-button">
               Marketing Costs

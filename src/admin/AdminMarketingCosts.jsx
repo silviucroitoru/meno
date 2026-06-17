@@ -111,7 +111,7 @@ export default function AdminMarketingCosts() {
           <img src="/primea_logo.png" alt="Primea" />
         </a>
         <div className="admin-header-actions">
-          <Link to="/admin/menopause" className="admin-ghost-button">Dashboard</Link>
+          <Link to="/admin" className="admin-ghost-button">Dashboard</Link>
           <button type="button" className="admin-ghost-button" onClick={handleSignOut}>
             Sign out
           </button>

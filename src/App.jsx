@@ -5,7 +5,6 @@ import Questionaire from "./Questionaire/Questionaire.jsx"
 import ContraceptionQuestionnaire from "./Contraception/ContraceptionQuestionnaire.jsx"
 import ContraceptionResults from "./Contraception/ContraceptionResults.jsx"
 import AdminLogin from "./admin/AdminLogin.jsx";
-import AdminSelector from "./admin/AdminSelector.jsx";
 import AdminDashboard from "./admin/AdminDashboard.jsx";
 import AdminMarketingCosts from "./admin/AdminMarketingCosts.jsx";
 import AdminContraceptionDashboard from "./admin/AdminContraceptionDashboard.jsx";
@@ -42,20 +41,12 @@ function App() {
           path="/admin"
           element={
             <AdminRequireAuth>
-              <AdminSelector />
-            </AdminRequireAuth>
-          }
-        />
-        <Route
-          path="/admin/menopause"
-          element={
-            <AdminRequireAuth>
               <AdminDashboard />
             </AdminRequireAuth>
           }
         />
         <Route
-          path="/admin/menopause/marketing-costs"
+          path="/admin/marketing-costs"
           element={
             <AdminRequireAuth>
               <AdminMarketingCosts />
