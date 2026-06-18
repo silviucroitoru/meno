@@ -1,3 +1,15 @@
+.meno-score-container .meno-stage + .meno-stage,
+.meno-score-container .meno-stage + .box {
+  margin-top: 16px;
+}
+
+@media screen and (min-width: 990px) {
+  .meno-score-container .meno-stage + .meno-stage,
+  .meno-score-container .meno-stage + .box {
+    margin-top: 32px;
+  }
+}
+
 .meno-score-container .meno-stage-description ul {
   list-style-type: disc;
   padding-inline-start: 20px;
