@@ -17,3 +17,23 @@
 .meno-score-container .meno-stage-description ul li:hover {
   background: transparent;
 }
+
+.meno-score-container .box .description ul {
+  list-style-type: disc;
+  padding-inline-start: 20px;
+  border: 0;
+  background-color: transparent;
+  border-radius: 0;
+  gap: 0;
+  overflow: visible;
+  margin: 16px 0;
+}
+
+.meno-score-container .box .description ul li {
+  background-color: transparent;
+  padding: 4px 0;
+}
+
+.meno-score-container .box .description ul li:hover {
+  background: transparent;
+}

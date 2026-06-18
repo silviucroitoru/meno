@@ -60,19 +60,6 @@ export default function ContraceptionReport({ recommendedMethods }) {
               <div className="meno-stage-description"
                 dangerouslySetInnerHTML={{ __html: t("contraception_safety_body") }}
               />
-              <div className="meno-stage-title" style={{ marginTop: 32 }}>
-                {t("contraception_benefits_title")}
-              </div>
-              <div className="meno-stage-description">
-                <p>{t("contraception_benefits_intro")}</p>
-                <ul>
-                  <li>{t("contraception_benefit_1")}</li>
-                  <li>{t("contraception_benefit_2")}</li>
-                  <li>{t("contraception_benefit_3")}</li>
-                  <li>{t("contraception_benefit_4")}</li>
-                </ul>
-                <p>{t("contraception_benefits_outro")}</p>
-              </div>
             </div>
           </div>
           <div className="meno-stage-explanation" />
@@ -81,8 +68,17 @@ export default function ContraceptionReport({ recommendedMethods }) {
         {/* Section 3: Book a call */}
         <div className="box" id="book_call">
           <div className="content">
-            <div className="title" dangerouslySetInnerHTML={{ __html: t("book_call_content_title") }} />
-            <div className="description" dangerouslySetInnerHTML={{ __html: t("book_call_content_description") }} />
+            <div className="title">{t("contraception_benefits_title")}</div>
+            <div className="description">
+              <p>{t("contraception_benefits_intro")}</p>
+              <ul>
+                <li>{t("contraception_benefit_1")}</li>
+                <li>{t("contraception_benefit_2")}</li>
+                <li>{t("contraception_benefit_3")}</li>
+                <li>{t("contraception_benefit_4")}</li>
+              </ul>
+              <p>{t("contraception_benefits_outro")}</p>
+            </div>
             <div className="actions">
               <a
                 href={t("book_call_dr_link")}
