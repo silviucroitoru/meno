@@ -21,44 +21,37 @@ export default function ContraceptionReport({ recommendedMethods }) {
       <div className="meno-score-container">
         {/* Section 1: Recommendations */}
         <div className="box" id="recommendations">
-          <div className="content">
-            <div className="title">{t("contraception_report_title")}</div>
-            <div className="description">
-              <p>{t("contraception_report_intro")}</p>
-              {recommendedMethods.length > 0 ? (
-                <ul>
-                  {recommendedMethods.map((method) => (
-                    <li key={method}>{method}</li>
-                  ))}
-                </ul>
-              ) : (
-                <p><em>Konsultujte lekara za personalizovanu preporuku.</em></p>
-              )}
-            </div>
+          <div className="title">{t("contraception_report_title")}</div>
+          <div className="description">
+            <p>{t("contraception_report_intro")}</p>
+            {recommendedMethods.length > 0 ? (
+              <ul>
+                {recommendedMethods.map((method) => (
+                  <li key={method}>{method}</li>
+                ))}
+              </ul>
+            ) : (
+              <p><em>Konsultujte lekara za personalizovanu preporuku.</em></p>
+            )}
           </div>
         </div>
 
         {/* Section 2: Safety + Benefits */}
         <div className="box" id="safety">
-          <div className="content">
-            <div className="title">{t("contraception_safety_title")}</div>
-            <div
-              className="description"
-              dangerouslySetInnerHTML={{ __html: t("contraception_safety_body") }}
-            />
-            <div className="title" style={{ marginTop: 32 }}>
+          <div className="title">{t("contraception_safety_title")}</div>
+          <div className="description">
+            <div dangerouslySetInnerHTML={{ __html: t("contraception_safety_body") }} />
+            <h3 className="title" style={{ marginTop: 32, maxWidth: "100%" }}>
               {t("contraception_benefits_title")}
-            </div>
-            <div className="description">
-              <p>{t("contraception_benefits_intro")}</p>
-              <ul>
-                <li>{t("contraception_benefit_1")}</li>
-                <li>{t("contraception_benefit_2")}</li>
-                <li>{t("contraception_benefit_3")}</li>
-                <li>{t("contraception_benefit_4")}</li>
-              </ul>
-              <p>{t("contraception_benefits_outro")}</p>
-            </div>
+            </h3>
+            <p>{t("contraception_benefits_intro")}</p>
+            <ul>
+              <li>{t("contraception_benefit_1")}</li>
+              <li>{t("contraception_benefit_2")}</li>
+              <li>{t("contraception_benefit_3")}</li>
+              <li>{t("contraception_benefit_4")}</li>
+            </ul>
+            <p>{t("contraception_benefits_outro")}</p>
           </div>
         </div>
 
