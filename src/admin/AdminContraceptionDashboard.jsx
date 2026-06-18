@@ -199,7 +199,8 @@ export default function AdminContraceptionDashboard() {
           </button>
         </div>
         <AdminHeaderBurger>
-          <AdminDashboardSwitcher current="contraception" />
+          <Link to="/admin" className="admin-ghost-button">Menopause</Link>
+          <Link to="/admin/contraception" className="admin-ghost-button">Contraception</Link>
           {canMarketing && (
             <Link to="/admin/contraception/marketing-costs" className="admin-ghost-button">
               Marketing Costs

@@ -237,7 +237,8 @@ export default function AdminDashboard() {
           </button>
         </div>
         <AdminHeaderBurger>
-          <AdminDashboardSwitcher current="menopause" />
+          <Link to="/admin" className="admin-ghost-button">Menopause</Link>
+          <Link to="/admin/contraception" className="admin-ghost-button">Contraception</Link>
           {canMarketing && (
             <Link to="/admin/marketing-costs" className="admin-ghost-button">
               Marketing Costs
