@@ -200,7 +200,7 @@ export default function AdminContraceptionDashboard() {
         </div>
         <AdminHeaderBurger>
           <Link to="/admin" className="admin-ghost-button">Menopause</Link>
-          <Link to="/admin/contraception" className="admin-ghost-button">Contraception</Link>
+          <span className="admin-ghost-button admin-burger-current">Contraception</span>
           {canMarketing && (
             <Link to="/admin/contraception/marketing-costs" className="admin-ghost-button">
               Marketing Costs

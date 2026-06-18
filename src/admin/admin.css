@@ -698,6 +698,13 @@
   .admin-header-menu .admin-ghost-button:hover{
     background: var(--secondary-blue);
   }
+  .admin-header-menu .admin-burger-current{
+    color: var(--main-grey);
+    cursor: default;
+  }
+  .admin-header-menu .admin-burger-current:hover{
+    background: transparent;
+  }
   .admin-container{
     padding: 24px 20px 48px;
   }

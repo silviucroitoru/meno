@@ -237,7 +237,7 @@ export default function AdminDashboard() {
           </button>
         </div>
         <AdminHeaderBurger>
-          <Link to="/admin" className="admin-ghost-button">Menopause</Link>
+          <span className="admin-ghost-button admin-burger-current">Menopause</span>
           <Link to="/admin/contraception" className="admin-ghost-button">Contraception</Link>
           {canMarketing && (
             <Link to="/admin/marketing-costs" className="admin-ghost-button">
