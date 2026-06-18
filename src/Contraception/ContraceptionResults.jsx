@@ -1,19 +1,62 @@
-import "../LeadQuestionAnswer/loader.css";
+import { useEffect, useState } from "react";
+import mixpanel from "mixpanel-browser";
+import ContraceptionSideBar from "./ContraceptionSideBar.jsx";
+import ContraceptionReport from "./ContraceptionReport.jsx";
+import "../Dashboard/dashboard.css";
 
 export default function ContraceptionResults() {
+  const [reportData, setReportData] = useState(null);
+  const [loadError, setLoadError] = useState(null);
+
+  useEffect(() => {
+    const token = mixpanel.get_config?.("token");
+    if (token) mixpanel.track("[Page View] Contraception Results", { source: "Contraception" });
+
+    const base = import.meta.env.VITE_API_URL;
+    if (!base) {
+      setLoadError("Missing VITE_API_URL.");
+      return;
+    }
+
+    const submissionId = localStorage.getItem("ContraceptionSubmissionID");
+    if (!submissionId?.trim()) {
+      setLoadError("No submission found. Complete the questionnaire first.");
+      return;
+    }
+
+    fetch(`${base}/generate-contraception-report?submissionId=${encodeURIComponent(submissionId.trim())}`)
+      .then(async (response) => {
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(result?.error ?? `Request failed (${response.status})`);
+        }
+        return result;
+      })
+      .then((result) => {
+        setReportData(result);
+        setLoadError(null);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoadError(error?.message ?? "Failed to load report");
+      });
+  }, []);
+
   return (
-    <div className="loader">
-      <div className="topic-header">
-        <a href="/contraception">
-          <img src="/primea_logo.png" alt="Primea" className="logo" />
-        </a>
-      </div>
-      <div className="loader-content">
-        <div className="title">Hvala vam!</div>
-        <div className="description">
-          Vaši odgovori su sačuvani. Uskoro ćemo vas kontaktirati.
+    <div className="dashboard">
+      {reportData ? (
+        <>
+          <ContraceptionSideBar />
+          <div className="pageContent">
+            <ContraceptionReport recommendedMethods={reportData.recommendedMethods} />
+          </div>
+        </>
+      ) : loadError ? (
+        <div className="pageContent" style={{ padding: "2rem", maxWidth: 560, margin: "0 auto" }}>
+          <p style={{ color: "#b00020", marginBottom: "0.75rem" }}>Could not load your report.</p>
+          <p style={{ color: "#444", fontSize: 14 }}>{loadError}</p>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 }

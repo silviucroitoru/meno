@@ -151,5 +151,26 @@
 
   "BladderProblems_name": "Problemi sa bešikom",
   "BladderProblems_link": "https://evrbloom.ro/blogs/semne-simptome-menopauza/incontinenta-urinara-menopauza",
-  "BladderProblems_description": "Promene estrogena u menopauzi mogu uticati na sluznicu i mišiće karličnog dna, što može dovesti do urgencije, učestalijeg mokrenja, curenja urina ili češćih infekcija.<br /><br />Ovo je česta pojava i postoje efikasne opcije: vežbe karličnog dna, promene navika, lokalne terapije i stručna procena kada je potrebno.<br /><br />Uz pravi pristup, simptomi se često značajno ublažavaju i vraća se sigurnost u svakodnevici."
+  "BladderProblems_description": "Promene estrogena u menopauzi mogu uticati na sluznicu i mišiće karličnog dna, što može dovesti do urgencije, učestalijeg mokrenja, curenja urina ili češćih infekcija.<br /><br />Ovo je česta pojava i postoje efikasne opcije: vežbe karličnog dna, promene navika, lokalne terapije i stručna procena kada je potrebno.<br /><br />Uz pravi pristup, simptomi se često značajno ublažavaju i vraća se sigurnost u svakodnevici.",
+
+  "contraception_sidebar_recommendations": "Preporučene metode",
+  "contraception_sidebar_safety": "Vaša bezbednost",
+  "contraception_sidebar_book_call": "Zakaži poziv",
+
+  "contraception_report_title": "Hvala vam što brinete o svom reproduktivnom zdravlju!",
+  "contraception_report_intro": "Na osnovu vaših odgovora o načinu života, navikama i zdravstvenoj istoriji, vaš profil ukazuje da biste mogli biti dobar kandidat za sledeće metode kontracepcije:",
+
+  "contraception_safety_title": "Zašto ove metode ne smete uvesti sami?",
+  "contraception_safety_body": "Iako ove opcije deluju privlačno i jednostavno, samoinicijativno uzimanje kontracepcije nosi ozbiljne, a ponekad i po život opasne rizike.<br /><br />Ukoliko postoji i najmanji skriveni zdravstveni rizik za koji možda i ne znate (poput sklonosti ka trombozi, urođenih poremećaja koagulacije krvi ili neregulisanog pritiska), pogrešan izbor kontracepcije može dramatično povećati rizik od duboke venske tromboze, plućne embolije, infarkta ili moždanog udara. Takođe, neadekvatna metoda može izazvati hronične migrene, nagle promene raspoloženja ili prevremeno krvarenje.<br /><br />Nijedan online upitnik ne može da uradi uvid u stanje vaših krvnih sudova, jetre i reproduktivnih organa. Za bezbedno uvođenje zaštite, neophodni su ginekološki pregled, ultrazvuk i ciljane laboratorijske analize.",
+
+  "contraception_benefits_title": "Vaša bezbednost je naš prioritet. Iskoristite posebnu pogodnost!",
+  "contraception_benefits_intro": "Želimo da vaš izbor kontracepcije bude potpuno siguran, komforan i kreiran tačno prema vašem telu i potrebama. Zato smo za vas obezbedili sledeće pogodnosti:",
+  "contraception_benefit_1": "Besplatne petominutne konsultacije sa našim lekarima",
+  "contraception_benefit_2": "30% popusta na ginekološke preglede i konsultacije o kontracepciji",
+  "contraception_benefit_3": "10% popusta na ginekološke pakete usluga",
+  "contraception_benefit_4": "10% popusta na prateće laboratorijske analize u Poliklinici Primea",
+  "contraception_benefits_outro": "Prepustite brigu o zdravlju stručnjacima, izbegnite nagađanja i rizike.",
+
+  "contraception_book_call_footnote_1": "Popunjavanjem upitnika ostvarili ste popust od 30% na sve ginekološke preglede i konsultacije o kontracepciji.",
+  "contraception_book_call_footnote_2": "Kao i dodatnih 10% popusta na ginekološke pakete usluga i laboratorijske analize."
 }
