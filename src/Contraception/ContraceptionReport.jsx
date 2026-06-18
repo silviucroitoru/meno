@@ -1,4 +1,5 @@
 import "../LeadQuestionAnswer/menoscore.css";
+import "./contraception-report.css";
 import milicaImage from "../assets/milica-petrovic-kmezic.jpg";
 import { useTranslate } from "../i18n/useTranslate";
 import mixpanel from "mixpanel-browser";
