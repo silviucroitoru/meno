@@ -16,6 +16,13 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+.intro-page-image{
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  display: block;
+}
 .intro-page-content::-webkit-scrollbar{
   display: none;
 }

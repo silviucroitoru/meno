@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../styles/intro.css';
 import ActionArea from "./ActionArea.jsx";
-export default function Intro({type, intro_text, disclaimer, checkbox, next, back, currentPage, language}) {
+export default function Intro({type, imageUrl, intro_text, disclaimer, checkbox, next, back, currentPage, language}) {
   const [checked, setChecked] = useState(false);
   const hasCheckbox = !!checkbox?.trim();
 
@@ -9,6 +9,9 @@ export default function Intro({type, intro_text, disclaimer, checkbox, next, bac
     <>
       <div className="intro-page">
         <div className="intro-page-content">
+          {imageUrl && (
+            <img src={imageUrl} alt="" className="intro-page-image" />
+          )}
           <div className="intro-page-text" dangerouslySetInnerHTML={{ __html: intro_text }} />
           {disclaimer && (
             <div className="intro-disclaimer" dangerouslySetInnerHTML={{ __html: disclaimer }} />

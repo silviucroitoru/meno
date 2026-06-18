@@ -12,6 +12,7 @@ export default function Page({page, next, back, currentPage, userName, language}
     case 'intro':
       return (
         <Intro
+          imageUrl={page.settings.ImageUrl}
           intro_text={page.settings.RichText}
           disclaimer={page.settings.Disclaimer}
           checkbox={page.settings.Checkbox}
