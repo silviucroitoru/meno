@@ -43,6 +43,7 @@ export default function ContraceptionReport({ recommendedMethods }) {
               </div>
             </div>
           </div>
+          <div className="meno-stage-explanation" />
         </div>
 
         {/* Section 2: Safety + Benefits */}
@@ -73,6 +74,7 @@ export default function ContraceptionReport({ recommendedMethods }) {
               </div>
             </div>
           </div>
+          <div className="meno-stage-explanation" />
         </div>
 
         {/* Section 3: Book a call */}
