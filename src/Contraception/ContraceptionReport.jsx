@@ -72,10 +72,10 @@ export default function ContraceptionReport({ recommendedMethods }) {
             <div className="description">
               <p>{t("contraception_benefits_intro")}</p>
               <ul>
-                <li>{t("contraception_benefit_1")}</li>
-                <li>{t("contraception_benefit_2")}</li>
-                <li>{t("contraception_benefit_3")}</li>
-                <li>{t("contraception_benefit_4")}</li>
+                <li dangerouslySetInnerHTML={{ __html: t("contraception_benefit_1") }} />
+                <li dangerouslySetInnerHTML={{ __html: t("contraception_benefit_2") }} />
+                <li dangerouslySetInnerHTML={{ __html: t("contraception_benefit_3") }} />
+                <li dangerouslySetInnerHTML={{ __html: t("contraception_benefit_4") }} />
               </ul>
               <p>{t("contraception_benefits_outro")}</p>
             </div>

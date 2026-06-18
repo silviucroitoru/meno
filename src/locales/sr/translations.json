@@ -165,10 +165,10 @@
 
   "contraception_benefits_title": "Vaša bezbednost je naš prioritet. Iskoristite posebnu pogodnost!",
   "contraception_benefits_intro": "Želimo da vaš izbor kontracepcije bude potpuno siguran, komforan i kreiran tačno prema vašem telu i potrebama. Zato smo za vas obezbedili sledeće pogodnosti:",
-  "contraception_benefit_1": "Besplatne petominutne konsultacije sa našim lekarima",
-  "contraception_benefit_2": "30% popusta na ginekološke preglede i konsultacije o kontracepciji",
-  "contraception_benefit_3": "10% popusta na ginekološke pakete usluga",
-  "contraception_benefit_4": "10% popusta na prateće laboratorijske analize u Poliklinici Primea",
+  "contraception_benefit_1": "<strong>Besplatne petominutne konsultacije</strong> sa našim lekarima,",
+  "contraception_benefit_2": "<strong>30% popusta</strong> na ginekološke preglede i konsultacije o kontracepciji,",
+  "contraception_benefit_3": "<strong>10% popusta</strong> na ginekološke pakete usluga",
+  "contraception_benefit_4": "<strong>10% popusta</strong> na prateće laboratorijske analize u Poliklinici Primea.",
   "contraception_benefits_outro": "Prepustite brigu o zdravlju stručnjacima, izbegnite nagađanja i rizike.",
 
   "contraception_cta_consultation": "Zakažite besplatne konsultacije",
