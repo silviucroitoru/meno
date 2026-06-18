@@ -1,7 +1,7 @@
 export default function HeaderArea({currentPage, progressPages, qLength}) {
   return(
     <>
-      <a href="/">
+      <a href="https://primea.rs/" target="_blank" rel="noopener noreferrer">
         <img src="/primea_logo.png" alt="Primea"
              className="logo"/>
       </a>

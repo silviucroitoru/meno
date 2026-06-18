@@ -12,6 +12,7 @@ import {
 import { adminSignOut, fetchAdminDailySubmissions, fetchAdminMarketingAccess, fetchAdminMarketingRange, fetchAdminMetrics, fetchAdminSubmissions } from "../data/adminApi";
 import { TIMEFRAMES, computeRange, formatChartDay } from "./adminDateRange";
 import AdminDashboardSwitcher from "./AdminDashboardSwitcher.jsx";
+import AdminHeaderBurger from "./AdminHeaderBurger.jsx";
 import "./admin.css";
 
 const PAGE_SIZE = 50;
@@ -235,6 +236,17 @@ export default function AdminDashboard() {
             Sign out
           </button>
         </div>
+        <AdminHeaderBurger>
+          <AdminDashboardSwitcher current="menopause" />
+          {canMarketing && (
+            <Link to="/admin/marketing-costs" className="admin-ghost-button">
+              Marketing Costs
+            </Link>
+          )}
+          <button type="button" className="admin-ghost-button" onClick={handleSignOut}>
+            Sign out
+          </button>
+        </AdminHeaderBurger>
       </header>
 
       <main className="admin-container">

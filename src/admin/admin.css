@@ -33,6 +33,12 @@
   align-items: center;
   gap: 12px;
 }
+.admin-header-burger-wrap{
+  display: none;
+}
+.admin-header-burger{
+  display: none;
+}
 
 .admin-container{
   width: 100%;
@@ -620,6 +626,77 @@
 @media screen and (max-width: 749px){
   .admin-header{
     padding: 16px 20px;
+    position: relative;
+  }
+  .admin-header .admin-header-actions{
+    display: none;
+  }
+  .admin-header-burger-wrap{
+    display: block;
+    position: relative;
+  }
+  .admin-header-burger{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--secondary-blue-20);
+    border-radius: 10px;
+    background: #FFF;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+  }
+  .admin-header-burger:hover{
+    border-color: var(--main-blue);
+    background: var(--secondary-blue);
+  }
+  .admin-header-burger span{
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--main-blue);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .admin-header-burger--open span:nth-child(1){
+    transform: translateY(7px) rotate(45deg);
+  }
+  .admin-header-burger--open span:nth-child(2){
+    opacity: 0;
+  }
+  .admin-header-burger--open span:nth-child(3){
+    transform: translateY(-7px) rotate(-45deg);
+  }
+  .admin-header-menu{
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px;
+    background: #FFF;
+    border: 1px solid var(--secondary-blue-20);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(14, 46, 87, 0.12);
+    min-width: 200px;
+  }
+  .admin-header-menu .admin-ghost-button{
+    width: 100%;
+    justify-content: flex-start;
+    border: none;
+    border-radius: 6px;
+    height: 40px;
+    padding: 0 12px;
+  }
+  .admin-header-menu .admin-ghost-button:hover{
+    background: var(--secondary-blue);
   }
   .admin-container{
     padding: 24px 20px 48px;

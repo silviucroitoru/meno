@@ -7,6 +7,7 @@ import {
   setAdminContraceptionMarketingDay,
 } from "../data/adminApi";
 import { TIMEFRAMES, computeRange, formatChartDay } from "./adminDateRange";
+import AdminHeaderBurger from "./AdminHeaderBurger.jsx";
 import "./admin.css";
 
 export default function AdminContraceptionMarketingCosts() {
@@ -116,6 +117,12 @@ export default function AdminContraceptionMarketingCosts() {
             Sign out
           </button>
         </div>
+        <AdminHeaderBurger>
+          <Link to="/admin/contraception" className="admin-ghost-button">Dashboard</Link>
+          <button type="button" className="admin-ghost-button" onClick={handleSignOut}>
+            Sign out
+          </button>
+        </AdminHeaderBurger>
       </header>
 
       <main className="admin-container">
