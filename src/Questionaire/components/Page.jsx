@@ -91,6 +91,7 @@ export default function Page({page, next, back, currentPage, userName, language}
         <MultipleOptions
           type={page.QuestionType}
           options={page.settings.options}
+          excluder={page.settings.Excluder}
           question={page.settings.QuestionText}
           helper={page.settings.QuestionHelper}
           id={page.position}
