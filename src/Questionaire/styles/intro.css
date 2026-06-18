@@ -13,6 +13,11 @@
   padding-bottom: 208px;
   overflow: auto;
   width: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.intro-page-content::-webkit-scrollbar{
+  display: none;
 }
 .intro-page-text,
 .intro-page .intro-disclaimer{
