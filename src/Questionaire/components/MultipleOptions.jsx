@@ -51,11 +51,22 @@ export default function MultipleOptions({
   }, []);
 
   const selectOption = (answer, isExcluder = false) => {
-    setAnswersArray((prevItems) => {
-      if (isExcluder) {
-        if (prevItems.includes(answer)) return [];
-        return [answer];
+    if (isExcluder) {
+      if (answersArray.includes(answer)) {
+        setAnswersArray([]);
+        return;
       }
+      setAnswersArray([answer]);
+      next(
+        currentPage.jump ? currentPage.jump : currentPage.position + 1,
+        dataPointId,
+        dataPointName,
+        [answer],
+        type
+      );
+      return;
+    }
+    setAnswersArray((prevItems) => {
       if (prevItems.includes(answer)) {
         return prevItems.filter((i) => i !== answer);
       }
