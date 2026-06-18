@@ -104,10 +104,6 @@ export default function ContraceptionReport({ recommendedMethods }) {
                 <span>{t("book_call_phone")}</span>
               </a>
             </div>
-            <div className="book-call-footnotes">
-              <p>*{t("contraception_book_call_footnote_1")}</p>
-              <p>*{t("contraception_book_call_footnote_2")}</p>
-            </div>
           </div>
           <div className="info-box-dr">
             <img src={milicaImage} alt="" />
