@@ -86,7 +86,7 @@ export default function ContraceptionReport({ recommendedMethods }) {
                 className="button button--primary"
                 onClick={() => trackEvent("Contraception Book a call Click", "Book a call section")}
               >
-                <span>{t("book_call")}</span>
+                <span>{t("contraception_cta_consultation")}</span>
               </a>
               <a
                 href={t("book_call_checkup_link")}
@@ -94,7 +94,7 @@ export default function ContraceptionReport({ recommendedMethods }) {
                 className="button button--secondary"
                 onClick={() => trackEvent("Contraception Checkup Click", "Book a call section")}
               >
-                <span>{t("book_call_checkup")}</span>
+                <span>{t("contraception_cta_checkup")}</span>
               </a>
               <a
                 href={t("book_call_phone_link")}
