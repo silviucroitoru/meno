@@ -345,12 +345,13 @@ export default function AdminContraceptionDashboard() {
                   <th>Date</th>
                   <th>First name</th>
                   <th>Email</th>
+                  <th>Report</th>
                 </tr>
               </thead>
               <tbody>
                 {!listLoading && list.rows?.length === 0 && (
                   <tr>
-                    <td colSpan={3}>
+                    <td colSpan={4}>
                       <div className="admin-empty">No submissions match this search.</div>
                     </td>
                   </tr>
@@ -360,6 +361,15 @@ export default function AdminContraceptionDashboard() {
                     <td data-label="Date" className="admin-col-muted">{formatDate(row.created_at)}</td>
                     <td data-label="First name" className="admin-col-em">{row.first_name || "—"}</td>
                     <td data-label="Email" className="admin-col-muted">{row.email || "—"}</td>
+                    <td data-label="Report">
+                      <Link
+                        to={`/contraception/results?submissionId=${row.submission_id}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Open
+                      </Link>
+                    </td>
                   </tr>
                 ))}
               </tbody>

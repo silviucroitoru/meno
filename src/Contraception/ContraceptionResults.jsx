@@ -18,7 +18,8 @@ export default function ContraceptionResults() {
       return;
     }
 
-    const submissionId = localStorage.getItem("ContraceptionSubmissionID");
+    const params = new URLSearchParams(window.location.search);
+    const submissionId = params.get("submissionId") || localStorage.getItem("ContraceptionSubmissionID");
     if (!submissionId?.trim()) {
       setLoadError("No submission found. Complete the questionnaire first.");
       return;
