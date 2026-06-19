@@ -8,6 +8,70 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "GET, OPTIONS",
 };
 
+function formatMethodsHtml(methods: string[]): string {
+  if (methods.length === 0) return "";
+  const items = methods.map((m) => `<li>${m}</li>`).join("");
+  return `<ul style="margin:0;padding-left:20px;">${items}</ul>`;
+}
+
+async function sendContraceptionEmail(
+  email: string,
+  firstName: string,
+  submissionId: number,
+  recommendedMethods: string[],
+): Promise<string | null> {
+  const apiKey = Deno.env.get("RESEND_API_KEY")?.trim();
+  if (!apiKey) {
+    console.warn("RESEND_API_KEY not set; skipping contraception email");
+    return null;
+  }
+
+  const from = Deno.env.get("RESEND_FROM_EMAIL")?.trim() || "Primea <noreply@primea.rs>";
+
+  const supabaseUrl = Deno.env.get("SUPABASE_URL")?.replace(/\/+$/, "") ?? "";
+  const trackBase = `${supabaseUrl}/functions/v1/track-email-click`;
+  const consultationUrl = `${trackBase}?sid=${submissionId}&btn=consultation&src=contraception`;
+  const checkupUrl = `${trackBase}?sid=${submissionId}&btn=checkup&src=contraception`;
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from,
+      to: [email],
+      subject: `${firstName}, Vaši rezultati su spremni`,
+      tags: [
+        { name: "submission_id", value: String(submissionId) },
+        { name: "type", value: "contraception" },
+      ],
+      template: {
+        id: "32944fca-9f4a-4d3f-9400-a22defb40e3e",
+        variables: {
+          RECOMMENDED_METHODS: formatMethodsHtml(recommendedMethods),
+          RECIPIENT_EMAIL: email,
+          CONSULTATION_URL: consultationUrl,
+          CHECKUP_URL: checkupUrl,
+        },
+      },
+    }),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Resend email failed: ${response.status} ${errorText}`);
+  }
+
+  try {
+    const json = await response.json();
+    return typeof json?.id === "string" ? json.id : null;
+  } catch {
+    return null;
+  }
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -54,6 +118,26 @@ Deno.serve(async (req) => {
     }
 
     const recommendedMethods = getRecommendedMethods(responses);
+
+    const { data: existingEmail } = await supabase
+      .from("contraception_email_status")
+      .select("submission_id")
+      .eq("submission_id", Number(submissionId))
+      .maybeSingle();
+
+    if (!existingEmail) {
+      try {
+        const resendEmailId = await sendContraceptionEmail(email, firstName, Number(submissionId), recommendedMethods);
+        await supabase.from("contraception_email_status").upsert({
+          submission_id: Number(submissionId),
+          resend_email_id: resendEmailId,
+          last_event: "email.sent",
+          last_event_at: new Date().toISOString(),
+        });
+      } catch (emailErr) {
+        console.error("Failed to send contraception email:", emailErr);
+      }
+    }
 
     return new Response(
       JSON.stringify({ recommendedMethods, firstName }),

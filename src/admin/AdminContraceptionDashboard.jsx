@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   ResponsiveContainer,
@@ -27,6 +27,50 @@ const PAGE_SIZE = 50;
 const CHART_BLUE = "#0E2E57";
 const CHART_AXIS = "rgba(14, 46, 87, 0.45)";
 const CHART_GRID = "rgba(14, 46, 87, 0.06)";
+
+const EMAIL_STATUS_ORDER = ["Sent", "Delivered", "Opened", "Clicked", "Bounced"];
+
+function sortEntries(entries, keys) {
+  const order = new Map(keys.map((k, i) => [k, i]));
+  return [...entries].sort((a, b) => {
+    const ai = order.has(a[0]) ? order.get(a[0]) : 999;
+    const bi = order.has(b[0]) ? order.get(b[0]) : 999;
+    if (ai !== bi) return ai - bi;
+    return (b[1] ?? 0) - (a[1] ?? 0);
+  });
+}
+
+function Bars({ title, data, order, baseKey }) {
+  const entries = useMemo(() => sortEntries(Object.entries(data || {}), order), [data, order]);
+  const base = baseKey
+    ? (Number(data?.[baseKey]) || 0)
+    : entries.reduce((sum, [, v]) => sum + (Number(v) || 0), 0);
+
+  return (
+    <div className="admin-bars-card">
+      <h3>{title}</h3>
+      {entries.length === 0 ? (
+        <div className="admin-empty">No data yet</div>
+      ) : (
+        entries.map(([key, count]) => {
+          const raw = Number(count) || 0;
+          const shareRaw = base > 0 ? (raw / base) * 100 : 0;
+          const share = Math.round(shareRaw);
+          const widthPct = Math.max(0, Math.min(100, shareRaw));
+          return (
+            <div className="admin-bar" key={key}>
+              <span className="admin-bar-label">{key}</span>
+              <span className="admin-bar-count">{raw} · {share}%</span>
+              <div className="admin-bar-track">
+                <div className="admin-bar-fill" style={{ width: `${widthPct}%` }} />
+              </div>
+            </div>
+          );
+        })
+      )}
+    </div>
+  );
+}
 
 function AdminActivityTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null;
@@ -291,6 +335,7 @@ export default function AdminContraceptionDashboard() {
           {metricsError && !metricsLoading && <div className="admin-error">{metricsError}</div>}
 
           {metrics && !metricsLoading && !metricsError && (
+            <>
             <div className="admin-metrics-row">
               <div className="admin-metric-card admin-metric-card--compact">
                 <div className="admin-metric-label">Completed submissions</div>
@@ -323,6 +368,15 @@ export default function AdminContraceptionDashboard() {
                 </div>
               )}
             </div>
+              {metrics.byEmailStatus && (
+                <>
+                  <h2 className="admin-section-title">Statistics</h2>
+                  <div className="admin-statistics-bars">
+                    <Bars title="Email Statistics" data={metrics.byEmailStatus} order={EMAIL_STATUS_ORDER} baseKey="Sent" />
+                  </div>
+                </>
+              )}
+            </>
           )}
         </section>
 
@@ -358,13 +412,14 @@ export default function AdminContraceptionDashboard() {
                   <th>Date</th>
                   <th>First name</th>
                   <th>Email</th>
+                  <th>Email status</th>
                   <th>Report</th>
                 </tr>
               </thead>
               <tbody>
                 {!listLoading && list.rows?.length === 0 && (
                   <tr>
-                    <td colSpan={4}>
+                    <td colSpan={5}>
                       <div className="admin-empty">No submissions match this search.</div>
                     </td>
                   </tr>
@@ -374,6 +429,21 @@ export default function AdminContraceptionDashboard() {
                     <td data-label="Date" className="admin-col-muted">{formatDate(row.created_at)}</td>
                     <td data-label="First name" className="admin-col-em">{row.first_name || "—"}</td>
                     <td data-label="Email" className="admin-col-muted">{row.email || "—"}</td>
+                    <td data-label="Email status">
+                      {row.email_status ? (
+                        <span className="admin-email-status">
+                          <span className={`admin-email-badge admin-email-badge--${row.email_status.replace("email.", "")}`}>
+                            {row.email_status.replace("email.", "").replace(/^\w/, (c) => c.toUpperCase())}
+                          </span>
+                          {row.clicked_consultation_at && (
+                            <span className="admin-email-badge admin-email-badge--cta">Free Consultation</span>
+                          )}
+                          {row.clicked_checkup_at && (
+                            <span className="admin-email-badge admin-email-badge--cta">Checkup</span>
+                          )}
+                        </span>
+                      ) : "—"}
+                    </td>
                     <td data-label="Report">
                       <Link
                         to={`/contraception/results?submissionId=${row.submission_id}`}

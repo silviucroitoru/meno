@@ -15,6 +15,7 @@ Deno.serve(async (req) => {
   const url = new URL(req.url);
   const sid = url.searchParams.get("sid");
   const btn = url.searchParams.get("btn");
+  const src = url.searchParams.get("src");
 
   const destination = btn ? DESTINATIONS[btn] : undefined;
   if (!sid || !destination) {
@@ -27,6 +28,8 @@ Deno.serve(async (req) => {
     return new Response("Bad request", { status: 400 });
   }
 
+  const tableName = src === "contraception" ? "contraception_email_status" : "submission_email_status";
+
   try {
     const supabase = createClient(
       Deno.env.get("SUPABASE_URL")!,
@@ -34,7 +37,7 @@ Deno.serve(async (req) => {
     );
 
     await supabase
-      .from("submission_email_status")
+      .from(tableName)
       .update({ [column]: new Date().toISOString() })
       .eq("submission_id", submissionId)
       .is(column, null);

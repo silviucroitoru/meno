@@ -49,6 +49,8 @@ Deno.serve(async (req) => {
   }
 
   const submissionIdFromTag = parseSubmissionId(verified?.data?.tags);
+  const emailType = verified?.data?.tags?.type ?? "menopause";
+  const tableName = emailType === "contraception" ? "contraception_email_status" : "submission_email_status";
   const resendEmailId = verified?.data?.email_id ?? null;
   const eventType = verified?.type ?? "unknown";
   const eventAt = verified?.created_at ?? new Date().toISOString();
@@ -84,20 +86,20 @@ Deno.serve(async (req) => {
       const clickLink = verified?.data?.click?.link;
       const clickType = classifyClick(clickLink);
       const clickedAt = verified?.data?.click?.timestamp ?? eventAt;
-      console.log(`[click] sid=${submissionId} link=${clickLink} type=${clickType}`);
+      console.log(`[click] sid=${submissionId} table=${tableName} link=${clickLink} type=${clickType}`);
 
       if (clickType === "consultation") {
-        const { data: existing } = await supabase.from("submission_email_status")
+        const { data: existing } = await supabase.from(tableName)
           .select("clicked_consultation_at").eq("submission_id", submissionId).maybeSingle();
         if (!existing?.clicked_consultation_at) row.clicked_consultation_at = clickedAt;
       } else if (clickType === "checkup") {
-        const { data: existing } = await supabase.from("submission_email_status")
+        const { data: existing } = await supabase.from(tableName)
           .select("clicked_checkup_at").eq("submission_id", submissionId).maybeSingle();
         if (!existing?.clicked_checkup_at) row.clicked_checkup_at = clickedAt;
       }
     }
 
-    const { error } = await supabase.from("submission_email_status").upsert(row);
+    const { error } = await supabase.from(tableName).upsert(row);
     if (error) throw error;
   };
 
@@ -108,15 +110,36 @@ Deno.serve(async (req) => {
     }
 
     if (resendEmailId) {
-      const { data, error } = await supabase
+      // Try menopause table first, then contraception
+      const { data } = await supabase
         .from("submission_email_status")
         .select("submission_id")
         .eq("resend_email_id", resendEmailId)
         .maybeSingle();
-      if (error) throw error;
-      const submissionId = data?.submission_id as number | undefined;
-      if (submissionId) {
-        await upsertStatus(submissionId);
+      if (data?.submission_id) {
+        await supabase.from("submission_email_status").upsert({
+          submission_id: data.submission_id,
+          resend_email_id: resendEmailId,
+          last_event: eventType,
+          last_event_at: eventAt,
+          last_payload: verified,
+        });
+        return new Response("OK", { status: 200 });
+      }
+
+      const { data: contraData } = await supabase
+        .from("contraception_email_status")
+        .select("submission_id")
+        .eq("resend_email_id", resendEmailId)
+        .maybeSingle();
+      if (contraData?.submission_id) {
+        await supabase.from("contraception_email_status").upsert({
+          submission_id: contraData.submission_id,
+          resend_email_id: resendEmailId,
+          last_event: eventType,
+          last_event_at: eventAt,
+          last_payload: verified,
+        });
         return new Response("OK", { status: 200 });
       }
     }
