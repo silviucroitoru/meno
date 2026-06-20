@@ -20,11 +20,11 @@ export default function ContraceptionSideBar() {
         <button className="menuLink" onClick={() => scrollTo("recommendations")}>
           {t("contraception_sidebar_recommendations")}
         </button>
-        <button className="menuLink" onClick={() => scrollTo("safety")}>
-          {t("contraception_sidebar_safety")}
-        </button>
         <button className="menuLink" onClick={() => scrollTo("book_call")}>
           {t("contraception_sidebar_book_call")}
+        </button>
+        <button className="menuLink" onClick={() => scrollTo("safety")}>
+          {t("contraception_sidebar_safety")}
         </button>
       </div>
     </div>

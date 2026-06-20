@@ -47,25 +47,7 @@ export default function ContraceptionReport({ recommendedMethods }) {
           <div className="meno-stage-explanation" />
         </div>
 
-        {/* Section 2: Safety + Benefits */}
-        <div className="meno-stage" id="safety">
-          <div className="meno-stage-main-content">
-            <div className="meno-stage-text">
-              <div className="meno-stage-prehead">
-                {t("contraception_sidebar_safety")}
-              </div>
-              <div className="meno-stage-title">
-                {t("contraception_safety_title")}
-              </div>
-              <div className="meno-stage-description"
-                dangerouslySetInnerHTML={{ __html: t("contraception_safety_body") }}
-              />
-            </div>
-          </div>
-          <div className="meno-stage-explanation" />
-        </div>
-
-        {/* Section 3: Book a call */}
+        {/* Section 2: Book a call */}
         <div className="box" id="book_call">
           <div className="content">
             <div className="title">{t("contraception_benefits_title")}</div>
@@ -112,6 +94,24 @@ export default function ContraceptionReport({ recommendedMethods }) {
               <div className="dr-desc" dangerouslySetInnerHTML={{ __html: t("book_call_dr_info") }} />
             </div>
           </div>
+        </div>
+
+        {/* Section 3: Safety + Benefits */}
+        <div className="meno-stage" id="safety">
+          <div className="meno-stage-main-content">
+            <div className="meno-stage-text">
+              <div className="meno-stage-prehead">
+                {t("contraception_sidebar_safety")}
+              </div>
+              <div className="meno-stage-title">
+                {t("contraception_safety_title")}
+              </div>
+              <div className="meno-stage-description"
+                dangerouslySetInnerHTML={{ __html: t("contraception_safety_body") }}
+              />
+            </div>
+          </div>
+          <div className="meno-stage-explanation" />
         </div>
       </div>
     </div>
