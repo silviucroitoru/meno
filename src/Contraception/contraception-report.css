@@ -1,15 +1,17 @@
 .meno-score-container .meno-stage + .meno-stage,
-.meno-score-container .meno-stage + .box {
+.meno-score-container .meno-stage + .box,
+.meno-score-container .box + .meno-stage {
   margin-top: 16px;
 }
 
-.meno-score-container > .box#book_call:last-child {
+.meno-score-container > .meno-stage:last-child {
   margin-bottom: calc(100vh - 300px);
 }
 
 @media screen and (min-width: 990px) {
   .meno-score-container .meno-stage + .meno-stage,
-  .meno-score-container .meno-stage + .box {
+  .meno-score-container .meno-stage + .box,
+  .meno-score-container .box + .meno-stage {
     margin-top: 32px;
   }
 }
