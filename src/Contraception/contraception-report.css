@@ -4,6 +4,10 @@
   margin-top: 16px;
 }
 
+.meno-score-container .box#book_call {
+  margin-bottom: 0;
+}
+
 .meno-score-container > .meno-stage:last-child {
   margin-bottom: calc(100vh - 300px);
 }
