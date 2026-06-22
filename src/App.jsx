@@ -27,50 +27,61 @@ if (mixpanelToken) {
 //   return isAuthenticated ? <Component /> : <Navigate to="/login" />;
 // }
 
+const isContraceptionHost = window.location.hostname === "contraception.primea.rs";
+
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/questionnaire" replace />} />
-        <Route path="/questionnaire" element={<Questionaire />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/contraception" element={<ContraceptionQuestionnaire />} />
-        <Route path="/contraception/results" element={<ContraceptionResults />} />
-        <Route path="/admin/login" element={<AdminLogin />} />
-        <Route
-          path="/admin"
-          element={
-            <AdminRequireAuth>
-              <AdminDashboard />
-            </AdminRequireAuth>
-          }
-        />
-        <Route
-          path="/admin/marketing-costs"
-          element={
-            <AdminRequireAuth>
-              <AdminMarketingCosts />
-            </AdminRequireAuth>
-          }
-        />
-        <Route
-          path="/admin/contraception"
-          element={
-            <AdminRequireAuth>
-              <AdminContraceptionDashboard />
-            </AdminRequireAuth>
-          }
-        />
-        <Route
-          path="/admin/contraception/marketing-costs"
-          element={
-            <AdminRequireAuth>
-              <AdminContraceptionMarketingCosts />
-            </AdminRequireAuth>
-          }
-        />
-        {/*<Route path="/login" element={<Login />} />*/}
-        {/*<Route path="/dashboard" element={<ProtectedRoute element={Dashboard} />} />*/}
+        {isContraceptionHost ? (
+          <>
+            <Route path="/" element={<Navigate to="/contraception" replace />} />
+            <Route path="/contraception" element={<ContraceptionQuestionnaire />} />
+            <Route path="/contraception/results" element={<ContraceptionResults />} />
+            <Route path="*" element={<Navigate to="/contraception" replace />} />
+          </>
+        ) : (
+          <>
+            <Route path="/" element={<Navigate to="/questionnaire" replace />} />
+            <Route path="/questionnaire" element={<Questionaire />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/contraception" element={<ContraceptionQuestionnaire />} />
+            <Route path="/contraception/results" element={<ContraceptionResults />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route
+              path="/admin"
+              element={
+                <AdminRequireAuth>
+                  <AdminDashboard />
+                </AdminRequireAuth>
+              }
+            />
+            <Route
+              path="/admin/marketing-costs"
+              element={
+                <AdminRequireAuth>
+                  <AdminMarketingCosts />
+                </AdminRequireAuth>
+              }
+            />
+            <Route
+              path="/admin/contraception"
+              element={
+                <AdminRequireAuth>
+                  <AdminContraceptionDashboard />
+                </AdminRequireAuth>
+              }
+            />
+            <Route
+              path="/admin/contraception/marketing-costs"
+              element={
+                <AdminRequireAuth>
+                  <AdminContraceptionMarketingCosts />
+                </AdminRequireAuth>
+              }
+            />
+          </>
+        )}
       </Routes>
     </Router>
   );
