@@ -62,19 +62,12 @@ export default function Menoscore({scoreJson, scoreSummary}) {
   }
 
   const adjustMargin = useCallback(() => {
-    const bookCallSection = document.getElementById("book_call");
     const scaleContainer = document.getElementById("scale_container");
     if (!scaleContainer) return;
     const scaleContainerWidth = scaleContainer.offsetWidth;
     const newLineWidth = (scaleContainerWidth - 200) / 3;
     setLineWidth(newLineWidth)
     setArrowPosition(64 + index * newLineWidth + 20*index)
-    if (bookCallSection) {
-      const windowHeight = window.innerHeight;
-      const sectionHeight = bookCallSection.offsetHeight;
-      const marginBottom = Math.max(64, windowHeight - sectionHeight - 64);
-      bookCallSection.style.marginBottom = `${marginBottom}px`;
-    }
   }, [index]);
   useEffect(() => {
     adjustMargin();
@@ -160,6 +153,53 @@ export default function Menoscore({scoreJson, scoreSummary}) {
             </div>
           </div>
 
+        </div>
+        <div className="box" id="book_call">
+          <div className="content">
+            <div className="title"
+                 dangerouslySetInnerHTML={{__html: getTranslatedMessage("book_call_content_title", {})}}/>
+            <div className="description"
+                 dangerouslySetInnerHTML={{__html: getTranslatedMessage("book_call_content_description", {})}}/>
+            <div className="actions">
+              <a
+                href={getTranslatedMessage("book_call_dr_link", {})}
+                target="_blank"
+                className="button button--primary"
+                onClick={() => trackEvent(`Dashboard Book a call Click on ${getTranslatedMessage('book_call')} button`, 'Book a call section')}
+              >
+                <span>{t('book_call')}</span>
+              </a>
+              <a
+                href={getTranslatedMessage("book_call_checkup_link", {})}
+                target="_blank"
+                className="button button--secondary"
+                onClick={() => trackEvent(`Dashboard Book a call Click on ${getTranslatedMessage('book_call_checkup')} button`, 'Book a call section')}
+              >
+                <span>{t('book_call_checkup')}</span>
+              </a>
+              <a
+                href={getTranslatedMessage("book_call_phone_link", {})}
+                className="button button--secondary"
+                onClick={() => trackEvent(`Dashboard Book a call Click on ${getTranslatedMessage('book_call_phone')} button`, 'Book a call section')}
+              >
+                <span>{t('book_call_phone')}</span>
+              </a>
+            </div>
+            <div className="book-call-footnotes">
+              <p>*{t('book_call_footnote_1')}</p>
+              <p>*{t('book_call_footnote_2')}</p>
+            </div>
+          </div>
+          <div className="info-box-dr">
+            <img src={milicaImage} alt=""/>
+            <div className="dr-info">
+              <div className="dr-name">{t('book_call_dr_name')}</div>
+              <div
+                className="dr-desc"
+                dangerouslySetInnerHTML={{__html: t('book_call_dr_info')}}
+              />
+            </div>
+          </div>
         </div>
         <div className="meno-stage" id={scoreJson.menopauseStage.stagetitle}>
           <div className="meno-stage-main-content">
@@ -474,54 +514,6 @@ export default function Menoscore({scoreJson, scoreSummary}) {
             }
           </div>
         )}
-        <div className="box" id="book_call">
-          <div className="content">
-            <div className="title"
-                 dangerouslySetInnerHTML={{__html: getTranslatedMessage("book_call_content_title", {})}}/>
-            <div className="description"
-                 dangerouslySetInnerHTML={{__html: getTranslatedMessage("book_call_content_description", {})}}/>
-            <div className="actions">
-              <a
-                href={getTranslatedMessage("book_call_dr_link", {})}
-                target="_blank"
-                className="button button--primary"
-                onClick={() => trackEvent(`Dashboard Book a call Click on ${getTranslatedMessage('book_call')} button`, 'Book a call section')}
-              >
-                <span>{t('book_call')}</span>
-              </a>
-              <a
-                href={getTranslatedMessage("book_call_checkup_link", {})}
-                target="_blank"
-                className="button button--secondary"
-                onClick={() => trackEvent(`Dashboard Book a call Click on ${getTranslatedMessage('book_call_checkup')} button`, 'Book a call section')}
-              >
-                <span>{t('book_call_checkup')}</span>
-              </a>
-              <a
-                href={getTranslatedMessage("book_call_phone_link", {})}
-                className="button button--secondary"
-                onClick={() => trackEvent(`Dashboard Book a call Click on ${getTranslatedMessage('book_call_phone')} button`, 'Book a call section')}
-              >
-                <span>{t('book_call_phone')}</span>
-              </a>
-            </div>
-            <div className="book-call-footnotes">
-              <p>*{t('book_call_footnote_1')}</p>
-              <p>*{t('book_call_footnote_2')}</p>
-            </div>
-          </div>
-          <div className="info-box-dr">
-            <img src={milicaImage} alt=""/>
-            <div className="dr-info">
-              <div className="dr-name">{t('book_call_dr_name')}</div>
-              <div
-                className="dr-desc"
-                dangerouslySetInnerHTML={{__html: t('book_call_dr_info')}}
-              />
-            </div>
-
-          </div>
-        </div>
       </div>
     </div>
   );
