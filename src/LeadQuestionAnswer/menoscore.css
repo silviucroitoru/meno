@@ -200,6 +200,11 @@
 .meno-stage-description p:last-child{
   margin: 0;
 }
+.meno-stage-description > *:nth-child(n+2) {
+  filter: blur(5px);
+  user-select: none;
+  pointer-events: none;
+}
 .meno-stage-main-content .meno-stage-text .meno-stage-description a{
   color: var(--main-blue);
   font-family: "SofiaPro-Regular";
