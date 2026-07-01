@@ -4,6 +4,8 @@ const MENOPAUSE_CONSULTATION_URL =
   "https://primea.setmore.com/book?step=time-slot&products=f620dba3-85bd-4570-8457-08ae5b16f145&type=service&staff=j6N4MDMJRXkT4GLOGHkGumFxtAcSh7IH&staffSelected=true";
 const CONTRACEPTION_CONSULTATION_URL =
   "https://primea.setmore.com/j6N4MDMJRXkT4GLOGHkGumFxtAcSh7IH/service/698d95bc-3b32-402d-9b6b-9e08c2bca235";
+const IR_CONSULTATION_URL =
+  "https://primea.setmore.com/j6N4MDMJRXkT4GLOGHkGumFxtAcSh7IH/service/698d95bc-3b32-402d-9b6b-9e08c2bca235";
 const CHECKUP_URL = "https://www.primea.rs/istrazi-nase-usluge/";
 
 const COLUMN_MAP: Record<string, string> = {
@@ -21,7 +23,9 @@ Deno.serve(async (req) => {
     btn === "consultation"
       ? src === "contraception"
         ? CONTRACEPTION_CONSULTATION_URL
-        : MENOPAUSE_CONSULTATION_URL
+        : src === "ir"
+          ? IR_CONSULTATION_URL
+          : MENOPAUSE_CONSULTATION_URL
       : btn === "checkup"
         ? CHECKUP_URL
         : undefined;
@@ -35,7 +39,11 @@ Deno.serve(async (req) => {
     return new Response("Bad request", { status: 400 });
   }
 
-  const tableName = src === "contraception" ? "contraception_email_status" : "submission_email_status";
+  const tableName = src === "contraception"
+    ? "contraception_email_status"
+    : src === "ir"
+      ? "ir_email_status"
+      : "submission_email_status";
 
   try {
     const supabase = createClient(

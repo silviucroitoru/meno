@@ -1,0 +1,61 @@
+.meno-score-container .meno-stage + .meno-stage,
+.meno-score-container .meno-stage + .box,
+.meno-score-container .box + .meno-stage {
+  margin-top: 16px;
+}
+
+.meno-score-container .box#book_call {
+  margin-bottom: 0;
+}
+
+.meno-score-container > .meno-stage:last-child {
+  margin-bottom: calc(100vh - 300px);
+}
+
+@media screen and (min-width: 990px) {
+  .meno-score-container .meno-stage + .meno-stage,
+  .meno-score-container .meno-stage + .box,
+  .meno-score-container .box + .meno-stage {
+    margin-top: 32px;
+  }
+}
+
+.meno-score-container .meno-stage-description ul {
+  list-style-type: disc;
+  padding-inline-start: 20px;
+  border: 0;
+  background-color: transparent;
+  border-radius: 0;
+  gap: 0;
+  overflow: visible;
+  margin: 16px 0;
+}
+
+.meno-score-container .meno-stage-description ul li {
+  background-color: transparent;
+  padding: 4px 0;
+}
+
+.meno-score-container .meno-stage-description ul li:hover {
+  background: transparent;
+}
+
+.meno-score-container .box .description ul {
+  list-style-type: disc;
+  padding-inline-start: 20px;
+  border: 0;
+  background-color: transparent;
+  border-radius: 0;
+  gap: 0;
+  overflow: visible;
+  margin: 16px 0;
+}
+
+.meno-score-container .box .description ul li {
+  background-color: transparent;
+  padding: 4px 0;
+}
+
+.meno-score-container .box .description ul li:hover {
+  background: transparent;
+}

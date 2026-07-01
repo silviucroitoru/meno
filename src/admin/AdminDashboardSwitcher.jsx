@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 const OPTIONS = [
   { key: "menopause", label: "Menopause", path: "/admin" },
   { key: "contraception", label: "Contraception", path: "/admin/contraception" },
+  { key: "ir", label: "Insulin Resistance", path: "/admin/ir" },
 ];
 
 export default function AdminDashboardSwitcher({ current }) {

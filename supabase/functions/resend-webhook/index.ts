@@ -50,7 +50,11 @@ Deno.serve(async (req) => {
 
   const submissionIdFromTag = parseSubmissionId(verified?.data?.tags);
   const emailType = verified?.data?.tags?.type ?? "menopause";
-  const tableName = emailType === "contraception" ? "contraception_email_status" : "submission_email_status";
+  const tableName = emailType === "contraception"
+    ? "contraception_email_status"
+    : emailType === "ir"
+      ? "ir_email_status"
+      : "submission_email_status";
   const resendEmailId = verified?.data?.email_id ?? null;
   const eventType = verified?.type ?? "unknown";
   const eventAt = verified?.created_at ?? new Date().toISOString();
@@ -135,6 +139,22 @@ Deno.serve(async (req) => {
       if (contraData?.submission_id) {
         await supabase.from("contraception_email_status").upsert({
           submission_id: contraData.submission_id,
+          resend_email_id: resendEmailId,
+          last_event: eventType,
+          last_event_at: eventAt,
+          last_payload: verified,
+        });
+        return new Response("OK", { status: 200 });
+      }
+
+      const { data: irData } = await supabase
+        .from("ir_email_status")
+        .select("submission_id")
+        .eq("resend_email_id", resendEmailId)
+        .maybeSingle();
+      if (irData?.submission_id) {
+        await supabase.from("ir_email_status").upsert({
+          submission_id: irData.submission_id,
           resend_email_id: resendEmailId,
           last_event: eventType,
           last_event_at: eventAt,

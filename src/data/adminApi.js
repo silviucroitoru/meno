@@ -169,3 +169,58 @@ export async function setAdminContraceptionMarketingDay(day, amountUsd) {
   if (error) throw new Error(error.message || "Failed to save spend");
 }
 
+export async function fetchAdminIRMetrics() {
+  assertSupabaseConfigured();
+  const { data, error } = await supabase.rpc("admin_ir_metrics");
+  if (error) {
+    throw new Error(error.message || "Failed to load IR metrics");
+  }
+  return data ?? {
+    totalSubmissions: 0,
+    completedSubmissions: 0,
+    completionRatePct: 0,
+  };
+}
+
+export async function fetchAdminIRSubmissions({ search = "", limit = 50, offset = 0 } = {}) {
+  assertSupabaseConfigured();
+  const { data, error } = await supabase.rpc("admin_list_ir_submissions", {
+    p_search: search || null,
+    p_limit: limit,
+    p_offset: offset,
+  });
+  if (error) {
+    throw new Error(error.message || "Failed to load IR submissions");
+  }
+  return data ?? { total: 0, limit, offset, rows: [] };
+}
+
+export async function fetchAdminIRDailySubmissions({ from, to }) {
+  assertSupabaseConfigured();
+  const { data, error } = await supabase.rpc("admin_ir_daily_submissions", {
+    p_from: from,
+    p_to: to,
+  });
+  if (error) throw new Error(error.message || "Failed to load daily data");
+  return data ?? [];
+}
+
+export async function fetchAdminIRMarketingRange({ from, to }) {
+  assertSupabaseConfigured();
+  const { data, error } = await supabase.rpc("admin_ir_marketing_range", {
+    p_from: from,
+    p_to: to,
+  });
+  if (error) throw new Error(error.message || "Failed to load marketing data");
+  return data ?? { total_spend_usd: 0, total_submissions: 0, avg_cpa_usd: null, rows: [] };
+}
+
+export async function setAdminIRMarketingDay(day, amountUsd) {
+  assertSupabaseConfigured();
+  const { error } = await supabase.rpc("admin_ir_marketing_set_day", {
+    p_day: day,
+    p_amount_usd: amountUsd,
+  });
+  if (error) throw new Error(error.message || "Failed to save spend");
+}
+

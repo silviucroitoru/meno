@@ -176,5 +176,27 @@
   "contraception_cta_checkup": "Zakažite pregled uz 10-30% popusta",
 
   "contraception_book_call_footnote_1": "Popunjavanjem upitnika ostvarili ste popust od 30% na sve ginekološke preglede i konsultacije o kontracepciji.",
-  "contraception_book_call_footnote_2": "Kao i dodatnih 10% popusta na ginekološke pakete usluga i laboratorijske analize."
+  "contraception_book_call_footnote_2": "Kao i dodatnih 10% popusta na ginekološke pakete usluga i laboratorijske analize.",
+
+  "ir_sidebar_recommendations": "Preporuke",
+  "ir_sidebar_safety": "Vaša bezbednost",
+  "ir_sidebar_book_call": "Zakaži poziv",
+
+  "ir_report_title": "Hvala vam što brinete o svom metaboličkom zdravlju!",
+  "ir_report_intro": "Na osnovu vaših odgovora o načinu života, navikama i zdravstvenoj istoriji, naš tim preporučuje sledeće korake:",
+
+  "ir_safety_title": "Zašto je važno da se obratite lekaru?",
+  "ir_safety_body": "Insulinska rezistencija je stanje koje može dugo proći bez simptoma, ali ako se ne prepozna i ne tretira na vreme, može dovesti do ozbiljnih komplikacija kao što su dijabetes tipa 2, kardiovaskularne bolesti i metabolički sindrom.<br /><br />Samo na osnovu laboratorijskih analiza i kliničkog pregleda može se postaviti precizna dijagnoza i kreirati individualni plan lečenja. Online upitnik je koristan prvi korak, ali ne zamenjuje stručnu medicinsku procenu.<br /><br />Za bezbednu i efikasnu brigu o vašem metaboličkom zdravlju, neophodni su endokrinološki pregled, laboratorijske analize (glukoza, insulin, HbA1c, HOMA-IR) i personalizovani plan ishrane i aktivnosti.",
+
+  "ir_benefits_title": "Vaša bezbednost je naš prioritet. Iskoristite posebnu pogodnost!",
+  "ir_benefits_intro": "Želimo da vaša briga o metaboličkom zdravlju bude potpuno sigurna i prilagođena vašim potrebama. Zato smo za vas obezbedili sledeće pogodnosti:",
+  "ir_benefit_1": "<strong>Besplatne petominutne konsultacije sa našim lekarima,</strong>",
+  "ir_benefit_2": "<strong>30% popusta na endokrinološke preglede i konsultacije,</strong>",
+  "ir_benefit_3": "<strong>10% popusta na specijalizovane pakete usluga</strong>",
+  "ir_benefit_4": "<strong>10% popusta na prateće laboratorijske analize</strong> u Poliklinici Primea.",
+  "ir_benefits_outro": "Prepustite brigu o zdravlju stručnjacima, izbegnite nagađanja i rizike.",
+
+  "ir_cta_consultation": "Zakažite besplatne konsultacije",
+  "ir_consultation_link": "https://primea.setmore.com/j6N4MDMJRXkT4GLOGHkGumFxtAcSh7IH/service/698d95bc-3b32-402d-9b6b-9e08c2bca235",
+  "ir_cta_checkup": "Zakažite pregled uz 10-30% popusta"
 }

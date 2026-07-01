@@ -4,11 +4,15 @@ import mixpanel from 'mixpanel-browser';
 import Questionaire from "./Questionaire/Questionaire.jsx"
 import ContraceptionQuestionnaire from "./Contraception/ContraceptionQuestionnaire.jsx"
 import ContraceptionResults from "./Contraception/ContraceptionResults.jsx"
+import IRQuestionnaire from "./InsulinResistance/IRQuestionnaire.jsx"
+import IRResults from "./InsulinResistance/IRResults.jsx"
 import AdminLogin from "./admin/AdminLogin.jsx";
 import AdminDashboard from "./admin/AdminDashboard.jsx";
 import AdminMarketingCosts from "./admin/AdminMarketingCosts.jsx";
 import AdminContraceptionDashboard from "./admin/AdminContraceptionDashboard.jsx";
 import AdminContraceptionMarketingCosts from "./admin/AdminContraceptionMarketingCosts.jsx";
+import AdminIRDashboard from "./admin/AdminIRDashboard.jsx";
+import AdminIRMarketingCosts from "./admin/AdminIRMarketingCosts.jsx";
 import AdminRequireAuth from "./admin/AdminRequireAuth.jsx";
 import './assets/base.css'
 
@@ -28,6 +32,7 @@ if (mixpanelToken) {
 // }
 
 const isContraceptionHost = window.location.hostname === "contraception.primea.rs";
+const isIRHost = window.location.hostname === "ir.primea.rs";
 
 function App() {
   return (
@@ -40,6 +45,13 @@ function App() {
             <Route path="/contraception/results" element={<ContraceptionResults />} />
             <Route path="*" element={<Navigate to="/contraception" replace />} />
           </>
+        ) : isIRHost ? (
+          <>
+            <Route path="/" element={<Navigate to="/ir" replace />} />
+            <Route path="/ir" element={<IRQuestionnaire />} />
+            <Route path="/ir/results" element={<IRResults />} />
+            <Route path="*" element={<Navigate to="/ir" replace />} />
+          </>
         ) : (
           <>
             <Route path="/" element={<Navigate to="/questionnaire" replace />} />
@@ -47,6 +59,8 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/contraception" element={<ContraceptionQuestionnaire />} />
             <Route path="/contraception/results" element={<ContraceptionResults />} />
+            <Route path="/ir" element={<IRQuestionnaire />} />
+            <Route path="/ir/results" element={<IRResults />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route
               path="/admin"
@@ -77,6 +91,22 @@ function App() {
               element={
                 <AdminRequireAuth>
                   <AdminContraceptionMarketingCosts />
+                </AdminRequireAuth>
+              }
+            />
+            <Route
+              path="/admin/ir"
+              element={
+                <AdminRequireAuth>
+                  <AdminIRDashboard />
+                </AdminRequireAuth>
+              }
+            />
+            <Route
+              path="/admin/ir/marketing-costs"
+              element={
+                <AdminRequireAuth>
+                  <AdminIRMarketingCosts />
                 </AdminRequireAuth>
               }
             />
