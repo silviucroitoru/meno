@@ -7,6 +7,7 @@ export default function ContraceptionQuestionnaire() {
       updateEndpoint="update-contraception-response"
       submissionStorageKey="ContraceptionSubmissionID"
       completionPath="/contraception/results"
+      reportEndpoint="generate-contraception-report"
     />
   );
 }

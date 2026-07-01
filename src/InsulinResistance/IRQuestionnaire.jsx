@@ -7,6 +7,7 @@ export default function IRQuestionnaire() {
       updateEndpoint="update-ir-response"
       submissionStorageKey="IRSubmissionID"
       completionPath="/ir/results"
+      reportEndpoint="generate-ir-report"
     />
   );
 }

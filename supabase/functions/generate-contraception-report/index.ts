@@ -128,14 +128,26 @@ Deno.serve(async (req) => {
     if (!existingEmail) {
       try {
         const resendEmailId = await sendContraceptionEmail(email, firstName, Number(submissionId), recommendedMethods);
-        await supabase.from("contraception_email_status").upsert({
+        const { error: upsertError } = await supabase.from("contraception_email_status").upsert({
           submission_id: Number(submissionId),
           resend_email_id: resendEmailId,
           last_event: "email.sent",
           last_event_at: new Date().toISOString(),
         });
+        if (upsertError) {
+          console.error("Failed to persist contraception_email_status:", upsertError);
+        }
       } catch (emailErr) {
         console.error("Failed to send contraception email:", emailErr);
+        const { error: failUpsertError } = await supabase.from("contraception_email_status").upsert({
+          submission_id: Number(submissionId),
+          last_event: "email.failed",
+          last_event_at: new Date().toISOString(),
+          last_payload: { error: String(emailErr?.message ?? emailErr) },
+        });
+        if (failUpsertError) {
+          console.error("Failed to persist contraception_email_status failure:", failUpsertError);
+        }
       }
     }
 

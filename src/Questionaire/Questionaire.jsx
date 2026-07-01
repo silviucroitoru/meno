@@ -11,6 +11,7 @@ export default function Questionaire({
   updateEndpoint = "update-response",
   submissionStorageKey = "SubmissionID",
   completionPath = "/dashboard",
+  reportEndpoint = null,
 } = {}) {
   function getLanguageFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -98,7 +99,13 @@ export default function Questionaire({
             language: language.toLowerCase(),
             submission_id: String(submissionId ?? ""),
           });
-          navigate(completionPath);
+          if (reportEndpoint) {
+            await fetch(
+              `${import.meta.env.VITE_API_URL}/${reportEndpoint}?submissionId=${encodeURIComponent(submissionId)}`,
+            ).catch((err) => console.error("Failed to trigger report email:", err));
+          }
+          const separator = completionPath.includes("?") ? "&" : "?";
+          navigate(`${completionPath}${separator}submissionId=${encodeURIComponent(submissionId)}`);
         }
         return result;
       } catch (error) {
