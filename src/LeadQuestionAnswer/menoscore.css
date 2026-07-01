@@ -200,7 +200,8 @@
 .meno-stage-description p:last-child{
   margin: 0;
 }
-.meno-stage-description > *:nth-child(n+2) {
+.menopause-report .meno-stage .meno-stage-description > *:nth-child(n+2),
+.menopause-report .meno-score .meno-stage-description > *:nth-child(n+2) {
   filter: blur(5px);
   user-select: none;
   pointer-events: none;

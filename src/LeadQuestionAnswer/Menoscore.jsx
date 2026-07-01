@@ -86,7 +86,7 @@ export default function Menoscore({scoreJson, scoreSummary}) {
   );
 
   return (
-    <div className="results">
+    <div className="results menopause-report">
       <div className="topic-header">
         <a href="/dashboard">
           <img src="/primea_logo.png" alt="Primea"
