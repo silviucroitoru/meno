@@ -49,7 +49,11 @@ export default function IRResults() {
         <>
           <IRSideBar />
           <div className="pageContent">
-            <IRReport recommendations={reportData.recommendations} />
+            <IRReport
+              zone={reportData.zone}
+              score={reportData.score}
+              forcedRed={reportData.forcedRed}
+            />
           </div>
         </>
       ) : loadError ? (

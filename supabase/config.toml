@@ -373,6 +373,12 @@ verify_jwt = false
 [functions.update-contraception-response]
 verify_jwt = false
 
+[functions.get-ir-questionnaire]
+verify_jwt = false
+
+[functions.update-ir-response]
+verify_jwt = false
+
 [edge_runtime]
 enabled = true
 # Supported request policies: `oneshot`, `per_worker`.

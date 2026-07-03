@@ -17,14 +17,11 @@ export default function IRSideBar() {
         <img src="/primea_logo.png" alt="Primea" />
       </div>
       <div className="dashboardMenu">
-        <button className="menuLink" onClick={() => scrollTo("recommendations")}>
-          {t("ir_sidebar_recommendations")}
+        <button className="menuLink" onClick={() => scrollTo("result")}>
+          {t("ir_sidebar_result")}
         </button>
         <button className="menuLink" onClick={() => scrollTo("book_call")}>
           {t("ir_sidebar_book_call")}
-        </button>
-        <button className="menuLink" onClick={() => scrollTo("safety")}>
-          {t("ir_sidebar_safety")}
         </button>
       </div>
     </div>

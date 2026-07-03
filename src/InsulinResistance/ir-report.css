@@ -59,3 +59,26 @@
 .meno-score-container .box .description ul li:hover {
   background: transparent;
 }
+
+.ir-zone-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 24px;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 12px 0 16px;
+  color: #fff;
+}
+
+.ir-zone-badge--green {
+  background-color: #2e7d32;
+}
+
+.ir-zone-badge--yellow {
+  background-color: #f9a825;
+  color: #3e2723;
+}
+
+.ir-zone-badge--red {
+  background-color: #c62828;
+}

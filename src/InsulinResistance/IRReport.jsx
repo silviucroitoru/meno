@@ -4,13 +4,21 @@ import milicaImage from "../assets/milica-petrovic-kmezic.jpg";
 import { useTranslate } from "../i18n/useTranslate";
 import mixpanel from "mixpanel-browser";
 
-export default function IRReport({ recommendations }) {
+const ZONE_BENEFITS = {
+  green: ["ir_green_benefit_1"],
+  yellow: ["ir_yellow_benefit_1", "ir_yellow_benefit_2", "ir_yellow_benefit_3", "ir_yellow_benefit_4"],
+  red: ["ir_red_benefit_1", "ir_red_benefit_2"],
+};
+
+export default function IRReport({ zone, score }) {
   const { t } = useTranslate();
 
   const trackEvent = (event, source) => {
     const token = mixpanel.get_config?.("token");
     if (token) mixpanel.track(event, { source });
   };
+
+  const benefitKeys = ZONE_BENEFITS[zone] ?? ZONE_BENEFITS.yellow;
 
   return (
     <div className="results">
@@ -20,28 +28,23 @@ export default function IRReport({ recommendations }) {
         </a>
       </div>
       <div className="meno-score-container">
-        {/* Section 1: Recommendations */}
-        <div className="meno-stage" id="recommendations">
+        {/* Section 1: Zone result */}
+        <div className="meno-stage" id="result">
           <div className="meno-stage-main-content">
             <div className="meno-stage-text">
               <div className="meno-stage-prehead">
-                {t("ir_sidebar_recommendations")}
+                {t(`ir_zone_${zone}_subtitle`)}
+              </div>
+              <div className={`ir-zone-badge ir-zone-badge--${zone}`}>
+                {score} poena
               </div>
               <div className="meno-stage-title">
-                {t("ir_report_title")}
+                {t(`ir_zone_${zone}_title`)}
               </div>
-              <div className="meno-stage-description">
-                <p>{t("ir_report_intro")}</p>
-                {recommendations.length > 0 ? (
-                  <ul>
-                    {recommendations.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p><em>Konsultujte lekara za personalizovanu preporuku.</em></p>
-                )}
-              </div>
+              <div
+                className="meno-stage-description"
+                dangerouslySetInnerHTML={{ __html: t(`ir_zone_${zone}_body`) }}
+              />
             </div>
           </div>
           <div className="meno-stage-explanation" />
@@ -52,14 +55,11 @@ export default function IRReport({ recommendations }) {
           <div className="content">
             <div className="title">{t("ir_benefits_title")}</div>
             <div className="description">
-              <p>{t("ir_benefits_intro")}</p>
               <ul>
-                <li dangerouslySetInnerHTML={{ __html: t("ir_benefit_1") }} />
-                <li dangerouslySetInnerHTML={{ __html: t("ir_benefit_2") }} />
-                <li dangerouslySetInnerHTML={{ __html: t("ir_benefit_3") }} />
-                <li dangerouslySetInnerHTML={{ __html: t("ir_benefit_4") }} />
+                {benefitKeys.map((key) => (
+                  <li key={key} dangerouslySetInnerHTML={{ __html: t(key) }} />
+                ))}
               </ul>
-              <p>{t("ir_benefits_outro")}</p>
             </div>
             <div className="actions">
               <a
@@ -94,24 +94,6 @@ export default function IRReport({ recommendations }) {
               <div className="dr-desc" dangerouslySetInnerHTML={{ __html: t("book_call_dr_info") }} />
             </div>
           </div>
-        </div>
-
-        {/* Section 3: Safety */}
-        <div className="meno-stage" id="safety">
-          <div className="meno-stage-main-content">
-            <div className="meno-stage-text">
-              <div className="meno-stage-prehead">
-                {t("ir_sidebar_safety")}
-              </div>
-              <div className="meno-stage-title">
-                {t("ir_safety_title")}
-              </div>
-              <div className="meno-stage-description"
-                dangerouslySetInnerHTML={{ __html: t("ir_safety_body") }}
-              />
-            </div>
-          </div>
-          <div className="meno-stage-explanation" />
         </div>
       </div>
     </div>
