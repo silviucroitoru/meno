@@ -45,7 +45,7 @@ export default function IRReport({ zone, score, normalizedScore }) {
                 {t("ir_result_prehead")}
               </div>
               <div className="meno-stage-title">
-                {t(`ir_zone_${zone}_title`)}: {t(`ir_zone_${zone}_subtitle`)}
+                {t(`ir_zone_${zone}_subtitle`)}: {t(`ir_zone_${zone}_title`)}
               </div>
               <div
                 className="meno-stage-description"
