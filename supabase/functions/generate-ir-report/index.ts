@@ -139,37 +139,8 @@ Deno.serve(async (req) => {
 
     const { score, normalizedScore, zone, forcedRed } = computeIRResult(responses);
 
-    const { data: existingEmail } = await supabase
-      .from("ir_email_status")
-      .select("submission_id")
-      .eq("submission_id", Number(submissionId))
-      .maybeSingle();
-
-    if (!existingEmail) {
-      try {
-        const resendEmailId = await sendIREmail(email, firstName, Number(submissionId), zone, score);
-        const { error: upsertError } = await supabase.from("ir_email_status").upsert({
-          submission_id: Number(submissionId),
-          resend_email_id: resendEmailId,
-          last_event: "email.sent",
-          last_event_at: new Date().toISOString(),
-        });
-        if (upsertError) {
-          console.error("Failed to persist ir_email_status:", upsertError);
-        }
-      } catch (emailErr) {
-        console.error("Failed to send IR email:", emailErr);
-        const { error: failUpsertError } = await supabase.from("ir_email_status").upsert({
-          submission_id: Number(submissionId),
-          last_event: "email.failed",
-          last_event_at: new Date().toISOString(),
-          last_payload: { error: String(emailErr?.message ?? emailErr) },
-        });
-        if (failUpsertError) {
-          console.error("Failed to persist ir_email_status failure:", failUpsertError);
-        }
-      }
-    }
+    // Email sending paused for now
+    // TODO: re-enable once email template is updated
 
     return new Response(
       JSON.stringify({ score, normalizedScore, zone, forcedRed, firstName }),

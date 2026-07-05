@@ -44,6 +44,7 @@ export default function IRReport({ zone, score, normalizedScore }) {
               />
             </div>
           </div>
+          <div className="meno-stage-explanation" />
         </div>
 
         {/* Section 2: Book a call */}
