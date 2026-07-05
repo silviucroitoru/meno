@@ -1,8 +1,11 @@
 import "../LeadQuestionAnswer/menoscore.css";
 import "./ir-report.css";
+import ScoreCircle from "../LeadQuestionAnswer/ScoreCircle.jsx";
 import milicaImage from "../assets/milica-petrovic-kmezic.jpg";
 import { useTranslate } from "../i18n/useTranslate";
 import mixpanel from "mixpanel-browser";
+
+const ZONE_COLORS = { green: "#2e7d32", yellow: "#f9a825", red: "#c62828" };
 
 const ZONE_BENEFITS = {
   green: ["ir_green_benefit_1"],
@@ -10,7 +13,7 @@ const ZONE_BENEFITS = {
   red: ["ir_red_benefit_1", "ir_red_benefit_2"],
 };
 
-export default function IRReport({ zone, score }) {
+export default function IRReport({ zone, score, normalizedScore }) {
   const { t } = useTranslate();
 
   const trackEvent = (event, source) => {
@@ -35,8 +38,13 @@ export default function IRReport({ zone, score }) {
               <div className="meno-stage-prehead">
                 {t(`ir_zone_${zone}_subtitle`)}
               </div>
-              <div className={`ir-zone-badge ir-zone-badge--${zone}`}>
-                {score} poena
+              <div className="ir-score-circle">
+                <ScoreCircle
+                  score={normalizedScore}
+                  size={128}
+                  strokeWidth={8}
+                  color={ZONE_COLORS[zone] ?? ZONE_COLORS.yellow}
+                />
               </div>
               <div className="meno-stage-title">
                 {t(`ir_zone_${zone}_title`)}

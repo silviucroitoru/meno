@@ -4,6 +4,7 @@ export type IRZone = "green" | "yellow" | "red";
 
 export interface IRResult {
   score: number;
+  normalizedScore: number;
   zone: IRZone;
   forcedRed: boolean;
 }
@@ -52,11 +53,15 @@ export function computeIRResult(responses: Responses): IRResult {
     score += pointsForField(field, responses[field]);
   }
 
+  const isWoman = responses["Women Waist"] != null;
+  const maxPoints = isWoman ? 32 : 30;
+  const normalizedScore = Math.round((score / maxPoints) * 100);
+
   const glucoseRaw = String(responses["Blood Glucose Level"] ?? "");
   const homaRaw = String(responses["Homa"] ?? "");
   const forcedRed = glucoseRaw === "3" || homaRaw === "3";
 
   const zone: IRZone = forcedRed ? "red" : classifyZone(score);
 
-  return { score, zone, forcedRed };
+  return { score, normalizedScore, zone, forcedRed };
 }

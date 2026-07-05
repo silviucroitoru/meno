@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {FormattedMessage} from "react-intl";
 
-const ScoreCircle = ({ score, size, strokeWidth, duration = 1500 }) => {
+const ScoreCircle = ({ score, size, strokeWidth, duration = 1500, color = "#3D497A" }) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const [progress, setProgress] = useState(circumference);
@@ -46,7 +46,7 @@ const ScoreCircle = ({ score, size, strokeWidth, duration = 1500 }) => {
         cy={size / 2}
         r={radius}
         fill="none"
-        stroke="#3D497A"
+        stroke={color}
         strokeWidth={strokeWidth}
         strokeDasharray={circumference}
         strokeDashoffset={progress} // Now starts empty and fills up
@@ -63,7 +63,7 @@ const ScoreCircle = ({ score, size, strokeWidth, duration = 1500 }) => {
         dominantBaseline="middle"
         textAnchor="middle"
         fontSize="36"
-        fill="#3D497A"
+        fill={color}
       >
         {animatedScore}
       </text>
@@ -73,7 +73,7 @@ const ScoreCircle = ({ score, size, strokeWidth, duration = 1500 }) => {
         dominantBaseline="middle"
         textAnchor="middle"
         fontSize="14"
-        fill="#3D497A"
+        fill={color}
       >
         <FormattedMessage id="my_score" />
       </text>

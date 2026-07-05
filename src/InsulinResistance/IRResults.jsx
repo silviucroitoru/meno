@@ -52,6 +52,7 @@ export default function IRResults() {
             <IRReport
               zone={reportData.zone}
               score={reportData.score}
+              normalizedScore={reportData.normalizedScore}
               forcedRed={reportData.forcedRed}
             />
           </div>

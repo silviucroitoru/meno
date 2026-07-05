@@ -137,7 +137,7 @@ Deno.serve(async (req) => {
       );
     }
 
-    const { score, zone, forcedRed } = computeIRResult(responses);
+    const { score, normalizedScore, zone, forcedRed } = computeIRResult(responses);
 
     const { data: existingEmail } = await supabase
       .from("ir_email_status")
@@ -172,7 +172,7 @@ Deno.serve(async (req) => {
     }
 
     return new Response(
-      JSON.stringify({ score, zone, forcedRed, firstName }),
+      JSON.stringify({ score, normalizedScore, zone, forcedRed, firstName }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
     );
   } catch (error) {
