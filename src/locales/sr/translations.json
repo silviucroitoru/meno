@@ -194,16 +194,15 @@
   "ir_zone_red_title": "Vreme je za proaktivnu brigu o telu",
   "ir_zone_red_body": "Vaši odgovori, a posebno laboratorijski parametri koje ste uneli i/ili izraženi fizički simptomi jasno ukazuju na visok rizik od izražene insulinske rezistencije ili predijabetesa. Želimo da znate da ovi simptomi i stagnacija u kilaži nisu vaša krivica, već posledica ozbiljnog metaboličkog disbalansa sa kojim se vaš organizam trenutno bori.<br /><br />U ovoj fazi, same promene u ishrani i treninzima najčešće nisu dovoljne. Potrebna vam je stručna, lekarska podrška kako biste bezbedno preokrenuli ovaj proces i sprečili dalji razvoj ka dijabetesu tipa 2 ili težim hormonskim poremećajima. Nemojte odlagati brigu o sebi. Kao odgovor na vaše poverenje, Poliklinika Primea vam obezbeđuje 30% popusta na endokrinološki pregled i 10% popusta na prateću laboratoriju. Zakažite svoj termin već danas i dozvolite našem timu endokrinologa da vas bezbedno vrati u balans.",
 
-  "ir_benefits_title": "Iskoristite posebnu pogodnost!",
-  "ir_green_benefit_1": "<strong>10% popusta na laboratorijske analize i metaboličke pakete</strong> u Poliklinici Primea.",
-  "ir_yellow_benefit_1": "<strong>Besplatne petominutne konsultacije sa našim lekarima,</strong>",
-  "ir_yellow_benefit_2": "<strong>30% popusta na pregled endokrinologa,</strong>",
-  "ir_yellow_benefit_3": "<strong>10% popusta na endokrinološki paket,</strong>",
-  "ir_yellow_benefit_4": "<strong>10% popusta na laboratorijske usluge</strong> u Poliklinici Primea.",
-  "ir_red_benefit_1": "<strong>30% popusta na endokrinološki pregled,</strong>",
-  "ir_red_benefit_2": "<strong>10% popusta na prateću laboratoriju</strong> u Poliklinici Primea.",
+  "ir_benefits_title": "Vaše zdravlje je naš prioritet. Iskoristite posebne pogodnosti!",
+  "ir_benefits_description": "Želimo da vaša briga o metabolizmu bude potpuno sigurna, komforna i kreirana tačno prema vašim potrebama. Zato smo za vas obezbedili sledeće pogodnosti:<ul><li>Besplatne petominutne konsultacije sa našim lekarima,</li><li>30% popusta na endokrinološke preglede,</li><li>10% popusta na endokrinološke pakete usluga,</li><li>10% popusta na prateće laboratorijske analize u Poliklinici Primea.</li></ul>Prepustite brigu o zdravlju stručnjacima, izbegnite nagađanja i rizike.",
 
   "ir_cta_consultation": "Zakažite besplatne konsultacije",
   "ir_consultation_link": "https://primea.setmore.com/j6N4MDMJRXkT4GLOGHkGumFxtAcSh7IH/service/698d95bc-3b32-402d-9b6b-9e08c2bca235",
-  "ir_cta_checkup": "Zakažite pregled uz popust"
+  "ir_cta_checkup": "Zakažite pregled uz 10–30% popusta",
+  "ir_checkup_link": "https://www.primea.rs/istrazi-nase-usluge/",
+  "ir_cta_phone": "Poziv",
+  "ir_phone_link": "tel:0114391999",
+  "ir_dr_name": "Dr Neda Crnjak",
+  "ir_dr_info": "Dr Neda Crnjak je specijalista interne medicine sa subspecijalizacijom iz endokrinologije, sa bogatim iskustvom u radu sa kompleksnim endokrinološkim i internističkim pacijentima. Posebno je posvećena poremećajima štitne žlezde, dijabetesu i hormonalnoj ravnoteži kroz savremeni, individualni pristup."
 }

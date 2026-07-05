@@ -1,17 +1,10 @@
 import "../LeadQuestionAnswer/menoscore.css";
 import "./ir-report.css";
 import ScoreCircle from "../LeadQuestionAnswer/ScoreCircle.jsx";
-import milicaImage from "../assets/milica-petrovic-kmezic.jpg";
 import { useTranslate } from "../i18n/useTranslate";
 import mixpanel from "mixpanel-browser";
 
 const ZONE_COLORS = { green: "#2e7d32", yellow: "#f9a825", red: "#c62828" };
-
-const ZONE_BENEFITS = {
-  green: ["ir_green_benefit_1"],
-  yellow: ["ir_yellow_benefit_1", "ir_yellow_benefit_2", "ir_yellow_benefit_3", "ir_yellow_benefit_4"],
-  red: ["ir_red_benefit_1", "ir_red_benefit_2"],
-};
 
 export default function IRReport({ zone, score, normalizedScore }) {
   const { t } = useTranslate();
@@ -20,8 +13,6 @@ export default function IRReport({ zone, score, normalizedScore }) {
     const token = mixpanel.get_config?.("token");
     if (token) mixpanel.track(event, { source });
   };
-
-  const benefitKeys = ZONE_BENEFITS[zone] ?? ZONE_BENEFITS.yellow;
 
   return (
     <div className="results">
@@ -59,13 +50,8 @@ export default function IRReport({ zone, score, normalizedScore }) {
         <div className="box" id="book_call">
           <div className="content">
             <div className="title">{t("ir_benefits_title")}</div>
-            <div className="description">
-              <ul>
-                {benefitKeys.map((key) => (
-                  <li key={key} dangerouslySetInnerHTML={{ __html: t(key) }} />
-                ))}
-              </ul>
-            </div>
+            <div className="description"
+                 dangerouslySetInnerHTML={{ __html: t("ir_benefits_description") }} />
             <div className="actions">
               <a
                 href={t("ir_consultation_link")}
@@ -76,7 +62,7 @@ export default function IRReport({ zone, score, normalizedScore }) {
                 <span>{t("ir_cta_consultation")}</span>
               </a>
               <a
-                href={t("book_call_checkup_link")}
+                href={t("ir_checkup_link")}
                 target="_blank"
                 className="button button--secondary"
                 onClick={() => trackEvent("IR Checkup Click", "Book a call section")}
@@ -84,19 +70,19 @@ export default function IRReport({ zone, score, normalizedScore }) {
                 <span>{t("ir_cta_checkup")}</span>
               </a>
               <a
-                href={t("book_call_phone_link")}
+                href={t("ir_phone_link")}
                 className="button button--secondary"
                 onClick={() => trackEvent("IR Phone Click", "Book a call section")}
               >
-                <span>{t("book_call_phone")}</span>
+                <span>{t("ir_cta_phone")}</span>
               </a>
             </div>
           </div>
           <div className="info-box-dr">
-            <img src={milicaImage} alt="" />
+            <img src="/neda_crnjak.jpg" alt="" />
             <div className="dr-info">
-              <div className="dr-name">{t("book_call_dr_name")}</div>
-              <div className="dr-desc" dangerouslySetInnerHTML={{ __html: t("book_call_dr_info") }} />
+              <div className="dr-name">{t("ir_dr_name")}</div>
+              <div className="dr-desc" dangerouslySetInnerHTML={{ __html: t("ir_dr_info") }} />
             </div>
           </div>
         </div>
