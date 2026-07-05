@@ -32,22 +32,20 @@ export default function IRReport({ zone, score, normalizedScore }) {
       </div>
       <div className="meno-score-container">
         {/* Section 1: Zone result */}
-        <div className="meno-stage" id="result">
+        <div className="meno-score" id="result">
+          <ScoreCircle
+            score={normalizedScore}
+            size={128}
+            strokeWidth={8}
+            color={ZONE_COLORS[zone] ?? ZONE_COLORS.yellow}
+          />
           <div className="meno-stage-main-content">
             <div className="meno-stage-text">
               <div className="meno-stage-prehead">
-                {t(`ir_zone_${zone}_subtitle`)}
-              </div>
-              <div className="ir-score-circle">
-                <ScoreCircle
-                  score={normalizedScore}
-                  size={128}
-                  strokeWidth={8}
-                  color={ZONE_COLORS[zone] ?? ZONE_COLORS.yellow}
-                />
+                {t("ir_result_prehead")}
               </div>
               <div className="meno-stage-title">
-                {t(`ir_zone_${zone}_title`)}
+                {t(`ir_zone_${zone}_title`)}: {t(`ir_zone_${zone}_subtitle`)}
               </div>
               <div
                 className="meno-stage-description"
@@ -55,7 +53,6 @@ export default function IRReport({ zone, score, normalizedScore }) {
               />
             </div>
           </div>
-          <div className="meno-stage-explanation" />
         </div>
 
         {/* Section 2: Book a call */}
