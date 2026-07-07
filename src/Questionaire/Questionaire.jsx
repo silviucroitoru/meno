@@ -67,7 +67,7 @@ export default function Questionaire({
     if (type === "email") {
       localStorage.setItem('bloomEmail', a)
     }
-    if(type !== "email"){
+    if(type !== "phone"){
       setProgressPages([...progressPages, pageNo])
       setCurrentPage(questionnaire.info?.find((page) => page.position === pageNo));
     }
@@ -93,7 +93,7 @@ export default function Questionaire({
         }
 
         const result = await response.json();
-        if (type === "email") {
+        if (type === "phone") {
           initMetaPixel();
           metaPixelTrackCustom("QuestionnaireComplete", {
             language: language.toLowerCase(),

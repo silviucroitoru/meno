@@ -67,6 +67,9 @@ export default function CustomForm({
       const emailRegex = /^[a-zA-Z0-9"][a-zA-Z0-9"%!+_.-]{0,63}@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*\.[a-zA-Z]{2,15}$/;
       return emailRegex.test(value)
     }
+    if(type === 'phone'){
+      return value.replace(/\D/g, '').length >= 8
+    }
     if(fieldType === 'birthYear') {
       return value.length === 4;
     }
@@ -115,9 +118,28 @@ export default function CustomForm({
                       data-email="{{ id }}"
                       autoFocus={true}
                       onKeyDown={handleKeyPress}
-                      enterKeyHint="send"
+                      enterKeyHint="next"
                     />
                     <label><FormattedMessage id="email" /></label>
+                  </div>
+                </div>
+                ) : (type === "phone" ? (
+                <div className="custom-field">
+                  <div className={`input-field ${focused || value ? "focused" : ""}`}>
+                    <input
+                      ref={inputRef}
+                      type="tel"
+                      className="full-radius"
+                      value={value}
+                      onFocus={handleFocus}
+                      onBlur={handleBlur}
+                      onChange={(e) => {setValue(e.target.value); setFullValue(e.target.value)}}
+                      autoFocus={true}
+                      onKeyDown={handleKeyPress}
+                      enterKeyHint="send"
+                      placeholder={helper}
+                    />
+                    <label><FormattedMessage id="phone" defaultMessage="Telefon" /></label>
                   </div>
                 </div>
                 ) : (
@@ -188,7 +210,7 @@ export default function CustomForm({
                     })
                   }
                 </>
-              ))
+              )))
             }
           </div>
         </div>
