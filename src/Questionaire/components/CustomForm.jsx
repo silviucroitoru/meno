@@ -137,7 +137,6 @@ export default function CustomForm({
                       autoFocus={true}
                       onKeyDown={handleKeyPress}
                       enterKeyHint="send"
-                      placeholder={helper}
                     />
                     <label><FormattedMessage id="phone" defaultMessage="Telefon" /></label>
                   </div>
