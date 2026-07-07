@@ -5,7 +5,7 @@ const MENOPAUSE_CONSULTATION_URL =
 const CONTRACEPTION_CONSULTATION_URL =
   "https://primea.setmore.com/j6N4MDMJRXkT4GLOGHkGumFxtAcSh7IH/service/698d95bc-3b32-402d-9b6b-9e08c2bca235";
 const IR_CONSULTATION_URL =
-  "https://primea.setmore.com/j6N4MDMJRXkT4GLOGHkGumFxtAcSh7IH/service/698d95bc-3b32-402d-9b6b-9e08c2bca235";
+  "https://primea.setmore.com/OyOIVgxts2a0vdNfiVkHTJY2aLZy54g2/service/cbc5c629-8973-41e7-8e4f-643a8749f90f";
 const CHECKUP_URL = "https://www.primea.rs/istrazi-nase-usluge/";
 
 const COLUMN_MAP: Record<string, string> = {

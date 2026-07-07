@@ -1,6 +1,5 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { computeIRResult } from "./logic.ts";
-import type { IRZone } from "./logic.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -9,30 +8,10 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "GET, OPTIONS",
 };
 
-const ZONE_COPY: Record<IRZone, { title: string; body: string; benefits: string }> = {
-  green: {
-    title: "Stabilan metabolizam i nizak rizik",
-    body: "Sjajne vesti! Vaši odgovori pokazuju da vaše telo trenutno uspešno balansira nivo šećera i insulina u krvi. Čak i ako povremeno osećate pad energije ili promenu raspoloženja, prema ovom testu uzrok verovatno leži u trenutnom umoru, stresu ili nedostatku sna, a ne u metaboličkom poremećaju. Vaš obim struka i opšte navike ukazuju na to da ste na dobrom putu.\n\nKako biste zadržali ovaj nivo energije i dugoročno zaštitili svoj metabolizam, nastavite sa održavanjem zdravih navika. Ipak, pošto zdravlje zahteva preventivu, ako u porodici imate istoriju dijabetesa ili jednostavno želite da proverite sitne detalje u laboratoriji, podsećamo vas da ste popunjavanjem ovog upitnika ostvarili 10% popusta na laboratorijske analize i metaboličke pakete u Poliklinici Primea.",
-    benefits: '<ul style="margin:0;padding-left:20px;"><li>10% popusta na laboratorijske analize i metaboličke pakete u Poliklinici Primea</li></ul>',
-  },
-  yellow: {
-    title: "Vaše telo šalje prve signale (Blago povećan rizik)",
-    body: "Vaš rezultat pokazuje da se vaš metabolizam trenutno bori da održi zlatnu ravnotežu. Odgovori koji se odnose na učestalu glad nakon obroka, jaku želju za slatkišima ili umereno nakupljanje masnih naslaga oko struka, najčešće su rani znaci početne insulinske rezistencije. Telo vam suptilno poručuje da mu je potrebna mala promena u ritmu kako se ovi simptomi ne bi razvili u hronični problem.\n\nDobra vest je da je ovo stanje potpuno promenljivo — pravovremenom korekcijom ishrane, uvođenjem lagane fizičke aktivnosti i preventivnim pregledom možete brzo vratiti energiju u normalu. Kako ne biste lutale same kroz dijete i pretrage, iskoristite pogodnost koju ste dobili: zakažite besplatne petominutne telefonske konsultacije sa našim lekarom. Razgovor će vam pomoći da tačno razumete koje analize treba da uradite i koji su vaši sledeći koraci.",
-    benefits: '<ul style="margin:0;padding-left:20px;"><li>Besplatne petominutne konsultacije sa našim lekarima</li><li>30% popusta na pregled endokrinologa</li><li>10% popusta na endokrinološki paket</li><li>10% popusta na laboratorijske usluge</li></ul>',
-  },
-  red: {
-    title: "Vreme je za proaktivnu brigu o telu (Visok rizik)",
-    body: "Vaši odgovori, a posebno laboratorijski parametri koje ste uneli i/ili izraženi fizički simptomi jasno ukazuju na visok rizik od izražene insulinske rezistencije ili predijabetesa. Želimo da znate da ovi simptomi i stagnacija u kilaži nisu vaša krivica, već posledica ozbiljnog metaboličkog disbalansa sa kojim se vaš organizam trenutno bori.\n\nU ovoj fazi, same promene u ishrani i treninzima najčešće nisu dovoljne. Potrebna vam je stručna, lekarska podrška kako biste bezbedno preokrenuli ovaj proces i sprečili dalji razvoj ka dijabetesu tipa 2 ili težim hormonskim poremećajima. Nemojte odlagati brigu o sebi. Kao odgovor na vaše poverenje, Poliklinika Primea vam obezbeđuje 30% popusta na endokrinološki pregled i 10% popusta na prateću laboratoriju. Zakažite svoj termin već danas i dozvolite našem timu endokrinologa da vas bezbedno vrati u balans.",
-    benefits: '<ul style="margin:0;padding-left:20px;"><li>30% popusta na endokrinološki pregled</li><li>10% popusta na prateću laboratoriju</li></ul>',
-  },
-};
-
 async function sendIREmail(
   email: string,
   firstName: string,
   submissionId: number,
-  zone: IRZone,
-  score: number,
 ): Promise<string | null> {
   const apiKey = Deno.env.get("RESEND_API_KEY")?.trim();
   if (!apiKey) {
@@ -46,9 +25,6 @@ async function sendIREmail(
   const trackBase = `${supabaseUrl}/functions/v1/track-email-click`;
   const consultationUrl = `${trackBase}?sid=${submissionId}&btn=consultation&src=ir`;
   const checkupUrl = `${trackBase}?sid=${submissionId}&btn=checkup&src=ir`;
-
-  const templateId = "7d2cdeaa-d6ec-4771-959c-db5c681946e8";
-  const copy = ZONE_COPY[zone];
 
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -65,12 +41,8 @@ async function sendIREmail(
         { name: "type", value: "ir" },
       ],
       template: {
-        id: templateId,
+        id: "7d2cdeaa-d6ec-4771-959c-db5c681946e8",
         variables: {
-          ZONE_TITLE: copy.title,
-          ZONE_BODY: copy.body.replace(/\n/g, "<br />"),
-          SCORE: String(score),
-          BENEFITS_HTML: copy.benefits,
           RECIPIENT_EMAIL: email,
           CONSULTATION_URL: consultationUrl,
           CHECKUP_URL: checkupUrl,
@@ -139,8 +111,37 @@ Deno.serve(async (req) => {
 
     const { score, normalizedScore, zone, forcedRed } = computeIRResult(responses);
 
-    // Email sending paused for now
-    // TODO: re-enable once email template is updated
+    const { data: existingEmail } = await supabase
+      .from("ir_email_status")
+      .select("submission_id")
+      .eq("submission_id", Number(submissionId))
+      .maybeSingle();
+
+    if (!existingEmail) {
+      try {
+        const resendEmailId = await sendIREmail(email, firstName, Number(submissionId));
+        const { error: upsertError } = await supabase.from("ir_email_status").upsert({
+          submission_id: Number(submissionId),
+          resend_email_id: resendEmailId,
+          last_event: "email.sent",
+          last_event_at: new Date().toISOString(),
+        });
+        if (upsertError) {
+          console.error("Failed to persist ir_email_status:", upsertError);
+        }
+      } catch (emailErr) {
+        console.error("Failed to send IR email:", emailErr);
+        const { error: failUpsertError } = await supabase.from("ir_email_status").upsert({
+          submission_id: Number(submissionId),
+          last_event: "email.failed",
+          last_event_at: new Date().toISOString(),
+          last_payload: { error: String(emailErr?.message ?? emailErr) },
+        });
+        if (failUpsertError) {
+          console.error("Failed to persist ir_email_status failure:", failUpsertError);
+        }
+      }
+    }
 
     return new Response(
       JSON.stringify({ score, normalizedScore, zone, forcedRed, firstName }),
