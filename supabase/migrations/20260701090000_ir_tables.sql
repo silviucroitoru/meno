@@ -168,6 +168,7 @@ BEGIN
       s.language,
       nullif(trim(coalesce(s.responses->>'FirstName', '')), '') AS first_name,
       nullif(trim(coalesce(s.responses->>'Email', '')), '') AS email,
+      nullif(trim(coalesce(s.responses->>'Phone', '')), '') AS phone,
       es.last_event AS email_status,
       es.last_event_at AS email_status_at,
       es.clicked_consultation_at,
@@ -182,6 +183,7 @@ BEGIN
     WHERE v_like IS NULL
       OR coalesce(b.first_name, '') ILIKE v_like
       OR coalesce(b.email, '') ILIKE v_like
+      OR coalesce(b.phone, '') ILIKE v_like
       OR b.submission_id::text ILIKE v_like
       OR coalesce(b.language, '') ILIKE v_like
   )

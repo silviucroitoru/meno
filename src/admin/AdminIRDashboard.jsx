@@ -413,6 +413,7 @@ export default function AdminIRDashboard() {
                   <th>Date</th>
                   <th>First name</th>
                   <th>Email</th>
+                  <th>Phone</th>
                   <th>Email status</th>
                   <th>Report</th>
                 </tr>
@@ -420,7 +421,7 @@ export default function AdminIRDashboard() {
               <tbody>
                 {!listLoading && list.rows?.length === 0 && (
                   <tr>
-                    <td colSpan={5}>
+                    <td colSpan={6}>
                       <div className="admin-empty">No submissions match this search.</div>
                     </td>
                   </tr>
@@ -430,6 +431,7 @@ export default function AdminIRDashboard() {
                     <td data-label="Date" className="admin-col-muted">{formatDate(row.created_at)}</td>
                     <td data-label="First name" className="admin-col-em">{row.first_name || "—"}</td>
                     <td data-label="Email" className="admin-col-muted">{row.email || "—"}</td>
+                    <td data-label="Phone" className="admin-col-muted">{row.phone || "—"}</td>
                     <td data-label="Email status">
                       {row.email_status ? (
                         <span className="admin-email-status">
