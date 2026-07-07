@@ -5,7 +5,7 @@
 }
 
 .meno-score-container .box#book_call {
-  margin-bottom: 0;
+  margin-bottom: calc(100vh - 300px);
 }
 
 .meno-score-container > .meno-stage:last-child {
