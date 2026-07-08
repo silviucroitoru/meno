@@ -22,32 +22,7 @@ export default function IRReport({ zone, score, normalizedScore }) {
         </a>
       </div>
       <div className="meno-score-container">
-        {/* Section 1: Zone result */}
-        <div className="meno-score" id="result">
-          <ScoreCircle
-            score={normalizedScore}
-            size={128}
-            strokeWidth={8}
-            color={ZONE_COLORS[zone] ?? ZONE_COLORS.yellow}
-          />
-          <div className="meno-stage-main-content">
-            <div className="meno-stage-text">
-              <div className="meno-stage-prehead">
-                {t("ir_result_prehead")}
-              </div>
-              <div className="meno-stage-title">
-                {t(`ir_zone_${zone}_subtitle`)}: {t(`ir_zone_${zone}_title`)}
-              </div>
-              <div
-                className="meno-stage-description"
-                dangerouslySetInnerHTML={{ __html: t(`ir_zone_${zone}_body`) }}
-              />
-            </div>
-          </div>
-          <div className="meno-stage-explanation" />
-        </div>
-
-        {/* Section 2: Book a call */}
+        {/* Section 1: Book a call */}
         <div className="box" id="book_call">
           <div className="content">
             <div className="title">{t("ir_benefits_title")}</div>
@@ -86,6 +61,31 @@ export default function IRReport({ zone, score, normalizedScore }) {
               <div className="dr-desc" dangerouslySetInnerHTML={{ __html: t("ir_dr_info") }} />
             </div>
           </div>
+        </div>
+
+        {/* Section 2: Zone result */}
+        <div className="meno-score" id="result">
+          <ScoreCircle
+            score={normalizedScore}
+            size={128}
+            strokeWidth={8}
+            color={ZONE_COLORS[zone] ?? ZONE_COLORS.yellow}
+          />
+          <div className="meno-stage-main-content">
+            <div className="meno-stage-text">
+              <div className="meno-stage-prehead">
+                {t("ir_result_prehead")}
+              </div>
+              <div className="meno-stage-title">
+                {t(`ir_zone_${zone}_subtitle`)}: {t(`ir_zone_${zone}_title`)}
+              </div>
+              <div
+                className="meno-stage-description"
+                dangerouslySetInnerHTML={{ __html: t(`ir_zone_${zone}_body`) }}
+              />
+            </div>
+          </div>
+          <div className="meno-stage-explanation" />
         </div>
       </div>
     </div>
