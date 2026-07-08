@@ -12,6 +12,7 @@ export default function Questionaire({
   submissionStorageKey = "SubmissionID",
   completionPath = "/dashboard",
   reportEndpoint = null,
+  completionType = "email",
 } = {}) {
   function getLanguageFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -67,7 +68,7 @@ export default function Questionaire({
     if (type === "email") {
       localStorage.setItem('bloomEmail', a)
     }
-    if(type !== "phone"){
+    if(type !== completionType){
       setProgressPages([...progressPages, pageNo])
       setCurrentPage(questionnaire.info?.find((page) => page.position === pageNo));
     }
@@ -93,7 +94,7 @@ export default function Questionaire({
         }
 
         const result = await response.json();
-        if (type === "phone") {
+        if (type === completionType) {
           initMetaPixel();
           metaPixelTrackCustom("QuestionnaireComplete", {
             language: language.toLowerCase(),
