@@ -28,9 +28,10 @@ BEGIN
 
   SELECT count(*)
     INTO v_completed
-    FROM public.ir_submissions
-    WHERE nullif(trim(coalesce(responses->>'FirstName', '')), '') IS NOT NULL
-      AND nullif(trim(coalesce(responses->>'Email', '')), '') IS NOT NULL;
+    FROM public.ir_submissions s
+    WHERE nullif(trim(coalesce(s.responses->>'FirstName', '')), '') IS NOT NULL
+      AND nullif(trim(coalesce(s.responses->>'Email', '')), '') IS NOT NULL
+      AND EXISTS (SELECT 1 FROM public.ir_email_status es WHERE es.submission_id = s.id);
 
   IF v_total_submissions > 0 THEN
     v_completion_pct := round((v_completed::numeric / v_total_submissions::numeric) * 100, 1);
@@ -101,7 +102,7 @@ BEGIN
       es.clicked_consultation_at,
       es.clicked_checkup_at
     FROM public.ir_submissions s
-    LEFT JOIN public.ir_email_status es ON es.submission_id = s.id
+    INNER JOIN public.ir_email_status es ON es.submission_id = s.id
     WHERE nullif(trim(coalesce(s.responses->>'Email', '')), '') IS NOT NULL
       AND nullif(trim(coalesce(s.responses->>'FirstName', '')), '') IS NOT NULL
   ),
@@ -165,6 +166,7 @@ BEGIN
       FROM public.ir_submissions s
       WHERE nullif(trim(coalesce(s.responses->>'FirstName', '')), '') IS NOT NULL
         AND nullif(trim(coalesce(s.responses->>'Email', '')), '') IS NOT NULL
+        AND EXISTS (SELECT 1 FROM public.ir_email_status es WHERE es.submission_id = s.id)
         AND (s.created_at AT TIME ZONE 'Europe/Belgrade')::date BETWEEN p_from AND p_to
       GROUP BY 1
     ) cnt ON cnt.day = d.day::date
@@ -220,6 +222,7 @@ BEGIN
       FROM public.ir_submissions s
       WHERE nullif(trim(coalesce(s.responses->>'FirstName', '')), '') IS NOT NULL
         AND nullif(trim(coalesce(s.responses->>'Email', '')), '') IS NOT NULL
+        AND EXISTS (SELECT 1 FROM public.ir_email_status es WHERE es.submission_id = s.id)
         AND (s.created_at AT TIME ZONE 'Europe/Belgrade')::date BETWEEN p_from AND p_to
       GROUP BY 1
     ) sub ON sub.day = d.day::date
