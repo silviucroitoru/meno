@@ -8,7 +8,7 @@ export default function IRQuestionnaire() {
       submissionStorageKey="IRSubmissionID"
       completionPath="/ir/results"
       reportEndpoint="generate-ir-report"
-      completionType="phone"
+      completionType="email"
     />
   );
 }
