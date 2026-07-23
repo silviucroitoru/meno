@@ -6,6 +6,8 @@ const CONTRACEPTION_CONSULTATION_URL =
   "https://primea.setmore.com/j6N4MDMJRXkT4GLOGHkGumFxtAcSh7IH/service/698d95bc-3b32-402d-9b6b-9e08c2bca235";
 const IR_CONSULTATION_URL =
   "https://primea.setmore.com/OyOIVgxts2a0vdNfiVkHTJY2aLZy54g2/service/cbc5c629-8973-41e7-8e4f-643a8749f90f";
+const MENOPAUSE_CHECKUP_URL =
+  "https://www.primea.rs/sr/istrazi-nase-usluge?tip=Ginekologija";
 const CHECKUP_URL = "https://www.primea.rs/istrazi-nase-usluge/";
 
 const COLUMN_MAP: Record<string, string> = {
@@ -27,7 +29,9 @@ Deno.serve(async (req) => {
           ? IR_CONSULTATION_URL
           : MENOPAUSE_CONSULTATION_URL
       : btn === "checkup"
-        ? CHECKUP_URL
+        ? src === "contraception" || src === "ir"
+          ? CHECKUP_URL
+          : MENOPAUSE_CHECKUP_URL
         : undefined;
   if (!sid || !destination) {
     return new Response("Bad request", { status: 400 });

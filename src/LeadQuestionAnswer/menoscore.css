@@ -664,6 +664,14 @@ a.button.whatsapp{
 .meno-score-container .box#book_call{
   margin-bottom: 0;
 }
+.meno-score-container .box#book_call .actions .button--primary{
+  background-color: #39e75f;
+  border-color: #39e75f;
+}
+.meno-score-container .box#book_call .actions .button--primary:hover{
+  background-color: #2fd452;
+  border-color: #2fd452;
+}
 .meno-score-container .box#book_call .actions{
   flex-direction: column;
   align-items: flex-start;
