@@ -16,6 +16,49 @@ const messages = {
   sr: SerbianMessages,
 };
 
+function splitDescriptionHtml(html) {
+  if (typeof document === "undefined" || !html) {
+    return { firstHtml: html || "", restHtml: "" };
+  }
+  const container = document.createElement("div");
+  container.innerHTML = html;
+  const children = Array.from(container.children);
+  if (children.length <= 1) {
+    return { firstHtml: html, restHtml: "" };
+  }
+  return {
+    firstHtml: children[0].outerHTML,
+    restHtml: children.slice(1).map((child) => child.outerHTML).join(""),
+  };
+}
+
+function BlurredDescription({ html, overlayLabel, overlayHref, onOverlayClick }) {
+  const { firstHtml, restHtml } = useMemo(() => splitDescriptionHtml(html), [html]);
+
+  return (
+    <div className="meno-stage-description">
+      <div dangerouslySetInnerHTML={{ __html: firstHtml }} />
+      {restHtml ? (
+        <div className="meno-stage-description-blurred">
+          <div
+            className="blurred-content"
+            dangerouslySetInnerHTML={{ __html: restHtml }}
+          />
+          <a
+            className="meno-stage-blur-overlay"
+            href={overlayHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={onOverlayClick}
+          >
+            {overlayLabel}
+          </a>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 export default function Menoscore({scoreJson, scoreSummary}) {
   const { t } = useTranslate();
   const [arrowPosition, setArrowPosition] = useState(0);
@@ -210,8 +253,17 @@ export default function Menoscore({scoreJson, scoreSummary}) {
               <div className="meno-stage-title">
                 {scoreJson.menopauseStage.stage}
               </div>
-              <div className="meno-stage-description"
-                   dangerouslySetInnerHTML={{__html: htmlDescriptionStage}}/>
+              <BlurredDescription
+                html={htmlDescriptionStage}
+                overlayLabel={t("blur_overlay_cta")}
+                overlayHref={getTranslatedMessage("book_call_dr_link", {})}
+                onOverlayClick={() =>
+                  trackEvent(
+                    `Dashboard-Stage Click on ${getTranslatedMessage("blur_overlay_cta")} overlay`,
+                    "Monepause stage section",
+                  )
+                }
+              />
             </div>
           </div>
           {/*
@@ -280,8 +332,17 @@ export default function Menoscore({scoreJson, scoreSummary}) {
                 <div className="meno-stage-title">
                   {scoreJson.menoScore.scorename}
                 </div>
-                <div className="meno-stage-description"
-                     dangerouslySetInnerHTML={{__html: htmlDescriptionScore}}/>
+                <BlurredDescription
+                  html={htmlDescriptionScore}
+                  overlayLabel={t("blur_overlay_cta")}
+                  overlayHref={getTranslatedMessage("book_call_dr_link", {})}
+                  onOverlayClick={() =>
+                    trackEvent(
+                      `Dashboard-Score Click on ${getTranslatedMessage("blur_overlay_cta")} overlay`,
+                      "Menoscore section",
+                    )
+                  }
+                />
               </div>
             </div>
             {/*

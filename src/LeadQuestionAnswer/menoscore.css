@@ -187,6 +187,38 @@
   line-height: 24px; /* 150% */
   letter-spacing: -0.16px;
 }
+.menopause-report .meno-stage-description {
+  position: relative;
+}
+.menopause-report .meno-stage-description-blurred {
+  position: relative;
+  margin-top: 24px;
+}
+.menopause-report .meno-stage-description-blurred .blurred-content,
+.menopause-report .meno-stage-description-blurred .blurred-content > * {
+  filter: blur(5px);
+  user-select: none;
+  pointer-events: none;
+}
+.menopause-report .meno-stage-blur-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px;
+  text-align: center;
+  color: var(--main-blue);
+  font-family: "SofiaPro-Medium";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .meno-stage-description p{
   color: var(--main-blue);
   font-family: "SofiaPro-Regular";
@@ -199,12 +231,6 @@
 }
 .meno-stage-description p:last-child{
   margin: 0;
-}
-.menopause-report .meno-stage .meno-stage-description > *:nth-child(n+2),
-.menopause-report .meno-score .meno-stage-description > *:nth-child(n+2) {
-  filter: blur(5px);
-  user-select: none;
-  pointer-events: none;
 }
 .meno-stage-main-content .meno-stage-text .meno-stage-description a{
   color: var(--main-blue);
