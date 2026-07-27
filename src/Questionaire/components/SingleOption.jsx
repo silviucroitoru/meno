@@ -13,15 +13,17 @@ export default function SingleOption({
   currentPage,
   dataPointId,
   dataPointName,
+  questionCta,
 }) {
   const containerRef = useRef(null);
   const [headingContainer, setHeadingContainer] = useState(0);
   useEffect(() => {
     // Set the height after the component mounts
     if (containerRef.current && currentPage.position == id) {
-      setHeadingContainer(containerRef.current.offsetHeight + 144 + 48);
+      const actionReserve = questionCta ? 240 : 192;
+      setHeadingContainer(containerRef.current.offsetHeight + actionReserve);
     }
-  }, [currentPage.position, id]);
+  }, [currentPage.position, id, questionCta]);
   const userName = localStorage.getItem("userName");
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -101,6 +103,7 @@ export default function SingleOption({
         currentPage={currentPage}
         back={back}
         next={next}
+        questionCta={questionCta}
       />
     </>
   )

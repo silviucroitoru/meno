@@ -6,20 +6,10 @@ import CustomForm from "./CustomForm.jsx";
 import Contact from "./Contact.jsx";
 import RegisterForm from "./RegisterForm.jsx";
 import Media from "./Media.jsx";
-import QuestionCta from "./QuestionCta.jsx";
 
 export default function Page({page, next, back, currentPage, userName, language, questionCta}) {
   const showCta = questionCta && !questionCta.excludeTypes.includes(page.QuestionType);
-
-  const wrapWithCta = (content) => {
-    if (!showCta) return content;
-    return (
-      <>
-        {content}
-        <QuestionCta config={questionCta} />
-      </>
-    );
-  };
+  const cta = showCta ? questionCta : null;
 
   switch (page.QuestionType) {
     case 'intro':
@@ -53,7 +43,7 @@ export default function Page({page, next, back, currentPage, userName, language,
         />
       )
     case 'single_option':
-      return wrapWithCta(
+      return (
         <SingleOption
           type={page.QuestionType}
           options={page.settings.options}
@@ -66,10 +56,11 @@ export default function Page({page, next, back, currentPage, userName, language,
           currentPage={currentPage}
           dataPointId={page.DataPointID}
           dataPointName={page.DataPointName}
+          questionCta={cta}
         />
       )
     case 'scale':
-      return wrapWithCta(
+      return (
         <SingleOption
           type={page.QuestionType}
           options={page.settings.options}
@@ -82,10 +73,11 @@ export default function Page({page, next, back, currentPage, userName, language,
           currentPage={currentPage}
           dataPointId={page.DataPointID}
           dataPointName={page.DataPointName}
+          questionCta={cta}
         />
       )
     case 'single_option_image':
-      return wrapWithCta(
+      return (
         <SingleOption
           type={page.QuestionType}
           options={page.settings.options}
@@ -98,10 +90,11 @@ export default function Page({page, next, back, currentPage, userName, language,
           currentPage={currentPage}
           dataPointId={page.DataPointID}
           dataPointName={page.DataPointName}
+          questionCta={cta}
         />
       )
     case 'multiple_option':
-      return wrapWithCta(
+      return (
         <MultipleOptions
           type={page.QuestionType}
           options={page.settings.options}
@@ -114,6 +107,7 @@ export default function Page({page, next, back, currentPage, userName, language,
           currentPage={currentPage}
           dataPointId={page.DataPointID}
           dataPointName={page.DataPointName}
+          questionCta={cta}
         />
       )
     case 'custom_form':

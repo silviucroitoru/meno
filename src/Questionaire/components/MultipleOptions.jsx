@@ -38,6 +38,7 @@ export default function MultipleOptions({
   currentPage,
   dataPointId,
   dataPointName,
+  questionCta,
 }) {
   const [answersArray, setAnswersArray] = useState([]);
   const containerRef = useRef(null);
@@ -46,9 +47,10 @@ export default function MultipleOptions({
 
   useEffect(() => {
     if (containerRef.current) {
-      setHeadingContainer(containerRef.current.offsetHeight + 144 + 48);
+      const actionReserve = questionCta ? 240 : 192;
+      setHeadingContainer(containerRef.current.offsetHeight + actionReserve);
     }
-  }, []);
+  }, [questionCta]);
 
   const selectOption = (answer, isExcluder = false) => {
     if (isExcluder) {
@@ -117,6 +119,7 @@ export default function MultipleOptions({
         a={answersArray}
         isAvailable={answersArray.length > 0}
         type={type}
+        questionCta={questionCta}
       />
     </>
   );
