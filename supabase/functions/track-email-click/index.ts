@@ -8,9 +8,10 @@ const IR_CONSULTATION_URL =
   "https://primea.setmore.com/OyOIVgxts2a0vdNfiVkHTJY2aLZy54g2/service/cbc5c629-8973-41e7-8e4f-643a8749f90f";
 const MENOPAUSE_CHECKUP_URL =
   "https://www.primea.rs/sr/istrazi-nase-usluge?tip=Ginekologija";
+const CONTRACEPTION_CHECKUP_URL =
+  "https://www.primea.rs/sr/istrazi-nase-usluge?tip=Ginekologija";
 const IR_CHECKUP_URL =
   "https://www.primea.rs/sr/istrazi-nase-usluge?tip=Interna+medicina";
-const CHECKUP_URL = "https://www.primea.rs/istrazi-nase-usluge/";
 
 const COLUMN_MAP: Record<string, string> = {
   consultation: "clicked_consultation_at",
@@ -34,7 +35,7 @@ Deno.serve(async (req) => {
         ? src === "ir"
           ? IR_CHECKUP_URL
           : src === "contraception"
-            ? CHECKUP_URL
+            ? CONTRACEPTION_CHECKUP_URL
             : MENOPAUSE_CHECKUP_URL
         : undefined;
   if (!sid || !destination) {

@@ -71,7 +71,7 @@ export default function ContraceptionReport({ recommendedMethods }) {
                 <span>{t("contraception_cta_consultation")}</span>
               </a>
               <a
-                href={t("book_call_checkup_link")}
+                href={t("contraception_checkup_link")}
                 target="_blank"
                 className="button button--secondary"
                 onClick={() => trackEvent("Contraception Checkup Click", "Book a call section")}
