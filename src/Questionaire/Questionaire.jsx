@@ -13,6 +13,7 @@ export default function Questionaire({
   completionPath = "/dashboard",
   reportEndpoint = null,
   completionType = "email",
+  questionCta = null,
 } = {}) {
   function getLanguageFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -151,6 +152,7 @@ export default function Questionaire({
                     userName={userName}
                     isActive
                     language={language}
+                    questionCta={questionCta}
                   />
                 </div>
 

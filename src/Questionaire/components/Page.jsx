@@ -6,8 +6,21 @@ import CustomForm from "./CustomForm.jsx";
 import Contact from "./Contact.jsx";
 import RegisterForm from "./RegisterForm.jsx";
 import Media from "./Media.jsx";
+import QuestionCta from "./QuestionCta.jsx";
 
-export default function Page({page, next, back, currentPage, userName, language}) {
+export default function Page({page, next, back, currentPage, userName, language, questionCta}) {
+  const showCta = questionCta && !questionCta.excludeTypes.includes(page.QuestionType);
+
+  const wrapWithCta = (content) => {
+    if (!showCta) return content;
+    return (
+      <>
+        {content}
+        <QuestionCta config={questionCta} />
+      </>
+    );
+  };
+
   switch (page.QuestionType) {
     case 'intro':
       return (
@@ -40,7 +53,7 @@ export default function Page({page, next, back, currentPage, userName, language}
         />
       )
     case 'single_option':
-      return (
+      return wrapWithCta(
         <SingleOption
           type={page.QuestionType}
           options={page.settings.options}
@@ -56,7 +69,7 @@ export default function Page({page, next, back, currentPage, userName, language}
         />
       )
     case 'scale':
-      return (
+      return wrapWithCta(
         <SingleOption
           type={page.QuestionType}
           options={page.settings.options}
@@ -72,7 +85,7 @@ export default function Page({page, next, back, currentPage, userName, language}
         />
       )
     case 'single_option_image':
-      return (
+      return wrapWithCta(
         <SingleOption
           type={page.QuestionType}
           options={page.settings.options}
@@ -88,7 +101,7 @@ export default function Page({page, next, back, currentPage, userName, language}
         />
       )
     case 'multiple_option':
-      return (
+      return wrapWithCta(
         <MultipleOptions
           type={page.QuestionType}
           options={page.settings.options}
