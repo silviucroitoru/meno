@@ -9,13 +9,13 @@ export default function QuestionCta({ config }) {
         href={t(config.consultationLink)}
         target="_blank"
         rel="noopener noreferrer"
-        className="question-cta-btn question-cta-btn--primary"
+        className="button button--primary"
       >
         {t(config.consultationLabel)}
       </a>
       <a
         href={t(config.phoneLink)}
-        className="question-cta-btn question-cta-btn--outline"
+        className="button button--secondary"
       >
         {t(config.phoneLabel)}
       </a>

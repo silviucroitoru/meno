@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import '../styles/singleOption.css';
 import ActionArea from "./ActionArea.jsx";
+import QuestionCta from "./QuestionCta.jsx";
 export default function SingleOption({
   type,
   options,
@@ -18,12 +19,10 @@ export default function SingleOption({
   const containerRef = useRef(null);
   const [headingContainer, setHeadingContainer] = useState(0);
   useEffect(() => {
-    // Set the height after the component mounts
     if (containerRef.current && currentPage.position == id) {
-      const actionReserve = questionCta ? 240 : 192;
-      setHeadingContainer(containerRef.current.offsetHeight + actionReserve);
+      setHeadingContainer(containerRef.current.offsetHeight + 144 + 48);
     }
-  }, [currentPage.position, id, questionCta]);
+  }, [currentPage.position, id]);
   const userName = localStorage.getItem("userName");
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -97,13 +96,13 @@ export default function SingleOption({
               )
             })
           }
+          {questionCta && <QuestionCta config={questionCta} />}
         </div>
       </div>
       <ActionArea
         currentPage={currentPage}
         back={back}
         next={next}
-        questionCta={questionCta}
       />
     </>
   )

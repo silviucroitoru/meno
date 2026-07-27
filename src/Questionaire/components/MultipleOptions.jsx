@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import '../styles/multipleOptions.css';
 import ActionArea from "./ActionArea.jsx";
+import QuestionCta from "./QuestionCta.jsx";
 
 function OptionRow({ answer, selected, onSelect, questionId }) {
   return (
@@ -47,10 +48,9 @@ export default function MultipleOptions({
 
   useEffect(() => {
     if (containerRef.current) {
-      const actionReserve = questionCta ? 240 : 192;
-      setHeadingContainer(containerRef.current.offsetHeight + actionReserve);
+      setHeadingContainer(containerRef.current.offsetHeight + 144 + 48);
     }
-  }, [questionCta]);
+  }, []);
 
   const selectOption = (answer, isExcluder = false) => {
     if (isExcluder) {
@@ -108,6 +108,7 @@ export default function MultipleOptions({
               questionId={id}
             />
           )}
+          {questionCta && <QuestionCta config={questionCta} />}
         </div>
       </div>
       <ActionArea
@@ -119,7 +120,6 @@ export default function MultipleOptions({
         a={answersArray}
         isAvailable={answersArray.length > 0}
         type={type}
-        questionCta={questionCta}
       />
     </>
   );
