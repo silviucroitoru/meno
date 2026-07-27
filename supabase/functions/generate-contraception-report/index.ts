@@ -33,6 +33,9 @@ async function sendContraceptionEmail(
   const consultationUrl = `${trackBase}?sid=${submissionId}&btn=consultation&src=contraception`;
   const checkupUrl = `${trackBase}?sid=${submissionId}&btn=checkup&src=contraception`;
 
+  // Delay send by 30 minutes after questionnaire completion.
+  const scheduledAt = new Date(Date.now() + 30 * 60 * 1000).toISOString();
+
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -43,6 +46,7 @@ async function sendContraceptionEmail(
       from,
       to: [email],
       subject: `${firstName}, Vaši rezultati su spremni`,
+      scheduled_at: scheduledAt,
       tags: [
         { name: "submission_id", value: String(submissionId) },
         { name: "type", value: "contraception" },
@@ -131,7 +135,7 @@ Deno.serve(async (req) => {
         const { error: upsertError } = await supabase.from("contraception_email_status").upsert({
           submission_id: Number(submissionId),
           resend_email_id: resendEmailId,
-          last_event: "email.sent",
+          last_event: "email.scheduled",
           last_event_at: new Date().toISOString(),
         });
         if (upsertError) {
