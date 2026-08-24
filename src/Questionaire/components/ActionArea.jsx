@@ -4,8 +4,8 @@ export default function ActionArea({currentPage, next, back, dataPointId, dataPo
   const hasCheckbox = type === 'intro' && !!checkbox;
   const hasCheckbox2 = type === 'intro' && !!checkbox2;
   const introClass = type === 'intro' ? 'intro' : '';
-  const disclaimerClass = (hasCheckbox || hasCheckbox2) ? 'width-disclaimer' : '';
-  const justifyClass = (currentPage.position === 1 && !hasCheckbox && !hasCheckbox2) ? 'justify-end' : 'justify-between';
+  const disclaimerClass = hasCheckbox ? 'width-disclaimer' : '';
+  const justifyClass = (currentPage.position === 1 && !hasCheckbox) ? 'justify-end' : 'justify-between';
 
   return (
     <div className={`action-area ${introClass} ${disclaimerClass} ${justifyClass}`.replace(/\s+/g, ' ').trim()}>
@@ -28,7 +28,7 @@ export default function ActionArea({currentPage, next, back, dataPointId, dataPo
         </label>
       )}
       {hasCheckbox2 && (
-        <label className="disclaimer intro-checkbox">
+        <label className="disclaimer intro-checkbox" style={{marginTop: hasCheckbox ? '8px' : '0'}}>
           <input type="checkbox" checked={checked2} onChange={(e) => onCheckedChange2(e.target.checked)} className="intro-checkbox__input" />
           <span className="intro-checkbox__icon" aria-hidden="true">
             {checked2 ? (

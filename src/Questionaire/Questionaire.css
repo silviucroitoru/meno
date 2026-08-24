@@ -111,13 +111,6 @@
   z-index: 2;
   column-gap: 24px;
 }
-.action-area.width-disclaimer{
-  flex-direction: column;
-  row-gap: 16px;
-}
-.action-area.width-disclaimer .button{
-  align-self: flex-end;
-}
 @media screen and (max-width: 749px){
   .page{
     width: calc(100% - 48px);
