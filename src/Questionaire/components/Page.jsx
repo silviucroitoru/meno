@@ -19,6 +19,7 @@ export default function Page({page, next, back, currentPage, userName, language,
           intro_text={page.settings.RichText}
           disclaimer={page.settings.Disclaimer}
           checkbox={page.settings.Checkbox}
+          checkbox2={page.settings.Checkbox2}
           next={next}
           back={back}
           currentPage={currentPage}

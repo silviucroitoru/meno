@@ -1,10 +1,11 @@
 import {FormattedMessage} from "react-intl";
 
-export default function ActionArea({currentPage, next, back, dataPointId, dataPointName, a, isAvailable, type, checkbox, checked, onCheckedChange}) {
+export default function ActionArea({currentPage, next, back, dataPointId, dataPointName, a, isAvailable, type, checkbox, checked, onCheckedChange, checkbox2, checked2, onCheckedChange2}) {
   const hasCheckbox = type === 'intro' && !!checkbox;
+  const hasCheckbox2 = type === 'intro' && !!checkbox2;
   const introClass = type === 'intro' ? 'intro' : '';
-  const disclaimerClass = hasCheckbox ? 'width-disclaimer' : '';
-  const justifyClass = (currentPage.position === 1 && !hasCheckbox) ? 'justify-end' : 'justify-between';
+  const disclaimerClass = (hasCheckbox || hasCheckbox2) ? 'width-disclaimer' : '';
+  const justifyClass = (currentPage.position === 1 && !hasCheckbox && !hasCheckbox2) ? 'justify-end' : 'justify-between';
 
   return (
     <div className={`action-area ${introClass} ${disclaimerClass} ${justifyClass}`.replace(/\s+/g, ' ').trim()}>
@@ -24,6 +25,24 @@ export default function ActionArea({currentPage, next, back, dataPointId, dataPo
             )}
           </span>
           <span>{checkbox}</span>
+        </label>
+      )}
+      {hasCheckbox2 && (
+        <label className="disclaimer intro-checkbox">
+          <input type="checkbox" checked={checked2} onChange={(e) => onCheckedChange2(e.target.checked)} className="intro-checkbox__input" />
+          <span className="intro-checkbox__icon" aria-hidden="true">
+            {checked2 ? (
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="20" height="20" rx="2" fill="currentColor"/>
+                <path d="M14.6668 6.5L8.25016 12.9167L5.3335 10" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.5" y="0.5" width="19" height="19" rx="1.5" stroke="currentColor"/>
+              </svg>
+            )}
+          </span>
+          <span>{checkbox2}</span>
         </label>
       )}
       {
